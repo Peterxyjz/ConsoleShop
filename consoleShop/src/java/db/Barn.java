@@ -10,5 +10,24 @@ package db;
  * @author ASUS
  */
 public class Barn {
-    
+    private int ammount, proID;
+
+    public Barn() {
+    }
+
+    public int getAmmount() {
+        return ammount;
+    }
+
+    public void setAmmount(int ammount) {
+        this.ammount = ammount;
+    }
+
+    public int getProID() {
+        return proID;
+    }
+
+    public void setProID(int proID) {
+        this.proID = proID;
+    }
 }
