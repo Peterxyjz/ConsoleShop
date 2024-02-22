@@ -2,17 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/Barn.java</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/DBContext.java</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/AccountFacade.java</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/OrderDetailFacade.java</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/InputBill.java</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/Orders.java</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/InputBillFacade.java</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/Account.java</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/OrderDetail.java</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/Employee.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
