@@ -14,6 +14,5 @@
     </head>
     <body>
         <jsp:include page="/WEB-INF/views/${controller}/${action}.jsp" />
-        <script src="../javascript/home.js"></script>
     </body>
 </html>
