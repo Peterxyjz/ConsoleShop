@@ -3,23 +3,27 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Material/Spring%202024/ConsoleShop/consoleShop/src/java/constants/dir.ts</file>
-            <file>file:/C:/Material/Spring%202024/ConsoleShop/consoleShop/web/WEB-INF/images/Background/bg2.png</file>
-            <file>file:/C:/Material/Spring%202024/ConsoleShop/consoleShop/web/WEB-INF/images/Background/logo.png</file>
-            <file>file:/C:/Material/Spring%202024/ConsoleShop/consoleShop/web/WEB-INF/javascript/home.js</file>
-            <file>file:/C:/Material/Spring%202024/ConsoleShop/consoleShop/web/WEB-INF/views/home/index.jsp</file>
-            <file>file:/C:/Material/Spring%202024/ConsoleShop/consoleShop/web/WEB-INF/images/Game/Game%20PS4/Afterimage_Deluxe%20Edition.jpg</file>
-            <file>file:/C:/Material/Spring%202024/ConsoleShop/consoleShop/web/WEB-INF/layouts/main.jsp</file>
-            <file>file:/C:/Material/Spring%202024/ConsoleShop/consoleShop/web/index.jsp</file>
-            <file>file:/C:/Material/Spring%202024/ConsoleShop/consoleShop/src/java/constants/messages.ts</file>
-            <file>file:/C:/Material/Spring%202024/ConsoleShop/consoleShop/src/java/constants/regex.ts</file>
-            <file>file:/C:/Material/Spring%202024/ConsoleShop/consoleShop/web/WEB-INF/images/Background/bg1.png</file>
-            <file>file:/C:/Material/Spring%202024/ConsoleShop/consoleShop/src/java/constants/config.ts</file>
-            <file>file:/C:/Material/Spring%202024/ConsoleShop/consoleShop/src/java/constants/httpStatus.ts</file>
-            <file>file:/C:/Material/Spring%202024/ConsoleShop/consoleShop/web/WEB-INF/images/Background/textlogo.jpg</file>
-            <file>file:/C:/Material/Spring%202024/ConsoleShop/consoleShop/web/META-INF/context.xml</file>
-            <file>file:/C:/Material/Spring%202024/ConsoleShop/consoleShop/web/WEB-INF/images/Game/Game%20PS4/AEW_Fight%20Forever.jpg</file>
-            <file>file:/C:/Material/Spring%202024/ConsoleShop/consoleShop/web/WEB-INF/css/home.css</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/BarnFacade.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/models/Product.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/models/Brand.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/WEB-INF/css/home.css</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/META-INF/context.xml</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/models/OrderDetail.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/controllers/FrontController.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/OrderDetailFacade.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/models/Account.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/models/InputBill.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/ProductFacade.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/models/Supplier.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/BrandFacade.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/controllers/HomeController.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/models/Barn.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/AccountFacade.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/models/Category.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/SupplierFacade.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/OrdersFacade.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/models/Employee.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/models/Orders.java</file>
         </group>
     </open-files>
 </project-private>

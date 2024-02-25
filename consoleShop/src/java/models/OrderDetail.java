@@ -12,7 +12,7 @@ import java.util.Date;
  * @author ASUS
  */
 public class OrderDetail {
-    private int quantity, ordID, proID;
+    private int quantity, ordId, proId;
     private Double price;
     private float discount;
     private Date orderDate;
@@ -28,20 +28,20 @@ public class OrderDetail {
         this.quantity = quantity;
     }
 
-    public int getOrdID() {
-        return ordID;
+    public int getOrdId() {
+        return ordId;
     }
 
-    public void setOrdID(int ordID) {
-        this.ordID = ordID;
+    public void setOrdId(int ordId) {
+        this.ordId = ordId;
     }
 
-    public int getProID() {
-        return proID;
+    public int getProId() {
+        return proId;
     }
 
-    public void setProID(int proID) {
-        this.proID = proID;
+    public void setProId(int proId) {
+        this.proId = proId;
     }
 
     public Double getPrice() {

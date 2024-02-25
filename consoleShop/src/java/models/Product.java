@@ -10,35 +10,35 @@ package models;
  * @author ASUS
  */
 public class Product {
-     private int proID;
-    private String proName, description, categoryID, brandID;
+     private int proId;
+    private String proName, description, categoryId, brandId;
     private Double price;
 
     public Product() {
     }
 
-    public String getCategoryID() {
-        return categoryID;
+    public String getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategoryID(String categoryID) {
-        this.categoryID = categoryID;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public String getBrandID() {
-        return brandID;
+    public String getBrandId() {
+        return brandId;
     }
 
-    public void setBrandID(String brandID) {
-        this.brandID = brandID;
+    public void setBrandId(String brandId) {
+        this.brandId = brandId;
     }
 
-    public int getProID() {
-        return proID;
+    public int getProId() {
+        return proId;
     }
 
-    public void setProID(int proID) {
-        this.proID = proID;
+    public void setProId(int proId) {
+        this.proId = proId;
     }
 
     public String getProName() {

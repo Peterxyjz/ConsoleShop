@@ -10,7 +10,7 @@ package models;
  * @author ASUS
  */
 public class Barn {
-    private int ammount, proID;
+    private int ammount, proId;
 
     public Barn() {
     }
@@ -23,11 +23,11 @@ public class Barn {
         this.ammount = ammount;
     }
 
-    public int getProID() {
-        return proID;
+    public int getProId() {
+        return proId;
     }
 
-    public void setProID(int proID) {
-        this.proID = proID;
+    public void setProId(int proId) {
+        this.proId = proId;
     }
 }

@@ -5,23 +5,26 @@
  */
 package models;
 
+import java.util.Date;
+
 /**
  *
  * @author ASUS
  */
 public class Account {
-    private int accID;
-    private String email, password, firstName, lastName, country, address, role, phoneNumber, birthDay;
+    private int accId;
+    private String email, password, firstName, lastName, country, address, role, phoneNumber;
+    private Date birthDay;
 
     public Account() {
     }
 
-    public int getId() {
-        return accID;
+    public int getAccId() {
+        return accId;
     }
 
-    public void setId(int accID) {
-        this.accID = accID;
+    public void setAccId(int accId) {
+        this.accId = accId;
     }
 
     public String getEmail() {
@@ -88,11 +91,11 @@ public class Account {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getBirthDay() {
+    public Date getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(String birthDay) {
+    public void setBirthDay(Date birthDay) {
         this.birthDay = birthDay;
     }
 }

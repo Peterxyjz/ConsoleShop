@@ -13,35 +13,35 @@ import java.util.Date;
  * @author ASUS
  */
 public class Orders {
-    private int ordID, accID, empID;
+    private int ordId, accId, empId;
     private Date requiredDate, shippedDate;
     private String shipAddress, shipCountry;
 
     public Orders() {
     }
 
-    public int getOrdID() {
-        return ordID;
+    public int getOrdId() {
+        return ordId;
     }
 
-    public void setOrdID(int ordID) {
-        this.ordID = ordID;
+    public void setOrdId(int ordId) {
+        this.ordId = ordId;
     }
 
-    public int getAccID() {
-        return accID;
+    public int getAccId() {
+        return accId;
     }
 
-    public void setAccID(int accID) {
-        this.accID = accID;
+    public void setAccId(int accId) {
+        this.accId = accId;
     }
 
-    public int getEmpID() {
-        return empID;
+    public int getEmpId() {
+        return empId;
     }
 
-    public void setEmpID(int empID) {
-        this.empID = empID;
+    public void setEmpId(int empId) {
+        this.empId = empId;
     }
 
     public Date getRequiredDate() {
