@@ -1,0 +1,526 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 25, 2024, 4:32:42 PM
+    Author     : HP
+*/
+
+*{
+    
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+    
+}
+body{
+    overflow-x: hidden;
+}
+a{
+    text-decoration: none;
+}
+.nav{
+    width: 100vw;
+    height: 84px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav__wrapper{
+    height: 100%;
+    width: 100%;
+    padding: 50px 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    position: relative;
+    z-index: 10000;
+}
+.logo__group{
+    width: 100%;
+    height: 100%;
+    text-decoration-line: none;
+}
+.logo__group img{
+    width: 190px;
+}
+.navigate__items{
+    list-style: none;
+    display: flex;
+    text-align: center;
+    transform: translateY(3px);
+    gap: 28px ;
+    padding: 0;
+}
+
+.nav__item a{
+    text-decoration: none;
+    color: #231f1e;
+    font-size: 18px;
+    font-weight: 400;
+}
+.navigate__search{
+    position: relative;
+    
+}
+.navigate__search input{
+    border: 1px solid #231f1e;
+    outline: none;
+    height: 32px;
+    width: 100%;
+    padding: 18px 50px 18px 18px;
+    border-radius: 20px;
+    
+}
+.navigate__search i {
+    position: absolute;
+    top: 10px;
+    right: 10%;
+}
+.nav__right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.nav__account,.nav__cart{
+    color: #231f1e;
+    text-decoration-line: none;
+    font-size: 1rem;
+    font-weight: 500;   
+}
+.nav__account:hover span, .nav__cart:hover span{
+    color: #0079FF;
+    transition: all 0.2s;
+}
+.nav__account{
+    margin-right: 26px;
+}
+.nav__menu{
+    visibility: hidden;
+}
+.dropdown__container{
+    width: 90%;
+    height: 190px;
+    text-align: center;
+    display: none;
+    animation: slideDown 0.4s ease;
+    visibility: hidden;
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+    border-radius: 30px;
+
+}
+
+.dropdown__menu{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin-top: 10px;
+    width: 100%;
+}
+.dropdown__element{
+    margin-top: 10px;
+}
+.dropdown__element a{
+    color: #231f1e;
+    text-decoration: none;
+    font-size: 18px;
+}
+.banner{
+   background-color:#f2f2f2;
+   display: flex;
+   align-items: center;
+   height: calc(100vh - 84px);
+}
+
+.banner__bkg{
+    width: 100%;
+}
+.banner__bkg img{
+    width: 100%;
+}
+.banner__content{
+    margin-left: 117px;
+}
+.banner__header{
+    color: #0079FF;
+    font-weight: 700;
+    font-size: 60px;
+}
+.banner__description{
+    width: 60%;
+    font-size: 20px;
+    margin-top: 20px;
+}
+.banner__btn{
+    margin-top: 40px;
+    padding: 10px 30px;
+    border-radius: 50px;
+    background-color: #0079FF;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    transition: 0.5s;
+}
+.banner__btn:hover{
+    opacity: 0.9;
+}
+.top-product{
+    margin-top: 110px;
+}
+.top-product__wrapper{
+    height: 250px;
+}
+.top-product__header{
+    margin-bottom: 30px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+}
+
+.top-product__item{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.top-product__item h4{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+.top-product__item img{
+    width: 100%;
+}
+
+.top-product__item img:hover{
+    transition: 0.5s;
+    transform: scale(1.1);
+}
+#ps3-img{
+    padding-top: 30px;
+}
+.today-deal{
+    margin-top: 110px;
+    position: relative;
+    margin-bottom: 110px;
+}
+
+.today-deal__header{
+    font-weight: 600;
+    
+}
+.today-deal__wrapper{
+    padding: 0;
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    height: 383px;
+}
+.today-deal__previous{
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+.today-deal__item{
+    flex: 0 0 auto;
+    margin-left: 20px;
+    height: 100%;
+    width: 305px;
+}
+.today-deal__item:first-child{
+    margin-left: 0;
+}
+.today-deal__img{
+    width: 100%;
+    height: 100%;
+}
+.today-deal__img img{
+    width: 100%;
+}
+.today-deal__info{
+    text-decoration: none;
+    color: #231f1e;
+
+}
+.today-deal__name{
+
+}
+.today-deal__price{
+    font-size: 20px;
+    font-weight: 600;
+    color: red;
+}
+.today-deal__discount{
+    font-size: 16px;
+    font-weight: 400;
+    margin-left: 6px;
+    color: #231f1e;
+    text-decoration: line-through;
+}
+
+.today-deal__next{
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    font-size: 30px;
+    cursor: pointer;
+}
+.cashback{
+    display: flex;
+    height: calc(100vh - 87px);
+    align-items: center;
+    /* background-image: linear-gradient(273deg,#eaedf2, #f2f2f2); */
+}
+.cashback__img{
+    width: 50%;
+    margin-left: 117px;
+}
+.cashback__img img{
+    mix-blend-mode: hard-light;
+    height: 100%;
+    width: 100%;
+}
+.cashback__content{
+    width: 30%;
+    margin-left: 60px;
+}
+.cashback__content h1{
+    font-weight: 700;
+    font-size: 40px;
+}
+.cashback__content span{
+    font-size: 24px;
+    font-weight: 700;
+    color: #0079FF;
+}
+.cashback__content button{
+    width: 50%;
+    padding: 10px 30px;
+    outline: none;
+    border: 2px solid black;
+    border-radius: 2px;
+    transition: 0.4s;
+    background-color: transparent;
+}
+.cashback__content button a{
+    text-decoration: none;
+    color: #231f1e;
+}
+.cashback__content button:hover{
+    background-color: #231f1e;
+    color: #fff;
+}
+.cashback__content button:hover a{
+    
+    color: #fff;
+}
+#switch-2hand{
+    margin-top: 50px ;
+}
+#switch-new{
+    margin-bottom: 0 ;
+}
+.deal-status{
+    text-transform: uppercase;
+    border-bottom: 1px solid black;
+}
+footer{
+    width: 100vw;
+    background-color: #f2f2f2;
+}
+.footer__wrapper{
+    padding: 40px 0;
+}
+.footer__fanpage ul{
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 0;
+}
+.footer__fanpage ul li {
+    margin-right: 20px;
+    font-size: 20px;
+}
+.footer__fanpage ul a {
+    color: #333;
+}
+.footer__fanpage ul a:hover {
+   opacity: 0.8;
+   transition: 0.5s;
+}
+.footer__contact ul{
+    list-style: none;
+    padding: 0;
+}
+.footer__copyright{
+    opacity: 0.;
+}
+.active{
+    display: block;
+}
+
+@keyframes slideDown {
+    from{
+        transform: translateY(-30px);
+    }
+}
+@media (max-width: 1174px) {
+    .navigate__items{
+        display: none;
+    }
+    .navigate__search{
+        width: 50%;
+    }
+    .nav__menu{
+        visibility: visible;
+    }
+    .nav__menu{
+        margin-left: 20px;
+    }
+    .nav__account span,.nav__cart span{
+        display: none;
+    }
+    .nav__account ,.nav__cart,.nav__menu{
+        transform: scale(1.4);
+    }
+    .nav__right{
+        gap: 16px;
+    }
+    .dropdown__container{
+        visibility: visible;
+    }
+    .banner__header{
+        font-size: 50px;
+    } 
+    .banner__description{
+        font-size: 18px;
+    } 
+    .top-product__item img:hover{
+        
+        transform: scale(1.04);
+    }
+    .top-product{
+        height: 290px;
+    }
+    .today-deal__next, .today-deal__previous{
+        visibility: hidden;
+    }
+    .cashback__content h1{
+        font-size: 34px;
+    }
+    .cashback__content button{
+        width: 55%;
+        padding: 8px 10px;
+    }
+}
+@media (max-width: 992px){
+    .top-product{
+        height: 600px;
+    }
+    .today-deal__item{
+        width: 230px;
+    }
+}
+
+@media (max-width: 852px) {
+    .navigate__search{
+        display: none;
+    }
+    .logo__group img{
+        width: 200px;
+    }
+    .nav__wrapper{
+        padding: 50px 3%;
+    }
+    .nav__menu{
+        margin: 0 10px 0 20px;
+    }
+    .banner__bkg{
+        display: none;
+    }
+    .banner__content{
+        margin-left: 5%;
+    }
+    .top-product__item img:hover{
+        
+        transform: scale(1.01);
+    }
+    .cashback__img{
+        margin-left: 5%;
+    }
+    
+    /* .top-product{
+        height: 650px;
+    } */
+}
+@media (max-width: 770px){
+    .top-product{
+        height: 900px;
+    }
+    .today-deal__next, .today-deal__previous{
+        visibility: hidden;
+    }
+    .today-deal__info{
+        font-size: 12px;
+    }
+    .cashback__content h1{
+        font-size: 26px;
+    }
+    .cashback__content button{
+        width: 90%;
+        padding: 8px 10px;
+        font-size: 18px;
+    }
+}
+@media (max-width: 768px){
+    .today-deal__item{
+        width: 240px;
+    }
+    .cashback__img{
+        display: none;
+    }
+    .cashback__content h1{
+        font-weight: 700;
+        font-size: 40px;
+    }
+    .cashback{
+        height: 400px;
+    }
+    .cashback__content{
+        width: 70%;
+    }
+}
+@media (max-width: 500px){
+    .top-product{
+        height: 790px;
+    }
+    .today-deal__item{
+        height: 400px;
+        width: 220px;
+    }
+    
+}
+@media (max-width: 400px){
+    .top-product{
+        height: 600px;
+    }
+    .today-deal__price{
+        font-size: 10px;
+    }
+    .today-deal__item{
+        width: 180px;
+    }
+    .today-deal__discount{
+        font-size: 8px;
+    }
+    
+}
