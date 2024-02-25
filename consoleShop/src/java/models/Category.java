@@ -10,18 +10,18 @@ package models;
  * @author ASUS
  */
 public class Category {
-    private int categoryID;
+    private int categoryId;
     private String categoryName;
 
     public Category() {
     }
 
-    public int getCategoryID() {
-        return categoryID;
+    public int getCategoryId() {
+        return categoryId;
     }
 
     public void setCategoryID(int categoryID) {
-        this.categoryID = categoryID;
+        this.categoryId = categoryID;
     }
 
     public String getCategoryName() {

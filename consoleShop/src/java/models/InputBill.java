@@ -12,18 +12,18 @@ import java.util.Date;
  * @author ASUS
  */
 public class InputBill {
-    private int inputID, amount, supID, proID;
+    private int inputId, amount, supId, proId;
     private Date inputDate;
 
     public InputBill() {
     }
 
-    public int getInputID() {
-        return inputID;
+    public int getInputId() {
+        return inputId;
     }
 
-    public void setInputID(int inputID) {
-        this.inputID = inputID;
+    public void setInputId(int inputId) {
+        this.inputId = inputId;
     }
 
     public int getAmount() {
@@ -34,20 +34,20 @@ public class InputBill {
         this.amount = amount;
     }
 
-    public int getSupID() {
-        return supID;
+    public int getSupId() {
+        return supId;
     }
 
-    public void setSupID(int supID) {
-        this.supID = supID;
+    public void setSupId(int supId) {
+        this.supId = supId;
     }
 
-    public int getProID() {
-        return proID;
+    public int getProId() {
+        return proId;
     }
 
-    public void setProID(int proID) {
-        this.proID = proID;
+    public void setProId(int proId) {
+        this.proId = proId;
     }
 
     public Date getInputDate() {
