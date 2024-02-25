@@ -10,18 +10,18 @@ package models;
  * @author ASUS
  */
 public class Supplier {
-    private int supID;
+    private int supId;
     private String supName, country, address, phoneNumber;
 
     public Supplier() {
     }
 
-    public int getSupID() {
-        return supID;
+    public int getSupId() {
+        return supId;
     }
 
-    public void setSupID(int supID) {
-        this.supID = supID;
+    public void setSupId(int supId) {
+        this.supId = supId;
     }
 
     public String getSupName() {

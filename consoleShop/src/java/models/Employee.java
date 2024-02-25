@@ -5,23 +5,26 @@
  */
 package models;
 
+import java.util.Date;
+
 /**
  *
  * @author ASUS
  */
 public class Employee {
-    private int empID;
-    private String empFirstName, empLastName, birthday, role, country, address, phoneNumber;
+    private int empId;
+    private String empFirstName, empLastName, role, country, address, phoneNumber;
+    private Date birthDay;
 
     public Employee() {
     }
 
-    public int getEmpID() {
-        return empID;
+    public int getEmpId() {
+        return empId;
     }
 
-    public void setEmpID(int empID) {
-        this.empID = empID;
+    public void setEmpId(int empId) {
+        this.empId = empId;
     }
 
     public String getEmpFirstName() {
@@ -40,12 +43,12 @@ public class Employee {
         this.empLastName = empLastName;
     }
 
-    public String getBirthday() {
-        return birthday;
+    public Date getBirthday() {
+        return birthDay;
     }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
+    public void setBirthday(Date birthDay) {
+        this.birthDay = birthDay;
     }
 
     public String getRole() {

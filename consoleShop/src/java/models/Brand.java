@@ -10,18 +10,18 @@ package models;
  * @author ASUS
  */
 public class Brand {
-    private int brandID;
+    private int brandId;
     private String brandName;
 
     public Brand() {
     }
 
-    public int getBrandID() {
-        return brandID;
+    public int getBrandId() {
+        return brandId;
     }
 
-    public void setBrandID(int brandID) {
-        this.brandID = brandID;
+    public void setBrandId(int brandID) {
+        this.brandId = brandID;
     }
 
     public String getBrandName() {
