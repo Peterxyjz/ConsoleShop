@@ -19,31 +19,31 @@
     <h3 class="top-product__header">Sản phẩm hàng đầu</h3>
     <div class="top-product__wrapper row">
         <div class="top-product__item col-lg-2 col-md-4 col-6 ">
-            <img src="<c:url value="/images/Playstation/Playstation PS5/ps5 digital.jpg"/>" alt="">
+            <img src="<c:url value="/images/Playstation/Playstation PS5/1.jpg"/>" alt="">
             <h4>PlayStation 5</h4>
         </div>
         <div class="top-product__item col-lg-2 col-md-4 col-6">
-            <img src="<c:url value="/images/Playstation/Playstation PS4/ps4 slim.jpg"/>" alt="">
+            <img src="<c:url value="/images/Playstation/Playstation PS4/2.jpg"/>" alt="">
             <h4>PlayStation 4</h4>
         </div>
 
         <div class="top-product__item col-lg-2 col-md-4 col-6">
-            <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/oled neon.png"/>" alt="">
+            <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/1.jpg"/>" alt="">
             <h4>Nitendo Switch</h4>
         </div>
 
         <div class="top-product__item col-lg-2 col-md-4 col-6" id="ps3-img">
-            <img src="<c:url value="/images/Playstation/Playstation PS3/ps3 slim.jpg"/>" alt="">
+            <img src="<c:url value="/images/Playstation/Playstation PS3/1.jpg"/>" alt="">
             <h4>PlayStation 3</h4>
         </div>
 
         <div class="top-product__item col-lg-2 col-md-4 col-6">
-            <img src="<c:url value="/images/Game/Game PS5/EA SPORTS FC 24.jpg"/>" alt="">
+            <img src="<c:url value="/images/Game/Game PS5/1.jpg"/>" alt="">
             <h4>Games</h4>
         </div>
 
         <div class="top-product__item col-lg-2 col-md-4 col-6">
-            <img src="<c:url value="/images/Accessory/ps5-victrix-pro-wireless-controller-00-700x700.jpg"/>" alt="">
+            <img src="<c:url value="/images/Accessory/1.jpg"/>" alt="">
             <h4>Phụ kiện</h4>
         </div>
     </div>
@@ -57,7 +57,7 @@
     <div class="today-deal__wrapper">
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Game/Game Nintendo/Celeste.jpg"/>" alt="">
+                <img src="<c:url value="/images/Game/Game Nintendo/1.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Dead Cells: Return to Castlevania Edition</div>
@@ -67,7 +67,7 @@
         </div>
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Game/Game Nintendo/Celeste.jpg"/>" alt="">
+                <img src="<c:url value="/images/Game/Game Nintendo/2.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Dead Cells: Return to Castlevania Edition</div>
@@ -77,7 +77,7 @@
         </div>
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Game/Game Nintendo/Pokémon Violet + The Hidden Treasure of Area Zero DLC.jpg"/>" alt="">
+                <img src="<c:url value="/images/Game/Game Nintendo/3.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Pokémon Violet + The Hidden Treasure of Area Zero</div>
@@ -86,7 +86,7 @@
         </div>
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Game/Game Nintendo/Pokémon Violet + The Hidden Treasure of Area Zero DLC.jpg"/>" alt="">
+                <img src="<c:url value="/images/Game/Game Nintendo/3.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Pokémon Violet + The Hidden Treasure of Area Zero</div>
@@ -95,7 +95,7 @@
         </div>
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Game/Game Nintendo/Pokémon Violet + The Hidden Treasure of Area Zero DLC.jpg"/>" alt="">
+                <img src="<c:url value="/images/Game/Game Nintendo/3.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Pokémon Violet + The Hidden Treasure of Area Zero</div>
@@ -104,7 +104,7 @@
         </div>
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Game/Game Nintendo/Pokémon Violet + The Hidden Treasure of Area Zero DLC.jpg"/>" alt="">
+                <img src="<c:url value="/images/Game/Game Nintendo/3.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Pokémon Violet + The Hidden Treasure of Area Zero</div>
@@ -137,7 +137,7 @@
     <div class="today-deal__wrapper">
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/oled legend of zelda.jpg"/>" alt="">
+                <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/1.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Nitendo switch oled: Legend of Zelda</div>
@@ -203,7 +203,7 @@
     <div class="today-deal__wrapper">
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/oled legend of zelda.jpg"/>" alt="">
+                <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/1.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Nitendo switch oled: Legend of Zelda</div>
@@ -213,7 +213,7 @@
         </div>
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/oled mario.png"/>" alt="">
+                <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/1.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Nitendo switch oled: Mario</div>
@@ -223,7 +223,7 @@
         </div>
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/oled neon.png"/>" alt="">
+                <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/1.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Nitendo switch oled: Pokemon</div>
@@ -232,7 +232,7 @@
         </div>
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/oled neon.png"/>" alt="">
+                <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/1.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Pokémon Violet + The Hidden Treasure of Area Zero</div>
@@ -241,7 +241,7 @@
         </div>
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/oled neon.png"/>" alt="">
+                <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/1.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Pokémon Violet + The Hidden Treasure of Area Zero</div>
@@ -250,7 +250,7 @@
         </div>
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/oled neon.png"/>" alt="">
+                <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/1.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Pokémon Violet + The Hidden Treasure of Area Zero</div>
