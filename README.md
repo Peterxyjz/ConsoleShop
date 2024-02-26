@@ -1,6 +1,5 @@
 # ConsoleShop
 ## Xin chào mọi người
-- Tôi là Huy, đại diện của nhóm Console Shop
  Đây là folder để dựng lên dự án JAVA WEB APPLICATION
  Dự án Console Shop này nhằm mục đích xây dựng một trang web bán hàng và dễ sử dụng cho cả người dùng và quản trị viên.
  Với giao diện thân thiện, tính năng đa dạng và có khả năng mở rộng để có thể đem lại trải nghiệm mua sắm trực tuyến tốt nhất cho người dùng.
