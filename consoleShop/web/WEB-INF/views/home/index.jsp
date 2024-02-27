@@ -2,6 +2,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style><%@include file="/WEB-INF/css/home.css"%></style>
+
+<jsp:include page="/WEB-INF/components/navbar.jsp" />
+
 <section class="banner">
     <div class="banner__content">
         <h1 class="banner__header">Console Shop</h1>

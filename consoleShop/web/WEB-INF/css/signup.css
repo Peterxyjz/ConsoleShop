@@ -1,0 +1,187 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 27, 2024, 2:56:07 PM
+    Author     : HP
+*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+}
+.logo{
+    position: absolute;
+    top: -100px;
+    left: -70px;
+    display: flex;
+    align-items: center;
+    text-decoration-line: none;
+    z-index: 10;
+}
+.logo img {
+    width: 60px;
+    cursor: pointer;
+    border-radius: 50%;
+    margin-right: 20px;
+    
+}
+.logo span{
+    font-family: "Poppins", sans-serif;
+    font-size: 34px;
+    font-weight: 600;
+    color: #0093E9;
+    cursor: pointer;
+    
+}
+.side-bar{
+    padding: 0;
+    height: 100vh;
+    text-align: center;
+    background-image: radial-gradient(white 2px, transparent 0);
+    background-size: 40px 40px;
+    background-position: -19px -19px;
+}
+.side-bar-bg{
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    height: 100vh;
+}
+.side-bar img{
+    margin-top: 60px;
+    width: 60%;
+    height: 44%;
+    object-fit: cover;
+    border-radius: 80px;
+    animation: slideUp ease-in-out 1s, rotateBottom ease-in-out 1s ;
+}
+.side-bar__highlight{
+    width: 100%;
+    color: white;    
+    margin-top: 50px;
+    margin-left: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.highlight__group{
+    margin: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    animation: slideDown ease-out 1s, rotateTop ease-in-out 0.5s;
+}
+.login{
+    margin-top: 130px;
+    position: relative;
+    left: 11vw;  
+    transition: 0.5s;
+}
+.login__header{
+    margin-top: 20px;
+    font-size: 32px;
+}
+
+.login__form{
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
+    transition: 0.5s;
+}
+.form__group{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.form__group input{
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    margin-top: 16px;
+    outline: none;
+    border: 1px solid #e7e7e9;
+    border-radius: 10px;
+}
+.form__group input:hover{  
+    border: 2px solid #BBE2EC;
+}
+.form__group input:focus{  
+    border: 2px solid #BBE2EC;
+}
+.form__group--submit{
+    margin-top: 20px;
+    height: 45px;
+    border-radius: 16px;
+    background-color: #0079FF;
+    display: flex;
+    cursor: pointer;
+}
+.form__group--submit button{
+    color: white;
+    border: none;
+    background-color: transparent;
+    margin: auto;
+
+}
+.login__footer{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.form__message{
+    height: 20px;
+    margin: 6px 8px 8px 0;
+}
+.form__password{
+    position: relative;
+}
+.form__password .fa-eye{
+    position: absolute;
+    right: 5%;
+    top: 50%; 
+    cursor: pointer;
+}
+@media (max-width:710px) {
+    .logo{
+        top: -100px;
+        left: 0px;
+    }
+    .logo img {
+        width: 60px;
+    }
+    .logo span{
+        font-size: 30px; 
+    }
+    .login__header{
+        font-size: 30px;
+    }
+    .login{
+        left: 5%;
+    }
+}
+@media (max-width: 575px) {
+    .form__group--submit,
+    .form__group input{
+        width: 80%;
+    }
+    .form__password .fa-eye{
+        right: calc(5% + 20%);
+    }
+    .highlight__group{
+        font-size: 14px;
+    }
+    .login__footer{
+        text-align: left;
+    }
+}
