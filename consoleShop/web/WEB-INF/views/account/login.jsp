@@ -11,7 +11,7 @@
 <div class="container-fluid">
         <div class="row">
             <div class="login col-lg-7">
-                <a href="/View/Home/index.html" class="logo">
+                <a href="<c:url value="/"/>" class="logo">
                     <img src="<c:url value="/images/Background/logo.png"/>" alt="">
                     <span>Console Shop</span>
                 </a>
@@ -19,8 +19,8 @@
                 <form action="" class="login__form container-fluid" id="form__login">
                     <div class="row">
                         <div class="form__group col-lg-8 col-sm-8">
-                            <label for="username">Username or email</label></br>
-                            <input type="text" id="username"></br>
+                            <label for="username">Username or email</label><br/>
+                            <input type="text" id="username"><br/>
                         </div>
                         <div class="form__group col-lg-8 col-sm-8">
                             <label for="password">Password</label></br>
