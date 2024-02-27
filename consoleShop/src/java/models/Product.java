@@ -13,12 +13,29 @@ public class Product {
      private int proId;
     private String proName, description, categoryId, brandId;
     private Double price;
-
+    private Double discount;
+    private int amount;
     public Product() {
     }
 
     public String getCategoryId() {
         return categoryId;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 
     public void setCategoryId(String categoryId) {
