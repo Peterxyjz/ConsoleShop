@@ -42,8 +42,8 @@ public class AccountController extends HttpServlet {
         String action = (String) request.getAttribute("action");
         
         switch(action){
-            case "index":
-//                index(request, response);
+            case "login":
+             login(request, response);
                 break;
             case "create":
                 signUp(request, response);

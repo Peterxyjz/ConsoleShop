@@ -41,7 +41,7 @@
             </div>
 
             <div class="nav__right">
-                <a href="#" class="nav__account">
+                <a href="<c:url value="/account/login.do"/>" class="nav__account">
                     <i class="fa-regular fa-user"></i>
                     <span>Tài Khoản</span>
                 </a>
