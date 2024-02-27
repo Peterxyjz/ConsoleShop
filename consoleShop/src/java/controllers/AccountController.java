@@ -42,8 +42,14 @@ public class AccountController extends HttpServlet {
         String action = (String) request.getAttribute("action");
         
         switch(action){
+            case "index":
+             index(request, response);
+                break;
             case "login":
              login(request, response);
+                break;
+            case "login_handler":
+             login_handler(request, response);
                 break;
             case "create":
                 signUp(request, response);
@@ -70,6 +76,18 @@ public class AccountController extends HttpServlet {
                 forgot_handler(request,response);
                 break;
         }
+    }
+    
+    protected void index(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("errMsg", "Error occurs when reading Student Data");
+        }
+        request.getRequestDispatcher(layout).forward(request, response);
     }
     
     protected void signUp(HttpServletRequest request, HttpServletResponse response)
