@@ -7,6 +7,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/WEB-INF/components/navbar.jsp" />
+
 <div class="row">
     <c:forEach var="product" items="${list}">
         <div class="col-sm-4 mt-3">

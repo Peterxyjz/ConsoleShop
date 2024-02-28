@@ -28,3 +28,39 @@ productWrapper.forEach((item, i) => {
         item.scrollLeft -= wrapperWidth;
     })
 })
+//search
+
+ function searchByName() { 
+    console.log(document.querySelector("#search").value);
+    $.ajax({
+        url: '/consoleShop/product/searchAuto.do',     
+        type: 'GET',
+        dataType: 'text',
+        data: {
+            searchName: document.querySelector("#search").value ||""
+        },
+        success: function(data) {
+            console.log(data);
+            let src = data.split(",");
+            console.log(src);
+            src.forEach(item => {
+                console.log(item);
+            });
+            $( "#search" ).autocomplete({
+            
+                minLength: 1,
+                
+                source: src,
+                maxResults : 6
+             });
+        }
+        
+      });     
+}
+$(function() {
+      
+
+      $("#search").autocomplete({
+        
+      });
+    });
