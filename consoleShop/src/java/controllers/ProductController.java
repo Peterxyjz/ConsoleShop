@@ -33,7 +33,7 @@ public class ProductController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-      protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
@@ -44,7 +44,7 @@ public class ProductController extends HttpServlet {
         switch (action) {
             case "index":
                 index(request, response);
-                
+
                 break;
             case "search":
                 search(request, response);
@@ -53,9 +53,12 @@ public class ProductController extends HttpServlet {
             case "search_handler":
                 search_handler(request, response);
                 break;
+            case "searchAuto":
+                searchAuto(request, response);
+                break;
 
         }
-       // request.getRequestDispatcher(layout).forward(request, response);
+        // request.getRequestDispatcher(layout).forward(request, response);
     }
 
     protected void index(HttpServletRequest request, HttpServletResponse response)
@@ -71,13 +74,13 @@ public class ProductController extends HttpServlet {
             request.setAttribute("errorMsg", "Error when loading product data.");
         }
         request.getRequestDispatcher(layout).forward(request, response);
-        
+
     }
 
     protected void search(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
-        
+
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
@@ -85,21 +88,51 @@ public class ProductController extends HttpServlet {
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         try {
-            
+
             String searchName = request.getParameter("search");
             ProductFacade pf = new ProductFacade();
-            List<Product> prodList = pf.searchProductByName(searchName); 
+            List<Product> prodList = pf.searchProductByName(searchName);
             System.out.println(prodList.isEmpty());
             Product product = null;
-            
+
             for (Product item : prodList) {
                 product = item;
             }
             request.setAttribute("list", prodList);
+
             request.getRequestDispatcher("/product/search.do").forward(request, response);
         } catch (Exception e) {
             printStackTrace();
-             request.getRequestDispatcher("/").forward(request, response);
+            request.getRequestDispatcher("/").forward(request, response);
+        }
+    }
+
+    protected void searchAuto(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+
+            String searchName = request.getParameter("searchName");
+            ProductFacade pf = new ProductFacade();
+            List<Product> prodList = pf.searchProductByName(searchName);
+
+            PrintWriter out = response.getWriter();
+            String str = "";
+            if (prodList.size() > 6) {
+                for (int i = 0; i < 6; i++) {
+                    str += String.format("%s,", prodList.get(i).getProName());
+                }
+            }else{
+                 for (int i = 0; i < prodList.size(); i++) {
+                    str += String.format("%s,", prodList.get(i).getProName());
+                }
+            }
+
+            str = str.substring(0, str.length() - 1);
+            out.print(str);
+        } catch (Exception e) {
+            printStackTrace();
+            request.getRequestDispatcher("/").forward(request, response);
         }
     }
 

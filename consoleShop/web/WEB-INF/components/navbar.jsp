@@ -8,6 +8,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style><%@include file="/WEB-INF/css/main.css"%></style>
+
 <navbar class="nav">
     <div class="nav__wrapper">
         <div class="nav__logo">
@@ -30,9 +31,13 @@
             </li>
         </ul>
         <div class="navigate__search">
+              <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
             <form action="<c:url value="/product/search_handler.do"/>" method="POST">
-                <input oninput="searchByName(this)" type="text" placeholder="Tìm sản phẩm" id="search" name="search" value="${param.search}" >            
+                <input oninput="searchByName()" type="text" placeholder="Tìm sản phẩm" id="search" name="search"  >            
                 <i class="fa-solid fa-magnifying-glass"></i>
+
             </form>
         </div>
 
@@ -65,3 +70,4 @@
         </ul>
     </div>
 </navbar>
+<script><%@include file="/WEB-INF/javascript/home.js"%></script>
