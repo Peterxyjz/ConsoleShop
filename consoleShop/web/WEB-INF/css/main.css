@@ -67,6 +67,9 @@ a{
     border-bottom: 1.3px solid #0079FF;
     animation: borderSlideFromLeft ease-in-out 0.3s;
 }
+.active{
+    display: block;
+}
 @keyframes borderSlideFromLeft {
     0%{
         opacity: 0.3;
