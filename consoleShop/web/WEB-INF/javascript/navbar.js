@@ -16,7 +16,7 @@ var nav = document.querySelector(".nav");
 magIcon.onclick = ()=>{
     if(searchForm.style.display === "block"){
         searchForm.style.display = "none";
-
+        
         enableScroll();
     }
     else{

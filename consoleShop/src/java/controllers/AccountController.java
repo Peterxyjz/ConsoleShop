@@ -51,6 +51,9 @@ public class AccountController extends HttpServlet {
             case "login_handler":
                 login_handler(request, response);
                 break;
+            case"signup":
+                signUp(request, response);
+                break;
             case "create":
                 signUp(request, response);
                 break;
@@ -160,7 +163,8 @@ public class AccountController extends HttpServlet {
 
     protected void signUp(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        String layout = (String) request.getAttribute("layout");
+        request.getRequestDispatcher(layout).forward(request, response);
     }
 
     protected void signUp_handler(HttpServletRequest request, HttpServletResponse response)

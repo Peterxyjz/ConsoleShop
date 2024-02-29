@@ -16,7 +16,7 @@
                     <span>Console Shop</span>
                 </a>
                 <h2 class="login__header">Login to Console Shop</h2>
-                <form action="" class="login__form container-fluid" id="form__login">
+                <form action="login_handler" class="login__form container-fluid" id="form__login">
                     <div class="row">
                         <div class="form__group col-lg-8 col-sm-8">
                             <label for="username">Username or email</label><br/>
