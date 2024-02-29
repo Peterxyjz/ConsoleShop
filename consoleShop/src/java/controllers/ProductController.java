@@ -118,18 +118,24 @@ public class ProductController extends HttpServlet {
 
             PrintWriter out = response.getWriter();
             String str = "";
-            if (prodList.size() > 6) {
-                for (int i = 0; i < 6; i++) {
-                    str += String.format("%s,", prodList.get(i).getProName());
+            if (prodList.isEmpty()) {
+                out.print("No one product");
+            } else {
+                
+                if (prodList.size() > 6) {
+                    for (int i = 0; i < 6; i++) {
+                        str += String.format("%s,", prodList.get(i).getProName());
+                    }
+                } else {
+                    for (int i = 0; i < prodList.size(); i++) {
+                        str += String.format("%s,", prodList.get(i).getProName());
+                    }
                 }
-            }else{
-                 for (int i = 0; i < prodList.size(); i++) {
-                    str += String.format("%s,", prodList.get(i).getProName());
-                }
+
+                str = str.substring(0, str.length() - 1);
+                out.print(str);
             }
 
-            str = str.substring(0, str.length() - 1);
-            out.print(str);
         } catch (Exception e) {
             printStackTrace();
             request.getRequestDispatcher("/").forward(request, response);
