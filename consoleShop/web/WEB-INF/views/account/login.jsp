@@ -31,7 +31,7 @@
                             <button type="submit">Login</button>
                         </div>
                         <div class="login__footer col-lg-8 col-sm-8">
-                            Don't have an account? <a href="<c:url value="views/account/signup.do"/>">Sign up</a>
+                            Don't have an account? <a href="<c:url value="/account/signup.do"/>">Sign up</a>
                         </div>
                     </div>
                 </form>

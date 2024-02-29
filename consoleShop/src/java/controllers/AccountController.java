@@ -37,19 +37,19 @@ public class AccountController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String controller = (String) request.getAttribute("controller");
         String action = (String) request.getAttribute("action");
-        
-        switch(action){
+
+        switch (action) {
             case "index":
-             index(request, response);
+                index(request, response);
                 break;
             case "login":
-             login(request, response);
+                login(request, response);
                 break;
             case "login_handler":
-             login_handler(request, response);
+                login_handler(request, response);
                 break;
             case "create":
                 signUp(request, response);
@@ -73,43 +73,37 @@ public class AccountController extends HttpServlet {
                 forgot(request, response);
                 break;
             case "forgot_handler":
-                forgot_handler(request,response);
+                forgot_handler(request, response);
                 break;
+            case "admin":
+                admin(request, response);
+                break;    
+
         }
     }
-    
+
     protected void index(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         try {
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errMsg", "Error occurs when reading Student Data");
         }
         request.getRequestDispatcher(layout).forward(request, response);
     }
-    
-    protected void signUp(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-    }
 
-    protected void signUp_handler(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-    }
-    
     protected void login(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //doc email & password tu cookies
         Cookie cks[] = request.getCookies();
         Cookie ckEmail = null;
-        Cookie ckPassword = null;        
-        for(Cookie ck: cks){
-            if(ck.getName().equals("email")){
+        Cookie ckPassword = null;
+        for (Cookie ck : cks) {
+            if (ck.getName().equals("email")) {
                 ckEmail = ck;
-            }else if(ck.getName().equals("password")){
+            } else if (ck.getName().equals("password")) {
                 ckPassword = ck;
             }
         }
@@ -137,7 +131,7 @@ public class AccountController extends HttpServlet {
             //neu login thanh cong
             if (account != null) {
                 //luu email & password vao cookies
-                int maxAge = remember? 7 * 24 * 60 * 60: 0; //1 week
+                int maxAge = remember ? 7 * 24 * 60 * 60 : 0; //1 week
                 Cookie ckEmail = new Cookie("email", email);
                 //neu khong setMaxAge() thi ckEmail la cookie tam thoi
                 //chi dung duoc trong 1 session
@@ -163,7 +157,17 @@ public class AccountController extends HttpServlet {
         }
         request.getRequestDispatcher(layout).forward(request, response);
     }
-    
+
+    protected void signUp(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+    }
+
+    protected void signUp_handler(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+    }
+
     protected void update(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -176,7 +180,7 @@ public class AccountController extends HttpServlet {
         }
         request.getRequestDispatcher(layout).forward(request, response);
     }
-    
+
     protected void update_handler(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -190,7 +194,7 @@ public class AccountController extends HttpServlet {
             String phoneNumber = request.getParameter("phoneNumber");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date birthDay = sdf.parse(request.getParameter("birthDay"));
-            
+
             Account account = af.select(Integer.parseInt(request.getParameter("id")));
             account.setEmail(email);
             account.setPassword(password);
@@ -208,7 +212,7 @@ public class AccountController extends HttpServlet {
             request.getRequestDispatcher(layout).forward(request, response);
         }
     }
-    
+
     protected void delete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -246,7 +250,7 @@ public class AccountController extends HttpServlet {
             request.getRequestDispatcher("/index.do").forward(request, response);
         }
     }
-    
+
     protected void forgot(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -259,7 +263,7 @@ public class AccountController extends HttpServlet {
         }
         request.getRequestDispatcher(layout).forward(request, response);
     }
-    
+
     protected void forgot_handler(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -267,16 +271,16 @@ public class AccountController extends HttpServlet {
             AccountFacade af = new AccountFacade();
             String password = request.getParameter("password");
             String repeatedPassword = request.getParameter("repeatedPassword");
-            
-            if(repeatedPassword == password){
-            
-            Account account = af.select(Integer.parseInt(request.getParameter("id")));
-            account.setPassword(password);
 
-            af.update(account);
-            //quay ve trang login
-            request.setAttribute("successMsg", "bây giờ bạn có thể log in");
-            response.sendRedirect(request.getContextPath() + "/student/login.do");
+            if (repeatedPassword == password) {
+
+                Account account = af.select(Integer.parseInt(request.getParameter("id")));
+                account.setPassword(password);
+
+                af.update(account);
+                //quay ve trang login
+                request.setAttribute("successMsg", "bây giờ bạn có thể log in");
+                response.sendRedirect(request.getContextPath() + "/student/login.do");
             }
             request.setAttribute("faliedMsg", "Mật khẩu không trùng khớp");
         } catch (Exception e) {
@@ -285,6 +289,11 @@ public class AccountController extends HttpServlet {
             request.setAttribute("action", "edit");
             request.getRequestDispatcher(layout).forward(request, response);
         }
+    }
+    protected void admin(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        request.getRequestDispatcher(layout).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

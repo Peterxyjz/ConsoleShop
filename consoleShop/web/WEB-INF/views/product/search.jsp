@@ -1,13 +1,8 @@
-<%-- 
-    Document   : search
-    Created on : Feb 27, 2024, 5:09:21 PM
-    Author     : QUOC PHONG
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/WEB-INF/components/navbar.jsp" />
-<style><%@include file="/WEB-INF/css/search.css"%></style>
+<style><%@include file="/WEB-INF/css/product.css"%></style>
 <div class="container">
     <h2 class="mt-3">Tìm kiếm sản phẩm</h2>
     <div class="nav_filter row">
@@ -56,15 +51,23 @@
     <div class="row">
         <c:forEach var="product" items="${list}">
             <div class="col-sm-3 mt-3">                
-                <img src="<c:url value="/images/${product.proId}.jpg" />" class="rounded" width="100%" />
+                <a href="<c:url value="/product/index.do?product=${product}"/>">
+                    <img src="<c:url value="/images/${product.proId}.jpg" />" class=" rounded mx-auto d-block " width="100%" />
+                </a>
                 <!--description-->
-                ${product.proName}<br/>
-                <!--New price:--> 
-                <fmt:formatNumber value="${(1-product.discount)*product.price}" type="currency" />
-                <!--Old price:--> 
-                <strike><fmt:formatNumber value="${product.price}" type="currency" /></strike>
-                <!--Discount:--> 
-                <span class="badge bg-secondary"><fmt:formatNumber value="${product.discount}" type="percent" /></span><br/>
+                <a href="<c:url value="/product/index.do?product=${product}"/>" class="">
+                    <div class="text-center">
+                        ${product.proName}
+                    </div>
+                    <div class="text-center">
+                        <!--New price:--> 
+                        <fmt:formatNumber value="${(1-product.discount)*product.price}" type="currency" />
+                        <!--Old price:--> 
+                        <strike><fmt:formatNumber value="${product.price}" type="currency" /></strike>
+                        <!--Discount:--> 
+                        <span class="badge bg-secondary"><fmt:formatNumber value="${product.discount}" type="percent" /></span><br/>
+                    </div>
+                </a>
             </div>
         </c:forEach>
         ${errorMsg}
