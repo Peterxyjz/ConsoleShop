@@ -44,7 +44,6 @@ public class ProductController extends HttpServlet {
         switch (action) {
             case "index":
                 index(request, response);
-
                 break;
             case "search":
                 search(request, response);

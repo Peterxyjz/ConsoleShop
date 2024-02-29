@@ -20,32 +20,29 @@
 <section class="top-product container">
     <h3 class="top-product__header">Sản phẩm hàng đầu</h3>
     <div class="top-product__wrapper row">
+        <div class="top-product__item col-lg-2 col-md-4 col-6">
+            <img src="<c:url value="/images/63.jpg"/>" alt="">
+            <h4>Nitendo Switch</h4>
+        </div>
         <div class="top-product__item col-lg-2 col-md-4 col-6 ">
-            <img src="<c:url value="/images/Playstation/Playstation PS5/1.jpg"/>" alt="">
+            <img src="<c:url value="/images/82.jpg"/>" alt="">
             <h4>PlayStation 5</h4>
         </div>
         <div class="top-product__item col-lg-2 col-md-4 col-6">
-            <img src="<c:url value="/images/Playstation/Playstation PS4/2.jpg"/>" alt="">
+            <img src="<c:url value="/images/77.jpg"/>" alt="">
             <h4>PlayStation 4</h4>
         </div>
-
-        <div class="top-product__item col-lg-2 col-md-4 col-6">
-            <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/1.jpg"/>" alt="">
-            <h4>Nitendo Switch</h4>
-        </div>
-
         <div class="top-product__item col-lg-2 col-md-4 col-6" id="ps3-img">
-            <img src="<c:url value="/images/Playstation/Playstation PS3/1.jpg"/>" alt="">
+            <img src="<c:url value="/images/72.jpg"/>" alt="">
             <h4>PlayStation 3</h4>
         </div>
-
         <div class="top-product__item col-lg-2 col-md-4 col-6">
-            <img src="<c:url value="/images/Game/Game PS5/1.jpg"/>" alt="">
+            <img src="<c:url value="/images/19.jpg"/>" alt="">
             <h4>Games</h4>
         </div>
 
         <div class="top-product__item col-lg-2 col-md-4 col-6">
-            <img src="<c:url value="/images/Accessory/1.jpg"/>" alt="">
+            <img src="<c:url value="/images/102.jpg"/>" alt="">
             <h4>Phụ kiện</h4>
         </div>
     </div>

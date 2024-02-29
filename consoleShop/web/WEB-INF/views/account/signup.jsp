@@ -1,9 +1,3 @@
-<%-- 
-    Document   : signup
-    Created on : Feb 27, 2024, 2:55:41 PM
-    Author     : HP
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
