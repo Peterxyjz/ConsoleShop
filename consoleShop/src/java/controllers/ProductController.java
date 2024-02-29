@@ -119,6 +119,7 @@ public class ProductController extends HttpServlet {
             PrintWriter out = response.getWriter();
             String str = "";
             if (prodList.isEmpty()) {
+                
                 out.print("No one product");
             } else {
                 
