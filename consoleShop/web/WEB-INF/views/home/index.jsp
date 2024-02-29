@@ -123,7 +123,7 @@
     <div class="cashback__content">
         <h1>Hoàn tiền lên đến 50%</h1>
         <p>Nhận voucher khi đăng ký tài khoản mua sắm tại <span>Console Shop</span></p>
-        <button><a href="/View/SignUp/signup.html">Đăng ký ngay</a></button>
+        <button><a href="<c:url value="/account/signup.do"/>">Đăng ký ngay</a></button>
     </div>
 </section>
 <hr>

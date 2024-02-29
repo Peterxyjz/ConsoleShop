@@ -62,11 +62,12 @@
 }
 .top-product__item img{
     width: 100%;
+    transition: 0.5s;
 }
 
 .top-product__item img:hover{
-    transition: 0.5s;
-    transform: scale(1.1);
+   
+    transform: scale(1.06);
 }
 #ps3-img{
     padding-top: 30px;

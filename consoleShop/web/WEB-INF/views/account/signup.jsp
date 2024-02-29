@@ -5,8 +5,8 @@
  <div class="container-fluid">
         <div class="row">
             <div class="login col-lg-7">
-                <a href="/View/Home/index.html" class="logo">
-                    <img src="../../Image/Background/logo.png" alt="">
+                <a href="<c:url value="/"/>" class="logo">
+                    <img src="<c:url value="/images/Background/logo.png"/>" alt="">
                     <span>Console Shop</span>
                 </a>
                 <h2 class="login__header">Sign Up to Console Shop</h2>
@@ -36,14 +36,14 @@
                             <button type="submit">Sign Up</button>
                         </div>
                         <div class="login__footer col-lg-8 col-sm-8">
-                            Already have an account? <a href="../Login/login.html">Login</a>
+                            Already have an account? <a href="<c:url value="/account/login.do"/>">Login</a>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="side-bar-bg col-lg-5">
                 <div class="side-bar col-lg-12">
-                    <img src="/Image/Background/image_processing20220610-2202-18yc36c.gif" alt="side bar image">
+                    <img src="<c:url value="/images/Background/marioonshell.gif"/>" alt="side bar image">
                     <div class="side-bar__highlight">
                         <div class="highlight__group">
                             <i class="fa-regular fa-circle-check"></i>
