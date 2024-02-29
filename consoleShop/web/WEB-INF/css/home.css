@@ -199,38 +199,6 @@
     text-transform: uppercase;
     border-bottom: 1px solid black;
 }
-footer{
-    width: 100vw;
-    background-color: #f2f2f2;
-}
-.footer__wrapper{
-    padding: 40px 0;
-}
-.footer__fanpage ul{
-    list-style: none;
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    padding: 0;
-}
-.footer__fanpage ul li {
-    margin-right: 20px;
-    font-size: 20px;
-}
-.footer__fanpage ul a {
-    color: #333;
-}
-.footer__fanpage ul a:hover {
-   opacity: 0.8;
-   transition: 0.5s;
-}
-.footer__contact ul{
-    list-style: none;
-    padding: 0;
-}
-.footer__copyright{
-    opacity: 0.7;
-}
 .active{
     display: block;
 }

@@ -2,7 +2,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style><%@include file="/WEB-INF/css/home.css"%></style>
-
 <jsp:include page="/WEB-INF/components/navbar.jsp" />
 
 <section class="banner">
@@ -253,7 +252,7 @@
         </div>
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Nintendo/Nintendo switch OLED/1.jpg"/>" alt="">
+                <img src="<c:url value="/images/1.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Pokémon Violet + The Hidden Treasure of Area Zero</div>
@@ -265,44 +264,7 @@
 
 </section>
 
-<footer class="">
-    <div class="footer__wrapper container">
-        <div class="row g-5">
-            <div class="footer__intro col-sm-4">
-                <h3>Giới thiệu</h3>
-                <p>Console Shop là hệ thống bán lẻ chính hãng các sản phẩm công nghệ cao cấp: máy chơi game, điện thoại, máy tính bảng, laptop, đồ chơi kĩ thuật số.</p>
-            </div>
-            <div class="footer__address col-sm-3">
-                <h3>Địa chỉ</h3>
-                <p>
-                    Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, 
-                    Thành phố Hồ Chí Minh
-                </p>
-            </div>
-            <div class="footer__fanpage col-sm-2">
-                <h3>Theo dõi </h3>
-                <ul>
-                    <li><a href=""><i class="fa-brands fa-facebook"></i></a></li>
-                    <li><a href=""><i class="fa-brands fa-tiktok"></i></a></li>
-                    <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
-                    <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
-                    <li><a href=""><i class="fa-brands fa-discord"></i></a></li>
-                </ul>
-            </div>
-            <div class="footer__contact col-sm-3">
-                <h3>Liên hệ</h3>
-                <ul>
-                    <li>Hotline: 0399234222</li>
-                    <li>Email: consoleshop@gmail.com</li>
-                    <li>Website: <a href="">Console Shop</a></li>
-                </ul>
-            </div>
-        </div>
-        <hr>
-        <p class="footer__copyright text-">Copyright © 2024, Console Shop, All Rights Reserved</p>
-    </div>
-</footer>
-
+<jsp:include page="/WEB-INF/components/footer.jsp" />
 <script><%@include file="/WEB-INF/javascript/home.js"%></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

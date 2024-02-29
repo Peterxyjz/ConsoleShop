@@ -12,7 +12,7 @@
 <navbar class="nav">
     <div class="nav__wrapper">
         <div class="nav__logo">
-            <a href="<c:url value="/index.html"/>" class="logo__group">
+            <a href="<c:url value="/"/>" class="logo__group">
                 <img src="<c:url value="/images/Background/textlogo.jpg"/>" alt="logo" width="100%">
             </a>
         </div>
