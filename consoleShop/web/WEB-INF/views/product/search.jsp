@@ -48,14 +48,20 @@
             <button type="submit" class="btn btn-primary"><i class="bi bi-funnel"></i> Lọc</button>
         </div>
     </div>
+    <c:if test="${list.size() == 0}">
+        <h3>Không có sản phẩm phù hợp</h3>
+    </c:if>
+        <c:if test="${list.size() != 0}">
+            <p>Có ${list.size()} được tìm thấy</p>
+    </c:if>
     <div class="row">
         <c:forEach var="product" items="${list}">
             <div class="col-sm-3 mt-3">                
-                <a href="<c:url value="/product/index.do?product=${product}"/>">
+                <a href="<c:url value="/product/index.do?proName=${product.proName}"/>">
                     <img src="<c:url value="/images/${product.proId}.jpg" />" class=" rounded mx-auto d-block " width="100%" />
                 </a>
                 <!--description-->
-                <a href="<c:url value="/product/index.do?product=${product}"/>" class="">
+                <a href="<c:url value="/product/index.do?proId=${product.proName}"/>" class="">
                     <div class="text-center">
                         ${product.proName}
                     </div>

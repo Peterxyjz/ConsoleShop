@@ -8,7 +8,7 @@
         <div class="col-sm-5">
             <img src="<c:url value="/images/${product.proId}.jpg"/>" width="60%" class=" rounded mx-auto d-block "/>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-7">
             <p>Sản phẩm</p>
             <h3>${product.proName}</h3>
             <p><i class="bi bi-box-seam-fill"></i> Tình trạng: </p>
@@ -17,11 +17,12 @@
             <!--Discount:--> 
             <span class="badge bg-secondary"><fmt:formatNumber value="${product.discount}" type="percent" /></span>
             </p>
+         
 
             <hr/>
             <div class="nav_button">
                 <button class="btn btn-primary" type="submit"><i class="bi bi-credit-card-fill"></i> Mua Ngay</button>
-                <button class="btn" type="submit"><i class="bi bi-cart-plus"></i> Thêm vào giỏ</button>
+                <button class="btn"  type="submit"><i class="bi bi-cart-plus"></i> Thêm vào giỏ</button>
             </div>
         </div>
         <div class="col-sm-1"></div>
@@ -31,7 +32,8 @@
             <a href="#" id="moreImgLink">Xem thêm ảnh</a>  
         </div>
         <div class="col-sm-7">
-            <p>Lorem</p> 
+            <hr/>
+            <p style="text-align: justify; font-size: large">${product.description}</p> 
         </div>
     </div>
     ${errorMsg}
