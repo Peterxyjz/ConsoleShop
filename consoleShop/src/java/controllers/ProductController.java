@@ -66,17 +66,17 @@ public class ProductController extends HttpServlet {
         try {
 
             String proName = (request.getParameter("proName"));
-            
+
             ProductFacade pf = new ProductFacade();
             List<Product> list = pf.selectProList();
             Product product = null;
             for (Product item : list) {
-                if(item.getProName().equals(proName)){
+                if (item.getProName().equals(proName)) {
                     product = item;
                 }
             }
             request.setAttribute("product", product);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errorMsg", "Error when loading product data.");
@@ -97,14 +97,13 @@ public class ProductController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         try {
 
-            String searchName = request.getParameter("search") == null ? "" :  request.getParameter("search");
-            System.out.println("search: "+searchName);
+            String searchName = request.getParameter("search") == null ? "" : request.getParameter("search");
+            System.out.println("search: " + searchName);
             ProductFacade pf = new ProductFacade();
             List<Product> prodList = pf.searchProductByName(searchName);
             System.out.println(prodList.isEmpty());
             Product product = null;
 
-           
             request.setAttribute("list", prodList);
 
             request.getRequestDispatcher("/product/search.do").forward(request, response);
@@ -119,18 +118,20 @@ public class ProductController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         try {
 
-            String searchName = request.getParameter("searchName");
+            String search = request.getParameter("search");
             ProductFacade pf = new ProductFacade();
-            List<Product> prodList = pf.searchProductByName(searchName);
+            List<Product> prodList = pf.searchProductByName(search);
 
             PrintWriter out = response.getWriter();
             String str = "";
-            if (prodList.size() > 6) {
+            if (prodList.isEmpty()) {
+                str = "No one product";
+            } else if (prodList.size() > 6) {
                 for (int i = 0; i < 6; i++) {
                     str += String.format("%s,", prodList.get(i).getProName());
                 }
-            }else{
-                 for (int i = 0; i < prodList.size(); i++) {
+            } else {
+                for (int i = 0; i < prodList.size(); i++) {
                     str += String.format("%s,", prodList.get(i).getProName());
                 }
             }

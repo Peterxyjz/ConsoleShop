@@ -67,6 +67,9 @@ a{
     border-bottom: 1.3px solid #0079FF;
     animation: borderSlideFromLeft ease-in-out 0.3s;
 }
+.active{
+    display: block;
+}
 @keyframes borderSlideFromLeft {
     0%{
         opacity: 0.3;
@@ -385,6 +388,7 @@ a{
 footer{
     width: 100vw;
     background-color: #f2f2f2;
+    
 }
 .footer__wrapper{
     padding: 40px 0;

@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 
+
 //nav menu
 var menuIcon = document.querySelector(".nav__menu");
 var dropdownMenu = document.querySelector(".dropdown__container");
 menuIcon.onclick = () => {
     dropdownMenu.classList.toggle("active");
 }
+
 // sản phẩm hôm nay carousel
 const productWrapper = document.querySelectorAll(".today-deal__wrapper");
 const nextIcon = document.querySelectorAll(".today-deal__next");
@@ -20,15 +22,18 @@ productWrapper.forEach((item, i) => {
     let wrapperDimension = item.getBoundingClientRect();
     let wrapperWidth = wrapperDimension.width;
 
+
     nextIcon[i].addEventListener('click', () => {
         item.scrollLeft += wrapperWidth;
-    })
+    });
+
 
     preIcon[i].addEventListener('click', () => {
         item.scrollLeft -= wrapperWidth;
-    })
-})
+    });
+});
 //search
+
 
 function searchByName() {
     console.log(document.querySelector("#search").value);
@@ -37,7 +42,7 @@ function searchByName() {
         type: 'GET',
         dataType: 'text',
         data: {
-            searchName: document.querySelector("#search").value 
+            search: document.querySelector("#search").value 
         },
         success: function (data) {
             console.log(data);

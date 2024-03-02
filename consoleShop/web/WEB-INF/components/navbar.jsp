@@ -56,7 +56,7 @@
                 </li>
             </ul>
         </div>
-        <form action="" id="search__form">
+        <form action="<c:url value="/product/search_handler.do"/>" method="POST" id="search__form">
             <input type="text" id="search__bar" width="100%">
             <div class="nav__modal"></div>  
             <i class="fa-solid fa-magnifying-glass nav__search-icon"></i>
