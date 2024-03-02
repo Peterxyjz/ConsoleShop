@@ -18,7 +18,7 @@
                 <form action="<c:url value="/product/search_handler.do"/>" method="POST">
                     <input oninput="searchByName()" type="text" placeholder="Tìm sản phẩm" id="search" name="search"  >            
                     <i class="fa-solid fa-magnifying-glass"></i>
-
+                    
                 </form>
                 <i class="fa-solid fa-magnifying-glass" id="search-bar-icon"></i>
 
@@ -58,7 +58,7 @@
             </ul>
         </div>
         <form action="<c:url value="/product/search_handler.do"/>" method="POST" id="search__form">
-            <input type="text" id="search__bar" width="100%">
+            <input oninput="searchByName()" type="text" placeholder="Tìm sản phẩm" id="search" name="search"  class="search__bar" width="100%">
             <div class="nav__modal"></div>  
             <i class="fa-solid fa-magnifying-glass nav__search-icon"></i>
         </form>

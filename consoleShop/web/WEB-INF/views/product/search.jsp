@@ -48,26 +48,21 @@
             <button type="submit" class="btn btn-primary"><i class="bi bi-funnel"></i> Lọc</button>
         </div>
     </div>
-    <div class="row">
+    <div class="row product__wrapper">
         <c:forEach var="product" items="${list}">
-            <div class="col-sm-3 mt-3">                
-                <a href="<c:url value="/product/index.do?product=${product}"/>">
-                    <img src="<c:url value="/images/${product.proId}.jpg" />" class=" rounded mx-auto d-block " width="100%" />
-                </a>
-                <!--description-->
-                <a href="<c:url value="/product/index.do?product=${product}"/>" class="">
-                    <div class="text-center">
-                        ${product.proName}
-                    </div>
-                    <div class="text-center">
-                        <!--New price:--> 
-                        <fmt:formatNumber value="${(1-product.discount)*product.price}" type="currency" />
-                        <!--Old price:--> 
-                        <strike><fmt:formatNumber value="${product.price}" type="currency" /></strike>
-                        <!--Discount:--> 
-                        <span class="badge bg-secondary"><fmt:formatNumber value="${product.discount}" type="percent" /></span><br/>
+            <div class="today-deal__item col-lg-4 col-md-3 col-sm-2 col-2">
+                <div class="today-deal__img">
+                    <a  href="<c:url value="/product/index.do?product=${product}"/>"><img src="<c:url value="/images/${product.proId}.jpg"/>" alt=""></a>
+                </div>
+                <a href="<c:url value="/product/index.do?product=${product}"/>" class="today-deal__info">
+                    <div class="today-deal__name">${product.proName}</div>
+                    <div class="today-deal__price">
+                        <fmt:formatNumber value="${(1-product.discount)*product.price}" type="currency" /> 
+                        <div class="today-deal__discount"><fmt:formatNumber value="${product.price}" type="currency" /></div>
+                        <div class="today-deal__discount-p"><fmt:formatNumber value="${product.discount}" type="percent" /></div>
                     </div>
                 </a>
+                
             </div>
         </c:forEach>
         ${errorMsg}
