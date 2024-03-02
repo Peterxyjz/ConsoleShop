@@ -16,11 +16,10 @@
                 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
                 <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
                 <form action="<c:url value="/product/search_handler.do"/>" method="POST">
-                    <input oninput="searchByName()" type="text" placeholder="Tìm sản phẩm" id="search" name="search"  >            
+                    <input oninput="searchByName()" type="text" placeholder="Tìm sản phẩm" id="search" name="search" onfocus="searchByName()">            
                     <i class="fa-solid fa-magnifying-glass"></i>
-
+           <i class="fa-solid fa-magnifying-glass" id="search-bar-icon"></i>
                 </form>
-                <i class="fa-solid fa-magnifying-glass" id="search-bar-icon"></i>
 
             </div>
 
@@ -40,7 +39,7 @@
         <div class="nav__lower">
             <ul class="navigate__items">
                 <li class="nav__item">
-                    <a href="<c:url value=""/>"><i class="fa-solid fa-list"></i> Tất cả sản phẩm</a>
+                    <a href="<c:url value="/product/search_handler.do?proName"/>"><i class="fa-solid fa-list"></i> Tất cả sản phẩm</a>
                     <div class="item-border"></div>
                 </li>
                 <li class="nav__item">
@@ -67,7 +66,7 @@
     <div class="dropdown__container">
         <ul class="dropdown__menu">
             <li class="dropdown__element">
-                <a href=""> Tất cả sản phẩm</a>
+                <a href=""> Tất cả sản phẩm</a>         
             </li>
             <li class="dropdown__element">
                 <a href=""> Danh mục sản phấm</a>
@@ -82,3 +81,4 @@
     </div>              
 </navbar>
 <script><%@include file="/WEB-INF/javascript/navbar.js"%></script>
+<script><%@include file="/WEB-INF/javascript/home.js"%></script>

@@ -65,9 +65,18 @@ public class ProductController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         try {
 
+            String proName = (request.getParameter("proName"));
+            
             ProductFacade pf = new ProductFacade();
             List<Product> list = pf.selectProList();
-            request.setAttribute("list", list);
+            Product product = null;
+            for (Product item : list) {
+                if(item.getProName().equals(proName)){
+                    product = item;
+                }
+            }
+            request.setAttribute("product", product);
+            
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errorMsg", "Error when loading product data.");
@@ -88,15 +97,14 @@ public class ProductController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         try {
 
-            String searchName = request.getParameter("search");
+            String searchName = request.getParameter("search") == null ? "" :  request.getParameter("search");
+            System.out.println("search: "+searchName);
             ProductFacade pf = new ProductFacade();
             List<Product> prodList = pf.searchProductByName(searchName);
             System.out.println(prodList.isEmpty());
             Product product = null;
 
-            for (Product item : prodList) {
-                product = item;
-            }
+           
             request.setAttribute("list", prodList);
 
             request.getRequestDispatcher("/product/search.do").forward(request, response);

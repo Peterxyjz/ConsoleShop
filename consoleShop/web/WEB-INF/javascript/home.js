@@ -6,8 +6,8 @@
 
 //nav menu
 var menuIcon = document.querySelector(".nav__menu");
-var  dropdownMenu = document.querySelector(".dropdown__container");
-menuIcon.onclick = ()=>{
+var dropdownMenu = document.querySelector(".dropdown__container");
+menuIcon.onclick = () => {
     dropdownMenu.classList.toggle("active");
 }
 // sản phẩm hôm nay carousel
@@ -20,47 +20,51 @@ productWrapper.forEach((item, i) => {
     let wrapperDimension = item.getBoundingClientRect();
     let wrapperWidth = wrapperDimension.width;
 
-    nextIcon[i].addEventListener('click', ()=>{
-        item.scrollLeft += wrapperWidth ;
+    nextIcon[i].addEventListener('click', () => {
+        item.scrollLeft += wrapperWidth;
     })
 
-    preIcon[i].addEventListener('click', ()=>{
+    preIcon[i].addEventListener('click', () => {
         item.scrollLeft -= wrapperWidth;
     })
 })
 //search
 
- function searchByName() { 
+function searchByName() {
     console.log(document.querySelector("#search").value);
     $.ajax({
-        url: '/consoleShop/product/searchAuto.do',     
+        url: '/consoleShop/product/searchAuto.do',
         type: 'GET',
         dataType: 'text',
         data: {
-            searchName: document.querySelector("#search").value ||""
+            searchName: document.querySelector("#search").value 
         },
-        success: function(data) {
+        success: function (data) {
             console.log(data);
             let src = data.split(",");
             console.log(src);
             src.forEach(item => {
                 console.log(item);
             });
-            $( "#search" ).autocomplete({
-            
-                minLength: 1,
-                
-                source: src,
-                maxResults : 6
-             });
-        }
-        
-      });     
-}
-$(function() {
-      
+            $("#search").autocomplete({
 
-      $("#search").autocomplete({
-        
-      });
+                minLength: 0, // số ký tự ít nhất để autocomplete thực hiện                
+                source: src, // src để suggestion
+                maxResults: 6, // số suggestion tối đa được hiện 
+                select:function(event, ui){
+                    let url = "/consoleShop/product/index.do?proName=" +decodeURIComponent(ui.item.value)
+                    console.log(ui.item.value);
+                    window.location.href = url
+                    return false
+                }
+
+            });
+        }
+
     });
+}
+$(function () {
+    $("#search").autocomplete({
+
+    });
+});
