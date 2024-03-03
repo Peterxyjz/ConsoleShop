@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package db;
 
 import java.sql.Connection;
@@ -13,10 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author ASUS
- */
 public class ProductFacade {
      public List<Product> searchProductByName(String proName) throws SQLException {
         Connection con = DBContext.getConnection();
@@ -35,8 +27,8 @@ public class ProductFacade {
             product.setPrice(rs.getDouble("price"));
             product.setDiscount(rs.getDouble("discount"));
             product.setAmount(rs.getInt("Amount"));
-            product.setCategoryId(rs.getString("categoryId"));
-            product.setBrandId(rs.getString("brandId"));
+            product.setCategoryId(rs.getInt("categoryId"));
+            product.setBrandId(rs.getInt("brandId"));
             product.setDescription(rs.getString("description"));
             proList.add(product);
 
@@ -60,8 +52,8 @@ public class ProductFacade {
             product.setPrice(rs.getDouble("price"));
             product.setDiscount(rs.getDouble("discount"));
             product.setAmount(rs.getInt("Amount"));
-            product.setCategoryId(rs.getString("categoryId"));
-            product.setBrandId(rs.getString("brandId"));
+            product.setCategoryId(rs.getInt("categoryId"));
+            product.setBrandId(rs.getInt("brandId"));
             product.setDescription(rs.getString("description"));
 
             list.add(product);
@@ -88,8 +80,8 @@ public class ProductFacade {
             product.setPrice(rs.getDouble("price"));
             product.setDiscount(rs.getDouble("discount"));
              product.setAmount(rs.getInt("Amount"));
-            product.setCategoryId(rs.getString("categoryId"));
-            product.setBrandId(rs.getString("brandId"));
+            product.setCategoryId(rs.getInt("categoryId"));
+            product.setBrandId(rs.getInt("brandId"));
             product.setDescription(rs.getString("description"));
 
         }
