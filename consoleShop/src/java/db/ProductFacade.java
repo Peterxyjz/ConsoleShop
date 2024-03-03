@@ -79,7 +79,7 @@ public class ProductFacade {
             product.setProName(rs.getString("proName"));
             product.setPrice(rs.getDouble("price"));
             product.setDiscount(rs.getDouble("discount"));
-             product.setAmount(rs.getInt("Amount"));
+            product.setAmount(rs.getInt("Amount"));
             product.setCategoryId(rs.getInt("categoryId"));
             product.setBrandId(rs.getInt("brandId"));
             product.setDescription(rs.getString("description"));
@@ -88,5 +88,49 @@ public class ProductFacade {
         con.close();
         return product;
     }
-
+    //admin:
+    public List<Product> select() throws SQLException {
+        List<Product> list = null;
+        //Tạo connection để kết nối vào DBMS
+        Connection con = DBContext.getConnection();
+        //Tạo đối tượng statement
+        Statement stm = con.createStatement();
+        //Thực thi lệnh SELECT
+        ResultSet rs = stm.executeQuery("select * from Product");
+        list = new ArrayList<>();
+        while (rs.next()) {
+            //Doc mau tin hien hanh de vao doi tuong toy
+            Product product = new Product();
+            product.setProId(rs.getInt("proId"));
+            product.setProName(rs.getString("proName"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDiscount(rs.getDouble("discount"));
+            product.setAmount(rs.getInt("amount"));
+            product.setCategoryId(rs.getInt("categoryId"));
+            product.setBrandId(rs.getInt("brandId")); //TAM
+            product.setDescription(rs.getString("description"));
+            //Them toy vao list
+            list.add(product);
+        }
+        con.close();
+        return list;
+    }
+    
+    public void create(Product product) throws SQLException {
+        //Tạo connection để kết nối vào DBMS
+        Connection con = DBContext.getConnection();
+        //Tạo đối tượng PreparedStatement
+        PreparedStatement stm = con.prepareStatement("insert into Product values(?,?,?,?,?,?,?)");
+        //Cung cấp giá trị cho các tham số
+        stm.setString(1, product.getProName());
+        stm.setDouble(2, product.getPrice());
+        stm.setDouble(3, product.getDiscount());
+        stm.setInt(4, product.getAmount());
+        stm.setInt(5, product.getCategoryId());
+        stm.setInt(6, product.getBrandId()); //TAM
+        stm.setString(7, product.getDescription());
+        //Thực thi lệnh INSERT
+        int count = stm.executeUpdate();
+        con.close();
+    }
 }
