@@ -3,12 +3,82 @@
     text-decoration: none;
     font-weight: 500;
 }
-.nav_button{
+.product__right{
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-between;
 }
-.nav_button button{
-    width: 40%;
+.product__description{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%
+}
+.product__status{
+    font-size: 18px;
+}
+
+.product__info{
+    margin-top: 5%;
+}
+.product__price{
+    margin-top: 50px;
+    font-size: 24px;
+}
+.product__discount{
+    font-size: 18px;
+    opacity: 0.7;
+    text-decoration: line-through;   
+}
+.product__discount-p{
+    text-align: center;
+    background: #e30010;
+    color: #fff;
+    padding: 8px 12px;
+    margin-left: 4px;
+    border-radius: 30px;
+    font-weight: 600;
+}
+.product__amount{
+    
+    font-size: 18px;
+    font-weight: 500;
+}
+.amount__minus, .amount__plus{
+    cursor: pointer;
+}
+.product__amount input{
+    text-align: center;
+    width: 45px;
+    height: 35px;
+    outline: none;
+}
+.nav__btn--buy, .nav__btn--add{
+   width: 220px;
+   padding: 10px 0;
+   outline: none;
+   background: transparent;
+   border: none;
+   border-radius: 8px;
+   transition: all 0.2s;
+   cursor: pointer;
+}
+.nav__btn--buy{
+    background: #0079FF;
+    color: #fff;
+    margin-right: 20px;
+}
+.nav__btn--add{
+    
+    border: 1px solid #5a5454;
+    color: #0079FF;
+    
+}
+.nav__btn--buy:hover{
+    opacity: 0.9;
+}  
+.nav__btn--add:hover{
+    border: 1px solid #0079FF;
 }
 /*search*/
 .range{
@@ -70,7 +140,11 @@
     font-size: 10px;
 
 }
-
+@media (max-width:1173px){
+    .nav__btn--buy{
+        margin-bottom: 20px;
+    }
+}
 @media (max-width:992px){
     .today-deal__name{
         margin-top: 0px;
