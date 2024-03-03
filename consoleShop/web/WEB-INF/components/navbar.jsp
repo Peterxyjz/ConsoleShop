@@ -47,7 +47,7 @@
                     <div class="item-border"></div>
                 </li>
                 <li class="nav__item">
-                    <a href=""><span>%</span> Sản phẩm khuyến mãi</a>
+                    <a href=""><span>%</span> Sản phẩm bán chạy</a>
                     <div class="item-border"></div>
                 </li>
                 <li class="nav__item">
