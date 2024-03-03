@@ -386,11 +386,12 @@ a{
 }
 /*footer*/
 footer{
-    width: 100vw;
+    width: 107vw;
     background-color: #f2f2f2;
     
 }
 .footer__wrapper{
+    width: 100%;
     padding: 40px 0;
 }
 .footer__fanpage ul{
