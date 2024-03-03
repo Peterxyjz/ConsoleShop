@@ -5,9 +5,12 @@
         <group>
             <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/WEB-INF/components/footer.jsp</file>
             <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/WEB-INF/components/navbar.jsp</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/index.jsp</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/hashing/Hasher.java</file>
             <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/WEB-INF/views/account/login.jsp</file>
             <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/AccountFacade.java</file>
             <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/Account.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/WEB-INF/views/account/admin.jsp</file>
             <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/WEB-INF/views/account/signup.jsp</file>
             <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/controllers/AccountController.java</file>
             <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/controllers/ProductController.java</file>
