@@ -18,10 +18,10 @@
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
-            <form action="create_handler.do">
+            <form method="POST" action="create_handler.do" enctype="multipart/form-data">
                 <div class="mb-3 mt-3">
-                    <label for="image" class="form-label">Hình sản phẩm: </label>
-                    <input type="file" class="form-control" id="image" name="image" value="${param.image}">
+                    <label for="imageFile" class="form-label">Hình sản phẩm: </label>
+                    <input type="file" class="form-control" id="imageFile" name="imageFile" value="${param.imageFile}">
                 </div>
                 <div class="mb-3">
                     <label for="proName" class="form-label">Nhập tên sản phẩm: </label>
@@ -32,8 +32,12 @@
                     <input type="number" class="form-control" id="price" name="price" value="${param.price}">
                 </div>
                 <div class="mb-3">
-                    <label for="discount" class="form-label">Nhập giá discount: </label>
-                    <input type="number" class="form-control" id="discount" name="discount" value="${param.discount}">
+                    <label for="discount" class="form-label">Nhập discount: </label>
+                    <input type="number" class="form-control" id="discount" name="discount" value="${param.discount}" min="0" max="100">
+                </div>
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Nhập số lượng </label>
+                    <input type="number" class="form-control" id="amount" name="amount" value="${param.amount}" min="0">
                 </div>
                 <div class="mb-3">
                     <label for="categoryId" class="form-label">Nhập loại sản phẩm: </label>
@@ -54,7 +58,7 @@
     </div>
     <hr/>
     <br/>
-</div>
+</div>                  
 <jsp:include page="/WEB-INF/components/footer.jsp" />
 
 
