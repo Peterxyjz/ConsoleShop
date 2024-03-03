@@ -42,28 +42,22 @@ public class AccountController extends HttpServlet {
         String action = (String) request.getAttribute("action");
 
         switch (action) {
-            case "index":
-                index(request, response);
-                break;
             case "login":
                 login(request, response);
                 break;
             case "login_handler":
                 login_handler(request, response);
                 break;
-            case"signup":
-                signUp(request, response);
+            case "signup":
+                signup(request, response);
                 break;
-            case "create":
-                signUp(request, response);
-                break;
-            case "create_handler":
-                signUp_handler(request, response);
+            case "signup_handler":
+                signup_handler(request, response);
                 break;
             case "update":
                 update(request, response);
                 break;
-            case "updated_handler":
+            case "update_handler":
                 update_handler(request, response);
                 break;
             case "delete":
@@ -80,19 +74,55 @@ public class AccountController extends HttpServlet {
                 break;
             case "admin":
                 admin(request, response);
-                break;    
+                break;
 
         }
     }
 
-    protected void index(HttpServletRequest request, HttpServletResponse response)
+    protected void signup(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        request.getRequestDispatcher(layout).forward(request, response);
+    }
+
+    protected void signup_handler(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         try {
-
+            String email = request.getParameter("email");
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            String password_check = request.getParameter("password_check");
+            AccountFacade af = new AccountFacade();
+            boolean isExisted = af.isExisted(email);
+            if (!isExisted) {
+                if(password.equals(password_check)) {
+                    HttpSession session = request.getSession();
+                    //lay thong tin tu client
+                    Account account = new Account();
+                    account.setEmail(email);
+                    account.setLastName(username);
+                    account.setPassword(password);
+                    //kiem tra thong tin login
+                    af.create(account);
+                    Account loginAccount = af.login(email, password);
+                    session.setAttribute("account", loginAccount);
+                    //chuyen den trang home
+                    request.getRequestDispatcher("/").forward(request, response);
+                }
+                //gan thong bao loi
+                request.setAttribute("errorMsg", "The PASSWORD and CONFIRM PASSWORD must be the same.");
+                //quay ve trang login
+                request.getRequestDispatcher("/account/signup.do").forward(request, response);
+            } else {
+                //gan thong bao loi
+                request.setAttribute("errorMsg", "Email already existed.");
+                //quay ve trang login
+                request.getRequestDispatcher("/account/signup.do").forward(request, response);
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errMsg", "Error occurs when reading Student Data");
+            request.getRequestDispatcher("/account/signup.do").forward(request, response);
         }
         request.getRequestDispatcher(layout).forward(request, response);
     }
@@ -124,8 +154,6 @@ public class AccountController extends HttpServlet {
             //lay thong tin tu client
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-            boolean remember = request.getParameter("remember") != null;
-            System.out.println("Remember: " + remember);
             //kiem tra thong tin login
             AccountFacade af = new AccountFacade();
             Account account = af.login(email, password);
@@ -134,7 +162,7 @@ public class AccountController extends HttpServlet {
             //neu login thanh cong
             if (account != null) {
                 //luu email & password vao cookies
-                int maxAge = remember ? 7 * 24 * 60 * 60 : 0; //1 week
+                int maxAge = 7 * 24 * 60 * 60; //1 week
                 Cookie ckEmail = new Cookie("email", email);
                 //neu khong setMaxAge() thi ckEmail la cookie tam thoi
                 //chi dung duoc trong 1 session
@@ -157,19 +185,9 @@ public class AccountController extends HttpServlet {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            request.getRequestDispatcher("/account/login.do").forward(request, response);
         }
         request.getRequestDispatcher(layout).forward(request, response);
-    }
-
-    protected void signUp(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String layout = (String) request.getAttribute("layout");
-        request.getRequestDispatcher(layout).forward(request, response);
-    }
-
-    protected void signUp_handler(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
     }
 
     protected void update(HttpServletRequest request, HttpServletResponse response)
@@ -294,6 +312,7 @@ public class AccountController extends HttpServlet {
             request.getRequestDispatcher(layout).forward(request, response);
         }
     }
+
     protected void admin(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
