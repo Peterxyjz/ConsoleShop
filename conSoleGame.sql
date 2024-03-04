@@ -1,12 +1,7 @@
 ﻿--CREATE DATABASE ConSoleGame
 --DROP DATABASE ConSoleGame
 USE ConSoleGame
-CREATE TABLE Brand
-(
-  BrandID INT IDENTITY(1,1) NOT NULL,
-  BrandName NVARCHAR(100) NOT NULL,
-  PRIMARY KEY (BrandID)
-);
+
 
 CREATE TABLE Category
 (
@@ -14,24 +9,12 @@ CREATE TABLE Category
   CategoryName  NVARCHAR(100) NOT NULL,
   PRIMARY KEY (CategoryID)
 );
-SELECT * FROM Product
-WHERE CategoryID in (SELECT CategoryID FROM Category 
-					WHERE CategoryName like '%%')
-	AND Price >= 10000000.111111111
-	AND Price <=100000000.1
-ORDER BY ProName ASC 
-
-SELECT * FROM Product WHERE CategoryID in (SELECT CategoryID FROM Category WHERE CategoryName like '%%') AND Price >= 0.000000 AND Price <=50000000.000000 ORDER BY proName 
-
-SELECT * FROM Product WHERE CategoryID in (SELECT CategoryID FROM Category WHERE CategoryName like '%%') AND Price >= 0.000000 AND Price <=50000000.000000 ORDER BY proName ASC 
-
- SELECT * FROM Product WHERE CategoryID in (SELECT CategoryID FROM Category WHERE CategoryName like '%%') AND Price >= 0.000000 AND Price <=50000000.000000 ORDER BY proName ASC 
 
 CREATE TABLE Account
 (
   AccID INT IDENTITY(1,1) NOT NULL,
-  FirstName NVARCHAR(100),
-  LastName NVARCHAR(100) NOT NULL,
+  FullName NVARCHAR(100), 
+  UserName NVARCHAR(100) NOT NULL, 
   Email CHAR(300) NOT NULL,
   Password CHAR(64) NOT NULL,
   Role VARCHAR(50) NOT NULL,
@@ -39,7 +22,7 @@ CREATE TABLE Account
   Address NVARCHAR(300) ,
   Country NVARCHAR(100) ,
   PhoneNumber CHAR(11) ,
-  
+  Wallet MONEY,
   PRIMARY KEY (AccID)
 );
 CREATE TABLE Customer
@@ -70,11 +53,10 @@ CREATE TABLE Product
   Discount FLOAT NOT NULL,
   Amount INT NOT NULL,
   CategoryID INT NOT NULL,
-  BrandID INT NOT NULL,
   Description NVARCHAR(4000) NOT NULL,
   PRIMARY KEY (ProID),
   FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID),
-  FOREIGN KEY (BrandID) REFERENCES Brand(BrandID)
+  
 );
 
 CREATE TABLE Orders

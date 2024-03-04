@@ -29,7 +29,7 @@ public class ProductFacade {
             product.setDiscount(rs.getDouble("discount"));
             product.setAmount(rs.getInt("Amount"));
             product.setCategoryId(rs.getInt("categoryId"));
-            product.setBrandId(rs.getInt("brandId"));
+            
             product.setDescription(rs.getString("description"));
             proList.add(product);
 
@@ -61,7 +61,7 @@ public class ProductFacade {
             product.setDiscount(rs.getDouble("discount"));
             product.setAmount(rs.getInt("Amount"));
             product.setCategoryId(rs.getInt("categoryId"));
-            product.setBrandId(rs.getInt("brandId"));
+           
             product.setDescription(rs.getString("description"));
             proList.add(product);
 
@@ -86,7 +86,7 @@ public class ProductFacade {
             product.setDiscount(rs.getDouble("discount"));
             product.setAmount(rs.getInt("Amount"));
             product.setCategoryId(rs.getInt("categoryId"));
-            product.setBrandId(rs.getInt("brandId"));
+           
             product.setDescription(rs.getString("description"));
 
             list.add(product);
@@ -115,7 +115,7 @@ public class ProductFacade {
             product.setAmount(rs.getInt("Amount"));
 
             product.setCategoryId(rs.getInt("categoryId"));
-            product.setBrandId(rs.getInt("brandId"));
+        
 
             product.setDescription(rs.getString("description"));
 
@@ -142,7 +142,7 @@ public class ProductFacade {
             product.setDiscount(rs.getDouble("discount"));
             product.setAmount(rs.getInt("amount"));
             product.setCategoryId(rs.getInt("categoryId"));
-            product.setBrandId(rs.getInt("brandId")); //TAM
+      
             product.setDescription(rs.getString("description"));
             //Them toy vao list
             list.add(product);
@@ -162,7 +162,7 @@ public class ProductFacade {
         stm.setDouble(3, product.getDiscount());
         stm.setInt(4, product.getAmount());
         stm.setInt(5, product.getCategoryId());
-        stm.setInt(6, product.getBrandId()); //TAM
+ 
         stm.setString(7, product.getDescription());
         //Thực thi lệnh INSERT
         int count = stm.executeUpdate();
