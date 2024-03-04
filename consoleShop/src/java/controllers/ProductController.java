@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import db.Product;
+import java.sql.SQLException;
 
 /**
  *
@@ -54,6 +55,9 @@ public class ProductController extends HttpServlet {
                 break;
             case "searchAuto":
                 searchAuto(request, response);
+                break;
+            case "searchFilter_handler":
+                searchFilter_handler(request, response);
                 break;
 
         }
@@ -101,7 +105,7 @@ public class ProductController extends HttpServlet {
             ProductFacade pf = new ProductFacade();
             List<Product> prodList = pf.searchProductByName(searchName);
             System.out.println(prodList.isEmpty());
-            Product product = null;
+
 
             request.setAttribute("list", prodList);
 
@@ -139,6 +143,41 @@ public class ProductController extends HttpServlet {
             out.print(str);
         } catch (Exception e) {
             printStackTrace();
+            request.getRequestDispatcher("/").forward(request, response);
+        }
+    }
+
+    protected void searchFilter_handler(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+
+            String categoryName = request.getParameter("categoryName");
+            System.out.println("categoryName: " + categoryName);
+
+            String status = request.getParameter("status");
+            System.out.println("status: " + status);
+
+            double priceLower = Double.parseDouble(request.getParameter("priceLower"));
+            System.out.println("priceLower: " + priceLower);
+            double priceUpper = Double.parseDouble(request.getParameter("priceUpper"));
+            System.out.println("priceUpper: " + priceUpper);
+
+            String sort = request.getParameter("sort");
+            System.out.println("sort: " + sort);
+            String str = String.format("SELECT * FROM Product WHERE CategoryID in (SELECT CategoryID FROM Category WHERE CategoryName like '%s') AND Price >= %f AND Price <=%f ORDER BY %s ", "%" + categoryName + "%", priceLower, priceUpper, sort);
+            System.out.println("sql: " + str);
+            ProductFacade pf = new ProductFacade();
+            List<Product> prodList = pf.searchProductByFilter(categoryName, status, priceLower, priceUpper, sort);
+            System.out.println(prodList.isEmpty());
+            
+            
+
+            request.setAttribute("list", prodList);
+
+            request.getRequestDispatcher("/product/search.do").forward(request, response);
+        } catch (IOException | NumberFormatException | SQLException | ServletException e) {
+            e.printStackTrace();
             request.getRequestDispatcher("/").forward(request, response);
         }
     }

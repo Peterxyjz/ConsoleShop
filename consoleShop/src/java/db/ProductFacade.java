@@ -10,10 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductFacade {
-     public List<Product> searchProductByName(String proName) throws SQLException {
+
+    public List<Product> searchProductByName(String proName) throws SQLException {
         Connection con = DBContext.getConnection();
         PreparedStatement stm = con.prepareStatement("SELECT * FROM Product WHERE proName LIKE ? ");
-        stm.setString(1, "%" +proName +"%");
+        stm.setString(1, "%" + proName + "%");
 
         //Thực thi lệnh SELECT
         ResultSet rs = stm.executeQuery();
@@ -21,6 +22,38 @@ public class ProductFacade {
         List<Product> proList = new ArrayList<>();
 
         while (rs.next()) {
+            Product product = new Product();
+            product.setProId(rs.getInt("ProID"));
+            product.setProName(rs.getString("proName"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDiscount(rs.getDouble("discount"));
+            product.setAmount(rs.getInt("Amount"));
+            product.setCategoryId(rs.getInt("categoryId"));
+            product.setBrandId(rs.getInt("brandId"));
+            product.setDescription(rs.getString("description"));
+            proList.add(product);
+
+        }
+
+        //trả list Product
+        return proList;
+    }
+
+    public List<Product> searchProductByFilter(String categoryName, String status, double priceUpper, double priceLower, String sort) throws SQLException {
+        List<Product> proList = null;
+        String str = String.format("SELECT * FROM Product WHERE CategoryID in (SELECT CategoryID FROM Category WHERE CategoryName like '%s') AND ((price >= %s) AND (price <=%s)) ORDER BY %s ", categoryName, priceLower, priceUpper, sort);
+//        String str = "SELECT * FROM Product WHERE CategoryId in (SELECt categoryId FROM Category WHERE CategoryName like '%Nintendo%') AND Price >=0.0 AND Price <=9000000.000000 Order by ProName DESC ";
+        Connection con = DBContext.getConnection();
+
+        Statement stm = con.createStatement();
+
+        //Thực thi lệnh SELECT
+        ResultSet rs = stm.executeQuery(str);
+        System.out.println("rs: " + rs.next());
+        proList = new ArrayList<>();
+
+        while (rs.next()) {
+
             Product product = new Product();
             product.setProId(rs.getInt("ProID"));
             product.setProName(rs.getString("proName"));
@@ -80,8 +113,10 @@ public class ProductFacade {
             product.setPrice(rs.getDouble("price"));
             product.setDiscount(rs.getDouble("discount"));
             product.setAmount(rs.getInt("Amount"));
+
             product.setCategoryId(rs.getInt("categoryId"));
             product.setBrandId(rs.getInt("brandId"));
+
             product.setDescription(rs.getString("description"));
 
         }
