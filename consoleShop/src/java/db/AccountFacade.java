@@ -48,16 +48,16 @@ public class AccountFacade {
 
     public void create(Account account) throws SQLException {
         Connection con = DBContext.getConnection();
-        PreparedStatement stm = con.prepareStatement("insert into Account values(?,?,?,?,?,?,?,?)");
-        stm.setInt(1, account.getAccId());
-        stm.setString(2, account.getEmail());
-        stm.setString(3, account.getPassword());
-        stm.setString(4, account.getFirstName());
-        stm.setString(5, account.getLastName());
-        stm.setString(6, account.getCountry());
-        stm.setString(7, account.getPhoneNumber());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        stm.setString(8, sdf.format(account.getBirthDay()));
+        PreparedStatement stm = con.prepareStatement("insert into Account values(?,?,?,?,?,?,?,?,?)");
+        stm.setString(1, account.getFirstName());
+        stm.setString(2, account.getLastName());
+        stm.setString(3, account.getEmail());
+        stm.setString(4, account.getPassword());
+        stm.setString(5, "customer");
+        stm.setString(6, "2000/11/11");
+        stm.setString(7, account.getAddress());
+        stm.setString(8, account.getCountry());
+        stm.setString(9, account.getPhoneNumber());
 
         int count = stm.executeUpdate();
         con.close();
@@ -95,7 +95,7 @@ public class AccountFacade {
         PreparedStatement stm = con.prepareStatement("select * from Account where email=? and password=?");
         //Cung cấp giá trị cho các tham số
         stm.setString(1, email);
-        stm.setString(2, Hasher.hash(password));
+        stm.setString(2, password);
         //Thực thi lệnh SELECT
         ResultSet rs = stm.executeQuery();
         Account account = null;
@@ -123,5 +123,16 @@ public class AccountFacade {
         session.invalidate();
         //quay ve trang home
         request.getRequestDispatcher("/").forward(request, response);
+    }
+    
+    public boolean isExisted(String email) throws SQLException{
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("select * from account where email=?");
+        stm.setString(1, email);
+        ResultSet rs = stm.executeQuery();
+        if(rs.next()){          
+            con.close();
+            return true;
+        }else return false;
     }
 }

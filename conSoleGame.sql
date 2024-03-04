@@ -23,13 +23,14 @@ ORDER BY ProName ASC
 
 SELECT * FROM Product WHERE CategoryID in (SELECT CategoryID FROM Category WHERE CategoryName like '%%') AND Price >= 0.000000 AND Price <=50000000.000000 ORDER BY proName 
 
-SELECT * FROM Category
+SELECT * FROM Product WHERE CategoryID in (SELECT CategoryID FROM Category WHERE CategoryName like '%%') AND Price >= 0.000000 AND Price <=50000000.000000 ORDER BY proName ASC 
 
+ SELECT * FROM Product WHERE CategoryID in (SELECT CategoryID FROM Category WHERE CategoryName like '%%') AND Price >= 0.000000 AND Price <=50000000.000000 ORDER BY proName ASC 
 
 CREATE TABLE Account
 (
   AccID INT IDENTITY(1,1) NOT NULL,
-  FirstName NVARCHAR(100) NOT NULL,
+  FirstName NVARCHAR(100),
   LastName NVARCHAR(100) NOT NULL,
   Email CHAR(300) NOT NULL,
   Password CHAR(64) NOT NULL,

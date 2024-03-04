@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="vi_VN"/>
 <style><%@include file="/WEB-INF/css/signup.css"%></style>
  <div class="container-fluid">
         <div class="row">
@@ -10,26 +11,26 @@
                     <span>Console Shop</span>
                 </a>
                 <h2 class="login__header">Sign Up to Console Shop</h2>
-                <form action="" class="login__form container-fluid" id="form__signup">
+                <form action="<c:url value="/account/signup_handler.do" />" class="login__form container-fluid" id="form__signup">
                     <div class="row">
                         <div class="form__group col-lg-4 col-sm-4">
                             <label for="email">Email</label></br>
-                            <input type="text" id="email"></br>
+                            <input type="text" id="email" name="email" value="${param.email}"></br>
                             <div class="form__message"></div>
                         </div>
                         <div class="form__group col-lg-4 col-sm-4">
                             <label for="username">Username</label></br>
-                            <input type="text" id="username"></br>
+                            <input type="text" id="username" name="username" value="${param.username}"></br>
                             <div class="form__message"></div>
                         </div>
                         <div class="form__group col-lg-8 col-sm-8">
                             <label for="password">Password</label></br>
-                            <input type="password" id="password"></br>
+                            <input type="password" id="password" name="password" value="${param.password}"></br>
                             <div class="form__message"></div>
                         </div>
                         <div class="form__group col-lg-8 col-sm-8">
                             <label for="password_check">Enter your password again</label></br>
-                            <input type="password" id="password_check"></br>
+                            <input type="password" id="password_check" name="password_check" value="${param.password_check}"></br>
                             <div class="form__message"></div>
                         </div>
                         <div class="form__group--submit col-lg-8 col-sm-8" >

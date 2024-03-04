@@ -86,7 +86,6 @@ public class ProductController extends HttpServlet {
             request.setAttribute("errorMsg", "Error when loading product data.");
         }
         request.getRequestDispatcher(layout).forward(request, response);
-
     }
 
     protected void search(HttpServletRequest request, HttpServletResponse response)

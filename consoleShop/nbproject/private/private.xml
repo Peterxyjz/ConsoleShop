@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/fpt/CN4/PRJ301/ConsoleShop/consoleShop/src/java/controllers/ProductController.java</file>
-            <file>file:/D:/fpt/CN4/PRJ301/ConsoleShop/consoleShop/src/java/db/FilterFacade.java</file>
-            <file>file:/D:/fpt/CN4/PRJ301/ConsoleShop/consoleShop/src/java/db/ProductFacade.java</file>
-            <file>file:/D:/fpt/CN4/PRJ301/ConsoleShop/consoleShop/web/WEB-INF/views/product/search.jsp</file>
-            <file>file:/D:/fpt/CN4/PRJ301/ConsoleShop/consoleShop/web/index.jsp</file>
-            <file>file:/D:/fpt/CN4/PRJ301/ConsoleShop/consoleShop/src/java/models/Filter.java</file>
-            <file>file:/D:/fpt/CN4/PRJ301/ConsoleShop/consoleShop/src/java/db/Product.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

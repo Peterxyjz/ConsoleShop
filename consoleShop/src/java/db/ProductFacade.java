@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package db;
 
 import java.sql.Connection;
@@ -13,10 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author ASUS
- */
 public class ProductFacade {
 
     public List<Product> searchProductByName(String proName) throws SQLException {
@@ -36,8 +28,8 @@ public class ProductFacade {
             product.setPrice(rs.getDouble("price"));
             product.setDiscount(rs.getDouble("discount"));
             product.setAmount(rs.getInt("Amount"));
-            product.setCategoryId(rs.getString("categoryId"));
-            product.setBrandId(rs.getString("brandId"));
+            product.setCategoryId(rs.getInt("categoryId"));
+            product.setBrandId(rs.getInt("brandId"));
             product.setDescription(rs.getString("description"));
             proList.add(product);
 
@@ -49,9 +41,8 @@ public class ProductFacade {
 
     public List<Product> searchProductByFilter(String categoryName, String status, double priceUpper, double priceLower, String sort) throws SQLException {
         List<Product> proList = null;
-//        String str = String.format("SELECT * FROM Product WHERE CategoryID in (SELECT CategoryID FROM Category WHERE CategoryName like '%s') AND ((price >= %.2f) AND (price <=%.2f)) ORDER BY %s ", "%" +categoryName +"%", 5000000.000000, 9000000.000000, sort);
-        String str = "SELECT * FROM Product WHERE CategoryId in (SELECt categoryId FROM Category WHERE CategoryName like '%Nintendo%') AND Price >=5000000.000000 AND Price <=9000000.000000 Order by ProName DESC ";
-//        String str = String.format("SELECT * FROM Product WHERE Price >= %9.9d", Integer (priceLower));
+        String str = String.format("SELECT * FROM Product WHERE CategoryID in (SELECT CategoryID FROM Category WHERE CategoryName like '%s') AND ((price >= %s) AND (price <=%s)) ORDER BY %s ", categoryName, priceLower, priceUpper, sort);
+//        String str = "SELECT * FROM Product WHERE CategoryId in (SELECt categoryId FROM Category WHERE CategoryName like '%Nintendo%') AND Price >=0.0 AND Price <=9000000.000000 Order by ProName DESC ";
         Connection con = DBContext.getConnection();
 
         Statement stm = con.createStatement();
@@ -69,8 +60,8 @@ public class ProductFacade {
             product.setPrice(rs.getDouble("price"));
             product.setDiscount(rs.getDouble("discount"));
             product.setAmount(rs.getInt("Amount"));
-            product.setCategoryId(rs.getString("categoryId"));
-            product.setBrandId(rs.getString("brandId"));
+            product.setCategoryId(rs.getInt("categoryId"));
+            product.setBrandId(rs.getInt("brandId"));
             product.setDescription(rs.getString("description"));
             proList.add(product);
 
@@ -94,8 +85,8 @@ public class ProductFacade {
             product.setPrice(rs.getDouble("price"));
             product.setDiscount(rs.getDouble("discount"));
             product.setAmount(rs.getInt("Amount"));
-            product.setCategoryId(rs.getString("categoryId"));
-            product.setBrandId(rs.getString("brandId"));
+            product.setCategoryId(rs.getInt("categoryId"));
+            product.setBrandId(rs.getInt("brandId"));
             product.setDescription(rs.getString("description"));
 
             list.add(product);
@@ -122,13 +113,59 @@ public class ProductFacade {
             product.setPrice(rs.getDouble("price"));
             product.setDiscount(rs.getDouble("discount"));
             product.setAmount(rs.getInt("Amount"));
-            product.setCategoryId(rs.getString("categoryId"));
-            product.setBrandId(rs.getString("brandId"));
+
+            product.setCategoryId(rs.getInt("categoryId"));
+            product.setBrandId(rs.getInt("brandId"));
+
             product.setDescription(rs.getString("description"));
 
         }
         con.close();
         return product;
     }
-
+    //admin:
+    public List<Product> select() throws SQLException {
+        List<Product> list = null;
+        //Tạo connection để kết nối vào DBMS
+        Connection con = DBContext.getConnection();
+        //Tạo đối tượng statement
+        Statement stm = con.createStatement();
+        //Thực thi lệnh SELECT
+        ResultSet rs = stm.executeQuery("select * from Product");
+        list = new ArrayList<>();
+        while (rs.next()) {
+            //Doc mau tin hien hanh de vao doi tuong toy
+            Product product = new Product();
+            product.setProId(rs.getInt("proId"));
+            product.setProName(rs.getString("proName"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDiscount(rs.getDouble("discount"));
+            product.setAmount(rs.getInt("amount"));
+            product.setCategoryId(rs.getInt("categoryId"));
+            product.setBrandId(rs.getInt("brandId")); //TAM
+            product.setDescription(rs.getString("description"));
+            //Them toy vao list
+            list.add(product);
+        }
+        con.close();
+        return list;
+    }
+    
+    public void create(Product product) throws SQLException {
+        //Tạo connection để kết nối vào DBMS
+        Connection con = DBContext.getConnection();
+        //Tạo đối tượng PreparedStatement
+        PreparedStatement stm = con.prepareStatement("insert into Product values(?,?,?,?,?,?,?)");
+        //Cung cấp giá trị cho các tham số
+        stm.setString(1, product.getProName());
+        stm.setDouble(2, product.getPrice());
+        stm.setDouble(3, product.getDiscount());
+        stm.setInt(4, product.getAmount());
+        stm.setInt(5, product.getCategoryId());
+        stm.setInt(6, product.getBrandId()); //TAM
+        stm.setString(7, product.getDescription());
+        //Thực thi lệnh INSERT
+        int count = stm.executeUpdate();
+        con.close();
+    }
 }

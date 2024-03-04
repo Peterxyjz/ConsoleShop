@@ -16,15 +16,15 @@
                     <span>Console Shop</span>
                 </a>
                 <h2 class="login__header">Login to Console Shop</h2>
-                <form action="login_handler" class="login__form container-fluid" id="form__login">
+                <form action="<c:url value="/account/login_handler.do" />" class="login__form container-fluid" id="form__login">
                     <div class="row">
                         <div class="form__group col-lg-8 col-sm-8">
-                            <label for="username">Username or email</label><br/>
-                            <input type="text" id="username"><br/>
+                            <label for="email">Email</label><br/>
+                            <input type="text" id="email" name="email" value="${param.email!=null?param.email:ckEmail.value}"><br/>
                         </div>
                         <div class="form__group col-lg-8 col-sm-8">
-                            <label for="password">Password</label></br>
-                            <input type="password" id="password_check"></br>
+                            <label for="password">Password</label><br/>
+                            <input type="password" id="password_check" name="password" value="${param.password!=null?param.password:ckPassword.value}"><br/>
                             
                         </div>
                         <div class="form__group--submit col-lg-8 col-sm-8" >

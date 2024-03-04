@@ -3,16 +3,165 @@
     text-decoration: none;
     font-weight: 500;
 }
-.nav_button{
+.product__right{
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-between;
 }
-.nav_button button{
-    width: 40%;
+.product__description{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%
+}
+.product__status{
+    font-size: 18px;
+}
+
+.product__info{
+    margin-top: 5%;
+}
+.product__price{
+    margin-top: 50px;
+    font-size: 24px;
+}
+.product__discount{
+    font-size: 18px;
+    opacity: 0.7;
+    text-decoration: line-through;   
+}
+.product__discount-p{
+    text-align: center;
+    background: #e30010;
+    color: #fff;
+    padding: 8px 12px;
+    margin-left: 4px;
+    border-radius: 30px;
+    font-weight: 600;
+}
+.product__amount{
+    
+    font-size: 18px;
+    font-weight: 500;
+}
+.amount__minus, .amount__plus{
+    cursor: pointer;
+}
+.product__amount input{
+    text-align: center;
+    width: 45px;
+    height: 35px;
+    outline: none;
+}
+.nav__btn--buy, .nav__btn--add{
+   width: 220px;
+   padding: 10px 0;
+   outline: none;
+   background: transparent;
+   border: none;
+   border-radius: 8px;
+   transition: all 0.2s;
+   cursor: pointer;
+}
+.nav__btn--buy{
+    background: #0079FF;
+    color: #fff;
+    margin-right: 20px;
+}
+.nav__btn--add{
+    
+    border: 1px solid #5a5454;
+    color: #0079FF;
+    
+}
+.nav__btn--buy:hover{
+    opacity: 0.9;
+}  
+.nav__btn--add:hover{
+    border: 1px solid #0079FF;
 }
 /*search*/
 .range{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.today-deal__item{
+    text-align: center;
+    width: 300px;
+
+}
+
+.today-deal__img{
+    width: 100%;
+
+}
+.today-deal__img img{
+    width: 100%;
+    height: 281px;
+    object-fit: contain;
+
+}
+.today-deal__info{
+    height: 20%;
+    text-decoration: none;
+    color: #231f1e;
+
+}
+.today-deal__name{
+    margin-top: 10px;
+    font-size: 16px;
+}
+.today-deal__price{
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+.today-deal__discount{
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 6px;
+    color: #231f1e;
+    text-decoration: line-through;
+    opacity: 0.7;
+    margin-right: 4px;
+}
+.today-deal__discount-p{
+    top: 10px;
+    right: 50px;
+    color: #fff;
+    padding: 4px 8px;
+    background: #5a5454;
+    border-radius: 20px;
+    font-size: 10px;
+
+}
+@media (max-width:1173px){
+    .nav__btn--buy{
+        margin-bottom: 20px;
+    }
+}
+@media (max-width:992px){
+    .today-deal__name{
+        margin-top: 0px;
+        font-size: 12px;
+    }
+    .today-deal__price{
+        font-size: 10px;
+        font-weight: 500;
+
+    }
+    .today-deal__discount{
+        font-size: 8px;
+        font-weight: 400;
+    }
+    .today-deal__discount-p{
+
+        font-size: 8px;
+
+    }
 }
