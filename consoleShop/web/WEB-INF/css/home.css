@@ -204,11 +204,7 @@
     display: block;
 }
 
-@keyframes slideDown {
-    from{
-        transform: translateY(-30px);
-    }
-}
+
 @media (max-width: 1174px) {
     .navigate__items{
         display: none;

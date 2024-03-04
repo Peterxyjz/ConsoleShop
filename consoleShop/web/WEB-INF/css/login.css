@@ -131,7 +131,7 @@ html,body{
     border: none;
     background-color: transparent;
     margin: auto;
-
+    width: 100%;
 }
 .login__footer{
     text-align: center;
@@ -146,6 +146,7 @@ html,body{
     top: 50%; 
     cursor: pointer;
 }
+
 @media (max-width:710px) {
     .logo{
         top: -100px;
