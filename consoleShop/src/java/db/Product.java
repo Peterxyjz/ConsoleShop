@@ -5,7 +5,7 @@ public class Product {
     private String proName, description;
     private double price;
     private double discount;
-    private int amount, categoryId, brandId;
+    private int amount, categoryId;
     public Product() {
     }
 
@@ -65,13 +65,6 @@ public class Product {
         this.categoryId = categoryId;
     }
 
-    public int getBrandId() {
-        return brandId;
-    }
-
-    public void setBrandId(int brandId) {
-        this.brandId = brandId;
-    }
-
+  
     
 }

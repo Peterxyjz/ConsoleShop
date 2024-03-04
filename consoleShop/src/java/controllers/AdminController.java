@@ -87,7 +87,7 @@ public class AdminController extends HttpServlet {
             product.setDiscount(discount);
             product.setAmount(amount);
             product.setCategoryId(categoryId);
-            product.setBrandId(1); //TẠM
+          
             product.setDescription(description);
             //tránh bị ngoại lệ
             CategoryFacade cf = new CategoryFacade();
