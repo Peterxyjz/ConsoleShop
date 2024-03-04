@@ -14,6 +14,17 @@ CREATE TABLE Category
   CategoryName  NVARCHAR(100) NOT NULL,
   PRIMARY KEY (CategoryID)
 );
+SELECT * FROM Product
+WHERE CategoryID in (SELECT CategoryID FROM Category 
+					WHERE CategoryName like '%%')
+	AND Price >= 10000000.111111111
+	AND Price <=100000000.1
+ORDER BY ProName ASC 
+
+SELECT * FROM Product WHERE CategoryID in (SELECT CategoryID FROM Category WHERE CategoryName like '%%') AND Price >= 0.000000 AND Price <=50000000.000000 ORDER BY proName 
+
+SELECT * FROM Category
+
 
 CREATE TABLE Account
 (

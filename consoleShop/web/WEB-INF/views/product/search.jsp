@@ -5,58 +5,60 @@
 <style><%@include file="/WEB-INF/css/product.css"%></style>
 <div class="container">
     <h2 class="mt-3">Tìm kiếm sản phẩm</h2>
-    <div class="nav_filter row">
-        <div class="col-sm-3">
-            <label for="category">Danh mục</label>
-            <select id="category" name="category" class="form-select mb-3" aria-label=".form-select-lg example">
-                <option selected>Tất cả</option>
-                <option value="nintendo">Nintendo</option>
-                <option value="playstation">Playstation</option>
-                <option value="game">Game</option>
-                <option value="accessory">Phụ kiện</option>
-            </select>
-        </div>
-        <div class="col-sm-2">
-            <label for="status">Tình trạng</label>
-            <select id="status" name="status" class="form-select mb-3" aria-label=".form-select-lg example">
-                <option selected>Tất cả</option>
-                <option value="new">Máy mới</option>
-                <option value="likeNew">Like new</option>
-            </select>
-        </div>
-        <div class="col-sm-4">
-            <label for="price">Mức giá</label>
-            <div class="range">
-                <input type="number" class=" form-control" id="price" min="0" placeholder="Mức giá từ: ">
-                <i class="bi bi-dash-lg"></i>
-                <input type="number" class=" form-control" id="price" min="0" placeholder="Mức giá đến: ">
+    <form action="<c:url value="/product/searchFilter_handler.do"/>">
+        <div class="nav_filter row">
+            <div class="col-sm-3">
+                <label for="categoryName">Danh mục</label>
+                <select id="categoryName" name="categoryName" class="form-select mb-3" aria-label=".form-select-lg example">
+                    <option value="" selected>Tất cả</option>
+                    <option value="Nintendo">Nintendo</option>
+                    <option value="Playstation">Playstation</option>
+                    <option value="Game">Game</option>
+                    <option value="Accessory">Phụ kiện</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <label for="status">Tình trạng</label>
+                <select id="status" name="status" class="form-select mb-3" aria-label=".form-select-lg example">
+                    <option value="" selected>Tất cả</option>
+                    <option value="new">Máy mới</option>
+                    <option value="likeNew">Like new</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <label for="price">Mức giá</label>
+                <div class="range">
+                    <input name="priceLower" type="number" class=" form-control" id="price" min="0" max="800000" step="100000" value="0" placeholder="Mức giá từ: ">
+                    <i class="bi bi-dash-lg"></i>
+                    <input name="priceUpper" type="number" class=" form-control" id="price" min="900000" max="99000000" step="100000" value="50000000" placeholder="Mức giá đến: ">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <label for="">Sắp xếp</label>
+                <select  id="sort" name="sort" class="form-select mb-3"  aria-label=".form-select-lg example">
+                    <option value="proName ASC" selected>Mặc định</option>
+                    <option value="proName ASC">Bán chạy nhất</option>
+                    <option value="proName ASC">Mới cập nhật</option>
+                    <option value="price ASC">Giá thấp đến cao</option>
+                    <option value="price DESC">Giá cao đến thấp</option>
+                    <option value="proName ASC">Tên từ A đến Z</option>
+                    <option value="proName">Tên từ Z đến A</option>
+                </select>
+            </div>
+            <div class="col-sm-1 mt-4">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-funnel"></i> Lọc</button>
             </div>
         </div>
-        <div class="col-sm-2">
-            <label for="">Sắp xếp</label>
-            <select id="" name="" class="form-select mb-3" aria-label=".form-select-lg example">
-                <option selected>Mặc định</option>
-                <option value="">Bán chạy nhất</option>
-                <option value="">Mới cập nhật</option>
-                <option value="">Giá thấp đến cao</option>
-                <option value="">Giá cao đến thấp</option>
-                <option value="">Tên từ A đến Z</option>
-                <option value="">Tên từ Z đến A</option>
-            </select>
-        </div>
-        <div class="col-sm-1 mt-4">
-            <button type="submit" class="btn btn-primary"><i class="bi bi-funnel"></i> Lọc</button>
-        </div>
-    </div>
+    </form>
     <c:if test="${list.size() == 0}">
         <h3>Không có sản phẩm phù hợp</h3>
     </c:if>
-        <c:if test="${list.size() != 0}">
-            <p>Có ${list.size()} được tìm thấy</p>
+    <c:if test="${list.size() != 0}">
+        <p>Có ${list.size()} được tìm thấy</p>
     </c:if>
     <div class="row">
         <c:forEach var="product" items="${list}">
-            <div class="col-sm-3 mt-3">                
+            <div class="col-sm-3 mt-3 ">                
                 <a href="<c:url value="/product/index.do?proName=${product.proName}"/>">
                     <img src="<c:url value="/images/${product.proId}.jpg" />" class=" rounded mx-auto d-block " width="100%" />
                 </a>
