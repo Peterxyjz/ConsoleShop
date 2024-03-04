@@ -51,7 +51,13 @@
         </div>
     </form>
     <c:if test="${list.size() == 0}">
-        <h3>Không có sản phẩm phù hợp</h3>
+        <a href="<c:url value="/product/search_handler.do?proName=" />" class="btn btn-link"><i class="bi bi-arrow-clockwise"></i> Khôi phục bộ lọc</a>
+        <div class="text-center">
+            <h3>Không có sản phẩm phù hợp</h3>
+            <p>Bạn có thể thử từ khóa đơn giản hơn hoặc liên hệ với hỗ trợ</p>
+            <br/>
+            <img src="<c:url value="/images/Background/notFind.png"/>" width="30%" class=" rounded mx-auto d-block "/>
+        </div>
     </c:if>
     <c:if test="${list.size() != 0}">
         <p>Có ${list.size()} được tìm thấy</p>
