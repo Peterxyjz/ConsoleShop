@@ -71,8 +71,8 @@
                 <a href="<c:url value="/product/index.do?proName=${product.proName}"/>" class="today-deal__info">
                     <div class="today-deal__name">${product.proName}</div>
                     <div class="today-deal__price">
-                        <fmt:formatNumber value="${(1-product.discount)*product.price}" type="currency" /> 
-                        <div class="today-deal__discount"><fmt:formatNumber value="${product.price}" type="currency" /></div>
+                        <fmt:formatNumber value="${(1-product.discount)*product.price}" type="number" />đ
+                        <div class="today-deal__discount"><fmt:formatNumber value="${product.price}" type="number" />đ</div>
                         <div class="today-deal__discount-p"><fmt:formatNumber value="${product.discount}" type="percent" /></div>
                     </div>
                 </a>

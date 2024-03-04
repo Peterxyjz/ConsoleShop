@@ -1,5 +1,5 @@
 ﻿--CREATE DATABASE ConSoleGame
---DROP DATABASE ConSoleGame
+DROP DATABASE ConSoleGame
 USE ConSoleGame
 
 

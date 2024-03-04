@@ -15,7 +15,7 @@
                     <img src="<c:url value="/images/Background/logo.png"/>" alt="">
                     <span>Console Shop</span>
                 </a>
-                <h2 class="login__header">Login to Console Shop</h2>
+                <h2 class="login__header">Đăng nhập vào Console Shop</h2>
                 <form action="<c:url value="/account/login_handler.do" />" class="login__form container-fluid" id="form__login">
                     <div class="row">
                         <div class="form__group col-lg-8 col-sm-8">
@@ -23,15 +23,15 @@
                             <input type="text" id="email" name="email" value="${param.email!=null?param.email:ckEmail.value}"><br/>
                         </div>
                         <div class="form__group col-lg-8 col-sm-8">
-                            <label for="password">Password</label><br/>
+                            <label for="password">Mật khẩu</label><br/>
                             <input type="password" id="password_check" name="password" value="${param.password!=null?param.password:ckPassword.value}"><br/>
                             
                         </div>
                         <div class="form__group--submit col-lg-8 col-sm-8" >
-                            <button type="submit">Login</button>
+                            <button type="submit">Đăng nhập</button>
                         </div>
                         <div class="login__footer col-lg-8 col-sm-8">
-                            Don't have an account? <a href="<c:url value="/account/signup.do"/>">Sign up</a>
+                            Bạn chưa có tài khoản? <a href="<c:url value="/account/signup.do"/>">Đăng kí</a>
                         </div>
                     </div>
                 </form>

@@ -7,9 +7,8 @@
 <section class="banner">
     <div class="banner__content">
         <h1 class="banner__header">Console Shop</h1>
-        <div class="banner__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt maiores
-            nulla eaque dolorum, blanditiis maxime dicta eos repellat.</div>
-        <button class="banner__btn">Mua ngay</button>
+        <div class="banner__description">Khám phá thế giới game đỉnh cao, cùng đam mê vượt mọi ranh giới, tại đây chúng tôi chờ bạn !</div>
+        <a href="<c:url value="/product/search_handler.do?proName"/>"><button class="banner__btn">Mua ngay</button></a>
     </div>
 
     <div class="banner__bkg">
@@ -56,7 +55,7 @@
     <div class="today-deal__wrapper">
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Game/Game Nintendo/1.jpg"/>" alt="">
+                <img src="<c:url value="/images/1.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Dead Cells: Return to Castlevania Edition</div>
@@ -66,7 +65,7 @@
         </div>
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Game/Game Nintendo/2.jpg"/>" alt="">
+                <img src="<c:url value="/images/2.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Dead Cells: Return to Castlevania Edition</div>
@@ -76,7 +75,7 @@
         </div>
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Game/Game Nintendo/3.jpg"/>" alt="">
+                <img src="<c:url value="/images/3.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Pokémon Violet + The Hidden Treasure of Area Zero</div>
@@ -85,7 +84,7 @@
         </div>
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Game/Game Nintendo/3.jpg"/>" alt="">
+                <img src="<c:url value="/images/4.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Pokémon Violet + The Hidden Treasure of Area Zero</div>
@@ -94,7 +93,7 @@
         </div>
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Game/Game Nintendo/3.jpg"/>" alt="">
+                <img src="<c:url value="/images/5.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Pokémon Violet + The Hidden Treasure of Area Zero</div>
@@ -103,7 +102,7 @@
         </div>
         <div class="today-deal__item">
             <a href="" class="today-deal__img">
-                <img src="<c:url value="/images/Game/Game Nintendo/3.jpg"/>" alt="">
+                <img src="<c:url value="/images/6.jpg"/>" alt="">
             </a>
             <a href="" class="today-deal__info">
                 <div class="today-deal__name">Pokémon Violet + The Hidden Treasure of Area Zero</div>
@@ -123,7 +122,7 @@
     <div class="cashback__content">
         <h1>Hoàn tiền lên đến 50%</h1>
         <p>Nhận voucher khi đăng ký tài khoản mua sắm tại <span>Console Shop</span></p>
-        <button><a href="<c:url value="/account/signup.do"/>">Đăng ký ngay</a></button>
+        <a href="<c:url value="/account/signup.do"/>"><button>Đăng ký ngay</button></a>
     </div>
 </section>
 <hr>

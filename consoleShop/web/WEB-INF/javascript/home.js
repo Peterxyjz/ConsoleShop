@@ -10,12 +10,12 @@ var menuIcon = document.querySelector(".nav__menu");
 var dropdownMenu = document.querySelector(".dropdown__container");
 menuIcon.onclick = () => {
     dropdownMenu.classList.toggle("active");
-}
+};
 
 // sản phẩm hôm nay carousel
-const productWrapper = document.querySelectorAll(".today-deal__wrapper");
-const nextIcon = document.querySelectorAll(".today-deal__next");
-const preIcon = document.querySelectorAll(".today-deal__previous");
+var productWrapper = document.querySelectorAll(".today-deal__wrapper");
+var nextIcon = document.querySelectorAll(".today-deal__next");
+var preIcon = document.querySelectorAll(".today-deal__previous");
 
 productWrapper.forEach((item, i) => {
 
@@ -57,10 +57,10 @@ function searchByName() {
                 source: src, // src để suggestion
                 maxResults: 6, // số suggestion tối đa được hiện 
                 select:function(event, ui){
-                    let url = "/consoleShop/product/index.do?proName=" +decodeURIComponent(ui.item.value)
+                    let url = "/consoleShop/product/index.do?proName=" +decodeURIComponent(ui.item.value);
                     console.log(ui.item.value);
-                    window.location.href = url
-                    return false
+                    window.location.href = url;
+                    return false;
                 }
 
             });

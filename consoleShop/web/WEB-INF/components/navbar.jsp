@@ -25,10 +25,18 @@
 
             <div class="nav__right">
                 <i class="fa-solid fa-magnifying-glass nav__search-icon"></i>
-                <a href="<c:url value="account/login.do"/>"class="nav__account">
-                    <i class="fa-regular fa-user"></i>
-                    <span>Tài Khoản</span>
-                </a>
+                <c:if test="${account == null}">
+                    <a href="<c:url value="/account/login.do"/>"class="nav__account">
+                        <i class="fa-regular fa-user"></i>
+                        <span>Tài Khoản</span>
+                    </a>
+                </c:if>
+                <c:if test="${account != null}">
+                    <a href="<c:url value="/account/login.do"/>"class="nav__account">
+                        <i class="fa-regular fa-user"></i>
+                        <span>Xin chào ${account.username} !</span>
+                    </a>
+                </c:if>
                 <a href="#" class="nav__cart">
                     <i class="bi bi-cart2"></i>
                     <span>Giỏ hàng</span>
@@ -66,7 +74,7 @@
     <div class="dropdown__container">
         <ul class="dropdown__menu">
             <li class="dropdown__element">
-                <a href=""> Tất cả sản phẩm</a>         
+                <a href="<c:url value="/product/search_handler.do?proName"/>"> Tất cả sản phẩm</a>         
             </li>
             <li class="dropdown__element">
                 <a href=""> Danh mục sản phấm</a>
