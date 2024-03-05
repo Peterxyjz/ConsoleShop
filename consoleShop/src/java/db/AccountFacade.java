@@ -42,7 +42,31 @@ public class AccountFacade {
             account.setAddress(rs.getString("address"));
             account.setCountry(rs.getString("country"));
             account.setPhoneNumber(rs.getString("phoneNumber"));
-            account.setWallet(rs.getDouble("wallet"));         
+            account.setWallet(rs.getDouble("wallet"));
+        }
+        con.close();
+        return account;
+    }
+    
+    public Account select(String email) throws SQLException {
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("select * from Account where email=?");
+        stm.setString(1, email);
+        ResultSet rs = stm.executeQuery();
+        Account account = new Account();
+
+        while (rs.next()) {
+            account.setAccId(rs.getInt("accId"));
+            account.setFullName(rs.getString("fullName"));
+            account.setUsername(rs.getString("username"));
+            account.setEmail(rs.getString("email"));
+            account.setPassword(rs.getString("password"));
+            account.setRole(rs.getString("role"));
+            account.setBirthDay(rs.getDate("birthDay"));
+            account.setAddress(rs.getString("address"));
+            account.setCountry(rs.getString("country"));
+            account.setPhoneNumber(rs.getString("phoneNumber"));
+            account.setWallet(rs.getDouble("wallet"));
         }
         con.close();
         return account;
@@ -115,7 +139,7 @@ public class AccountFacade {
             account.setAddress(rs.getString("address"));
             account.setCountry(rs.getString("country"));
             account.setPhoneNumber(rs.getString("phoneNumber"));
-            account.setWallet(rs.getDouble("wallet"));   
+            account.setWallet(rs.getDouble("wallet"));
         }
         con.close();
         return account;
@@ -138,6 +162,18 @@ public class AccountFacade {
         ResultSet rs = stm.executeQuery();
         if (rs.next()) {
             con.close();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isAdmin(String email) throws SQLException {
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("select * from account where email=?");
+        stm.setString(1, email);
+        ResultSet rs = stm.executeQuery();
+        if (rs.getString("role") == "admin") {
             return true;
         } else {
             return false;

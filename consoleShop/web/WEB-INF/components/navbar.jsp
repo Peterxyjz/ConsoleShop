@@ -40,7 +40,7 @@
                                 <div>Số dư tài khoản</div>
                                 <div>
                                     <span><fmt:formatNumber value="${wallet}" type="number"/>đ</span>
-                                    <a style="margin-left: 4px: " href="/"><i class="bi bi-plus-circle"></i></a>
+                                    <a style="margin-left: 4px " href="/"><i class="bi bi-plus-circle"></i></a>
                                 </div>
                             </li>
                             <li class="account__links"><a href="">Quản lý tài khoản</a></li>
