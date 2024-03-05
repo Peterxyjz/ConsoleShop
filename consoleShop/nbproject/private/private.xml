@@ -3,18 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/controllers/AdminController.java</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/WEB-INF/components/navbar.jsp</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/Category.java</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/WEB-INF/components/footer.jsp</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/index.jsp</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/AccountFacade.java</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/WEB-INF/javascript/home.js</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/controllers/FrontController.java</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/Customer.java</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/Account.java</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/controllers/AccountController.java</file>
-            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/WEB-INF/javascript/filter.js</file>
+            <file>file:/D:/fptu/CN4/ConsoleShop/consoleShop/web/WEB-INF/css/product.css</file>
+            <file>file:/D:/fptu/CN4/ConsoleShop/consoleShop/web/WEB-INF/views/product/index.jsp</file>
+            <file>file:/D:/fptu/CN4/ConsoleShop/consoleShop/web/WEB-INF/views/cart/index.jsp</file>
+            <file>file:/D:/fptu/CN4/ConsoleShop/consoleShop/web/WEB-INF/components/navbar.jsp</file>
+            <file>file:/D:/fptu/CN4/ConsoleShop/consoleShop/web/WEB-INF/views/product/search.jsp</file>
+            <file>file:/D:/fptu/CN4/ConsoleShop/consoleShop/web/WEB-INF/css/cart.css</file>
         </group>
     </open-files>
 </project-private>

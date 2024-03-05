@@ -146,7 +146,6 @@ public class ProductFacade {
             product.setDiscount(rs.getDouble("discount"));
             product.setAmount(rs.getInt("amount"));
             product.setCategoryId(rs.getInt("categoryId"));
-      
             product.setDescription(rs.getString("description"));
             //Them toy vao list
             list.add(product);
@@ -159,15 +158,14 @@ public class ProductFacade {
         //Tạo connection để kết nối vào DBMS
         Connection con = DBContext.getConnection();
         //Tạo đối tượng PreparedStatement
-        PreparedStatement stm = con.prepareStatement("insert into Product values(?,?,?,?,?,?,?)");
+        PreparedStatement stm = con.prepareStatement("insert into Product values(?,?,?,?,?,?)");
         //Cung cấp giá trị cho các tham số
         stm.setString(1, product.getProName());
         stm.setDouble(2, product.getPrice());
         stm.setDouble(3, product.getDiscount());
         stm.setInt(4, product.getAmount());
         stm.setInt(5, product.getCategoryId());
- 
-        stm.setString(7, product.getDescription());
+        stm.setString(6, product.getDescription());
         //Thực thi lệnh INSERT
         int count = stm.executeUpdate();
         con.close();
