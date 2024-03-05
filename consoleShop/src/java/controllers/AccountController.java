@@ -42,17 +42,17 @@ public class AccountController extends HttpServlet {
         String action = (String) request.getAttribute("action");
 
         switch (action) {
-            case "login":
-                login(request, response);
-                break;
-            case "login_handler":
-                login_handler(request, response);
-                break;
             case "signup":
                 signup(request, response);
                 break;
             case "signup_handler":
                 signup_handler(request, response);
+                break;          
+            case "login":
+                login(request, response);
+                break;
+            case "login_handler":
+                login_handler(request, response);
                 break;
             case "update":
                 update(request, response);
@@ -72,10 +72,9 @@ public class AccountController extends HttpServlet {
             case "forgot_handler":
                 forgot_handler(request, response);
                 break;
-            case "admin":
-                admin(request, response);
-                break;
-
+//            case "admin":
+//                admin(request, response);
+//                break;
         }
     }
 
@@ -101,11 +100,13 @@ public class AccountController extends HttpServlet {
                     //lay thong tin tu client
                     Account account = new Account();
                     account.setEmail(email);
-                    account.setLastName(username);
+                    account.setUsername(username);
                     account.setPassword(password);
                     //kiem tra thong tin login
                     af.create(account);
+                    System.out.println("lmao 2");
                     Account loginAccount = af.login(email, password);
+                    System.out.println("lmao 1");
                     session.setAttribute("account", loginAccount);
                     //chuyen den trang home
                     request.getRequestDispatcher("/").forward(request, response);
@@ -122,6 +123,7 @@ public class AccountController extends HttpServlet {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            request.setAttribute("errMsg", "Something is wrong!!");
             request.getRequestDispatcher("/account/signup.do").forward(request, response);
         }
         request.getRequestDispatcher(layout).forward(request, response);
@@ -208,28 +210,31 @@ public class AccountController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         try {
             AccountFacade af = new AccountFacade();
+            String fullName = request.getParameter("fullName");
+            String username = request.getParameter("username");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-            String firstName = request.getParameter("firstName");
-            String lastName = request.getParameter("lastName");
-            String country = request.getParameter("country");
-            String phoneNumber = request.getParameter("phoneNumber");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date birthDay = sdf.parse(request.getParameter("birthDay"));
+            String address = request.getParameter("address");
+            String country = request.getParameter("country");
+            String phoneNumber = request.getParameter("phoneNumber");
+            
 
             Account account = af.select(Integer.parseInt(request.getParameter("id")));
+            account.setFullName(fullName);
+            account.setUsername(username);
             account.setEmail(email);
             account.setPassword(password);
-            account.setFirstName(firstName);
-            account.setLastName(lastName);
+            account.setBirthDay(birthDay);
+            account.setAddress(address);
             account.setCountry(country);
             account.setPhoneNumber(phoneNumber);
-            account.setBirthDay(birthDay);
             af.update(account);
             response.sendRedirect(request.getContextPath() + "/account/update.do");
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMsg", "No can't do");
+            request.setAttribute("errorMsg", "Something is wrong");
             request.setAttribute("action", "edit");
             request.getRequestDispatcher(layout).forward(request, response);
         }
@@ -313,11 +318,11 @@ public class AccountController extends HttpServlet {
         }
     }
 
-    protected void admin(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String layout = (String) request.getAttribute("layout");
-        request.getRequestDispatcher(layout).forward(request, response);
-    }
+//    protected void admin(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        String layout = (String) request.getAttribute("layout");
+//        request.getRequestDispatcher(layout).forward(request, response);
+//    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

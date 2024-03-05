@@ -13,10 +13,35 @@ import java.util.Date;
  */
 public class Account {
     private int accId;
-    private String email, password, firstName, lastName, country, address, role, phoneNumber;
+    private String fullName, email, password, role, address, country, phoneNumber, username;
     private Date birthDay;
+    private Double wallet;
 
     public Account() {
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public Double getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Double wallet) {
+        this.wallet = wallet;
     }
 
     public int getAccId() {
@@ -41,22 +66,6 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getCountry() {

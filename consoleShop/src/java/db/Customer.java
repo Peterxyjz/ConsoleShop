@@ -13,7 +13,7 @@ import java.util.Date;
  * @author ASUS
  */
 public class Customer extends Account {
-    
+
     int cusId, accId;
 
     public Customer(int cusId, int accId) {
@@ -28,7 +28,7 @@ public class Customer extends Account {
     public void setCusId(int cusId) {
         this.cusId = cusId;
     }
-    
+
     public Customer() {
     }
 
@@ -83,23 +83,33 @@ public class Customer extends Account {
     }
 
     @Override
-    public void setLastName(String lastName) {
-        super.setLastName(lastName); //To change body of generated methods, choose Tools | Templates.
+    public void setWallet(Double wallet) {
+        super.setWallet(wallet); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String getLastName() {
-        return super.getLastName(); //To change body of generated methods, choose Tools | Templates.
+    public Double getWallet() {
+        return super.getWallet(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void setFirstName(String firstName) {
-        super.setFirstName(firstName); //To change body of generated methods, choose Tools | Templates.
+    public void setFullName(String fullName) {
+        super.setFullName(fullName); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String getFirstName() {
-        return super.getFirstName(); //To change body of generated methods, choose Tools | Templates.
+    public String getFullName() {
+        return super.getFullName(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setUsername(String username) {
+        super.setUsername(username); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getUsername() {
+        return super.getUsername(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -131,5 +141,5 @@ public class Customer extends Account {
     public int getAccId() {
         return super.getAccId(); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

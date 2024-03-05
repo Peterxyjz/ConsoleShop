@@ -5,7 +5,6 @@
  */
 package db;
 
-
 import hashing.Hasher;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -34,13 +33,16 @@ public class AccountFacade {
 
         while (rs.next()) {
             account.setAccId(rs.getInt("accId"));
+            account.setFullName(rs.getString("fullName"));
+            account.setUsername(rs.getString("username"));
             account.setEmail(rs.getString("email"));
             account.setPassword(rs.getString("password"));
-            account.setFirstName(rs.getString("firstName"));
-            account.setLastName(rs.getString("lastName"));
+            account.setRole(rs.getString("role"));
+            account.setBirthDay(rs.getDate("birthDay"));
+            account.setAddress(rs.getString("address"));
             account.setCountry(rs.getString("country"));
             account.setPhoneNumber(rs.getString("phoneNumber"));
-            account.setBirthDay(rs.getDate("birthDay"));
+            account.setWallet(rs.getDouble("wallet"));         
         }
         con.close();
         return account;
@@ -48,9 +50,9 @@ public class AccountFacade {
 
     public void create(Account account) throws SQLException {
         Connection con = DBContext.getConnection();
-        PreparedStatement stm = con.prepareStatement("insert into Account values(?,?,?,?,?,?,?,?,?)");
-        stm.setString(1, account.getFirstName());
-        stm.setString(2, account.getLastName());
+        PreparedStatement stm = con.prepareStatement("insert into Account values(?,?,?,?,?,?,?,?,?,?)");
+        stm.setString(1, account.getFullName());
+        stm.setString(2, account.getUsername());
         stm.setString(3, account.getEmail());
         stm.setString(4, account.getPassword());
         stm.setString(5, "customer");
@@ -58,6 +60,7 @@ public class AccountFacade {
         stm.setString(7, account.getAddress());
         stm.setString(8, account.getCountry());
         stm.setString(9, account.getPhoneNumber());
+        stm.setDouble(10, 0.00);
 
         int count = stm.executeUpdate();
         con.close();
@@ -65,15 +68,15 @@ public class AccountFacade {
 
     public void update(Account account) throws SQLException {
         Connection con = DBContext.getConnection();
-        PreparedStatement stm = con.prepareStatement("update Account set email=?, password=?, firstname=?, lastname=?, country=?, phonenumber=?, birthday=? where accId=?");
-        stm.setString(1, account.getEmail());
-        stm.setString(2, account.getPassword());
-        stm.setString(3, account.getFirstName());
-        stm.setString(4, account.getLastName());
-        stm.setString(5, account.getCountry());
-        stm.setString(6, account.getPhoneNumber());
+        PreparedStatement stm = con.prepareStatement("update Account set fullName=?, username=?, email=?, password=?,  birthday=?, address=?, country=?, phonenumber=? where accId=?");
+        stm.setString(1, account.getFullName());
+        stm.setString(2, account.getUsername());
+        stm.setString(3, account.getEmail());
+        stm.setString(4, account.getPassword());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        stm.setString(7, sdf.format(account.getBirthDay()));
+        stm.setString(5, sdf.format(account.getBirthDay()));
+        stm.setString(6, account.getCountry());
+        stm.setString(7, account.getPhoneNumber());
         stm.setInt(8, account.getAccId());
 
         int count = stm.executeUpdate();
@@ -101,15 +104,18 @@ public class AccountFacade {
         Account account = null;
         if (rs.next()) {
             account = new Account();
-            //Doc mau tin hien hanh de vao doi tuong toy            
+            //Doc mau tin hien hanh de vao doi tuong account           
             account.setAccId(rs.getInt("accId"));
+            account.setFullName(rs.getString("fullName"));
+            account.setUsername(rs.getString("username"));
             account.setEmail(rs.getString("email"));
             account.setPassword(rs.getString("password"));
-            account.setFirstName(rs.getString("firstName"));
-            account.setLastName(rs.getString("lastName"));
+            account.setRole(rs.getString("role"));
+            account.setBirthDay(rs.getDate("birthDay"));
+            account.setAddress(rs.getString("address"));
             account.setCountry(rs.getString("country"));
             account.setPhoneNumber(rs.getString("phoneNumber"));
-            account.setBirthDay(rs.getDate("birthDay"));
+            account.setWallet(rs.getDouble("wallet"));   
         }
         con.close();
         return account;
@@ -124,15 +130,17 @@ public class AccountFacade {
         //quay ve trang home
         request.getRequestDispatcher("/").forward(request, response);
     }
-    
-    public boolean isExisted(String email) throws SQLException{
+
+    public boolean isExisted(String email) throws SQLException {
         Connection con = DBContext.getConnection();
         PreparedStatement stm = con.prepareStatement("select * from account where email=?");
         stm.setString(1, email);
         ResultSet rs = stm.executeQuery();
-        if(rs.next()){          
+        if (rs.next()) {
             con.close();
             return true;
-        }else return false;
+        } else {
+            return false;
+        }
     }
 }
