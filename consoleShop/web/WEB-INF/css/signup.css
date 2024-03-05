@@ -143,6 +143,11 @@ html,body{
 .form__message{
     height: 20px;
     margin: 6px 8px 8px 0;
+    font-size: 13px;
+    color: red;
+    font-style: italic;
+    opacity: 0.9;
+    
 }
 .form__password{
     position: relative;
