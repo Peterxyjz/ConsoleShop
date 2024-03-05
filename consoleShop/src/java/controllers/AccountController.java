@@ -47,13 +47,13 @@ public class AccountController extends HttpServlet {
                 break;
             case "signup_handler":
                 signup_handler(request, response);
-                break;          
+                break;
             case "login":
                 login(request, response);
                 break;
             case "login_handler":
                 login_handler(request, response);
-                break;  
+                break;
             case "update":
                 update(request, response);
                 break;
@@ -73,7 +73,7 @@ public class AccountController extends HttpServlet {
                 forgot_handler(request, response);
                 break;
             case "logout":
-                logout(request,response);
+                logout(request, response);
                 break;
 //            case "admin":
 //                admin(request, response);
@@ -98,7 +98,7 @@ public class AccountController extends HttpServlet {
             AccountFacade af = new AccountFacade();
             boolean isExisted = af.isExisted(email);
             if (!isExisted) {
-                if(password.equals(password_check)) {
+                if (password.equals(password_check)) {
                     HttpSession session = request.getSession();
                     //lay thong tin tu client
                     Account account = new Account();
@@ -107,9 +107,9 @@ public class AccountController extends HttpServlet {
                     account.setPassword(password);
                     //kiem tra thong tin login
                     af.create(account);
-                    
+
                     Account loginAccount = af.login(email, password);
-                    
+
                     session.setAttribute("account", loginAccount);
                     //chuyen den trang home
                     request.getRequestDispatcher("/").forward(request, response);
@@ -179,12 +179,18 @@ public class AccountController extends HttpServlet {
                 response.addCookie(ckPassword);
                 //luu account vao session
                 session.setAttribute("account", account);
-                //chuyen den trang home
-                request.getRequestDispatcher("/").forward(request, response);
-                //request.getRequestDispatcher("/home/index.do").forward(request, response);
+                //check có phải admin hay không để chuyển trang
+                if (af.isAdmin(email)) {
+                    //chuyển đến trang admin
+                    request.getRequestDispatcher("/admin/index.do").forward(request, response);
+                } else {
+                    //chuyển đến trang home khách hàng
+                    request.getRequestDispatcher("/").forward(request, response);
+                    //request.getRequestDispatcher("/home/index.do").forward(request, response);
+                }
             } else {
                 //gan thong bao loi
-                request.setAttribute("errorMsg", "có lỗi gì đó rồi.");
+                request.setAttribute("errMsg", "Hãy kiểm tra lại mật khẩu hoặc tài khoản");
                 //quay ve trang login
                 request.getRequestDispatcher("/account/login.do").forward(request, response);
             }
@@ -222,7 +228,6 @@ public class AccountController extends HttpServlet {
             String address = request.getParameter("address");
             String country = request.getParameter("country");
             String phoneNumber = request.getParameter("phoneNumber");
-            
 
             Account account = af.select(Integer.parseInt(request.getParameter("id")));
             account.setFullName(fullName);
@@ -248,10 +253,10 @@ public class AccountController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         try {
             request.setAttribute("id", request.getParameter("id"));
-            request.setAttribute("lastName", request.getParameter("lastName"));
+            request.setAttribute("username", request.getParameter("username"));
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errMsg", e);
+            request.setAttribute("errMsg", "Có gì đó xảy ra");
             request.setAttribute("action", "delete");
         }
         request.getRequestDispatcher(layout).forward(request, response);
@@ -267,26 +272,41 @@ public class AccountController extends HttpServlet {
             switch (op) {
                 case "Yes":
                     af.delete(id);
+                    logout(request, response);
                     break;
                 case "No":
+                    response.sendRedirect(request.getContextPath() + "/");
                     break;
             }
-            response.sendRedirect(request.getContextPath() + "/student/index.do");
         } catch (Exception e) {
             e.printStackTrace();//in chi tiet cua ngoai le
             //request.setAttribute("errorMsg", e.toString());//e.getMessage()
             request.setAttribute("errorMsg", "Error when deleting ");
-            //Cho hiện lại trang index (chạy lại case "index")v 
-            request.getRequestDispatcher("/index.do").forward(request, response);
+            //Cho hiện lại trang index (chạy lại case "index")
+            request.getRequestDispatcher("/").forward(request, response);
         }
     }
 
     protected void forgot(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
+        request.getRequestDispatcher(layout).forward(request, response);
+    }
+
+    protected void forgot_enter_email(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
         try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            request.setAttribute("id", id);
+            String email = request.getParameter("email");
+            AccountFacade af = new AccountFacade();
+
+            if (af.isExisted(email)) {
+                request.setAttribute("forgotPasswordEmail", email);
+                request.getRequestDispatcher("/account/forgot_handler.do").forward(request, response);
+            } else {
+                request.setAttribute("errMsg", "email này chưa được đăng kí");
+                request.getRequestDispatcher("/account/forgot_enter_email.do").forward(request, response);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errMsg", e);
@@ -299,28 +319,32 @@ public class AccountController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         try {
             AccountFacade af = new AccountFacade();
+            String email = request.getParameter("forgotPasswordEmail");
             String password = request.getParameter("password");
             String repeatedPassword = request.getParameter("repeatedPassword");
-
-            if (repeatedPassword == password) {
-
-                Account account = af.select(Integer.parseInt(request.getParameter("id")));
-                account.setPassword(password);
-
-                af.update(account);
-                //quay ve trang login
-                request.setAttribute("successMsg", "bây giờ bạn có thể log in");
-                response.sendRedirect(request.getContextPath() + "/student/login.do");
+            //trong khi 2 password khác nhau...
+            while (repeatedPassword != password) {
+                //show error
+                request.setAttribute("errMsg", "Mật khẩu không trùng khớp");
+                //quay lại forgot_handler.do
+                response.sendRedirect(request.getContextPath() + "/account/forgot_handler.do");
             }
-            request.setAttribute("faliedMsg", "Mật khẩu không trùng khớp");
+            //nếu đã trùng khớp thì tiến hành update password
+            Account account = af.select(email);
+            account.setPassword(password);
+            af.update(account);
+            //quay ve trang login
+            request.setAttribute("successMsg", "bây giờ bạn có thể log in");
+            response.sendRedirect(request.getContextPath() + "/account/login.do");
+
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMsg", "can not update your account");
-            request.setAttribute("action", "edit");
+            request.setAttribute("errMsg", "có lỗi gì đó xảy ra");
+            response.sendRedirect(request.getContextPath() + "/account/login.do");
             request.getRequestDispatcher(layout).forward(request, response);
         }
     }
-    
+
     protected void logout(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //lay tham chieu cua session
@@ -336,7 +360,6 @@ public class AccountController extends HttpServlet {
 //        String layout = (String) request.getAttribute("layout");
 //        request.getRequestDispatcher(layout).forward(request, response);
 //    }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
