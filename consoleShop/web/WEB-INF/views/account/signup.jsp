@@ -16,22 +16,22 @@
                         <div class="form__group col-lg-4 col-sm-4">
                             <label for="email">Email</label></br>
                             <input type="text" id="email" name="email" value="${param.email}"></br>
-                            <div class="form__message">${errMsg}</div>
+                            <div class="form__message">${errMsgEmail}</div>
                         </div>
                         <div class="form__group col-lg-4 col-sm-4">
                             <label for="username">Username</label></br>
-                            <input type="text" id="username" name="username" value="${param.username}"></br>
+                            <input type="text" id="username" name="username" value="${param.username}"><br/>
                             <div class="form__message">${errMsg}</div>
                         </div>
                         <div class="form__group col-lg-8 col-sm-8">
-                            <label for="password">Mật khẩu</label></br>
-                            <input type="password" id="password" name="password" value="${param.password}"></br>
+                            <label for="password">Mật khẩu</label><br/>
+                            <input type="password" id="password" name="password" value="${param.password}"><br/>
                             <div class="form__message">${errMsg}</div>
                         </div>
                         <div class="form__group col-lg-8 col-sm-8">
-                            <label for="password_check">Nhập lại mật khẩu</label></br>
+                            <label for="password_check">Nhập lại mật khẩu</label><br/>
                             <input type="password" id="password_check" name="password_check" value="${param.password_check}"></br>
-                            <div class="form__message">${errMsg}</div>
+                            <div class="form__message">${errMsgPass}</div>
                         </div>
                         <div class="form__group--submit col-lg-8 col-sm-8" >
                             <button type="submit">Đăng kí</button>

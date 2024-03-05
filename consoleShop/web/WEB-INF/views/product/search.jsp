@@ -62,9 +62,9 @@
     <c:if test="${list.size() != 0}">
         <p>Có ${list.size()} được tìm thấy</p>
     </c:if>
-    <div class="row">
+    <div class="row text-center">
         <c:forEach var="product" items="${list}">
-            <div class="today-deal__item col-lg-4 col-md-3 col-sm-2 col-2">
+            <div class="today-deal__item col-lg-3 col-md-4 col-sm-6 col-6">
                 <div class="today-deal__img">
                     <a  href="<c:url value="/product/index.do?proName=${product.proName}"/>"><img src="<c:url value="/images/${product.proId}.jpg"/>" alt=""></a>
                 </div>

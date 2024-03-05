@@ -32,10 +32,22 @@
                     </a>
                 </c:if>
                 <c:if test="${account != null}">
-                    <a href="<c:url value="/account/login.do"/>"class="nav__account">
+                    <div class="nav__account">
                         <i class="fa-regular fa-user"></i>
-                        <span>Xin chào ${account.username} !</span>
-                    </a>
+                        <span>Xin chào ${account.username}!</span>
+                        <ul class="account__dropdown">
+                            <li class="account__links">
+                                <div>Số dư tài khoản</div>
+                                <div>
+                                    <span><fmt:formatNumber value="${wallet}" type="number"/>đ</span>
+                                    <a style="margin-left: 4px: " href="/"><i class="bi bi-plus-circle"></i></a>
+                                </div>
+                            </li>
+                            <li class="account__links"><a href="">Quản lý tài khoản</a></li>
+                            <li class="account__links"><a href="">Lịch sử đơn hàng</a></li>
+                            <li class="account__links"><a href="">Đăng xuất</a></li>
+                        </ul>
+                    </div>
                 </c:if>
                 <a href="#" class="nav__cart">
                     <i class="bi bi-cart2"></i>

@@ -53,7 +53,7 @@ public class AccountController extends HttpServlet {
                 break;
             case "login_handler":
                 login_handler(request, response);
-                break;
+                break;  
             case "update":
                 update(request, response);
                 break;
@@ -107,26 +107,26 @@ public class AccountController extends HttpServlet {
                     account.setPassword(password);
                     //kiem tra thong tin login
                     af.create(account);
-                    System.out.println("lmao 2");
+                    
                     Account loginAccount = af.login(email, password);
-                    System.out.println("lmao 1");
+                    
                     session.setAttribute("account", loginAccount);
                     //chuyen den trang home
                     request.getRequestDispatcher("/").forward(request, response);
                 }
                 //gan thong bao loi
-                request.setAttribute("errorMsg", "The PASSWORD and CONFIRM PASSWORD must be the same.");
+                request.setAttribute("errMsgPass", "*Mật khẩu không trùng khớp");
                 //quay ve trang login
                 request.getRequestDispatcher("/account/signup.do").forward(request, response);
             } else {
                 //gan thong bao loi
-                request.setAttribute("errorMsg", "Email already existed.");
+                request.setAttribute("errMsgEmail", "*Email đã tồn tại");
                 //quay ve trang login
                 request.getRequestDispatcher("/account/signup.do").forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errMsg", "Something is wrong!!");
+            request.setAttribute("errMsg", "Có lỗi gì đó rồi!!");
             request.getRequestDispatcher("/account/signup.do").forward(request, response);
         }
         request.getRequestDispatcher(layout).forward(request, response);
