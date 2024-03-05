@@ -6,6 +6,7 @@
 package controllers;
 
 import static com.sun.corba.se.impl.util.Utility.printStackTrace;
+import db.CategoryFacade;
 import db.ProductFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import db.Product;
 import java.sql.SQLException;
+import javax.servlet.http.HttpSession;
+import models.Filter;
 
 /**
  *
@@ -47,8 +50,12 @@ public class ProductController extends HttpServlet {
                 index(request, response);
                 break;
             case "search":
-                search(request, response);
-                break;
+                try {
+                    search(request, response);
+                    break;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             case "search_handler":
                 search_handler(request, response);
@@ -89,9 +96,12 @@ public class ProductController extends HttpServlet {
     }
 
     protected void search(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         String layout = (String) request.getAttribute("layout");
-
+        
+        
+        
+        
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
@@ -106,12 +116,11 @@ public class ProductController extends HttpServlet {
             List<Product> prodList = pf.searchProductByName(searchName);
             System.out.println(prodList.isEmpty());
 
-
             request.setAttribute("list", prodList);
 
             request.getRequestDispatcher("/product/search.do").forward(request, response);
         } catch (Exception e) {
-            printStackTrace();
+            e.printStackTrace();
             request.getRequestDispatcher("/").forward(request, response);
         }
     }
@@ -142,7 +151,7 @@ public class ProductController extends HttpServlet {
             str = str.substring(0, str.length() - 1);
             out.print(str);
         } catch (Exception e) {
-            printStackTrace();
+            e.printStackTrace();
             request.getRequestDispatcher("/").forward(request, response);
         }
     }
@@ -153,24 +162,21 @@ public class ProductController extends HttpServlet {
         try {
 
             String categoryName = request.getParameter("categoryName");
-            System.out.println("categoryName: " + categoryName);
 
             String status = request.getParameter("status");
-            System.out.println("status: " + status);
 
-            double priceLower = Double.parseDouble(request.getParameter("priceLower"));
-            System.out.println("priceLower: " + priceLower);
-            double priceUpper = Double.parseDouble(request.getParameter("priceUpper"));
-            System.out.println("priceUpper: " + priceUpper);
-
+            double priceLower = Double.parseDouble(request.getParameter("priceLower") == "" ? "0" : request.getParameter("priceLower"));
+            System.out.println("priceLower");
+            double priceUpper = Double.parseDouble(request.getParameter("priceUpper") == "" ? "0" : request.getParameter("priceUpper"));
+            if (priceUpper == 0){
+                priceUpper = Double.MAX_VALUE;
+            }
             String sort = request.getParameter("sort");
-            System.out.println("sort: " + sort);
-            String str = String.format("SELECT * FROM Product WHERE CategoryID in (SELECT CategoryID FROM Category WHERE CategoryName like '%s') AND Price >= %f AND Price <=%f ORDER BY %s ", "%" + categoryName + "%", priceLower, priceUpper, sort);
-            System.out.println("sql: " + str);
+            
             ProductFacade pf = new ProductFacade();
             List<Product> prodList = pf.searchProductByFilter(categoryName, status, priceLower, priceUpper, sort);
-            System.out.println(prodList.isEmpty());
             
+
             
 
             request.setAttribute("list", prodList);

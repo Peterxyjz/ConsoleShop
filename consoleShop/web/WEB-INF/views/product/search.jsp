@@ -28,9 +28,9 @@
             <div class="col-sm-4">
                 <label for="price">Mức giá</label>
                 <div class="range">
-                    <input name="priceLower" type="number" class=" form-control" id="price" min="0" max="800000" step="100000" value="0" placeholder="Mức giá từ: ">
+                    <input name="priceLower" type="number" class=" form-control" id="price" min="0" max="8000000" step="1000000" value ="${param.priceLower == null ? "" : param.priceLower}" placeholder="Mức giá từ: ">
                     <i class="bi bi-dash-lg"></i>
-                    <input name="priceUpper" type="number" class=" form-control" id="price" min="900000" max="99000000" step="100000" value="50000000" placeholder="Mức giá đến: ">
+                    <input name="priceUpper" type="number" class=" form-control" id="price" min="900000" max="99000000" step="1000000" value ="${param.priceUpper == null ? "" : param.priceUpper}"  placeholder="Mức giá đến: ">
                 </div>
             </div>
             <div class="col-sm-2">
@@ -42,7 +42,7 @@
                     <option value="price ASC">Giá thấp đến cao</option>
                     <option value="price DESC">Giá cao đến thấp</option>
                     <option value="proName ASC">Tên từ A đến Z</option>
-                    <option value="proName">Tên từ Z đến A</option>
+                    <option value="proName DESC">Tên từ Z đến A</option>
                 </select>
             </div>
             <div class="col-sm-1 mt-4">

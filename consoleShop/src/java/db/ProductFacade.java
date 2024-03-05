@@ -39,17 +39,21 @@ public class ProductFacade {
         return proList;
     }
 
-    public List<Product> searchProductByFilter(String categoryName, String status, double priceUpper, double priceLower, String sort) throws SQLException {
+    public List<Product> searchProductByFilter(String categoryName, String status, double priceLower, double priceUpper, String sort) throws SQLException {
         List<Product> proList = null;
-        String str = String.format("SELECT * FROM Product WHERE CategoryID in (SELECT CategoryID FROM Category WHERE CategoryName like '%s') AND ((price >= %s) AND (price <=%s)) ORDER BY %s ", categoryName, priceLower, priceUpper, sort);
-//        String str = "SELECT * FROM Product WHERE CategoryId in (SELECt categoryId FROM Category WHERE CategoryName like '%Nintendo%') AND Price >=0.0 AND Price <=9000000.000000 Order by ProName DESC ";
-        Connection con = DBContext.getConnection();
+       Connection con = DBContext.getConnection();
 
-        Statement stm = con.createStatement();
+        String str = "SELECT * FROM Product WHERE CategoryId in "
+                + "(SELECT CategoryId FROM Category Where CategoryName like '%" +categoryName +"%')"
+                + "AND Price >= ? "  + " AND Price <= ? "
+                + " ORDER BY " + sort
+              ;
+        PreparedStatement stm = con.prepareStatement(str);
+        stm.setDouble(1, priceLower);
+        stm.setDouble(2, priceUpper);
 
         //Thực thi lệnh SELECT
-        ResultSet rs = stm.executeQuery(str);
-        System.out.println("rs: " + rs.next());
+        ResultSet rs = stm.executeQuery();
         proList = new ArrayList<>();
 
         while (rs.next()) {

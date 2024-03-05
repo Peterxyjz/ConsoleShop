@@ -59,6 +59,7 @@ CREATE TABLE Product
   
 );
 
+
 CREATE TABLE Orders
 (
   OrdID INT IDENTITY(1,1) NOT NULL,
