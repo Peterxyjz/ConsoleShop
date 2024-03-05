@@ -15,11 +15,17 @@ import java.util.Map;
 public class Filter {
     private Map<String, String> categoryList;
     private Map<String, String> statusList;
-    private Map<Double, Double> priceLowerList;
-    private Map<Double,Double> priceUpperList;
+    
     private Map<String,String> sortList;
 
     public Filter() {
+        this.sortList.put("proName ASC", "Mặc định");
+        this.sortList.put("proName ASC", "Bán chạy nhất");
+        this.sortList.put("proName ASC", "Mới cập nhật");
+        this.sortList.put("price ASC", "Giá thấp đến cao");
+        this.sortList.put("price DESC", "Giá cao đến thấp");
+        this.sortList.put("proName ASC", "Tên từ A đến Z");
+        this.sortList.put("proName DESC", "Tên từ Z đến A");
     }
 
     public Map<String, String> getCategoryList() {
@@ -30,13 +36,7 @@ public class Filter {
         return statusList;
     }
 
-    public Map<Double, Double> getPriceLowerList() {
-        return priceLowerList;
-    }
-
-    public Map<Double, Double> getPriceUpperList() {
-        return priceUpperList;
-    }
+   
 
     public Map<String, String> getSortList() {
         return sortList;
@@ -50,13 +50,7 @@ public class Filter {
         this.statusList = statusList;
     }
 
-    public void setPriceLowerList(Map<Double, Double> priceLowerList) {
-        this.priceLowerList = priceLowerList;
-    }
-
-    public void setPriceUpperList(Map<Double, Double> priceUpperList) {
-        this.priceUpperList = priceUpperList;
-    }
+   
 
     public void setSortList(Map<String, String> sortList) {
         this.sortList = sortList;

@@ -27,5 +27,5 @@ public class CategoryFacade {
         }
         con.close();
         return list;
-    }
+    } 
 }
