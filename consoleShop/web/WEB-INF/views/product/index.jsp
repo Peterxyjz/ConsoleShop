@@ -13,8 +13,8 @@
             <div class="product__description">
                 <div class="product__info">
                     <p class="product__status"><i class="bi bi-box-seam-fill"></i> Tình trạng: </p>
-                    <p class="product__price"><fmt:formatNumber value="${(1-product.discount)*product.price}" type="currency" /></p>
-                    <span class="product__discount"><fmt:formatNumber value="${product.price}" type="currency" /></span>
+                    <p class="product__price"><fmt:formatNumber value="${(1-product.discount)*product.price}" type="number" />đ</p>
+                    <span class="product__discount"><fmt:formatNumber value="${product.price}" type="number" />đ</span>
                     <!--Discount:--> 
                     <span class="product__discount-p"><fmt:formatNumber value="${product.discount}" type="percent" /></span>
                 </div>

@@ -10,34 +10,34 @@
                     <img src="<c:url value="/images/Background/logo.png"/>" alt="">
                     <span>Console Shop</span>
                 </a>
-                <h2 class="login__header">Sign Up to Console Shop</h2>
+                <h2 class="login__header">Đăng kí thành viên</h2>
                 <form action="<c:url value="/account/signup_handler.do" />" class="login__form container-fluid" id="form__signup">
                     <div class="row">
                         <div class="form__group col-lg-4 col-sm-4">
                             <label for="email">Email</label></br>
                             <input type="text" id="email" name="email" value="${param.email}"></br>
-                            <div class="form__message"></div>
+                            <div class="form__message">${errMsgEmail}</div>
                         </div>
                         <div class="form__group col-lg-4 col-sm-4">
                             <label for="username">Username</label></br>
-                            <input type="text" id="username" name="username" value="${param.username}"></br>
-                            <div class="form__message"></div>
+                            <input type="text" id="username" name="username" value="${param.username}"><br/>
+                            <div class="form__message">${errMsg}</div>
                         </div>
                         <div class="form__group col-lg-8 col-sm-8">
-                            <label for="password">Password</label></br>
-                            <input type="password" id="password" name="password" value="${param.password}"></br>
-                            <div class="form__message"></div>
+                            <label for="password">Mật khẩu</label><br/>
+                            <input type="password" id="password" name="password" value="${param.password}"><br/>
+                            <div class="form__message">${errMsg}</div>
                         </div>
                         <div class="form__group col-lg-8 col-sm-8">
-                            <label for="password_check">Enter your password again</label></br>
+                            <label for="password_check">Nhập lại mật khẩu</label><br/>
                             <input type="password" id="password_check" name="password_check" value="${param.password_check}"></br>
-                            <div class="form__message"></div>
+                            <div class="form__message">${errMsgPass}</div>
                         </div>
                         <div class="form__group--submit col-lg-8 col-sm-8" >
-                            <button type="submit">Sign Up</button>
+                            <button type="submit">Đăng kí</button>
                         </div>
                         <div class="login__footer col-lg-8 col-sm-8">
-                            Already have an account? <a href="<c:url value="/account/login.do"/>">Login</a>
+                            Bạn đã có tài khoản? <a href="<c:url value="/account/login.do"/>">Đăng nhập</a>
                         </div>
                     </div>
                 </form>
@@ -70,18 +70,3 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
         <script><%@include file="/WEB-INF/javascript/signup.js"%></script>
-    <script>
-        Validator({
-            form: '#form__signup',
-            errorSelector: '.form__message',
-            rules: [
-                Validator.isRequired('#username'),
-                Validator.isEmail('#email'),
-                Validator.minLenght('#password', 6),
-                Validator.isConfirmed("#password_check", function (){
-                    return document.querySelector("#form__signup #password").value;
-                }, "Mật khẩu")
-            ]
-
-        });
-    </script>
