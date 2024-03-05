@@ -72,6 +72,9 @@ public class AccountController extends HttpServlet {
             case "forgot_handler":
                 forgot_handler(request, response);
                 break;
+            case "logout":
+                logout(request,response);
+                break;
 //            case "admin":
 //                admin(request, response);
 //                break;
@@ -316,6 +319,16 @@ public class AccountController extends HttpServlet {
             request.setAttribute("action", "edit");
             request.getRequestDispatcher(layout).forward(request, response);
         }
+    }
+    
+    protected void logout(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //lay tham chieu cua session
+        HttpSession session = request.getSession();
+        //huy session
+        session.invalidate();
+        //quay ve trang home
+        request.getRequestDispatcher("/").forward(request, response);
     }
 
 //    protected void admin(HttpServletRequest request, HttpServletResponse response)
