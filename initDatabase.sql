@@ -1,11 +1,11 @@
 ﻿
 
 USE ConSoleGame
+SELECT * FROM Product
 
 
 
-
-INSERT INTO Category VALUES (N'Game'),(N'Nintendo'), (N'Accessory'), (N'Playstation')
+INSERT INTO Category VALUES (N'Game'),(N'Nintendo'), (N'Phụ kiện'), (N'Playstation')
 SELECT * FROM Category
 
 

@@ -18,7 +18,7 @@
                 <form action="<c:url value="/product/search_handler.do"/>" method="POST">
                     <input oninput="searchByName()" type="text" placeholder="Tìm sản phẩm" id="search" name="search" onfocus="searchByName()">            
                     <i class="fa-solid fa-magnifying-glass"></i>
-           <i class="fa-solid fa-magnifying-glass" id="search-bar-icon"></i>
+                    <i class="fa-solid fa-magnifying-glass" id="search-bar-icon"></i>
                 </form>
 
             </div>
@@ -39,7 +39,7 @@
                             <li class="account__links">
                                 <div>Số dư tài khoản</div>
                                 <div>
-                                    <span><fmt:formatNumber value="${wallet}" type="number"/>đ</span>
+                                    <span><fmt:formatNumber value="${account.wallet}" type="number"/>đ</span>
                                     <a style="margin-left: 4px " href="/"><i class="bi bi-plus-circle"></i></a>
                                 </div>
                             </li>
@@ -49,9 +49,14 @@
                         </ul>
                     </div>
                 </c:if>
-                <a href="#" class="nav__cart">
-                    <i class="bi bi-cart2"></i>
-                    <span>Giỏ hàng</span>
+                <a href="<c:url value="/cart/index.do"/>" class="nav__cart">
+                    <c:if test="${cart == null}">
+                        <i class="bi bi-cart"></i> (0) 
+                    </c:if>
+                    <c:if test="${cart != null}">
+                        <i class="bi bi-cart-fill"></i> (${cart.quantity})
+                    </c:if>
+                    <span>Giỏ hàng</span> 
                 </a>
                 <i class="fa-solid fa-bars nav__menu"></i>
             </div>

@@ -24,12 +24,15 @@
                     <input type="text" value="1" inputmode="numeric" id="amount" />
                     <i class="fa-solid fa-plus amount__plus"></i>
                 </form>
-            </div>
-                    
+            </div>                    
             <div class="nav_button">
                 <hr/>
-                <button class="nav__btn--buy" type="submit"><i class="bi bi-credit-card-fill"></i> Mua Ngay</button>
-                <button class="nav__btn--add"  type="submit"><i class="bi bi-cart-plus"></i> Thêm vào giỏ</button>
+                <a href="#" class="nav__btn--buy">
+                    <i class="bi bi-credit-card-fill"></i> Mua Ngay
+                </a>
+                <a href="<c:url value="/cart/add.do?proId=${product.proId}"/>" class="nav__btn--add">
+                    <i class="bi bi-cart-plus"></i> Thêm vào giỏ 
+                </a>
             </div>
         </div>
         <div class="col-sm-1"></div>

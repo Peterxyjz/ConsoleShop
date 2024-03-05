@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style><%@include file="/WEB-INF/css/main.css"%></style>
-<footer class="">
+<footer class="mt-3">
     <div class="footer__wrapper container">
         <div class="row g-5 p-2">
             <div class="footer__intro col-lg-4 ">
