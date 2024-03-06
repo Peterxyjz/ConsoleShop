@@ -1,9 +1,9 @@
 *{
-    
+
     font-family: "Montserrat", sans-serif;
     margin: 0;
     padding: 0;
-    
+
 }
 body{
     overflow-x: hidden;
@@ -37,7 +37,7 @@ a{
     display: flex;
     align-items: center;
     justify-content: space-between; 
-    
+
 }
 .nav__lower{
     width: 100%;
@@ -88,7 +88,7 @@ a{
 }
 .nav__item a i {
     font-size: 13px;
-    
+
 }
 #search__bar{
     display: none;
@@ -104,7 +104,7 @@ a{
     width: 100%;
     padding: 18px 50px 18px 18px;
     border-radius: 20px;
-    
+
 }
 .navigate__search i {
     position: absolute;
@@ -115,7 +115,7 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
 }
 .nav__search-icon{
     display: none !important;
@@ -126,21 +126,19 @@ a{
     font-size: 1rem;
     font-weight: 500;   
 }
-.nav__account:hover span, .nav__cart:hover span{
+.nav__cart:hover span{
     color: #0079FF;
     transition: all 0.2s;
 }
 .nav__account{
     margin-right: 26px;
     position: relative;
-    
 }
-.nav__account > i {
-    display: none;
+.nav__account--logged{
+    height: 104%;
 }
 .account__dropdown{
     display: none;
-    transition: all 0.5s;
     position: absolute;
     background: #fff;
     box-shadow: 0px 10px 30px 0px rgba(124,119,119,0.75);
@@ -150,12 +148,19 @@ a{
     padding: 10px 14px;
     text-align: left;
     width: 120%;
-    transform: translateX(-10px);
+    right: -16px;
     border-radius: 10px; 
+    transform-origin: top left;
+    animation: dropDown 0.4s ease;
+    font-style: normal;
+    top: 20px;
+}
+.nav__name{
+    font-style: normal;
 }
 .account__links{
     margin-bottom: 8px;
-    
+
     padding: 4px;
     border-radius: 4px;
     transition: 0.4s;
@@ -163,9 +168,7 @@ a{
 .account__links:hover{
     background: #f2f2f2;
 }
-.nav__account:hover .account__dropdown{
-    display: block;
-}
+
 .account__links a {
     color: #231f1e;
 }
@@ -177,7 +180,7 @@ a{
     height: 190px;
     text-align: center;
     display: none;
-    animation: slideDown 0.4s ease alternate;
+    animation: slideDown 0.4s ease;
     visibility: hidden;
     background-color: #fff;
     position: relative;
@@ -214,6 +217,19 @@ a{
         transform: translateY(-30px);
     }
 }
+@keyframes dropDown{
+    from{
+        opacity: 0.1;
+        transform: scaleY(0);
+
+    }
+    to{
+        opacity: 1;
+
+        transform: scaleY(1);
+
+    }
+}
 @media (max-width: 1174px) {
     .navigate__items{
         display: none;
@@ -246,7 +262,7 @@ a{
         font-size: 18px;
     } 
     .top-product__item img:hover{
-        
+
         transform: scale(1.04);
     }
     .top-product{
@@ -264,6 +280,16 @@ a{
     }
     .nav__account > i{
         display: block;
+    }
+    .account__dropdown{
+
+        width: 130px;
+        right: -70px;
+        font-size: 10px;
+
+    }
+    .nav__name{
+        display: none;
     }
 }
 @media (max-width: 992px){
@@ -300,7 +326,7 @@ a{
         margin-left: 5%;
     }
     .top-product__item img:hover{
-        
+
         transform: scale(1.01);
     }
     .cashback__img{
@@ -310,7 +336,7 @@ a{
         height: 84px;
         position: relative;
     }
-    
+
     #search__form{
         position: absolute;
         bottom: -30px;
@@ -319,7 +345,7 @@ a{
         display: none;
         padding: 8px 16px;
         background-color: #fff;
-        
+
     }
     #search__bar{
         display: block;
@@ -338,7 +364,7 @@ a{
         transform: translate(-16px, 10px);
         height: 100vh;
         opacity: 0.6;
-        
+
     }
     .nav__search-icon:last-child{
         position: absolute;
@@ -346,7 +372,7 @@ a{
         top: 16.5px;
         font-size: 14px;
     }
-    
+
 }
 @media (max-width: 770px){
     .top-product{
@@ -386,7 +412,7 @@ a{
     }
     .nav__right {
         gap: 0;
-        
+
     }
     .nav__right i{
         font-size: 10px;
@@ -394,9 +420,16 @@ a{
     }
     .nav__account,.nav__cart{
         font-size: 10px;
-       
+
     }
-    
+    .account__dropdown{
+
+        width: 120px;
+        right: -60px;
+        font-size: 9px;
+
+    }
+
 }
 @media (max-width: 500px){
     .top-product{
@@ -426,13 +459,13 @@ a{
     .today-deal__discount{
         font-size: 8px;
     }
-    
+
 }
 /*footer*/
 footer{
     width: 107vw;
     background-color: #f2f2f2;
-    
+
 }
 .footer__wrapper{
     width: 100%;
@@ -453,8 +486,8 @@ footer{
     color: #333;
 }
 .footer__fanpage ul a:hover {
-   opacity: 0.8;
-   transition: 0.5s;
+    opacity: 0.8;
+    transition: 0.5s;
 }
 .footer__contact ul{
     list-style: none;

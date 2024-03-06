@@ -146,7 +146,15 @@ html,body{
     top: 50%; 
     cursor: pointer;
 }
-
+.form__message{
+    
+    margin: 6px 8px 8px 0;
+    font-size: 13px;
+    color: red;
+    font-style: italic;
+    opacity: 0.9;
+    
+}
 @media (max-width:710px) {
     .logo{
         top: -100px;

@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/fptu/CN4/ConsoleShop/consoleShop/web/WEB-INF/css/product.css</file>
-            <file>file:/D:/fptu/CN4/ConsoleShop/consoleShop/web/WEB-INF/views/product/index.jsp</file>
-            <file>file:/D:/fptu/CN4/ConsoleShop/consoleShop/web/WEB-INF/views/cart/index.jsp</file>
-            <file>file:/D:/fptu/CN4/ConsoleShop/consoleShop/web/WEB-INF/components/navbar.jsp</file>
-            <file>file:/D:/fptu/CN4/ConsoleShop/consoleShop/web/WEB-INF/views/product/search.jsp</file>
-            <file>file:/D:/fptu/CN4/ConsoleShop/consoleShop/web/WEB-INF/css/cart.css</file>
+            <file>file:/C:/Users/HP/ConsoleShop/consoleShop/web/WEB-INF/css/main.css</file>
+            <file>file:/C:/Users/HP/ConsoleShop/consoleShop/web/WEB-INF/javascript/navbar.js</file>
+            <file>file:/C:/Users/HP/ConsoleShop/consoleShop/web/WEB-INF/components/navbar.jsp</file>
+            <file>file:/C:/Users/HP/ConsoleShop/consoleShop/src/java/controllers/AccountController.java</file>
         </group>
     </open-files>
 </project-private>

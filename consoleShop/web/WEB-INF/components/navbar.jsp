@@ -27,15 +27,16 @@
                 <i class="fa-solid fa-magnifying-glass nav__search-icon"></i>
                 <c:if test="${account == null}">
                     <a href="<c:url value="/account/login.do"/>"class="nav__account">
-                        <i class="fa-regular fa-user"></i>
+                        <i class="bi bi-person"></i>
                         <span>Tài Khoản</span>
                     </a>
                 </c:if>
                 <c:if test="${account != null}">
                     <div class="nav__account">
-                        <i class="fa-regular fa-user"></i>
-                        <span>Xin chào ${account.username}!</span>
-                        <ul class="account__dropdown">
+                        
+                        <i class="bi bi-person nav__account--logged">
+                            <a class="nav__name">Xin chào ${account.username}!</a>
+                            <ul class="account__dropdown">
                             <li class="account__links">
                                 <div>Số dư tài khoản</div>
                                 <div>
@@ -45,8 +46,12 @@
                             </li>
                             <li class="account__links"><a href="">Quản lý tài khoản</a></li>
                             <li class="account__links"><a href="">Lịch sử đơn hàng</a></li>
-                            <li class="account__links"><a href="">Đăng xuất</a></li>
+                            <li class="account__links"><a href="<c:url value="/account/logout.do"/>">Đăng xuất</a></li>
                         </ul>
+                        </i>
+                        
+                        
+                        
                     </div>
                 </c:if>
                 <a href="<c:url value="/cart/index.do"/>" class="nav__cart">
