@@ -91,18 +91,22 @@ public class AccountFacade {
     }
 
     public void update(Account account) throws SQLException, NoSuchAlgorithmException {
+        System.out.println("khongthenao");
         Connection con = DBContext.getConnection();
-        PreparedStatement stm = con.prepareStatement("update Account set fullName=?, username=?, email=?, password=?,  birthday=?, address=?, country=?, phonenumber=? where accId=?");
+        PreparedStatement stm = con.prepareStatement("update Account set fullName=?, username=?, email=?,  birthday=?, address=?, country=?, phoneNumber=? where accId=?");
         stm.setString(1, account.getFullName());
         stm.setString(2, account.getUsername());
         stm.setString(3, account.getEmail());
-        stm.setString(4, Hasher.hash(account.getPassword()));
+        System.out.println("khongbuonkhongvui");
+//        stm.setString(4, Hasher.hash(account.getPassword()));
+        System.out.println("haha");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        stm.setString(5, sdf.format(account.getBirthDay()));
-        stm.setString(6, account.getAddress());
-        stm.setString(7, account.getCountry());
-        stm.setString(8, account.getPhoneNumber());
-        stm.setInt(9, account.getAccId());
+        stm.setString(4, sdf.format(account.getBirthDay()));
+        System.out.println("ghay");
+        stm.setString(5, account.getAddress());
+        stm.setString(6, account.getCountry());
+        stm.setString(7, account.getPhoneNumber());
+        stm.setInt(8, account.getAccId());
 
         int count = stm.executeUpdate();
         con.close();
