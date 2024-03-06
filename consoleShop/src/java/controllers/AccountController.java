@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import db.Account;
+import org.apache.tomcat.dbcp.pool2.PoolUtils;
 
 /**
  *
@@ -92,9 +93,27 @@ public class AccountController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         try {
             String email = request.getParameter("email");
+            System.out.println("" + email);
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             String password_check = request.getParameter("password_check");
+            int error_count = 0;
+            if (email == "") {
+                request.setAttribute("errMsgEmailNull", "*Không được để trống");
+                ++error_count;
+            }
+            if (username == "") {
+                request.setAttribute("errMsgUsernameNull", "*Không được để trống");
+                ++error_count;
+            }
+            if (password == "") {
+                request.setAttribute("errMsgPasswordNull", "*Không được để trống");
+                ++error_count;
+            }
+            if (password_check == "") {
+                request.setAttribute("errMsgPassword_checkNull", "*Không được để trống");
+                ++error_count;
+            }
             AccountFacade af = new AccountFacade();
             boolean isExisted = af.isExisted(email);
             if (!isExisted) {
@@ -116,12 +135,13 @@ public class AccountController extends HttpServlet {
                 }
                 //gan thong bao loi
                 request.setAttribute("errMsgPass", "*Mật khẩu không trùng khớp");
-                //quay ve trang login
-                request.getRequestDispatcher("/account/signup.do").forward(request, response);
+                ++error_count;
             } else {
                 //gan thong bao loi
                 request.setAttribute("errMsgEmail", "*Email đã tồn tại");
-                //quay ve trang login
+                ++error_count;
+            }
+            if (error_count > 0) {
                 request.getRequestDispatcher("/account/signup.do").forward(request, response);
             }
         } catch (Exception e) {
@@ -242,7 +262,6 @@ public class AccountController extends HttpServlet {
                 }
                 account.setPassword(password);
             }
-            
 
             account.setFullName(fullName);
             account.setUsername(username);
