@@ -44,7 +44,7 @@
                                     <a style="margin-left: 4px " href="/"><i class="bi bi-plus-circle"></i></a>
                                 </div>
                             </li>
-                            <li class="account__links"><a href="<c:url value="/account/update.do"/>">Quản lý tài khoản</a></li>
+                            <li class="account__links"><a href="<c:url value="/account/update.do?accId=${account.accId}"/>">Quản lý tài khoản</a></li>
                             <li class="account__links"><a href="">Lịch sử đơn hàng</a></li>
                             <li class="account__links"><a href="<c:url value="/account/logout.do"/>">Đăng xuất</a></li>
                         </ul>

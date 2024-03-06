@@ -27,7 +27,7 @@
                 </c:if>
 
                 <c:if test="${account.fullName != null}">
-                    <div class="general__info">${account.fullname}</div>
+                    <div class="general__info">${account.fullName}</div>
                 </c:if>
             </div>
             <div class="general__group col-md-3 col-sm-4 col-12">
@@ -56,13 +56,12 @@
             </div>
 
             <div class="personal__group col-lg-12">
-
                 <label for="fullname">Họ và tên</label>
                 <c:if test="${account.fullName != null}">
-                    <input id="username" value="" placeholder="${account.username}" name="username" type="text" />
+                    <input id="fullName" value="" placeholder="${account.fullName}" name="fullName" type="text" />
                 </c:if>
                 <c:if test="${account.fullName == null}">
-                    <input id="username" value="" placeholder="Vui lòng nhâp họ và tên" name="username" type="text" />
+                    <input id="fullName" value="" placeholder="Vui lòng nhâp họ và tên" name="fullName" type="text" />
                 </c:if>
             </div>
 
@@ -315,7 +314,7 @@
                     <option value="Uzbekistan">Uzbekistan</option>
                     <option value="Vanuatu">Vanuatu</option>
                     <option value="Venezuela">Venezuela</option>
-                    <option value="Viet Nam">Viet Nam</option>
+                    <option selected value="Viet Nam">Viet Nam</option>
                     <option value="Virgin Islands, British">Virgin Islands, British</option>
                     <option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
                     <option value="Wallis and Futuna">Wallis and Futuna</option>
