@@ -204,7 +204,6 @@ public class AccountController extends HttpServlet {
                 //check có phải admin hay không để chuyển trang
                 if (account.getRole().equals("admin")) {
                     //chuyển đến trang admin
-                    System.out.println("lmao");
                     request.getRequestDispatcher("/admin/index.do").forward(request, response);
                 } else {
                     //chuyển đến trang home khách hàng
@@ -228,8 +227,8 @@ public class AccountController extends HttpServlet {
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            request.setAttribute("id", id);
+            int id = Integer.parseInt(request.getParameter("accid"));
+            request.setAttribute("accid", id);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errMsg", e);
@@ -244,6 +243,7 @@ public class AccountController extends HttpServlet {
             AccountFacade af = new AccountFacade();
             String fullName = request.getParameter("fullName");
             String username = request.getParameter("username");
+            System.out.println(""+username);
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             String password_check = request.getParameter("password_check");
@@ -253,7 +253,7 @@ public class AccountController extends HttpServlet {
             String country = request.getParameter("country");
             String phoneNumber = request.getParameter("phoneNumber");
             //lấy account ra
-            Account account = af.select(Integer.parseInt(request.getParameter("id")));
+            Account account = af.select(Integer.parseInt(request.getParameter("accid")));
 
             if (password_check != null) {
                 while (!password.equals(password_check)) {
@@ -271,13 +271,13 @@ public class AccountController extends HttpServlet {
             account.setCountry(country);
             account.setPhoneNumber(phoneNumber);
             af.update(account);
-            response.sendRedirect(request.getContextPath() + "/account/update.do");
+            request.getRequestDispatcher("/account/update.do").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errMsg", "Something is wrong");
-            response.sendRedirect(request.getContextPath() + "/account/update.do");
-            request.getRequestDispatcher(layout).forward(request, response);
+            request.getRequestDispatcher("/account/update.do").forward(request, response);
         }
+        request.getRequestDispatcher(layout).forward(request, response);
     }
 
     protected void delete(HttpServletRequest request, HttpServletResponse response)
