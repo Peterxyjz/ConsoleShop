@@ -61,14 +61,14 @@
                     <input id="fullName" value="${account.fullName}" placeholder="" name="fullName" type="text" />
                 </c:if>
                 <c:if test="${account.fullName == null}">
-                    <input id="fullName" value="" placeholder="Vui lòng nhâp họ và tên" name="fullName" type="text" />
+                    <input id="fullName" value="${null}" placeholder="Vui lòng nhâp họ và tên"  type="text" />
                 </c:if>
             </div>
 
             <div class="personal__group col-lg-12">
                 <label for="phoneNumber">Số điện thoại</label>
                 <c:if test="${account.phoneNumber == null}">
-                    <input id="phoneNumber" value="" placeholder="Số điện thoại" name="phoneNumber" type="tel" />
+                    <input id="phoneNumber" value="${null}" placeholder="Số điện thoại"  type="tel" />
                 </c:if>
                 <c:if test="${account.phoneNumber != null}">
                     <input id="phoneNumber" value="${account.phoneNumber}" placeholder="${account.phoneNumber}" name="phoneNumber" type="tel" />
@@ -327,18 +327,18 @@
 
             <div class="personal__group col-lg-12">
                 <label for="address">Địa chỉ</label>
-                <c:if test="${account.phoneNumber != null}">
+                <c:if test="${account.address != null}">
                     <input id="address" value="${account.address}" placeholder="" name="address" type="text" />
                 </c:if>
-                <c:if test="${account.phoneNumber == null}">
-                    <input id="address" value="" placeholder="Vui lòng nhập địa chỉ" name="address" type="text" />
+                <c:if test="${account.address == null}">
+                    <input id="address" value="${null}" placeholder="Vui lòng nhập địa chỉ" type="text" />
                 </c:if>
             </div>
 
             <div class="personal__group col-lg-12">
                 <label for="birthDay">Ngày sinh</label>
                 <c:if test="${account.birthDay == null}">
-                     <input id="birthDay" value="" name="birthDay" type="date">  
+                     <input id="birthDay" value="${null}" type="date">  
                 </c:if>
                 <c:if test="${account.birthDay != null}">
                     <input id="birthDay" value="${account.birthDay}" name="birthDay" type="date" /> 

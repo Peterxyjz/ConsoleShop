@@ -226,6 +226,16 @@ public class AccountController extends HttpServlet {
     protected void update(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
+//        try {
+//            int id = Integer.parseInt(request.getParameter("accId"));
+//            AccountFacade af = new AccountFacade();
+//            Account account = af.select(id);
+//            request.setAttribute("account", account);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            request.setAttribute("errMsg", e);
+//            request.getRequestDispatcher("/").forward(request, response);
+//        }
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
@@ -233,21 +243,19 @@ public class AccountController extends HttpServlet {
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         try {
+            HttpSession session = request.getSession();
             AccountFacade af = new AccountFacade();
             String fullName = request.getParameter("fullName");
             String username = request.getParameter("username");
-            System.out.println(""+fullName);
-            System.out.println(""+username);
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            String password_check = request.getParameter("password_check");
+//            String password = request.getParameter("password");
+//            String password_check = request.getParameter("password_check");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date birthDay = sdf.parse(request.getParameter("birthDay"));
             String address = request.getParameter("address");
             String country = request.getParameter("country");
             String phoneNumber = request.getParameter("phoneNumber");
             //lấy account ra
-            Account account = af.select(email);
+            Account account = (Account) session.getAttribute("account");
 
 //            if (password_check != "") {
 //                while (!password.equals(password_check)) {
@@ -256,19 +264,16 @@ public class AccountController extends HttpServlet {
 //                }
 //                account.setPassword(password);
 //            }
-            System.out.println("lmao22222222");
-            
-            
             account.setFullName(fullName);
             account.setUsername(username);
-            account.setEmail(email);
+            System.out.println(account.getEmail());
             account.setBirthDay(birthDay);
             account.setAddress(address);
             account.setCountry(country);
             account.setPhoneNumber(phoneNumber);
             af.update(account);
-            System.out.println("ákdjkashdkasjdasd");
             request.getRequestDispatcher("/account/update.do").forward(request, response);
+            System.out.println("huh");
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errMsg", "Something is wrong");
