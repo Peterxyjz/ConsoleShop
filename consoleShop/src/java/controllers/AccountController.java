@@ -226,13 +226,6 @@ public class AccountController extends HttpServlet {
     protected void update(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
-        try {
-            int id = Integer.parseInt(request.getParameter("accid"));
-            request.setAttribute("accid", id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("errMsg", e);
-        }
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
@@ -243,6 +236,7 @@ public class AccountController extends HttpServlet {
             AccountFacade af = new AccountFacade();
             String fullName = request.getParameter("fullName");
             String username = request.getParameter("username");
+            System.out.println(""+fullName);
             System.out.println(""+username);
             String email = request.getParameter("email");
             String password = request.getParameter("password");
@@ -253,16 +247,18 @@ public class AccountController extends HttpServlet {
             String country = request.getParameter("country");
             String phoneNumber = request.getParameter("phoneNumber");
             //lấy account ra
-            Account account = af.select(Integer.parseInt(request.getParameter("accid")));
+            Account account = af.select(email);
 
-            if (password_check != null) {
-                while (!password.equals(password_check)) {
-                    request.setAttribute("errMsg1", "mật khẩu không trùng khớp");
-                    request.getRequestDispatcher("/account/update.do").forward(request, response);
-                }
-                account.setPassword(password);
-            }
-
+//            if (password_check != "") {
+//                while (!password.equals(password_check)) {
+//                    request.setAttribute("errMsg1", "mật khẩu không trùng khớp");
+//                    request.getRequestDispatcher("/account/update.do").forward(request, response);
+//                }
+//                account.setPassword(password);
+//            }
+            System.out.println("lmao22222222");
+            
+            
             account.setFullName(fullName);
             account.setUsername(username);
             account.setEmail(email);
@@ -271,6 +267,7 @@ public class AccountController extends HttpServlet {
             account.setCountry(country);
             account.setPhoneNumber(phoneNumber);
             af.update(account);
+            System.out.println("ákdjkashdkasjdasd");
             request.getRequestDispatcher("/account/update.do").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
