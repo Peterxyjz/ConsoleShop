@@ -170,17 +170,19 @@ public class AccountFacade {
         }
     }
 
-    public boolean isAdmin(String email) throws SQLException {
-        Connection con = DBContext.getConnection();
-        PreparedStatement stm = con.prepareStatement("select * from account where email=?");
-        stm.setString(1, email);
-        ResultSet rs = stm.executeQuery();
-        if ("admin".equals(rs.getString("role"))) {
-            con.close();
-            return true;
-        } else {
-            con.close();
-            return false;
-        }
-    }
+//    public boolean isAdmin(String email) throws SQLException {
+//        Connection con = DBContext.getConnection();
+//        PreparedStatement stm = con.prepareStatement("select * from account where email=?");
+//        stm.setString(1, email);
+//        ResultSet rs = stm.executeQuery();
+//        Account account = new Account();
+//        account.setRole(rs.getString("role"));
+//        if (account.getRole().equals("admin")) {
+//            con.close();
+//            return true;
+//        } else {
+//            con.close();
+//            return false;
+//        }
+//    }
 }

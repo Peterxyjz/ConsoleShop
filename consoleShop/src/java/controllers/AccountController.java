@@ -160,6 +160,7 @@ public class AccountController extends HttpServlet {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             boolean remember = request.getParameter("remember") != null;
+            System.out.println(""+remember);
             //kiem tra thong tin login
             AccountFacade af = new AccountFacade();
             Account account = af.login(email, password);
@@ -181,8 +182,9 @@ public class AccountController extends HttpServlet {
                 //luu account vao session
                 session.setAttribute("account", account);
                 //check có phải admin hay không để chuyển trang
-                if (af.isAdmin(email)) {
+                if (account.getRole().equals("admin")) {
                     //chuyển đến trang admin
+                    System.out.println("lmao");
                     request.getRequestDispatcher("/admin/index.do").forward(request, response);
                 } else {
                     //chuyển đến trang home khách hàng
