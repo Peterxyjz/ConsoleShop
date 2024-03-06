@@ -64,7 +64,7 @@
         <br/>
     </div>
 </div>
-<script><%@include file="/WEB-INF/javascript/upload.js"%></script>
+<!--<script><%@include file="/WEB-INF/javascript/upload.js"%></script>-->
 <jsp:include page="/WEB-INF/components/footer.jsp"/>
 
 
