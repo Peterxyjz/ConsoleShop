@@ -5,12 +5,7 @@
  */
 
 
-//nav menu
-var menuIcon = document.querySelector(".nav__menu");
-var dropdownMenu = document.querySelector(".dropdown__container");
-menuIcon.onclick = () => {
-    dropdownMenu.classList.toggle("active");
-};
+
 
 // sản phẩm hôm nay carousel
 var productWrapper = document.querySelectorAll(".today-deal__wrapper");

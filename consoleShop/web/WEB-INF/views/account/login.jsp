@@ -25,8 +25,8 @@
                         <div class="form__group col-lg-8 col-sm-8">
                             <label for="password">Mật khẩu</label><br/>
                             <input type="password" id="password_check" name="password" value="${param.password!=null?param.password:ckPassword.value}"><br/>
-                            
                         </div>
+                        <div class="form__message">${errMsg}</div>
                         <div class="form__group--submit col-lg-8 col-sm-8" >
                             <button type="submit">Đăng nhập</button>
                         </div>
