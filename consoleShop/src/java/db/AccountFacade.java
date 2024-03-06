@@ -25,6 +25,7 @@ import javax.servlet.http.HttpSession;
 public class AccountFacade {
 
     public Account select(int accId) throws SQLException {
+        System.out.println("khongthenao");
         Connection con = DBContext.getConnection();
         PreparedStatement stm = con.prepareStatement("select * from Account where accId=?");
         stm.setInt(1, accId);
@@ -36,7 +37,9 @@ public class AccountFacade {
             account.setFullName(rs.getString("fullName"));
             account.setUsername(rs.getString("username"));
             account.setEmail(rs.getString("email"));
+            System.out.println("ádasdasdasd");
             account.setPassword(rs.getString("password"));
+            System.out.println("000000000");
             account.setRole(rs.getString("role"));
             account.setBirthDay(rs.getDate("birthDay"));
             account.setAddress(rs.getString("address"));
@@ -91,22 +94,19 @@ public class AccountFacade {
     }
 
     public void update(Account account) throws SQLException, NoSuchAlgorithmException {
-        System.out.println("khongthenao");
         Connection con = DBContext.getConnection();
-        PreparedStatement stm = con.prepareStatement("update Account set fullName=?, username=?, email=?,  birthday=?, address=?, country=?, phoneNumber=? where accId=?");
+        PreparedStatement stm = con.prepareStatement("update Account set fullName=?, username=?,  birthday=?, address=?, country=?, phoneNumber=? where accId=?");
         stm.setString(1, account.getFullName());
+        System.out.println(account.getFullName());
         stm.setString(2, account.getUsername());
-        stm.setString(3, account.getEmail());
-        System.out.println("khongbuonkhongvui");
-//        stm.setString(4, Hasher.hash(account.getPassword()));
-        System.out.println("haha");
+//      stm.setString(3, account.getEmail());
+//      stm.setString(4, Hasher.hash(account.getPassword()));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        stm.setString(4, sdf.format(account.getBirthDay()));
-        System.out.println("ghay");
-        stm.setString(5, account.getAddress());
-        stm.setString(6, account.getCountry());
-        stm.setString(7, account.getPhoneNumber());
-        stm.setInt(8, account.getAccId());
+        stm.setString(3, sdf.format(account.getBirthDay()));
+        stm.setString(4, account.getAddress());
+        stm.setString(5, account.getCountry());
+        stm.setString(6, account.getPhoneNumber());
+        stm.setInt(7, account.getAccId());
 
         int count = stm.executeUpdate();
         con.close();
