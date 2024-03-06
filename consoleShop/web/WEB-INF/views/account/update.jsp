@@ -52,13 +52,13 @@
         <form action="update_handler.do" class="row personal__wrapper">
             <div class="personal__group col-lg-12">
                 <label for="username">Tên đăng nhập</label>
-                <input id="username" value="" placeholder="${account.username}" name="username" type="text" />
+                <input id="username" value="${account.username}" placeholder="" name="username" type="text" />
             </div>
 
             <div class="personal__group col-lg-12">
                 <label for="fullname">Họ và tên</label>
                 <c:if test="${account.fullName != null}">
-                    <input id="fullName" value="" placeholder="${account.fullName}" name="fullName" type="text" />
+                    <input id="fullName" value="${account.fullName}" placeholder="" name="fullName" type="text" />
                 </c:if>
                 <c:if test="${account.fullName == null}">
                     <input id="fullName" value="" placeholder="Vui lòng nhâp họ và tên" name="fullName" type="text" />
@@ -71,7 +71,7 @@
                     <input id="phoneNumber" value="" placeholder="Số điện thoại" name="phoneNumber" type="tel" />
                 </c:if>
                 <c:if test="${account.phoneNumber != null}">
-                    <input id="phoneNumber" value="" placeholder="${account.phoneNumber}" name="phoneNumber" type="tel" />
+                    <input id="phoneNumber" value="${account.phoneNumber}" placeholder="${account.phoneNumber}" name="phoneNumber" type="tel" />
                 </c:if>
             </div>
 
@@ -328,7 +328,7 @@
             <div class="personal__group col-lg-12">
                 <label for="address">Địa chỉ</label>
                 <c:if test="${account.phoneNumber != null}">
-                    <input id="address" value="" placeholder="${account.address}" name="address" type="text" />
+                    <input id="address" value="${account.address}" placeholder="" name="address" type="text" />
                 </c:if>
                 <c:if test="${account.phoneNumber == null}">
                     <input id="address" value="" placeholder="Vui lòng nhập địa chỉ" name="address" type="text" />
