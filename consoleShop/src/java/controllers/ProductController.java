@@ -5,8 +5,6 @@
  */
 package controllers;
 
-import static com.sun.corba.se.impl.util.Utility.printStackTrace;
-import db.CategoryFacade;
 import db.ProductFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,8 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import db.Product;
 import java.sql.SQLException;
-import javax.servlet.http.HttpSession;
-import models.Filter;
 
 /**
  *

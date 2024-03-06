@@ -1,28 +1,18 @@
 package controllers;
 
-import com.sun.org.apache.bcel.internal.generic.F2D;
 import db.Category;
 import db.CategoryFacade;
 import db.Product;
 import db.ProductFacade;
-import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Iterator;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 @WebServlet(name = "AdminController", urlPatterns = {"/admin"})
 @MultipartConfig()
@@ -103,11 +93,7 @@ public class AdminController extends HttpServlet {
             request.setAttribute("list", list);
             //Lưu db
             pf.create(product);
-            //lưu ảnh: 
-            
-            
-            
-            
+            //lưu ảnh:    
             response.sendRedirect(request.getContextPath() + "/admin/index.do");
         } catch (Exception e) {
             e.printStackTrace();
