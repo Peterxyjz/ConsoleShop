@@ -1,0 +1,82 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 6, 2024, 6:14:31 PM
+    Author     : HP
+*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #f3f4f6;
+}
+.container{
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px 50px;
+}
+.general__header{
+    margin-bottom: 10px;
+    
+}
+.general__label{
+    margin-bottom: 8px;
+}
+.general__info{
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.personal__wrapper{
+    height: 600px;
+}
+.personal__remind{
+    color: red;
+    opacity: 0.8;
+    font-size: 14px;
+    font-style: italic;
+}
+.personal__group input{
+    outline: none;
+    padding: 4px 12px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #3f3f3f;
+    font-size: 14px;
+    height: 34px;
+}
+.personal__country{
+    outline: none;
+    padding: 4px 12px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #3f3f3f;
+    font-size: 14px;
+    height: 34px;
+}
+.personal__country select {
+    
+}
+.personal__group{
+    margin: 10px 0;
+}
+.personal__group label{
+    margin-bottom: 8px;
+}
+.personal__submit{
+    background-color: #0079FF;
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+
+
