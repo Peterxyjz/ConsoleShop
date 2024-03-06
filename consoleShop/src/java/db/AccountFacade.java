@@ -99,9 +99,10 @@ public class AccountFacade {
         stm.setString(4, account.getPassword());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         stm.setString(5, sdf.format(account.getBirthDay()));
-        stm.setString(6, account.getCountry());
-        stm.setString(7, account.getPhoneNumber());
-        stm.setInt(8, account.getAccId());
+        stm.setString(6, account.getAddress());
+        stm.setString(7, account.getCountry());
+        stm.setString(8, account.getPhoneNumber());
+        stm.setInt(9, account.getAccId());
 
         int count = stm.executeUpdate();
         con.close();
@@ -164,6 +165,7 @@ public class AccountFacade {
             con.close();
             return true;
         } else {
+            con.close();
             return false;
         }
     }
@@ -173,9 +175,11 @@ public class AccountFacade {
         PreparedStatement stm = con.prepareStatement("select * from account where email=?");
         stm.setString(1, email);
         ResultSet rs = stm.executeQuery();
-        if (rs.getString("role") == "admin") {
+        if ("admin".equals(rs.getString("role"))) {
+            con.close();
             return true;
         } else {
+            con.close();
             return false;
         }
     }

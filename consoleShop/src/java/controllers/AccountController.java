@@ -159,6 +159,7 @@ public class AccountController extends HttpServlet {
             //lay thong tin tu client
             String email = request.getParameter("email");
             String password = request.getParameter("password");
+            boolean remember = request.getParameter("remember") != null;
             //kiem tra thong tin login
             AccountFacade af = new AccountFacade();
             Account account = af.login(email, password);
@@ -167,7 +168,7 @@ public class AccountController extends HttpServlet {
             //neu login thanh cong
             if (account != null) {
                 //luu email & password vao cookies
-                int maxAge = 7 * 24 * 60 * 60; //1 week
+                int maxAge = remember ? 7 * 24 * 60 * 60 : 0;//1 week
                 Cookie ckEmail = new Cookie("email", email);
                 //neu khong setMaxAge() thi ckEmail la cookie tam thoi
                 //chi dung duoc trong 1 session
