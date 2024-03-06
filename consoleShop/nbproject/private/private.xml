@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
             <file>file:/D:/fptu/CN4/PRJ301/ConsoleShop/consoleShop/src/java/controllers/CartController.java</file>
             <file>file:/D:/fptu/CN4/PRJ301/ConsoleShop/consoleShop/src/java/controllers/HomeController.java</file>
             <file>file:/D:/fptu/CN4/PRJ301/ConsoleShop/consoleShop/src/java/controllers/ProductController.java</file>
@@ -11,6 +12,17 @@
             <file>file:/D:/fptu/CN4/PRJ301/ConsoleShop/consoleShop/src/java/controllers/AccountController.java</file>
             <file>file:/D:/fptu/CN4/PRJ301/ConsoleShop/consoleShop/src/java/controllers/FrontController.java</file>
             <file>file:/D:/fptu/CN4/PRJ301/ConsoleShop/consoleShop/web/WEB-INF/views/admin/create.jsp</file>
+=======
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/controllers/AdminController.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/WEB-INF/components/navbar.jsp</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/db/AccountFacade.java</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/WEB-INF/views/account/login.jsp</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/WEB-INF/views/admin/create.jsp</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/WEB-INF/views/admin/index.jsp</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/web/WEB-INF/views/account/signup.jsp</file>
+            <file>file:/C:/Users/ASUS/ConsoleShop/consoleShop/src/java/controllers/AccountController.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>

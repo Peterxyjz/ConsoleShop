@@ -160,7 +160,7 @@ public class AccountController extends HttpServlet {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             boolean remember = request.getParameter("remember") != null;
-            System.out.println(""+remember);
+            System.out.println("" + remember);
             //kiem tra thong tin login
             AccountFacade af = new AccountFacade();
             Account account = af.login(email, password);
@@ -226,17 +226,27 @@ public class AccountController extends HttpServlet {
             String username = request.getParameter("username");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
+            String password_check = request.getParameter("password_check");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date birthDay = sdf.parse(request.getParameter("birthDay"));
             String address = request.getParameter("address");
             String country = request.getParameter("country");
             String phoneNumber = request.getParameter("phoneNumber");
-
+            //lấy account ra
             Account account = af.select(Integer.parseInt(request.getParameter("id")));
+
+            if (password_check != null) {
+                while (!password.equals(password_check)) {
+                    request.setAttribute("errMsg1", "mật khẩu không trùng khớp");
+                    request.getRequestDispatcher("/account/update.do").forward(request, response);
+                }
+                account.setPassword(password);
+            }
+            
+
             account.setFullName(fullName);
             account.setUsername(username);
             account.setEmail(email);
-            account.setPassword(password);
             account.setBirthDay(birthDay);
             account.setAddress(address);
             account.setCountry(country);
@@ -245,8 +255,8 @@ public class AccountController extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/account/update.do");
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMsg", "Something is wrong");
-            request.setAttribute("action", "edit");
+            request.setAttribute("errMsg", "Something is wrong");
+            response.sendRedirect(request.getContextPath() + "/account/update.do");
             request.getRequestDispatcher(layout).forward(request, response);
         }
     }

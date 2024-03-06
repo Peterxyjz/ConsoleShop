@@ -72,13 +72,13 @@ public class AccountFacade {
         return account;
     }
 
-    public void create(Account account) throws SQLException {
+    public void create(Account account) throws SQLException, NoSuchAlgorithmException {
         Connection con = DBContext.getConnection();
         PreparedStatement stm = con.prepareStatement("insert into Account values(?,?,?,?,?,?,?,?,?,?)");
         stm.setString(1, account.getFullName());
         stm.setString(2, account.getUsername());
         stm.setString(3, account.getEmail());
-        stm.setString(4, account.getPassword());
+        stm.setString(4, Hasher.hash(account.getPassword()));
         stm.setString(5, "customer");
         stm.setString(6, "2000/11/11");
         stm.setString(7, account.getAddress());
@@ -90,13 +90,13 @@ public class AccountFacade {
         con.close();
     }
 
-    public void update(Account account) throws SQLException {
+    public void update(Account account) throws SQLException, NoSuchAlgorithmException {
         Connection con = DBContext.getConnection();
         PreparedStatement stm = con.prepareStatement("update Account set fullName=?, username=?, email=?, password=?,  birthday=?, address=?, country=?, phonenumber=? where accId=?");
         stm.setString(1, account.getFullName());
         stm.setString(2, account.getUsername());
         stm.setString(3, account.getEmail());
-        stm.setString(4, account.getPassword());
+        stm.setString(4, Hasher.hash(account.getPassword()));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         stm.setString(5, sdf.format(account.getBirthDay()));
         stm.setString(6, account.getAddress());
@@ -123,7 +123,8 @@ public class AccountFacade {
         PreparedStatement stm = con.prepareStatement("select * from Account where email=? and password=?");
         //Cung cấp giá trị cho các tham số
         stm.setString(1, email);
-        stm.setString(2, password);
+        String hashed_password = Hasher.hash(password);
+        stm.setString(2, hashed_password);
         //Thực thi lệnh SELECT
         ResultSet rs = stm.executeQuery();
         Account account = null;
