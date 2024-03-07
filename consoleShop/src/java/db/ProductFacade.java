@@ -43,17 +43,11 @@ public class ProductFacade {
         List<Product> proList = null;
        Connection con = DBContext.getConnection();
 
-        String str = "SELECT * FROM Product WHERE CategoryId in "
-                + "(SELECT CategoryId FROM Category Where CategoryName like '%" +categoryName +"%')"
-                + "AND Price >= ? "  + " AND Price <= ? "
-                + " ORDER BY " + sort
-              ;
-        PreparedStatement stm = con.prepareStatement(str);
-        stm.setDouble(1, priceLower);
-        stm.setDouble(2, priceUpper);
+        String str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND Price >= %f AND Price <= %f  ORDER BY %s ", categoryName, priceLower, priceUpper, sort);
+        Statement stm = con.createStatement();
 
         //Thực thi lệnh SELECT
-        ResultSet rs = stm.executeQuery();
+        ResultSet rs = stm.executeQuery(str);
         proList = new ArrayList<>();
 
         while (rs.next()) {
@@ -74,7 +68,7 @@ public class ProductFacade {
         //trả list Product
         return proList;
     }
-
+    
     public List<Product> selectProList() throws SQLException {
         List<Product> list = null;
         Connection con = DBContext.getConnection();
@@ -110,19 +104,14 @@ public class ProductFacade {
         ResultSet rs = stm.executeQuery();
 
         if (rs.next()) {
-
             product = new Product();
             product.setProId(rs.getInt("ProID"));
             product.setProName(rs.getString("proName"));
             product.setPrice(rs.getDouble("price"));
             product.setDiscount(rs.getDouble("discount"));
             product.setAmount(rs.getInt("Amount"));
-
             product.setCategoryId(rs.getInt("categoryId"));
-        
-
             product.setDescription(rs.getString("description"));
-
         }
         con.close();
         return product;
@@ -170,4 +159,79 @@ public class ProductFacade {
         int count = stm.executeUpdate();
         con.close();
     }
+    
+    public Product select(int proId) throws SQLException {
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("select * from Product where id=?");
+        stm.setInt(1, proId);
+        ResultSet rs = stm.executeQuery();
+        Product product = new Product();
+        if (rs.next()) {
+            product.setProId(rs.getInt("ProID"));
+            product.setProName(rs.getString("proName"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDiscount(rs.getDouble("discount"));
+            product.setAmount(rs.getInt("Amount"));
+            product.setCategoryId(rs.getInt("categoryId"));
+            product.setDescription(rs.getString("description"));
+        }
+        con.close();
+        return product;
+    }
+    
+    public void update(Product product) throws SQLException {
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("update Product set ProName=?, Price=?, Discount=?, amount =?, CategoryID =?, Description=? where ProID = ?");
+        //Cung cấp giá trị cho các tham số
+        stm.setString(1, product.getProName());
+        stm.setDouble(2, product.getPrice());
+        stm.setDouble(3, product.getDiscount());
+        stm.setInt(4, product.getAmount());
+        stm.setInt(5, product.getCategoryId());
+        stm.setString(6, product.getDescription());
+        stm.setInt(7, product.getProId());
+        //Thực thi lệnh INSERT
+        int count = stm.executeUpdate();
+        con.close();
+    } 
+    
+    public void delete(int proId) throws SQLException {
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("DELETE Product where ProID = ?");
+        stm.setInt(1, proId);
+        //Thực thi lệnh delete
+        int count = stm.executeUpdate();
+        con.close();
+    } 
+    
+        public List<Product> searchProductByFilterForAdmin(String categoryName, String status, String sort) throws SQLException {
+        List<Product> proList = null;
+       Connection con = DBContext.getConnection();
+
+        String str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND Amount %s  ORDER BY %s ", categoryName, status, sort);
+        Statement stm = con.createStatement();
+
+        //Thực thi lệnh SELECT
+        ResultSet rs = stm.executeQuery(str);
+        proList = new ArrayList<>();
+
+        while (rs.next()) {
+
+            Product product = new Product();
+            product.setProId(rs.getInt("ProID"));
+            product.setProName(rs.getString("proName"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDiscount(rs.getDouble("discount"));
+            product.setAmount(rs.getInt("Amount"));
+            product.setCategoryId(rs.getInt("categoryId"));
+           
+            product.setDescription(rs.getString("description"));
+            proList.add(product);
+
+        }
+
+        //trả list Product
+        return proList;
+    }
+
 }

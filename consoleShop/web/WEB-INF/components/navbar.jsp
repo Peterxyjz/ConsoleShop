@@ -55,13 +55,14 @@
                     </div>
                 </c:if>
                 <a href="<c:url value="/cart/index.do"/>" class="nav__cart">
+                    <i class="bi bi-cart3"></i>
+                    <span>Giỏ hàng</span>
                     <c:if test="${cart == null}">
-                        <i class="bi bi-cart"></i> (0) 
+                        <span class="badge bg-secondary">0</span>
                     </c:if>
                     <c:if test="${cart != null}">
-                        <i class="bi bi-cart-fill"></i> (${cart.quantity})
+                        <span class="badge bg-secondary">${cart.quantity}</span>
                     </c:if>
-                    <span>Giỏ hàng</span> 
                 </a>
                 <i class="fa-solid fa-bars nav__menu"></i>
             </div>

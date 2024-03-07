@@ -7,26 +7,17 @@ import db.ProductFacade;
 import java.sql.SQLException;
 import java.util.List;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "AdminController", urlPatterns = {"/admin"})
-@MultipartConfig()
 public class AdminController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -43,6 +34,30 @@ public class AdminController extends HttpServlet {
             case "create_handler":
                 create_handler(request, response);
                 break;
+            case "edit":
+                edit(request, response);
+                break;
+            case "edit_form":
+                edit_form(request, response);
+                break;
+            case "edit_handler":
+                edit_handler(request, response);
+                break;
+            case "delete":
+//                delete(request, response);
+                break;
+            case "delete_handler":
+//                delete_handler(request, response);
+                break;
+            case "search_handler":
+                search_handler(request, response);
+                break;
+            case "searchAuto":
+                searchAuto(request, response);
+                break;
+            case "searchFilter_handler":
+                searchFilter_handler(request, response);
+                break;
         }
 
     }
@@ -58,8 +73,8 @@ public class AdminController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         try {
             CategoryFacade cf = new CategoryFacade();
-            List<Category> list = cf.select();
-            request.setAttribute("list", list);
+            List<Category> caList = cf.select();
+            request.setAttribute("caList", caList);
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("errorMsg", "Error when reading category data");
@@ -89,11 +104,12 @@ public class AdminController extends HttpServlet {
             product.setDescription(description);
             //tránh bị ngoại lệ
             CategoryFacade cf = new CategoryFacade();
-            List<Category> list = cf.select();
-            request.setAttribute("list", list);
+            List<Category> caList = cf.select();
+            request.setAttribute("caList", caList);
             //Lưu db
             pf.create(product);
             //lưu ảnh:    
+            
             response.sendRedirect(request.getContextPath() + "/admin/index.do");
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,7 +119,151 @@ public class AdminController extends HttpServlet {
             request.getRequestDispatcher(layout).forward(request, response);
         }
     }
-    
+
+    protected void edit(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        request.getRequestDispatcher(layout).forward(request, response);
+    }
+    protected void edit_form(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+            ProductFacade pf = new ProductFacade();
+            Product product = pf.searchProductByName(request.getParameter("proName")).get(0);
+            CategoryFacade cf = new CategoryFacade();
+            List<Category> caList = cf.select();
+            request.setAttribute("caList", caList);
+            request.setAttribute("product", product);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("errorMsg", "Error when reading category data");
+        }
+        request.getRequestDispatcher(layout).forward(request, response);
+    }
+
+
+    protected void edit_handler(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+//        try {
+//            ProductFacade tf = new ProductFacade();
+//            String id = request.getParameter("id");
+//            String name = request.getParameter("name");
+//            double price = Double.parseDouble(request.getParameter("price"));
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//            Date expDate = sdf.parse(request.getParameter("expDate"));
+//            String brand = request.getParameter("brand");
+//            //Tạo đối tượng toy
+//            Toy toy = new Toy();
+//            toy.setId(id);
+//            toy.setName(name);
+//            toy.setPrice(price);
+//            toy.setExpDate(expDate);
+//            toy.setBrand(brand);
+//            //tránh lôi
+//            BrandFacade bf = new BrandFacade();
+//            List<Brand> list = bf.select();
+//            request.setAttribute("list", list);
+//            //Lưu toy vào request để hiện lên khi bị ngoại lệ
+//            request.setAttribute("toy", toy);
+//            
+//            //Lưu toy vào db
+//            tf.update(toy);
+//            //Chuyển về trang toy/index.do
+//            //request.getRequestDispatcher("/toy/index.do").forward(request, response);
+//            response.sendRedirect(request.getContextPath() + "/toy/index.do");
+//        } catch (Exception e) {
+//            e.printStackTrace();//in chi tiet cua ngoai le
+//            //request.setAttribute("errorMsg", e.toString());//e.getMessage()
+//            request.setAttribute("errorMsg", "Error when updating toy data");
+//            //Cho hiện lại trang create
+//            request.setAttribute("action", "edit");
+//            request.getRequestDispatcher(layout).forward(request, response);
+//        }
+    }
+
+    //search:
+    protected void search_handler(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+
+            String searchName = request.getParameter("search") == null ? "" : request.getParameter("search");
+            System.out.println("search: " + searchName);
+            ProductFacade pf = new ProductFacade();
+            List<Product> prodList = pf.searchProductByName(searchName);
+            System.out.println(prodList.isEmpty());
+
+            request.setAttribute("list", prodList);
+
+            request.getRequestDispatcher("/admin/edit.do").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.getRequestDispatcher("/").forward(request, response);
+        }
+    }
+
+    protected void searchAuto(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+
+            String search = request.getParameter("search");
+            ProductFacade pf = new ProductFacade();
+            List<Product> prodList = pf.searchProductByName(search);
+
+            PrintWriter out = response.getWriter();
+            String str = "";
+            if (prodList.isEmpty()) {
+                str = "No one product";
+            } else if (prodList.size() > 6) {
+                for (int i = 0; i < 6; i++) {
+                    str += String.format("%s,", prodList.get(i).getProName());
+                }
+            } else {
+                for (int i = 0; i < prodList.size(); i++) {
+                    str += String.format("%s,", prodList.get(i).getProName());
+                }
+            }
+
+            str = str.substring(0, str.length() - 1);
+            out.print(str);
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.getRequestDispatcher("/").forward(request, response);
+        }
+    }
+
+    protected void searchFilter_handler(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+
+            String categoryName = request.getParameter("categoryName");
+
+            String status = request.getParameter("status");
+
+            String sort = request.getParameter("sort");
+
+            String str = "SELECT * FROM Product WHERE CategoryId in "
+                    + "(SELECT CategoryId FROM Category Where CategoryName like '%" + categoryName + "%')"
+                    + "AND Amount " + status
+                    + " ORDER BY " + sort;
+
+            System.out.println("syt:" + str);
+
+            ProductFacade pf = new ProductFacade();
+            List<Product> prodList = pf.searchProductByFilterForAdmin(categoryName, status, sort);
+
+            request.setAttribute("list", prodList);
+
+            request.getRequestDispatcher("/admin/edit.do").forward(request, response);
+        } catch (IOException | NumberFormatException | SQLException | ServletException e) {
+            e.printStackTrace();
+            request.getRequestDispatcher("/").forward(request, response);
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
