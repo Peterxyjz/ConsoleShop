@@ -20,29 +20,29 @@
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
-                <form action="create_handler.do " method="post" enctype="multipart/form-data">
+                <form action="create_handler.do">
                     <div class="mb-3 mt-3">
                         <label for="photo" class="form-label">Up ảnh sản phẩm:</label>
-                        <input type="file" class="form-control" id="photo" name="photo" multiple>
+                        <input type="file" class="form-control" id="photo" name="photo">
                     </div>
                     <div class="mb-3">
                         <label for="proName" class="form-label">Nhập tên sản phẩm: </label>
-                        <input type="text" class="form-control" id="proName" name="proName" value="${param.proName}">
+                        <input type="text" class="form-control" id="proName" name="proName" value="${product.proName}">
                     </div>
                     <div class="row mb-3">
                         <div class=" col-sm-6">
                             <label for="price" class="form-label">Nhập giá sản phẩm: </label>
-                            <input type="number" class="form-control" id="price" name="price" value="${param.price}" min="0">
+                            <input type="number" class="form-control" id="price" name="price" value="${product.price}" min="0">
                         </div>
                         <div class="col-sm-6">
                             <label for="discount" class="form-label">Nhập discount: </label>
-                            <input type="number" class="form-control" id="discount" name="discount" value="${param.discount}" min="0">
+                            <input type="number" class="form-control" id="discount" name="discount" value="${product.discount}" min="0" max="100">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm-6">
                             <label for="amount" class="form-label">Nhập số lượng sản phẩm: </label>
-                            <input type="number" class="form-control" id="amount" name="amount" value="${param.amount}" min="0">
+                            <input type="number" class="form-control" id="amount" name="amount" value="${product.amount}" min="0">
                         </div>
                         <div class="col-sm-6">
                             <label for="categoryId" class="form-label">Nhập loại sản phẩm: </label>
@@ -57,7 +57,7 @@
                         <label for="description" class="form-label">Nhập thông tin sản phẩm: </label>
                         <input type="text" class="form-control" id="description" name="description" value="${param.description}" >
                     </div> 
-                    <button type="submit" class="btn btn-primary" value="create"> <i class="bi bi-check"></i> Thêm sản phẩm</button>
+                    <button onclick="uploadFile()" type="submit" class="btn btn-primary" value="create" > <i class="bi bi-check"></i> Thêm sản phẩm</button>
                 </form>
                 <br/>
                 <i style="color:red;">${errorMsg}</i>
@@ -68,6 +68,7 @@
     </div>
     <br/>
 </div>
+<script><%@include file="/WEB-INF/javascript/uploadFile.js"%></script>
 <jsp:include page="/WEB-INF/components/footer.jsp"/>
 
 

@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +30,9 @@ public class AdminController extends HttpServlet {
             case "create":
                 create(request, response);
                 break;
+            case "uploadFile":
+                uploadFile(request, response);
+                break;
             case "create_handler":
                 create_handler(request, response);
                 break;
@@ -43,11 +45,8 @@ public class AdminController extends HttpServlet {
             case "edit_handler":
                 edit_handler(request, response);
                 break;
-            case "delete":
-//                delete(request, response);
-                break;
             case "delete_handler":
-//                delete_handler(request, response);
+                delete_handler(request, response);
                 break;
             case "search_handler":
                 search_handler(request, response);
@@ -82,6 +81,12 @@ public class AdminController extends HttpServlet {
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
+    protected void uploadFile(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        request.getRequestDispatcher(layout).forward(request, response);
+    }
+
     protected void create_handler(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -94,6 +99,7 @@ public class AdminController extends HttpServlet {
             int amount = Integer.parseInt(request.getParameter("amount"));
             int categoryId = Integer.parseInt(request.getParameter("categoryId"));
             String description = request.getParameter("description");
+
             //Tạo product
             Product product = new Product();
             product.setProName(proName);
@@ -108,8 +114,7 @@ public class AdminController extends HttpServlet {
             request.setAttribute("caList", caList);
             //Lưu db
             pf.create(product);
-            //lưu ảnh:    
-            
+
             response.sendRedirect(request.getContextPath() + "/admin/index.do");
         } catch (Exception e) {
             e.printStackTrace();
@@ -125,6 +130,7 @@ public class AdminController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         request.getRequestDispatcher(layout).forward(request, response);
     }
+
     protected void edit_form(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -142,45 +148,61 @@ public class AdminController extends HttpServlet {
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
-
     protected void edit_handler(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
-//        try {
-//            ProductFacade tf = new ProductFacade();
-//            String id = request.getParameter("id");
-//            String name = request.getParameter("name");
-//            double price = Double.parseDouble(request.getParameter("price"));
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//            Date expDate = sdf.parse(request.getParameter("expDate"));
-//            String brand = request.getParameter("brand");
-//            //Tạo đối tượng toy
-//            Toy toy = new Toy();
-//            toy.setId(id);
-//            toy.setName(name);
-//            toy.setPrice(price);
-//            toy.setExpDate(expDate);
-//            toy.setBrand(brand);
-//            //tránh lôi
-//            BrandFacade bf = new BrandFacade();
-//            List<Brand> list = bf.select();
-//            request.setAttribute("list", list);
-//            //Lưu toy vào request để hiện lên khi bị ngoại lệ
-//            request.setAttribute("toy", toy);
-//            
-//            //Lưu toy vào db
-//            tf.update(toy);
-//            //Chuyển về trang toy/index.do
-//            //request.getRequestDispatcher("/toy/index.do").forward(request, response);
-//            response.sendRedirect(request.getContextPath() + "/toy/index.do");
-//        } catch (Exception e) {
-//            e.printStackTrace();//in chi tiet cua ngoai le
-//            //request.setAttribute("errorMsg", e.toString());//e.getMessage()
-//            request.setAttribute("errorMsg", "Error when updating toy data");
-//            //Cho hiện lại trang create
-//            request.setAttribute("action", "edit");
-//            request.getRequestDispatcher(layout).forward(request, response);
-//        }
+        try {
+            ProductFacade pf = new ProductFacade();
+            int proId = Integer.parseInt(request.getParameter("proId"));
+            String proName = request.getParameter("proName");
+            double price = Double.parseDouble(request.getParameter("price"));
+            double discount = Double.parseDouble(request.getParameter("discount"));
+            int amount = Integer.parseInt(request.getParameter("amount"));
+            int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+            String description = request.getParameter("description");
+            //Tạo product
+            Product product = new Product();
+            product.setProId(proId);
+            product.setProName(proName);
+            product.setPrice(price);
+            product.setDiscount(discount);
+            product.setAmount(amount);
+            product.setCategoryId(categoryId);
+            product.setDescription(description);
+            //tránh bị ngoại lệ
+            CategoryFacade cf = new CategoryFacade();
+            List<Category> caList = cf.select();
+            request.setAttribute("caList", caList);
+            //Lưu toy vào request để hiện lên khi bị ngoại lệ
+            request.setAttribute("product", product);
+
+            //Lưu toy vào db
+            pf.update(product);
+            
+            response.sendRedirect(request.getContextPath() + "/admin/edit.do");
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("errorMsg", "Error when updating toy data");
+            request.setAttribute("action", "edit");
+            request.getRequestDispatcher(layout).forward(request, response);
+        }
+    }
+
+    protected void delete_handler(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+            ProductFacade pf = new ProductFacade();
+            //Lấy dữ liệu từ client
+            int proId = Integer.parseInt("proId");
+            //xóa toy trong DB
+            pf.delete(proId);
+            response.sendRedirect(request.getContextPath() + "/admin/edit.do");
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("errorMsg", "Error when deleting toy data");
+            request.getRequestDispatcher("/admin/edit.do").forward(request, response);
+        }
     }
 
     //search:

@@ -104,8 +104,29 @@
                                 <td>${product.categoryId}</td>
                                 <td>${product.description}</td> 
                                 <td>
-                                    <a href="edit_form.do?proName=${product.proName}"><i class="bi bi-gear"></i></a> | 
-                                    <a href="delete.do?id=${toy.id}" style="color: red"><i class="bi bi-trash"></i></a>
+                                    <a href="edit_form.do?proName=${product.proName}"><i class="bi bi-gear"></i></a> 
+                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <i style="red" class="bi bi-trash"></i>
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Xác nhận</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Bạn có chắc là muốn xóa không?</p>
+                                                </div>
+                                                <div class="modal-footer">       
+                                                    <button onclick="delete_handler()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Có</button>
+                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Không</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         </c:forEach>
