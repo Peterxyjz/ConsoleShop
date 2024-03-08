@@ -33,25 +33,34 @@
                 </c:if>
                 <c:if test="${account != null}">
                     <div class="nav__account">
-                        
+
                         <i class="bi bi-person nav__account--logged">
                             <a class="nav__name">Xin chào ${account.username}!</a>
                             <ul class="account__dropdown">
-                            <li class="account__links">
-                                <div>Số dư tài khoản</div>
-                                <div>
-                                    <span><fmt:formatNumber value="${account.wallet}" type="number"/>đ</span>
-                                    <a style="margin-left: 4px " href="/"><i class="bi bi-plus-circle"></i></a>
-                                </div>
-                            </li>
-                            <li class="account__links"><a href="<c:url value="/account/update.do?accId=${account.accId}"/>">Quản lý tài khoản</a></li>
-                            <li class="account__links"><a href="">Lịch sử đơn hàng</a></li>
-                            <li class="account__links"><a href="<c:url value="/account/logout.do"/>">Đăng xuất</a></li>
-                        </ul>
+                                <li class="account__links">
+                                    <div>Số dư tài khoản</div>
+                                    <div>
+                                        <span><fmt:formatNumber value="${account.wallet}" type="number"/>đ</span>
+                                        <a style="margin-left: 4px " href="/"><i class="bi bi-plus-circle"></i></a>
+                                    </div>
+                                </li>
+                                <c:if test="${account.role eq 'admin' || account.role eq 'employee'}">
+                                    <li class="account__links">
+                                        <a href="<c:url value="/admin/index.do" />">Admin</a> 
+                                    </li>       
+                                </c:if>
+                                <c:if test="${account.role eq 'customer'}">
+                                    <li class="account__links"><a href="<c:url value="/account/update.do?accId=${account.accId}"/>">Quản lý tài khoản</a></li>
+                                    <li class="account__links">
+                                        <a href="#">Lịch sử đơn hàng</a> 
+                                    </li>
+                                </c:if>
+                                <li class="account__links"><a href="<c:url value="/account/logout.do"/>">Đăng xuất</a></li>
+                            </ul>
                         </i>
-                        
-                        
-                        
+
+
+
                     </div>
                 </c:if>
                 <a href="<c:url value="/cart/index.do"/>" class="nav__cart">
