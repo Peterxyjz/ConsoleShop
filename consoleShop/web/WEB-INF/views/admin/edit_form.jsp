@@ -11,7 +11,7 @@
                 <h4>Chỉnh sửa sản phẩm</h4>
             </div>
             <div class="col-sm-6 d-grid gap-2 d-md-flex justify-content-md-end">
-                <a href="<c:url value="/admin/index.do"/>" class="btn btn-secondary" role="button">
+                <a href="<c:url value="/admin/edit.do"/>" class="btn btn-secondary" role="button">
                     <i class="bi bi-house-gear"></i> Quay lại
                 </a>
             </div>
@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
-                <form action="create_handler.do " method="post" enctype="multipart/form-data">
+                <form action="edit_handler.do">
                     <div class="mb-3 mt-3">
                         <label for="photo" class="form-label">Up ảnh sản phẩm:</label>
                         <input type="file" class="form-control" id="photo" name="photo" multiple>
@@ -28,6 +28,7 @@
                     <div class="mb-3">
                         <label for="proName" class="form-label">Nhập tên sản phẩm: </label>
                         <input type="text" class="form-control" id="proName" name="proName" value="${product.proName}">
+                        <input type="hidden" name="proId" value="${product.proId}">
                     </div>
                     <div class="row mb-3">
                         <div class=" col-sm-6">
@@ -36,7 +37,7 @@
                         </div>
                         <div class="col-sm-6">
                             <label for="discount" class="form-label">Nhập discount: </label>
-                            <input type="number" class="form-control" id="discount" name="discount" value="${product.discount}" min="0">
+                            <input type="number" class="form-control" id="discount" name="discount" value="${product.discount*100}" min="0" max="100">
                         </div>
                     </div>
                     <div class="row mb-3">

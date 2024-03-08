@@ -3,8 +3,6 @@
 USE ConSoleGame
 SELECT * FROM Product
 
-
-
 INSERT INTO Category VALUES (N'Game'),(N'Nintendo'), (N'Phụ kiện'), (N'Playstation')
 SELECT * FROM Category
 
@@ -13,10 +11,14 @@ SELECT * FROM Category
 
 INSERT INTO Account 
 VALUES
-	(N'admin',			N'admin',	'admin@gmail.com',		 '1', 'admin'   ,'2003-06-20', N'Việt Nam'					 , N'Việt Nam', '99999999999',999999),
+	(N'admin',			N'admin',	'admin@gmail.com',		 '1', 'admin'   ,'2003-06-20', N'Việt Nam'					 , N'Việt Nam', '99999999999',0),
 	(N'Phong',			N'Dep Trai','phongdeptrai@gmail.com','2', 'customer','2003-06-22', N'123 Đường A, Quận 1, TP HCM', N'Việt Nam', '1111111111',0),
 	(N'Nguyễn Văn',		N' A',		'nguyenvana@gmail.com',	 '3', 'employee','2003-06-20', N'123 Đường A, Quận 1, TP HCM', N'Việt Nam', '0225588999',0)
+update account set Password= '6B86B273FF34FCE19D6B804EFF5A3F5747ADA4EAA22F1D49C01E52DDB7875B4B' where accid = 1
 
+update account set Password= 'D4735E3A265E16EEE03F59718B9B5D03019C07D8B6C51F90DA3A666EEC13AB35' where accid = 2
+
+update account set Password= '4E07408562BEDB8B60CE05C1DECFE3AD16B72230967DE01F640B7E4729B49FCE' where accid = 3
 SELECT * FROM Account
 
 INSERT INTO Employee

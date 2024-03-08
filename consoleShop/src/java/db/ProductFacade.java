@@ -147,11 +147,11 @@ public class ProductFacade {
         //Tạo connection để kết nối vào DBMS
         Connection con = DBContext.getConnection();
         //Tạo đối tượng PreparedStatement
-        PreparedStatement stm = con.prepareStatement("insert into Product values(?,?,?,?,?,?)");
+        PreparedStatement stm = con.prepareStatement("INSERT INTO Product VALUES(?,?,?,?,?,?)");
         //Cung cấp giá trị cho các tham số
         stm.setString(1, product.getProName());
         stm.setDouble(2, product.getPrice());
-        stm.setDouble(3, product.getDiscount());
+        stm.setDouble(3, product.getDiscount()* 0.01);
         stm.setInt(4, product.getAmount());
         stm.setInt(5, product.getCategoryId());
         stm.setString(6, product.getDescription());
@@ -185,7 +185,7 @@ public class ProductFacade {
         //Cung cấp giá trị cho các tham số
         stm.setString(1, product.getProName());
         stm.setDouble(2, product.getPrice());
-        stm.setDouble(3, product.getDiscount());
+        stm.setDouble(3, product.getDiscount()* 0.01);
         stm.setInt(4, product.getAmount());
         stm.setInt(5, product.getCategoryId());
         stm.setString(6, product.getDescription());
