@@ -5,11 +5,14 @@
  */
 package controllers;
 
+import db.Account;
 import db.Category;
 import db.CategoryFacade;
 import db.Product;
 import db.ProductFacade;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -109,16 +112,25 @@ public class CartController extends HttpServlet {
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         try {
-
             int proId = Integer.parseInt(request.getParameter("proId"));
             int quantity = Integer.parseInt(request.getParameter("quantityInput"));
             HttpSession session = request.getSession();
             Cart cart = (Cart) session.getAttribute("cart");
-            System.out.println("update - quantity: " + quantity);
-            System.out.println("proid: " + proId);
             cart.update(proId, quantity);
-            System.out.println("update - quantity: " + quantity);
-            System.out.println("proid: " + proId);
+         
+        
+            Account account = (Account) session.getAttribute("account");
+            double wallet = account == null ? 0 : account.getWallet();
+            PrintWriter out = response.getWriter();
+            out.println(  "<h5>Thanh toán</h5>"
+                   + "<p id=\"totalCartValue\">Tổng giá trị sản phẩm:  "+ cart.getTotal() + " đ</p>"
+                   + " <hr/>"
+                   + " <p>Tổng giá trị phải thanh toán:    "+cart.getTotal()+"  đ</p>"
+                   + "  <p>Số dư hiện tại:  "+wallet+"    đ</p>"
+                   + "  <p>Số tiền cần nạp thêm:      đ</p>"
+            );
+           
+            out.close();
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errorMsg", "Error when adding the product to cart.");
@@ -165,19 +177,7 @@ public class CartController extends HttpServlet {
 //        request.getRequestDispatcher("/cart/index.do").forward(request, response);
 //    }
 //    
-//    protected void update(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        //lay data tu client
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        int quantity = Integer.parseInt(request.getParameter("quantity"));
-//        //lay cart tu session
-//        HttpSession session = request.getSession();
-//        Cart cart = (Cart) session.getAttribute("cart");
-//        //xoa item tuong ung id
-//        cart.update(id, quantity);
-//        //cho hien trang /cart/index.do
-//        request.getRequestDispatcher("/cart/index.do").forward(request, response);
-//    }
+
 //    
 //    protected void checkout(HttpServletRequest request, HttpServletResponse response)
 //            throws ServletException, IOException {

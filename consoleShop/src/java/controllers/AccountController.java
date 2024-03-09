@@ -195,7 +195,7 @@ public class AccountController extends HttpServlet {
                 //chi dung duoc trong 1 session
                 ckEmail.setMaxAge(maxAge);
                 response.addCookie(ckEmail);
-
+                
                 Cookie ckPassword = new Cookie("password", password);
                 ckPassword.setMaxAge(maxAge);
                 response.addCookie(ckPassword);

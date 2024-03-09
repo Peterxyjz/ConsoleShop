@@ -15,22 +15,21 @@ function increaseQuantity() {
 }
 
 function autoUpdateQuantity(param, proId) {
+    console.log(param.value == "")
     $.ajax({
         url: '/consoleShop/cart/autoUpdateQuantity.do',
         type: 'GET',
         dataType: 'text',
         data: {
-            quantityInput: param.value,
+            quantityInput: param.value == "" ? 0 : param.value,
             proId: proId
 
         },
         success: function (data) {
-
-            var totalProductValueElement = document.getElementById("#totalCartValue");
-            var currentTotalValue = parseFloat(totalProductValueElement.textContent.replace("Tổng giá trị sản phẩm: ", "").replace("đ", ""));
-            var newTotalValue = currentTotalValue - totalPrice;
-            totalProductValueElement.textContent = "Tổng giá trị sản phẩm: " + newTotalValue + "đ";
+            var totalProductValueElement = document.querySelector("#payCart");
+            totalProductValueElement.innerHTML = data
         }
 
     });
 }
+

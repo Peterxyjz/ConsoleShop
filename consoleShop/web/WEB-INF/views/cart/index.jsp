@@ -9,7 +9,7 @@
             <i class="bi bi-arrow-left-short"></i> Mua thêm sản phẩm khác
         </a>
         <div class="row">
-            <div class="col-sm-3 d-flex align-items-center justify-content-evenly">Giỏ hàng</div>
+            <div class="col-sm-3 d-flex align-items-center justify-content-evenly " style="background-color: rgb(145, 222, 222);">Giỏ hàng</div>
             <div class="col-sm-3 d-flex align-items-center justify-content-evenly">Thông tin đặt hàng</div>
             <div class="col-sm-3 d-flex align-items-center justify-content-evenly">Thanh toán</div>
             <div class="col-sm-3 d-flex align-items-center justify-content-evenly">Hoàn tất</div>
@@ -82,16 +82,16 @@
                 <div>
                     <h5>Bạn có mã ưu đãi?</h5>
                 </div>
-                <div>
+                <div id="payCart" >
                     <h5>Thanh toán</h5>
-                    <p class="totalCartValue">Tổng giá trị sản phẩm:  ${cart.getTotal()}    đ</p>
+                    <p >Tổng giá trị sản phẩm:  ${cart.getTotal()} đ</p>
                     <hr/>
-                    <p>Tổng giá trị phải thanh toán:      đ</p>
-                    <p>Số dư hiện tại:      đ</p>
-                    <p>Số tiền cần nạp thêm:      đ</p>
+                    <p>Tổng giá trị phải thanh toán:    ${cart.getTotal()}   đ</p>
+                    <p>Số dư hiện tại:   ${sessionScope.account == null ? 0 : sessionScope.account.wallet }   đ</p>
+                    <p>Số tiền cần nạp thêm:  ${(sessionScope.account == null ? 0 : sessionScope.account.wallet) >= cart.getTotal() ?  0 :  cart.getTotal() - (sessionScope.account == null ? 0 : sessionScope.account.wallet)}   đ</p>
                 </div>
                 <div>
-                    <a href="#" class="btn btn-primary d-grid gap-2">
+                    <a href="<c:url value="/pay/checkAccount.do"/>" class="btn btn-primary d-grid gap-2">
                         Thanh toán ngay!
                     </a>
                 </div>
