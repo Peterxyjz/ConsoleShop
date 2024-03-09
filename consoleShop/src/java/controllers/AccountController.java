@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import db.Account;
+import java.text.ParseException;
+import java.util.Locale;
 import org.apache.tomcat.dbcp.pool2.PoolUtils;
 
 /**
@@ -43,6 +45,9 @@ public class AccountController extends HttpServlet {
         String action = (String) request.getAttribute("action");
 
         switch (action) {
+            case "index":
+                index(request,response);
+                break;
             case "signup":
                 signup(request, response);
                 break;
@@ -80,6 +85,12 @@ public class AccountController extends HttpServlet {
 //                admin(request, response);
 //                break;
         }
+    }
+    
+    protected void index(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        request.getRequestDispatcher(layout).forward(request, response);
     }
 
     protected void signup(HttpServletRequest request, HttpServletResponse response)
@@ -195,7 +206,7 @@ public class AccountController extends HttpServlet {
                 //chi dung duoc trong 1 session
                 ckEmail.setMaxAge(maxAge);
                 response.addCookie(ckEmail);
-                
+
                 Cookie ckPassword = new Cookie("password", password);
                 ckPassword.setMaxAge(maxAge);
                 response.addCookie(ckPassword);
@@ -225,17 +236,18 @@ public class AccountController extends HttpServlet {
 
     protected void update(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        try {
+            HttpSession session = request.getSession();
+            int id = Integer.parseInt(request.getParameter("accId"));
+            AccountFacade af = new AccountFacade();
+            session.setAttribute("account", af.select(id));
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("errMsg", e);
+            request.getRequestDispatcher("/account/index.do").forward(request, response);
+        }
         String layout = (String) request.getAttribute("layout");
-//        try {
-//            int id = Integer.parseInt(request.getParameter("accId"));
-//            AccountFacade af = new AccountFacade();
-//            Account account = af.select(id);
-//            request.setAttribute("account", account);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            request.setAttribute("errMsg", e);
-//            request.getRequestDispatcher("/").forward(request, response);
-//        }
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
@@ -246,14 +258,21 @@ public class AccountController extends HttpServlet {
             HttpSession session = request.getSession();
             AccountFacade af = new AccountFacade();
             String fullName = request.getParameter("fullName");
+            System.out.println("fullname: "+fullName);
+            
             String username = request.getParameter("username");
+            System.out.println("username: "+username);
 //            String password = request.getParameter("password");
 //            String password_check = request.getParameter("password_check");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date birthDay = sdf.parse(request.getParameter("birthDay"));
+            
+            System.out.println("Ko the nao "+request.getParameter("birthDay"));
+
             String address = request.getParameter("address");
             String country = request.getParameter("country");
             String phoneNumber = request.getParameter("phoneNumber");
+            System.out.println("address: "+address);
             //lấy account ra
             Account account_updating = (Account) session.getAttribute("account");
 
@@ -266,7 +285,6 @@ public class AccountController extends HttpServlet {
 //            }
             account_updating.setFullName(fullName);
             account_updating.setUsername(username);
-            System.out.println(account_updating.getEmail());
             account_updating.setBirthDay(birthDay);
             account_updating.setAddress(address);
             account_updating.setCountry(country);
@@ -274,13 +292,13 @@ public class AccountController extends HttpServlet {
             af.update(account_updating);
             //lưu lại account vào session
             session.setAttribute("account", account_updating);
-            request.getRequestDispatcher("/account/update.do").forward(request, response);
+            request.getRequestDispatcher("/account/index.do").forward(request, response);
             System.out.println("huh");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("đừng mà");
             request.setAttribute("errMsg", "Something is wrong");
-            request.getRequestDispatcher("/account/update.do").forward(request, response);
+            request.getRequestDispatcher("/account/index.do").forward(request, response);
         }
         request.getRequestDispatcher(layout).forward(request, response);
     }

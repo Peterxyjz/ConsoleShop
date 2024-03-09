@@ -14,8 +14,8 @@
                 <form action="<c:url value="/account/signup_handler.do" />" class="login__form container-fluid" id="form__signup">
                     <div class="row">
                         <div class="form__group col-lg-4 col-sm-4">
-                            <label for="email">Email</label></br>
-                            <input type="text" id="email" name="email" value="${param.email}"></br>
+                            <label for="email">Email</label><br/>
+                            <input type="text" id="email" name="email" value="${param.email}"><br/>
                             <div class="form__message">${errMsgEmail}${errMsgEmailNull}</div>
                         </div>
                         <div class="form__group col-lg-4 col-sm-4">
@@ -30,7 +30,7 @@
                         </div>
                         <div class="form__group col-lg-8 col-sm-8">
                             <label for="password_check">Nhập lại mật khẩu</label><br/>
-                            <input type="password" id="password_check" name="password_check" value="${param.password_check}"></br>
+                            <input type="password" id="password_check" name="password_check" value="${param.password_check}"><br/>
                             <div class="form__message">${errMsgPass}${errMsgPassword_checkNull}</div>
                         </div>
                         <div class="form__group--submit col-lg-8 col-sm-8" >

@@ -52,26 +52,26 @@
         <form action="update_handler.do" class="row personal__wrapper">
             <div class="personal__group col-lg-12">
                 <label for="username">Tên đăng nhập</label>
-                <input id="username" value="${account.username}" placeholder="" name="username" type="text" />
+                <input id="username" value="${sessionScope.account.username}" name="username" type="text" >
             </div>
 
             <div class="personal__group col-lg-12">
                 <label for="fullName">Họ và tên</label>
-                <c:if test="${account.fullName != null}">
-                    <input id="fullName" value="${account.fullName}" placeholder="" name="fullName" type="text" />
+                <c:if test="${sessionScope.account.fullName != null}">
+                    <input id="fullName" value="${sessionScope.account.fullName}" name="fullName" type="text" >
                 </c:if>
-                <c:if test="${account.fullName == null}">
-                    <input id="fullName" value="${null}" placeholder="Vui lòng nhâp họ và tên"  type="text" />
+                <c:if test="${sessionScope.account.fullName == null}">
+                    <input id="fullName" value="${sessionScope.account.fullName}" name="fullName" placeholder="Vui lòng nhâp họ và tên"  type="text" >
                 </c:if>
             </div>
 
             <div class="personal__group col-lg-12">
                 <label for="phoneNumber">Số điện thoại</label>
-                <c:if test="${account.phoneNumber == null}">
-                    <input id="phoneNumber" value="${null}" placeholder="Số điện thoại"  type="tel" />
+                <c:if test="${sessionScope.account.phoneNumber == null}">
+                    <input id="phoneNumber" value="${sessionScope.account.phoneNumber}" placeholder="Vui lòng nhập số điện thoại" name="phoneNumber" type="tel" >
                 </c:if>
-                <c:if test="${account.phoneNumber != null}">
-                    <input id="phoneNumber" value="${account.phoneNumber}" placeholder="${account.phoneNumber}" name="phoneNumber" type="tel" />
+                <c:if test="${sessionScope.account.phoneNumber != null}">
+                    <input id="phoneNumber" value="${sessionScope.account.phoneNumber}" name="phoneNumber" type="tel" >
                 </c:if>
             </div>
 
@@ -326,26 +326,25 @@
             </div>
 
             <div class="personal__group col-lg-12">
-                <label for="address">Địa chỉ</label>
-                <c:if test="${account.address != null}">
-                    <input id="address" value="${account.address}" name="address" type="text" />
+                <label for="address" class="form-label">Địa chỉ</label>
+                <c:if test="${sessionScope.account.address == null}">
+                    <input id="address" value="${sessionScope.account.address}" placeholder="Vui lòng nhập địa chỉ" name="address" type="text" >
                 </c:if>
-                <c:if test="${account.address == null}">
-                    <input id="address" value="${null}" placeholder="Vui lòng nhập địa chỉ" type="text" />
+                <c:if test="${sessionScope.account.phoneNumber != null}">
+                    <input id="phoneNumber" value="${sessionScope.account.address}" name="address" type="text" >
                 </c:if>
             </div>
 
             <div class="personal__group col-lg-12">
-                <label for="birthDay">Ngày sinh</label>
-                <c:if test="${account.birthDay == null}">
-                     <input id="birthDay" value="${null}" type="date">  
+                <label for="birthDay" class="form-label">Ngày sinh</label>
+                <c:if test="${sessionScope.account.birthDay == null}">
+                    <input id="birthDay" value="${sessionScope.account.birthDay}" placeholder="Vui lòng nhập sinh nhật" type="date" class="form-control">  
                 </c:if>
-                <c:if test="${account.birthDay != null}">
-                    <input id="birthDay" value="${account.birthDay}" name="birthDay" type="date" /> 
+                <c:if test="${sessionScope.account.birthDay != null}">
+                    <input id="birthDay" value="${sessionScope.account.birthDay}" name="birthDay" type="date" class="form-control"> 
                 </c:if>
-                
             </div>
-            
+
             <button type="submit" class="personal__submit col-4">Lưu các thay đổi</button>
         </form>
 
