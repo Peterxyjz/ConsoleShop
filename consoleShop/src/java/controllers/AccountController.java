@@ -212,15 +212,8 @@ public class AccountController extends HttpServlet {
                 response.addCookie(ckPassword);
                 //luu account vao session
                 session.setAttribute("account", account);
-                //check có phải admin hay không để chuyển trang
-                if (account.getRole().equals("admin")) {
-                    //chuyển đến trang admin
-                    request.getRequestDispatcher("/admin/index.do").forward(request, response);
-                } else {
-                    //chuyển đến trang home khách hàng
-                    request.getRequestDispatcher("/").forward(request, response);
-                    //request.getRequestDispatcher("/home/index.do").forward(request, response);
-                }
+                //chuyển đến trang home khách hàng
+                request.getRequestDispatcher("/").forward(request, response);
             } else {
                 //gan thong bao loi
                 request.setAttribute("errMsg", "Hãy kiểm tra lại mật khẩu hoặc tài khoản");

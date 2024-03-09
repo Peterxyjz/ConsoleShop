@@ -53,12 +53,10 @@ public class CartController extends HttpServlet {
     protected void index(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
-
         try {
             List<Category> categoryList = new ArrayList<>();
             CategoryFacade cf = new CategoryFacade();
             categoryList = cf.select();
-            System.out.println(categoryList.isEmpty());
             request.setAttribute("categoryList", categoryList);
         } catch (Exception e) {
             e.printStackTrace();
