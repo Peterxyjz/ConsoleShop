@@ -17,40 +17,56 @@
         <div class="row nav_item">
             <div class="col-sm-9 nav_item_left">
                 <!--if cart !=null-->
-                <h3>Giỏ hàng <span style="font-size: 1rem">(${cart.quantity} sản phẩm)</span></h3>
+                <h3>Giỏ hàng <span style="font-size: 1rem">(${cart.getItems().size()} sản phẩm)</span></h3>
                 <div class="row item">
-                    <div class="col-sm-4">
-                        <a href="#">
-                            <img src="<c:url value="/images/50.jpg"/>" width="50%"/>
-                        </a>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="item_info">
-                            <div class="item_info_left">
-                                <a href="#">
-                                    Tên sản phẩm
-                                </a>
-                                <p>Thể loại</p>
-                            </div>
-                            <div class="item_info_mid">
-                                <button type="button" class="btn_quantity" onclick="decreaseQuantity()">-</button>
-                                <input class="inp_quantity" type="number" required min="1" step="1" name="quantity" id="quantityInput" value="${cart.quantity}">
-                                <button type="button" class="btn_quantity" onclick="increaseQuantity()">+</button>
-                            </div>  
-                            <div class="item_info_right">
-                                <p class="product__price"><fmt:formatNumber value="${(1-product.discount)*product.price}" type="number" />đ</p>
-                                <!--Discount:--> 
-                                <span class="product__discount-p"><fmt:formatNumber value="${product.discount}" type="percent" /></span>
-                                <span class="product__discount"><fmt:formatNumber value="${product.price}" type="number" />đ</span>
-                            </div>
+                    <c:forEach var="item" items="${cart.items}" >
+                        <div class="col-sm-4">
+                            <a href="#">
+                                <img src="<c:url value="/images/${item.product.proId}.jpg"/>" width="50%"/>                               
+                            </a>
+
                         </div>
+                        <form action="">
+                            <div class="col-sm-8">
+                                <div class="item_info">
+                                    <div class="item_info_left">
+                                        <a href="#">
+                                            Tên sản phẩm: ${item.product.proName}
+                                            <!--<input type="hidden" id="proId" name="proId" value="${item.product.proId}">-->
+                                        </a>
+                                        <p>Thể loại: 
+                                            <c:forEach var="categories" items="${categoryList}">
+                                                <c:if test="${item.product.categoryId == categories.categoryId}">
+                                                    ${ categories.categoryName}
+                                                </c:if>
+                                            </c:forEach>
+                                        </p>
+                                    </div>
+                                    <div class="item_info_mid">
+                                        <!--<button type="button" class="btn_quantity" onclick="decreaseQuantity()">-</button>-->
+                                        <input oninput="autoUpdateQuantity(this, ${item.product.proId})" class="inp_quantity" type="number" required min="1" step="1" name="quantity" id="quantityInput" value="${item.quantity}">
+                                        <!--<button type="button" class="btn_quantity" onclick="increaseQuantity()">+</button>-->   
+
+                                    </div> 
+
+                                    <div class="item_info_right">
+                                       <strike> <p class="product__price"><fmt:formatNumber value=" ${item.product.price} " type="number" />đ</p></strike>
+                                        <!--Discount:--> 
+                                        <span class="product__discount-p"><fmt:formatNumber value="${item.product.discount}" type="percent" /></span>
+                                        <span class="product__discount"><fmt:formatNumber value="${(1-item.product.discount)*item.product.price}" type="number" />đ</span>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="item_footer">
+                                    <p><i class="bi bi-box2"></i> Tình trạng: </p>
+                                    <a href="<c:url value="/cart/delete.do?proId=${item.product.proId}"/>" style="color: red"><i class="bi bi-trash"></i></a>
+                                </div>
+                            </div>
+                        </form>
                         <hr/>
-                        <div class="item_footer">
-                            <p><i class="bi bi-box2"></i> Tình trạng: </p>
-                            <a style="color: red"><i class="bi bi-trash"></i></a>
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>
+             
             </div>
 
 
@@ -68,7 +84,7 @@
                 </div>
                 <div>
                     <h5>Thanh toán</h5>
-                    <p>Tổng giá trị sản phẩm:      đ</p>
+                    <p class="totalCartValue">Tổng giá trị sản phẩm:  ${cart.getTotal()}    đ</p>
                     <hr/>
                     <p>Tổng giá trị phải thanh toán:      đ</p>
                     <p>Số dư hiện tại:      đ</p>

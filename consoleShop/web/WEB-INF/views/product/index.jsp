@@ -21,7 +21,7 @@
                 <form action="" class="product__amount">
                     <label for="amount" >Số lượng</label><br/>
                     <i class="fa-solid fa-minus amount__minus"></i>
-                    <input type="text" value="1" inputmode="numeric" id="amount" />
+                    <input type="text" value="1" inputmode="numeric" id="amount" name="amount" />
                     <i class="fa-solid fa-plus amount__plus"></i>
                 </form>
             </div>                    
@@ -30,7 +30,7 @@
                 <a href="#" class="nav__btn--buy">
                     <i class="bi bi-credit-card-fill"></i> Mua Ngay
                 </a>
-                <a href="<c:url value="/cart/add.do?proId=${product.proId}"/>" class="nav__btn--add">
+                <a href="<c:url value="/cart/add.do?proId=${product.proId}&amount=1"/>" class="nav__btn--add">
                     <i class="bi bi-cart-plus"></i> Thêm vào giỏ 
                 </a>
             </div>
