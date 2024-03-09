@@ -26,6 +26,10 @@ public class Cart {
             items.put(id, item);
         }            
     }
+
+    public void setItems(Map<Integer, Item> items) {
+        this.items = items;
+    }
     
     public boolean isEmpty(){
         return this.items.isEmpty();
@@ -59,5 +63,7 @@ public class Cart {
     public void update(int id, int quantity){
         Item item = this.items.get(id);
         item.setQuantity(quantity);
+        System.out.println("finished : proId: " + id);
+        System.out.println("quantity: "+items.get(id).getQuantity());
     }
 }

@@ -30,14 +30,14 @@ productWrapper.forEach((item, i) => {
 //search
 
 
-function searchByName() {
+async function searchByName() {
     console.log(document.querySelector("#search").value);
-    $.ajax({
+    await   $.ajax({
         url: '/consoleShop/product/searchAuto.do',
         type: 'GET',
         dataType: 'text',
         data: {
-            search: document.querySelector("#search").value 
+            search: document.querySelector("#search").value
         },
         success: function (data) {
             console.log(data);
@@ -51,8 +51,8 @@ function searchByName() {
                 minLength: 0, // số ký tự ít nhất để autocomplete thực hiện                
                 source: src, // src để suggestion
                 maxResults: 6, // số suggestion tối đa được hiện 
-                select:function(event, ui){
-                    let url = "/consoleShop/product/index.do?proName=" +decodeURIComponent(ui.item.value);
+                select: function (event, ui) {
+                    let url = "/consoleShop/product/index.do?proName=" + decodeURIComponent(ui.item.value);
                     console.log(ui.item.value);
                     window.location.href = url;
                     return false;

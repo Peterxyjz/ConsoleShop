@@ -162,12 +162,13 @@ public class ProductFacade {
     
     public Product select(int proId) throws SQLException {
         Connection con = DBContext.getConnection();
-        PreparedStatement stm = con.prepareStatement("select * from Product where id=?");
+        PreparedStatement stm = con.prepareStatement("SELECT * FROM Product WHERE proId = ? ");
         stm.setInt(1, proId);
         ResultSet rs = stm.executeQuery();
         Product product = new Product();
         if (rs.next()) {
-            product.setProId(rs.getInt("ProID"));
+            System.out.println("get prop");
+            product.setProId(rs.getInt("ProId"));
             product.setProName(rs.getString("proName"));
             product.setPrice(rs.getDouble("price"));
             product.setDiscount(rs.getDouble("discount"));

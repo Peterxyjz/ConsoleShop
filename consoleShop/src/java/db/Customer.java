@@ -83,12 +83,12 @@ public class Customer extends Account {
     }
 
     @Override
-    public void setWallet(Double wallet) {
+    public void setWallet(double wallet) {
         super.setWallet(wallet); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Double getWallet() {
+    public double getWallet() {
         return super.getWallet(); //To change body of generated methods, choose Tools | Templates.
     }
 
