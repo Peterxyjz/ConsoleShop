@@ -255,7 +255,7 @@ public class AccountController extends HttpServlet {
             String country = request.getParameter("country");
             String phoneNumber = request.getParameter("phoneNumber");
             //lấy account ra
-            Account account = (Account) session.getAttribute("account");
+            Account account_updating = (Account) session.getAttribute("account");
 
 //            if (password_check != "") {
 //                while (!password.equals(password_check)) {
@@ -264,18 +264,21 @@ public class AccountController extends HttpServlet {
 //                }
 //                account.setPassword(password);
 //            }
-            account.setFullName(fullName);
-            account.setUsername(username);
-            System.out.println(account.getEmail());
-            account.setBirthDay(birthDay);
-            account.setAddress(address);
-            account.setCountry(country);
-            account.setPhoneNumber(phoneNumber);
-            af.update(account);
+            account_updating.setFullName(fullName);
+            account_updating.setUsername(username);
+            System.out.println(account_updating.getEmail());
+            account_updating.setBirthDay(birthDay);
+            account_updating.setAddress(address);
+            account_updating.setCountry(country);
+            account_updating.setPhoneNumber(phoneNumber);
+            af.update(account_updating);
+            //lưu lại account vào session
+            session.setAttribute("account", account_updating);
             request.getRequestDispatcher("/account/update.do").forward(request, response);
             System.out.println("huh");
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("đừng mà");
             request.setAttribute("errMsg", "Something is wrong");
             request.getRequestDispatcher("/account/update.do").forward(request, response);
         }

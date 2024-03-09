@@ -56,7 +56,7 @@
             </div>
 
             <div class="personal__group col-lg-12">
-                <label for="fullname">Họ và tên</label>
+                <label for="fullName">Họ và tên</label>
                 <c:if test="${account.fullName != null}">
                     <input id="fullName" value="${account.fullName}" placeholder="" name="fullName" type="text" />
                 </c:if>
@@ -328,7 +328,7 @@
             <div class="personal__group col-lg-12">
                 <label for="address">Địa chỉ</label>
                 <c:if test="${account.address != null}">
-                    <input id="address" value="${account.address}" placeholder="" name="address" type="text" />
+                    <input id="address" value="${account.address}" name="address" type="text" />
                 </c:if>
                 <c:if test="${account.address == null}">
                     <input id="address" value="${null}" placeholder="Vui lòng nhập địa chỉ" type="text" />
