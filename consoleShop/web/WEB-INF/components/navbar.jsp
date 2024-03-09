@@ -50,7 +50,7 @@
                                     </li>       
                                 </c:if>
                                 <c:if test="${account.role eq 'customer'}">
-                                    <li class="account__links"><a href="<c:url value="/account/update.do?accId=${account.accId}"/>">Quản lý tài khoản</a></li>
+                                    <li class="account__links"><a href="<c:url value="/account/index.do"/>">Quản lý tài khoản</a></li>
                                     <li class="account__links">
                                         <a href="#">Lịch sử đơn hàng</a> 
                                     </li>
