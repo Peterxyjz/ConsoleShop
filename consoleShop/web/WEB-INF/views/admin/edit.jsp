@@ -120,8 +120,10 @@
                                                 <div class="modal-body">
                                                     <p>Bạn có chắc là muốn xóa không?</p>
                                                 </div>
-                                                <div class="modal-footer">       
-                                                    <button onclick="delete_handler()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Có</button>
+                                                <div class="modal-footer">     
+                                                    <a href="<c:url value="/admin/delete_handler.do?proName=${product.proName}"/>" class="btn btn-danger"  >
+                                                        Có
+                                                    </a>
                                                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Không</button>
                                                 </div>
                                             </div>

@@ -118,8 +118,7 @@ public class AdminController extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/admin/index.do");
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMsg", e.toString());
-//            request.setAttribute("errorMsg", "Error when inserting product data");
+            request.setAttribute("errorMsg", "Error when inserting product data");
             request.setAttribute("action", "create");
             request.getRequestDispatcher(layout).forward(request, response);
         }
@@ -193,14 +192,15 @@ public class AdminController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         try {
             ProductFacade pf = new ProductFacade();
-            //Lấy dữ liệu từ client
-            int proId = Integer.parseInt("proId");
-            //xóa toy trong DB
-            pf.delete(proId);
+            
+//            int proId = Integer.parseInt(request.getParameter("proId"));
+//            System.out.println("ProdId: " + proId);
+            System.out.println(request.getParameter("proName"));
+            pf.delete(request.getParameter("proName"));
             response.sendRedirect(request.getContextPath() + "/admin/edit.do");
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMsg", "Error when deleting toy data");
+            request.setAttribute("errorMsg", "Error when deleting product data");
             request.getRequestDispatcher("/admin/edit.do").forward(request, response);
         }
     }
