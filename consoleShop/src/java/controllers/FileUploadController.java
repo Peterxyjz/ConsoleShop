@@ -1,5 +1,6 @@
 package controllers;
 
+import db.ProductFacade;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -12,15 +13,18 @@ import javax.servlet.annotation.*;
         maxRequestSize = 1024 * 1024 * 100 // 100 MB
 )
 public class FileUploadController extends HttpServlet {
-    
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Part filePart = request.getPart("photo");
-        String fileName = filePart.getSubmittedFileName();
-        for (Part part : request.getParts()) {
-            part.write("D:\\fptu\\CN4\\ConsoleShop\\consoleShop\\web\\images\\" + fileName);
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            ProductFacade pf = new ProductFacade();
+            Part filePart = request.getPart("photo");
+            String fileName = String.format("%d.jpg", pf.getProIdForUpload());
+            for (Part part : request.getParts()) {
+                part.write("D:\\fptu\\CN4\\ConsoleShop\\consoleShop\\web\\images\\" + fileName);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        response.getWriter().print("The file uploaded sucessfully.");
     }
 
 }

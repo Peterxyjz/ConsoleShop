@@ -23,7 +23,7 @@
                 <form action="edit_handler.do">
                     <div class="mb-3 mt-3">
                         <label for="photo" class="form-label">Up ảnh sản phẩm:</label>
-                        <input type="file" class="form-control" id="photo" name="photo" multiple>
+                        <input type="file" class="form-control" id="photo" name="photo" value="${product.proId}">
                     </div>
                     <div class="mb-3">
                         <label for="proName" class="form-label">Nhập tên sản phẩm: </label>

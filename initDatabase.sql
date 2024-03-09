@@ -8,7 +8,6 @@ SELECT * FROM Category
 
 
 
-
 INSERT INTO Account 
 VALUES
 	(N'admin',			N'admin',	'admin@gmail.com',		 '1', 'admin'   ,'2003-06-20', N'Việt Nam'					 , N'Việt Nam', '99999999999',0),

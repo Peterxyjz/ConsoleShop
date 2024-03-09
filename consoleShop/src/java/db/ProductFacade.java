@@ -196,10 +196,10 @@ public class ProductFacade {
         con.close();
     } 
     
-    public void delete(int proId) throws SQLException {
+    public void delete(String proId) throws SQLException {
         Connection con = DBContext.getConnection();
-        PreparedStatement stm = con.prepareStatement("DELETE Product where ProID = ?");
-        stm.setInt(1, proId);
+        PreparedStatement stm = con.prepareStatement("DELETE Product where ProName = ?");
+        stm.setString(1, proId);
         //Thực thi lệnh delete
         int count = stm.executeUpdate();
         con.close();
@@ -233,6 +233,19 @@ public class ProductFacade {
 
         //trả list Product
         return proList;
+    }
+    
+    public int getProIdForUpload() throws SQLException{
+        int proId = 0;
+        Connection con = DBContext.getConnection();
+        Statement stm = con.createStatement();
+        ResultSet rs = stm.executeQuery("SELECT ProID FROM Product Where ProID >= ALL(SELECT ProID FROM Product)");
+        if (rs.next()) {
+            proId = rs.getInt("proId") + 1;           
+        }
+        con.close();
+        return proId;
+        
     }
 
 }
