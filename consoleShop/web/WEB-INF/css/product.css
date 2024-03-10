@@ -43,7 +43,9 @@
     
     font-size: 18px;
     font-weight: 500;
+
 }
+
 .amount__minus, .amount__plus{
     cursor: pointer;
 }
