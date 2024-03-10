@@ -15,8 +15,8 @@
                 <img src="<c:url value="/images/Background/logo.png"/>" alt="">
                 <span>Console Shop</span>
             </a>
-            <h2 class="login__header">Đăng nhập vào Console Shop</h2>
-            <form action="<c:url value="/account/login_handler.do" />" class="login__form container-fluid" id="form__login">
+            <h2 class="login__header">Thay đổi mật khẩu</h2>
+            <form action="<c:url value="/account/forgot_handler.do" />" class="login__form container-fluid" id="form__login">
                 <div class="row">
                     <div class="form__group col-lg-8 col-sm-8">
                         <label for="email">Email</label><br/>
@@ -33,15 +33,9 @@
                         </label>
                     </div>
                     <div class="form__group--submit col-lg-8 col-sm-8" >
-                        <button type="submit">Đăng nhập</button>
+                        <button type="submit">Xác nhận</button>
                     </div>
-                    <div class="login__footer col-lg-8 col-sm-8">
-                        Bạn chưa có tài khoản? <a href="<c:url value="/account/signup.do"/>">Đăng kí</a>
-                    </div>
-                    <div class="login__footer col-lg-8 col-sm-8">
-                        Bạn quên mật khẩu? <a href="<c:url value="/account/forgot.do"/>">Đổi mật khẩu</a>
-                    </div>
-
+                    
                 </div>
             </form>
         </div>
