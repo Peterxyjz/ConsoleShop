@@ -195,8 +195,7 @@ public class AdminController extends HttpServlet {
             
 //            int proId = Integer.parseInt(request.getParameter("proId"));
 //            System.out.println("ProdId: " + proId);
-            System.out.println(request.getParameter("proName"));
-            pf.delete(request.getParameter("proName"));
+            pf.delete(Integer.parseInt(request.getParameter("proId")));
             response.sendRedirect(request.getContextPath() + "/admin/edit.do");
         } catch (Exception e) {
             e.printStackTrace();

@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="col-sm-2">
-                <label for="">Sắp xếp</label>
+                <label for="sort">Sắp xếp</label>
                 <select  id="sort" name="sort" class="form-select mb-3"  aria-label=".form-select-lg example">
                     <option value="proName ASC" selected>Mặc định</option>
                     <option value="proName ASC">Bán chạy nhất</option>

@@ -162,13 +162,15 @@ public class ProductController extends HttpServlet {
             String status = request.getParameter("status");
 
             double priceLower = Double.parseDouble(request.getParameter("priceLower") == "" ? "0" : request.getParameter("priceLower"));
-            System.out.println("priceLower");
             double priceUpper = Double.parseDouble(request.getParameter("priceUpper") == "" ? "0" : request.getParameter("priceUpper"));
+            
+            
+            
             if (priceUpper == 0){
-                priceUpper = Double.MAX_VALUE;
+                priceUpper = Integer.MAX_VALUE;
             }
             String sort = request.getParameter("sort");
-            
+         
             ProductFacade pf = new ProductFacade();
             List<Product> prodList = pf.searchProductByFilter(categoryName, status, priceLower, priceUpper, sort);
             
