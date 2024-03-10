@@ -17,22 +17,21 @@
         <div class="row general__wrapper">
             <div class="general__group col-md-3 col-sm-4 col-12">
                 <div class="general__label">Tên đăng nhập</div>
-                <div class="general__info">${account.username}</div>
+                <div class="general__info">${sessionScope.account.username}</div>
             </div>
-
             <div class="general__group col-md-3 col-sm-4 col-12">
                 <div class="general__label">Họ và tên</div>
-                <c:if test="${account.fullName == null}">
+                <c:if test="${sessionScope.account.fullName == null}">
                     <div class="general__info">Chưa cập nhật</div>
                 </c:if>
 
-                <c:if test="${account.fullName != null}">
-                    <div class="general__info">${account.fullName}</div>
+                <c:if test="${sessionScope.account.fullName != null}">
+                    <div class="general__info">${sessionScope.account.fullName}</div>
                 </c:if>
             </div>
             <div class="general__group col-md-3 col-sm-4 col-12">
                 <div class="general__label">Số dư</div>
-                <div class="general__info"><fmt:formatNumber value="${account.wallet}" type="number"/>đ</div>
+                <div class="general__info"><fmt:formatNumber value="${sessionScope.account.wallet}" type="number"/>đ</div>
             </div>
             <div class="general__group col-md-3 col-sm-4 col-12">
                 <div class="general__label">Tổng đơn hàng</div>
@@ -41,7 +40,7 @@
             </div>
             <div class="general__group col-md-3 col-sm-4 col-12">
                 <div class="general__label">Email</div>
-                <div class="general__info">${account.email}</div>
+                <div class="general__info">${sessionScope.account.email}</div>
             </div>
         </div>
     </div>
@@ -51,27 +50,27 @@
         <p class="personal__remind">*Để mua hàng tốt nhất, bạn nên nhập đầy đủ thông tin.</p>
         <form action="update_handler.do" class="row personal__wrapper">
             <div class="personal__group col-lg-12">
-                <label for="username">Tên đăng nhập</label>
-                <input id="username" value="${sessionScope.account.username}" name="username" type="text" >
+                <label for="username" class="form-label">Tên đăng nhập</label>
+                <input id="username" value="${sessionScope.account.username}" name="username" type="text" class="form-control">
             </div>
 
             <div class="personal__group col-lg-12">
-                <label for="fullName">Họ và tên</label>
-                <c:if test="${sessionScope.account.fullName != null}">
-                    <input id="fullName" value="${sessionScope.account.fullName}" name="fullName" type="text" >
-                </c:if>
+                <label for="fullName" class="form-label">Họ và tên</label>
                 <c:if test="${sessionScope.account.fullName == null}">
-                    <input id="fullName" value="${sessionScope.account.fullName}" name="fullName" placeholder="Vui lòng nhâp họ và tên"  type="text" >
+                    <input id="fullName" value="${sessionScope.account.fullName}" name="fullName" placeholder="Vui lòng nhâp họ và tên"  type="text" class="form-control">
+                </c:if>
+                <c:if test="${sessionScope.account.fullName != null}">
+                    <input id="fullName" value="${sessionScope.account.fullName}" name="fullName" type="text" class="form-control">
                 </c:if>
             </div>
 
             <div class="personal__group col-lg-12">
-                <label for="phoneNumber">Số điện thoại</label>
+                <label for="phoneNumber" class="form-label">Số điện thoại</label>
                 <c:if test="${sessionScope.account.phoneNumber == null}">
-                    <input id="phoneNumber" value="${sessionScope.account.phoneNumber}" placeholder="Vui lòng nhập số điện thoại" name="phoneNumber" type="tel" >
+                    <input id="phoneNumber" value="${sessionScope.account.phoneNumber}" placeholder="Vui lòng nhập số điện thoại" name="phoneNumber" type="tel" class="form-control">
                 </c:if>
                 <c:if test="${sessionScope.account.phoneNumber != null}">
-                    <input id="phoneNumber" value="${sessionScope.account.phoneNumber}" name="phoneNumber" type="tel" >
+                    <input id="phoneNumber" value="${sessionScope.account.phoneNumber}" name="phoneNumber" type="tel" class="form-control">
                 </c:if>
             </div>
             
@@ -88,10 +87,10 @@
             <div class="personal__group col-lg-12">
                 <label for="address" class="form-label">Địa chỉ</label>
                 <c:if test="${sessionScope.account.address == null}">
-                    <input id="address" value="${sessionScope.account.address}" placeholder="Vui lòng nhập địa chỉ" name="address" type="text" >
+                    <input id="address" value="${sessionScope.account.address}" placeholder="Vui lòng nhập địa chỉ" name="address" type="text" class="form-control">
                 </c:if>
-                <c:if test="${sessionScope.account.phoneNumber != null}">
-                    <input id="phoneNumber" value="${sessionScope.account.address}" name="address" type="text" >
+                <c:if test="${sessionScope.account.address != null}">
+                    <input id="phoneNumber" value="${sessionScope.account.address}" name="address" type="text" class="form-control">
                 </c:if>
             </div>
 

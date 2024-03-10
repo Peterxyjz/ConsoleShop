@@ -66,12 +66,12 @@ public class AccountController extends HttpServlet {
             case "update_handler":
                 update_handler(request, response);
                 break;
-            case "delete":
-                delete(request, response);
-                break;
-            case "delete_handler":
-                delete_handler(request, response);
-                break;
+//            case "delete":
+//                delete(request, response);
+//                break;
+//            case "delete_handler":
+//                delete_handler(request, response);
+//                break;
             case "forgot":
                 forgot(request, response);
                 break;
@@ -251,21 +251,14 @@ public class AccountController extends HttpServlet {
             HttpSession session = request.getSession();
             AccountFacade af = new AccountFacade();
             String fullName = request.getParameter("fullName");
-            System.out.println("fullname: "+fullName);
-            
             String username = request.getParameter("username");
-            System.out.println("username: "+username);
 //            String password = request.getParameter("password");
 //            String password_check = request.getParameter("password_check");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date birthDay = sdf.parse(request.getParameter("birthDay"));
-            
-            System.out.println("Ko the nao "+request.getParameter("birthDay"));
-
             String address = request.getParameter("address");
             String country = request.getParameter("country");
             String phoneNumber = request.getParameter("phoneNumber");
-            System.out.println("address: "+address);
             //lấy account ra
             Account account_updating = (Account) session.getAttribute("account");
 
@@ -286,54 +279,52 @@ public class AccountController extends HttpServlet {
             //lưu lại account vào session
             session.setAttribute("account", account_updating);
             request.getRequestDispatcher("/account/index.do").forward(request, response);
-            System.out.println("huh");
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("đừng mà");
             request.setAttribute("errMsg", "Something is wrong");
             request.getRequestDispatcher("/account/index.do").forward(request, response);
         }
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
-    protected void delete(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String layout = (String) request.getAttribute("layout");
-        try {
-            request.setAttribute("id", request.getParameter("id"));
-            request.setAttribute("username", request.getParameter("username"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("errMsg", "Có gì đó xảy ra");
-            request.setAttribute("action", "delete");
-        }
-        request.getRequestDispatcher(layout).forward(request, response);
-    }
-
-    private void delete_handler(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String layout = (String) request.getAttribute("layout");
-        try {
-            AccountFacade af = new AccountFacade();
-            //Lấy dữ liệu từ client
-            int id = Integer.parseInt(request.getParameter("id"));
-            String op = request.getParameter("op");
-            switch (op) {
-                case "Yes":
-                    af.delete(id);
-                    logout(request, response);
-                    break;
-                case "No":
-                    response.sendRedirect(request.getContextPath() + "/");
-                    break;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();//in chi tiet cua ngoai le
-            //request.setAttribute("errorMsg", e.toString());//e.getMessage()
-            request.setAttribute("errorMsg", "Error when deleting ");
-            //Cho hiện lại trang index (chạy lại case "index")
-            request.getRequestDispatcher("/").forward(request, response);
-        }
-    }
+//    protected void delete(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        String layout = (String) request.getAttribute("layout");
+//        try {
+//            request.setAttribute("id", request.getParameter("id"));
+//            request.setAttribute("username", request.getParameter("username"));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            request.setAttribute("errMsg", "Có gì đó xảy ra");
+//            request.setAttribute("action", "delete");
+//        }
+//        request.getRequestDispatcher(layout).forward(request, response);
+//    }
+//
+//    private void delete_handler(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        String layout = (String) request.getAttribute("layout");
+//        try {
+//            AccountFacade af = new AccountFacade();
+//            //Lấy dữ liệu từ client
+//            int id = Integer.parseInt(request.getParameter("id"));
+//            String op = request.getParameter("op");
+//            switch (op) {
+//                case "Yes":
+//                    af.delete(id);
+//                    logout(request, response);
+//                    break;
+//                case "No":
+//                    response.sendRedirect(request.getContextPath() + "/");
+//                    break;
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();//in chi tiet cua ngoai le
+//            //request.setAttribute("errorMsg", e.toString());//e.getMessage()
+//            request.setAttribute("errorMsg", "Error when deleting ");
+//            //Cho hiện lại trang index (chạy lại case "index")
+//            request.getRequestDispatcher("/").forward(request, response);
+//        }
+//    }
 
     protected void forgot(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -341,6 +332,7 @@ public class AccountController extends HttpServlet {
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
+    
     protected void forgot_enter_email(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
