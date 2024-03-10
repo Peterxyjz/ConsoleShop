@@ -28,7 +28,7 @@ productWrapper.forEach((item, i) => {
     });
 });
 //search
-
+let searchByNameCalled = false;
 
 async function searchByName() {
     console.log(document.querySelector("#search").value);
@@ -59,12 +59,18 @@ async function searchByName() {
                 }
 
             });
+
         }
 
     });
 }
-$(function () {
-    $("#search").autocomplete({
-
-    });
+$("#search").on("click",async function() {
+    // Kiểm tra nếu chưa gọi hàm searchByName(), thì gọi nó
+    if (!searchByNameCalled) {
+        await  searchByName();
+         $(this).autocomplete("search", "");
+    } else {
+        // Nếu đã gọi, thì chỉ cần gọi phương thức search()
+        $(this).autocomplete("search", "");
+    }
 });

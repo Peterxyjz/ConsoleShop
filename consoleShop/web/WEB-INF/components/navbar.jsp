@@ -16,7 +16,7 @@
                 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
                 <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
                 <form action="<c:url value="/product/search_handler.do"/>" method="POST">
-                    <input oninput="searchByName()" type="text" placeholder="Tìm sản phẩm" id="search" name="search" onclick="searchByName()">            
+                    <input type="text" placeholder="Tìm sản phẩm" id="search" name="search" oninput="searchByName()">            
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <i class="fa-solid fa-magnifying-glass" id="search-bar-icon"></i>
                 </form>
