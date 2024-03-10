@@ -1,18 +1,18 @@
-function decreaseQuantity() {
-    var quantityInput = document.getElementById("quantityInput");
-    var proId = document.getElementById("proId");
-    if (quantityInput.value > 1) {
-        quantityInput.value = parseInt(quantityInput.value) - 1;
-        autoUpdateQuantity(quantityInput.value)
-    }
-
-}
-
-function increaseQuantity() {
-    var quantityInput = document.getElementById("quantityInput");
-    quantityInput.value = parseInt(quantityInput.value) + 1;
-    utoUpdateQuantity(quantityInput.value)
-}
+//function decreaseQuantity() {
+//    var quantityInput = document.getElementById("quantityInput");
+//    var proId = document.getElementById("proId");
+//    if (quantityInput.value > 1) {
+//        quantityInput.value = parseInt(quantityInput.value) - 1;
+//        autoUpdateQuantity(quantityInput.value)
+//    }
+//
+//}
+//
+//function increaseQuantity() {
+//    var quantityInput = document.getElementById("quantityInput");
+//    quantityInput.value = parseInt(quantityInput.value) + 1;
+//    utoUpdateQuantity(quantityInput.value)
+//}
 
 function autoUpdateQuantity(param, proId) {
     console.log(param.value == "")

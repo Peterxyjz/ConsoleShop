@@ -5,11 +5,14 @@
 <style><%@include file="/WEB-INF/css/product.css"%></style>
 <div class="container-fluid mt-5">
     <div class="row product">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-4  product__left">
-            <img src="<c:url value="/images/${product.proId}.jpg"/>" width="60%" class=" rounded mx-auto d-block "/>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3  product__left">
+            <img src="<c:url value="/images/${product.proId}.jpg"/>" width="60%" class=""/>
+            <div class="moreImg col-lg-4 text-center mt-2">
+            <a href="#" id="moreImgLink">Xem thêm ảnh</a>  
+            </div>
         </div>
-        <div class="col-sm-6  product__right">
+        <div class="col-lg-6  product__right">
             <p>Sản phẩm</p>
             <h3 class="product__name">${product.proName}</h3>
             <div class="product__description">
@@ -52,18 +55,18 @@
                 <hr/>
             </div>
         </div>
-        <div class="col-sm-1"></div>
+        <div class="col-lg-1"></div>
     </div>
     <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="moreImg col-sm-4 text-center mt-2">
-            <a href="#" id="moreImgLink">Xem thêm ảnh</a>  
+        <div class="col-lg-1"></div>
+        <div class=" col-lg-3 text-center mt-2">
+            
         </div>
-        <div class="col-sm-6 mt-2">
+        <div class="col-lg-6 mt-2">
 
             <p style="text-align: justify; font-size: large">${product.description}</p> 
         </div>
-        <div class="col-sm-1"></div>
+        <div class="col-lg-1"></div>
     </div>
     ${errorMsg}
 </div>

@@ -29,8 +29,7 @@
     align-content: flex-start;
     color: #2579f2;
     font-weight: 500;
-    border: 1px solid #d1d5db;
-    border-radius: 0.25rem;
+    margin-right: 10px;
     height: 2rem;
 }
 .btn_quantity{
@@ -56,6 +55,20 @@
 .cart_empty img{
     width: 30%;
     height: 30%;
+}
+.pay__status {
+    background: #0093E9;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+#quantityInput{
+    width: 46px;
+    padding: 5px 0 5px 5px;
+    outline: none;
+    border-radius: 6px;
+    border: 1px #374151 solid;
+    text-align: left;
 }
 .btn-link{
     color: black !important;

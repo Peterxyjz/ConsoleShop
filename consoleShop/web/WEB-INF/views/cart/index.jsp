@@ -9,7 +9,7 @@
             <i class="bi bi-arrow-left-short"></i> Mua thêm sản phẩm khác
         </a>
         <div class="row">
-            <div class="col-sm-3 d-flex align-items-center justify-content-evenly " style="background-color: rgb(145, 222, 222);">Giỏ hàng</div>
+            <div class="pay__status col-sm-3 d-flex align-items-center justify-content-evenly">Giỏ hàng</div>
             <div class="col-sm-3 d-flex align-items-center justify-content-evenly">Thông tin đặt hàng</div>
             <div class="col-sm-3 d-flex align-items-center justify-content-evenly">Thanh toán</div>
             <div class="col-sm-3 d-flex align-items-center justify-content-evenly">Hoàn tất</div>
@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="item_info_mid">
                                         <!--<button type="button" class="btn_quantity" onclick="decreaseQuantity()">-</button>-->
-                                        <input oninput="autoUpdateQuantity(this, ${item.product.proId})" class="inp_quantity" type="number" required min="1" step="1" name="quantity" id="quantityInput" value="${item.quantity}">
+                                        <input oninput="autoUpdateQuantity(this, ${item.product.proId})" class="inp_quantity" type="number" required min="1" max="1000" step="1" name="quantity" id="quantityInput" value="${item.quantity}">
                                         <!--<button type="button" class="btn_quantity" onclick="increaseQuantity()">+</button>-->   
                                     </div> 
 
