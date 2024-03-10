@@ -104,7 +104,7 @@
                 </c:if>
             </div>
 
-            <button type="submit" class="personal__submit col-4">Lưu các thay đổi</button>
+            <button type="submit" class="personal__submit col-md-5 col-7">Lưu các thay đổi</button>
         </form>
     </div>       
 

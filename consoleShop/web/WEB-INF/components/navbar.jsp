@@ -26,7 +26,7 @@
             <div class="nav__right">
                 <i class="fa-solid fa-magnifying-glass nav__search-icon"></i>
                 <c:if test="${account == null}">
-                    <a href="<c:url value="/account/login.do"/>"class="nav__account">
+                    <a href="<c:url value="/account/login.do"/>"class="nav__account--logged" style="margin-right: 20px">
                         <i class="bi bi-person"></i>
                         <span>Tài Khoản</span>
                     </a>

@@ -51,31 +51,31 @@
         <p class="personal__remind">*Để mua hàng tốt nhất, bạn nên nhập đầy đủ thông tin.</p>
 
             <div class="personal__group col-lg-12">
-                Username: ${sessionScope.account.username}
+                <span class="personal__title">Username:</span> ${sessionScope.account.username}
             </div>
 
             <div class="personal__group col-lg-12">
-                Họ và tên: ${sessionScope.account.fullName}
+                <span class="personal__title">Họ và tên:</span> ${sessionScope.account.fullName}
             </div>
 
             <div class="personal__group col-lg-12">
-                Số điện thoại: ${sessionScope.account.phoneNumber}
+                <span class="personal__title">Số điện thoại:</span> ${sessionScope.account.phoneNumber}
             </div>
 
             <div class="personal__group col-lg-12">
-                Quốc gia: ${sessionScope.account.country}
+                <span class="personal__title">Quốc gia:</span> ${sessionScope.account.country}
             </div>
 
             <div class="personal__group col-lg-12">
-                Địa chỉ: ${sessionScope.account.address}
+                <span class="personal__title">Địa chỉ:</span> ${sessionScope.account.address}
             </div>
 
             <div class="personal__group col-lg-12">
-                Ngày sinh: <fmt:formatDate value="${sessionScope.account.birthDay}" pattern="MM-dd-yyyy" />
+                <span class="personal__title">Ngày sinh:</span> <fmt:formatDate value="${sessionScope.account.birthDay}" pattern="MM-dd-yyyy" />
                 
             </div>
                 <a href="update.do?accId=${sessionScope.account.accId}">
-                    <button class="personal__change col-4">Cập nhật</button>
+                    <button class="personal__change col-md-4 col-6">Cập nhật</button>
                 </a>
     </div>
 </div>
