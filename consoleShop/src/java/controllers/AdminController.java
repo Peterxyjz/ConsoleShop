@@ -30,9 +30,6 @@ public class AdminController extends HttpServlet {
             case "create":
                 create(request, response);
                 break;
-            case "uploadFile":
-                uploadFile(request, response);
-                break;
             case "create_handler":
                 create_handler(request, response);
                 break;
@@ -192,9 +189,6 @@ public class AdminController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         try {
             ProductFacade pf = new ProductFacade();
-            
-//            int proId = Integer.parseInt(request.getParameter("proId"));
-//            System.out.println("ProdId: " + proId);
             pf.delete(Integer.parseInt(request.getParameter("proId")));
             response.sendRedirect(request.getContextPath() + "/admin/edit.do");
         } catch (Exception e) {

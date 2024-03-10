@@ -20,7 +20,7 @@ public class FileUploadController extends HttpServlet {
             Part filePart = request.getPart("photo");
             String fileName = String.format("%d.jpg", pf.getProIdForUpload());
             for (Part part : request.getParts()) {
-                part.write("D:\\fptu\\CN4\\ConsoleShop\\consoleShop\\web\\images\\" + fileName);
+                part.write("D:\\fptu\\ConsoleShop\\consoleShop\\web\\images\\" + fileName);
             }
         } catch (Exception e) {
             e.printStackTrace();
