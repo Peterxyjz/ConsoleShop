@@ -3,6 +3,18 @@
     text-decoration: none;
     font-weight: 500;
 }
+.product__left{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+}
+.product__left img{
+    width: 100%;
+    object-fit: contain;
+}
 .product__right{
     display: flex;
     flex-direction: column;
@@ -152,7 +164,7 @@
         margin-bottom: 20px;
     }
 }
-@media (max-width:992px){
+@media (max-width:993px){
     .today-deal__name{
         margin-top: 0px;
         font-size: 12px;
@@ -171,4 +183,8 @@
         font-size: 8px;
 
     }
+    .product__left img{
+    width: 60%;
+    object-fit: cover;
+}
 }
