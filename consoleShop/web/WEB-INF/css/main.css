@@ -280,10 +280,10 @@ a{
     .nav__menu{
         margin-left: 20px;
     }
-    .nav__account span,.nav__cart span{
+    .nav__account--logged span,.nav__cart span{
         display: none;
     }
-    .nav__account ,.nav__cart,.nav__menu{
+    .nav__account--logged ,.nav__cart,.nav__menu{
         transform: scale(1.4);
     }
     .nav__right{
@@ -320,9 +320,9 @@ a{
     }
     .account__dropdown{
 
-        width: 130px;
+        min-width: 110px;
         right: -70px;
-        font-size: 10px;
+        font-size: 8px;
 
     }
     .nav__name{
@@ -413,7 +413,10 @@ a{
         top: 16.5px;
         font-size: 14px;
     }
-
+    .account__dropdown{
+    
+        left: -50px;
+    }
 }
 @media (max-width: 770px){
     .top-product{
@@ -468,9 +471,7 @@ a{
     }
     .account__dropdown{
 
-        width: 120px;
-        right: -60px;
-        font-size: 9px;
+        
 
     }
 
