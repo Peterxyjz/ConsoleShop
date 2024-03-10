@@ -105,12 +105,15 @@
                                 <td>${product.description}</td> 
                                 <td>
                                     <a href="edit_form.do?proName=${product.proName}"><i class="bi bi-gear"></i></a> 
-                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                  
+                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal_${product.proId}">
                                         <i style="red" class="bi bi-trash"></i>
+                                        
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal_${product.proId}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -121,7 +124,7 @@
                                                     <p>Bạn có chắc là muốn xóa không?</p>
                                                 </div>
                                                 <div class="modal-footer">     
-                                                    <a href="<c:url value="/admin/delete_handler.do?proName=${product.proName}"/>" class="btn btn-danger"  >
+                                                    <a href="<c:url value="/admin/delete_handler.do?proId=${product.proId}"/>" class="btn btn-danger"  >
                                                         Có
                                                     </a>
                                                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Không</button>

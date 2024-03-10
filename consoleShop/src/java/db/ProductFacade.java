@@ -196,10 +196,10 @@ public class ProductFacade {
         con.close();
     } 
     
-    public void delete(String proId) throws SQLException {
+    public void delete(int proId) throws SQLException {
         Connection con = DBContext.getConnection();
-        PreparedStatement stm = con.prepareStatement("DELETE Product where ProName = ?");
-        stm.setString(1, proId);
+        PreparedStatement stm = con.prepareStatement("DELETE Product where proId = ?");
+        stm.setInt(1, proId);
         //Thực thi lệnh delete
         int count = stm.executeUpdate();
         con.close();
