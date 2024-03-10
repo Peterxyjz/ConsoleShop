@@ -90,6 +90,39 @@ a{
     font-size: 13px;
 
 }
+.nav__item:first-child{
+    position: relative;
+}
+
+.categorty__dropdown{
+    width: 170px;
+    position: absolute;
+    padding: 4px 8px 20px 8px;
+    background-color: #fff;
+    box-shadow: 0px 5px 20px 1px rgba(105,92,92,0.75);
+    border-radius: 6px;
+    display: none;
+    animation: dropDown 0.4s ease;
+    transform-origin: top left;
+}
+.category__dropdown-wrapper{
+    width: 100%;
+    list-style: none;
+    padding: 0;
+}
+.category__dropdown-item a{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 12px;
+}
+.category__dropdown-image{
+    object-fit: contain;
+    width: 34%;
+}
+.category__dropdown-title{
+    
+}
 #search__bar{
     display: none;
 }
@@ -150,13 +183,14 @@ a{
     list-style: none;
     padding: 10px 14px;
     text-align: left;
-    width: 120%;
-    right: -16px;
+    max-width: 110%;
+    min-width: 147px;
+    left: 0px;
     border-radius: 10px; 
     transform-origin: top left;
     animation: dropDown 0.4s ease;
     font-style: normal;
-    top: 20px;
+    top: 28px;
 }
 .nav__name{
     font-style: normal;
@@ -213,7 +247,7 @@ a{
     font-size: 18px;
 }
 .active{
-    display: block;
+    display: block !important;
 }
 @keyframes slideDown {
     from{
@@ -294,6 +328,10 @@ a{
     .nav__name{
         display: none;
     }
+    .account__dropdown{
+    left: -40px;
+    top: 28px;
+}
 }
 @media (max-width: 992px){
     .top-product{
@@ -395,6 +433,9 @@ a{
         padding: 8px 10px;
         font-size: 18px;
     }
+    .account__dropdown{
+    top: 20px;
+}
 }
 @media (max-width: 768px){
     .today-deal__item{
@@ -462,11 +503,18 @@ a{
     .today-deal__discount{
         font-size: 8px;
     }
+    @media(max-width: 320px){
+    .account__dropdown{
+        left: -60px;
+        font-size: 8px;
+        min-width: 112px;
+}
+    }
 
 }
 /*footer*/
 footer{
-    width: 107vw;
+    width: 100vw;
     background-color: #f2f2f2;
 
 }
