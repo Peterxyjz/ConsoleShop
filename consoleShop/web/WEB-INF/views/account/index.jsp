@@ -10,7 +10,7 @@
 <style><%@include file="/WEB-INF/css/accountUpdate.css"%></style>
 <jsp:include page="/WEB-INF/components/navbar.jsp" />
 
-<div class="container" style="height: 200vh">
+<div class="container" >
     <div class="general">
         <h3 class="general__header">Tổng quan</h3>
 
@@ -51,8 +51,7 @@
         <p class="personal__remind">*Để mua hàng tốt nhất, bạn nên nhập đầy đủ thông tin.</p>
 
             <div class="personal__group col-lg-12">
-                
-                u: ${sessionScope.account.username}
+                Username: ${sessionScope.account.username}
             </div>
 
             <div class="personal__group col-lg-12">
@@ -64,7 +63,7 @@
             </div>
 
             <div class="personal__group col-lg-12">
-                Nước: ${sessionScope.account.country}
+                Quốc gia: ${sessionScope.account.country}
             </div>
 
             <div class="personal__group col-lg-12">
@@ -72,10 +71,12 @@
             </div>
 
             <div class="personal__group col-lg-12">
-                ngày sinh: <fmt:formatDate value="${sessionScope.account.birthDay}" pattern="MM-dd-yyyy" />
+                Ngày sinh: <fmt:formatDate value="${sessionScope.account.birthDay}" pattern="MM-dd-yyyy" />
                 
             </div>
-                <a href="update.do?accId=${sessionScope.account.accId}">Update</a>
+                <a href="update.do?accId=${sessionScope.account.accId}">
+                    <button class="personal__change col-4">Cập nhật</button>
+                </a>
     </div>
 </div>
 <jsp:include page="/WEB-INF/components/footer.jsp" />
