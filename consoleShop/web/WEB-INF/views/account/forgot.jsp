@@ -20,22 +20,23 @@
                 <div class="row">
                     <div class="form__group col-lg-8 col-sm-8">
                         <label for="email">Email</label><br/>
-                        <input type="text" id="email" name="email" value="${param.email!=null?param.email:ckEmail.value}"><br/>
+                        <input type="text" id="email" name="email" value="${param.email}"><br/>
                     </div>
                     <div class="form__group col-lg-8 col-sm-8">
-                        <label for="password">Mật khẩu</label><br/>
-                        <input type="password" id="password_check" name="password" value="${param.password!=null?param.password:ckPassword.value}"><br/>
+                        <label for="password">Mật khẩu mới</label><br/>
+                        <input type="password" id="password" name="password" value="${param.password}"><br/>
+                    </div>
+                    <div class="form__group col-lg-8 col-sm-8">
+                        <label for="password_check">Xác nhận mật khẩu mới</label><br/>
+                        <input type="password" id="password_check" name="password_check" value="${param.password_check}"><br/>
                     </div>
                     <div class="form__message">${errMsg}</div>
-                    <div class="form-check mb-3">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" name="remember"> Remember me
-                        </label>
-                    </div>
                     <div class="form__group--submit col-lg-8 col-sm-8" >
                         <button type="submit">Xác nhận</button>
                     </div>
-                    
+                    <div class="login__footer col-lg-8 col-sm-8">
+                        Trở về trang đăng nhập <a href="<c:url value="/account/login.do"/>">Đăng nhập</a>
+                    </div>
                 </div>
             </form>
         </div>

@@ -26,7 +26,7 @@
                         <label for="password">Mật khẩu</label><br/>
                         <input type="password" id="password_check" name="password" value="${param.password!=null?param.password:ckPassword.value}"><br/>
                     </div>
-                    <div class="form__message">${errMsg}</div>
+                    <div class="form__message">${successMsg != null? errMsg : successMsg}</div>
                     <div class="form-check mb-3">
                         <label class="form-check-label">
                             <input class="form-check-input" type="checkbox" name="remember"> Remember me

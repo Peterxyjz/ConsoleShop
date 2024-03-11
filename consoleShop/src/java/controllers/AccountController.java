@@ -46,7 +46,7 @@ public class AccountController extends HttpServlet {
 
         switch (action) {
             case "index":
-                index(request,response);
+                index(request, response);
                 break;
             case "signup":
                 signup(request, response);
@@ -86,7 +86,7 @@ public class AccountController extends HttpServlet {
 //                break;
         }
     }
-    
+
     protected void index(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -165,6 +165,7 @@ public class AccountController extends HttpServlet {
 
     protected void login(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.removeAttribute("successMsg");
         //doc email & password tu cookies
         Cookie cks[] = request.getCookies();
         Cookie ckEmail = null;
@@ -325,64 +326,69 @@ public class AccountController extends HttpServlet {
 //            request.getRequestDispatcher("/").forward(request, response);
 //        }
 //    }
-
     protected void forgot(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
-    
-    protected void forgot_enter_email(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String layout = (String) request.getAttribute("layout");
-        try {
-            String email = request.getParameter("email");
-            AccountFacade af = new AccountFacade();
-
-            if (af.isExisted(email)) {
-                request.setAttribute("forgotPasswordEmail", email);
-                request.getRequestDispatcher("/account/forgot_handler.do").forward(request, response);
-            } else {
-                request.setAttribute("errMsg", "email này chưa được đăng kí");
-                request.getRequestDispatcher("/account/forgot_enter_email.do").forward(request, response);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("errMsg", e);
-        }
-        request.getRequestDispatcher(layout).forward(request, response);
-    }
-
+//    protected void forgot_enter_email(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        String layout = (String) request.getAttribute("layout");
+//        try {
+//            String email = request.getParameter("email");
+//            AccountFacade af = new AccountFacade();
+//
+//            if (af.isExisted(email)) {
+//                request.setAttribute("forgotPasswordEmail", email);
+//                request.getRequestDispatcher("/account/forgot_handler.do").forward(request, response);
+//            } else {
+//                request.setAttribute("errMsg", "email này chưa được đăng kí");
+//                request.getRequestDispatcher("/account/forgot.do").forward(request, response);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            request.setAttribute("errMsg", e);
+//        }
+//        request.getRequestDispatcher(layout).forward(request, response);
+//    }
     protected void forgot_handler(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         try {
             AccountFacade af = new AccountFacade();
-            String email = request.getParameter("forgotPasswordEmail");
+            String email = request.getParameter("email");
             String password = request.getParameter("password");
-            String repeatedPassword = request.getParameter("repeatedPassword");
-            //trong khi 2 password khác nhau...
-            while (repeatedPassword != password) {
-                //show error
-                request.setAttribute("errMsg", "Mật khẩu không trùng khớp");
-                //quay lại forgot_handler.do
-                response.sendRedirect(request.getContextPath() + "/account/forgot_handler.do");
-            }
-            //nếu đã trùng khớp thì tiến hành update password
+            String password_check = request.getParameter("password_check");
+            //check email
             Account account = af.select(email);
-            account.setPassword(password);
-            af.update(account);
-            //quay ve trang login
-            request.setAttribute("successMsg", "bây giờ bạn có thể log in");
-            response.sendRedirect(request.getContextPath() + "/account/login.do");
-
+            if (account != null) {
+                if (!password_check.equals(password)) {
+                    //show error
+                    request.setAttribute("errMsg", "*Mật khẩu không trùng khớp");
+                    //quay lại forgot_handler.do
+                    request.getRequestDispatcher("/account/forgot.do").forward(request, response);
+                } else {
+                    //nếu đã trùng khớp thì tiến hành update password
+                    account.setPassword(password);
+                    System.out.println(""+account.getPassword());
+                    af.update_password(account);
+                    //quay ve trang login
+                    request.setAttribute("successMsg", "*Bây giờ bạn có thể log in");
+                    request.getRequestDispatcher("/account/login.do").forward(request, response);
+                }
+            } else {
+                request.setAttribute("errMsg", "*Tài khoản không tồn tại");
+                request.getRequestDispatcher("/account/forgot.do").forward(request, response);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errMsg", "có lỗi gì đó xảy ra");
-            response.sendRedirect(request.getContextPath() + "/account/login.do");
+            System.out.println("ddaay af?");
+            request.getRequestDispatcher("/account/login.do").forward(request, response);
             request.getRequestDispatcher(layout).forward(request, response);
         }
+        request.getRequestDispatcher(layout).forward(request, response);
     }
 
     protected void logout(HttpServletRequest request, HttpServletResponse response)
