@@ -55,7 +55,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Nhập thông tin sản phẩm: </label>
-                        <input type="text" class="form-control" id="description" name="description" value="${param.description}" >
+                        <textarea class="form-control" id="description" name="description" rows="7">${param.description}</textarea>
                     </div> 
                     <button onclick="uploadFile()" type="submit" class="btn btn-primary" value="create" > <i class="bi bi-check"></i> Thêm sản phẩm</button>
                 </form>
@@ -68,7 +68,7 @@
     </div>
     <br/>
 </div>
-<script><%@include file="/WEB-INF/javascript/uploadFile.js"%></script>
+<script><%@include file="/WEB-INF/javascript/file.js"%></script>
 <jsp:include page="/WEB-INF/components/footer.jsp"/>
 
 

@@ -22,8 +22,9 @@
             <div class="col-sm-8">
                 <form action="edit_handler.do">
                     <div class="mb-3 mt-3">
-                        <label for="photo" class="form-label">Up ảnh sản phẩm:</label>
-                        <input type="file" class="form-control" id="photo" name="photo" value="${product.proId}">
+                        <img src="<c:url value="/images/${product.proId}.jpg"/>" width="30%"><br/>
+                        <label class="mt-1" for="photo" class="form-label">Đổi ảnh sản phẩm:</label>
+                        <input type="file" class="form-control" id="photo" name="photo">
                     </div>
                     <div class="mb-3">
                         <label for="proName" class="form-label">Nhập tên sản phẩm: </label>
@@ -58,7 +59,7 @@
                         <label for="description" class="form-label">Nhập thông tin sản phẩm: </label>
                         <textarea class="form-control" id="description" name="description" rows="7">${product.description}</textarea>
                     </div> 
-                    <button type="submit" class="btn btn-primary" value="create"> <i class="bi bi-check"></i> Thêm sản phẩm</button>
+                    <button onclick="editFile()" type="submit" class="btn btn-primary" value="create"> <i class="bi bi-check"></i> Thêm sản phẩm</button>
                 </form>
                 <br/>
                 <i style="color:red;">${errorMsg}</i>
@@ -69,6 +70,7 @@
     </div>
     <br/>
 </div>
+<script><%@include file="/WEB-INF/javascript/file.js"%></script>
 <jsp:include page="/WEB-INF/components/footer.jsp"/>
 
 

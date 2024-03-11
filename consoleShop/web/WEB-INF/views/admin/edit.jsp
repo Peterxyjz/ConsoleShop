@@ -92,7 +92,11 @@
                     <tbody>
                         <c:forEach var="product" items="${list}">
                             <tr>
-                                <td><img src="<c:url value="/images/${product.proId}.jpg"/>" width="100%"></td>
+                                <td>
+                                    <img src="<c:url value="/images/${product.proId}.jpg"/>" width="100%">
+                                    <input type="hidden" id="proId" value="${product.proId}"/>
+                                </td>
+                                
                                 <td>${product.proId}</td>
                                 <td>${product.proName}</td>
                                 <td style="text-align: right;">
@@ -124,7 +128,7 @@
                                                     <p>Bạn có chắc là muốn xóa không?</p>
                                                 </div>
                                                 <div class="modal-footer">     
-                                                    <a href="<c:url value="/admin/delete_handler.do?proId=${product.proId}"/>" class="btn btn-danger"  >
+                                                    <a href="<c:url value="/admin/delete_handler.do?proId=${product.proId}"/>" class="btn btn-danger" onclick="deleteFile()" >
                                                         Có
                                                     </a>
                                                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Không</button>
@@ -143,4 +147,5 @@
 
     <br/>
 </div>
+<script><%@include file="/WEB-INF/javascript/file.js"%></script>
 <jsp:include page="/WEB-INF/components/footer.jsp" />
