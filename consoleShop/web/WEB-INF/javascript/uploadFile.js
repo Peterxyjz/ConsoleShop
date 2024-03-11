@@ -1,8 +1,0 @@
-async function uploadFile() {
-    let formData = new FormData();
-    formData.append("photo", photo.files[0]);
-    await fetch('/consoleShop/fileuploadservlet', {
-        method: "POST",
-        body: formData
-    });
-}
