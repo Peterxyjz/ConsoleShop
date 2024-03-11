@@ -107,6 +107,16 @@ public class AccountFacade {
         int count = stm.executeUpdate();
         con.close();
     }
+    
+    public void update_password(Account account) throws SQLException, NoSuchAlgorithmException {
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("update Account set password=? where accId=?");
+        stm.setString(1, Hasher.hash(account.getPassword()));
+        System.out.println(""+Hasher.hash(account.getPassword()));
+        stm.setInt(2, account.getAccId());
+        int count = stm.executeUpdate();
+        con.close();
+    }
 
     public void delete(int accId) throws SQLException {
         Connection con = DBContext.getConnection();
