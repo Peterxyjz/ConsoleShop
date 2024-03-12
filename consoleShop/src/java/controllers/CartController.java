@@ -115,7 +115,7 @@ public class CartController extends HttpServlet {
             HttpSession session = request.getSession();
             Cart cart = (Cart) session.getAttribute("cart");
             cart.update(proId, quantity);
-         
+            session.setAttribute("cart", cart);
         
             Account account = (Account) session.getAttribute("account");
             double wallet = account == null ? 0 : account.getWallet();

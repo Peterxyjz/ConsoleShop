@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class OrderDetail {
     private int quantity, ordId, proId;
-    private Double price;
+    private double price;
     private float discount;
     private Date orderDate;
 
@@ -44,11 +44,11 @@ public class OrderDetail {
         this.proId = proId;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
