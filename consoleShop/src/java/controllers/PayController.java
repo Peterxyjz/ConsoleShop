@@ -49,6 +49,10 @@ public class PayController extends HttpServlet {
             case "order_handler":
                 order_handler(request, response);
                 break;
+
+            case "index":
+                index(request, response);
+                break;
         }
     }
 
@@ -74,19 +78,38 @@ public class PayController extends HttpServlet {
 
         request.getRequestDispatcher(layout).forward(request, response);
     }
-    
+
     protected void order_handler(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
-        
-        
-        
+
+        String fullName = request.getParameter("fullName");
+        String phone = request.getParameter("phone");
+
+        String province = request.getParameter("province");
+        String district = request.getParameter("district");
+        String ward = request.getParameter("ward");
+        String address = request.getParameter("address");
+        System.out.println("province: " + province);
+        System.out.println("district: " + district);
+        System.out.println("ward: " + ward);
+        System.out.println("address: " + address);
+//        Lưu thông tin ngươì dùng 
+        String info = String.format("%-25s | $s"
+                + "\n %s "
+                + "\n%s %s %s", fullName, phone, address, ward, district, province);
+        request.setAttribute("info", info);
+
+        request.getRequestDispatcher("/pay/index.do").forward(request, response);
+    }
+
+      protected void index(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+
         request.getRequestDispatcher(layout).forward(request, response);
     }
     
-    
-    
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

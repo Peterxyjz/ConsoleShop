@@ -16,7 +16,7 @@
         <div class="col-sm-6">
             <h3>Thông tin đặt hàng</h3>
             <hr/>
-            <form action="#" class="row">
+            <form action="<c:url value="/pay/order_handler.do"/>" class="row">
                 <div class="col-sm-12 mt-3 mb-3">
                     <label for="fullName" class="form-label">Họ và tên</label>
                     <input class="form-control" type="text" name="fullName" id="fullName" placeholder="Họ và tên">
@@ -28,32 +28,34 @@
                 <div class="col-sm-4 mb-3">
                     <!--Thành phố-->
                     <label for="province" class="form-label">Thành phố</label>
-                    <select id="province" class="form-select">
+                    <select id="province" class="form-select" name="province">
                         <!-- <option value="1">TP HaNoi</option> -->
                     </select>
                 </div>
                 <div class="col-sm-4 mb-3">
                     <!--quận-->
                     <label for="district" class="form-label">Quận</label>
-                    <select id="district" class="form-select">
+                    <select id="district" class="form-select" name="district">
                         <!-- <option value="1">Quan ne</option> -->
                     </select>
                 </div>
                 <div class="col-sm-4 mb-3">
                     <!-- phường -->
                     <label for="ward" class="form-label">Huyện/Phường</label>
-                    <select id="ward" class="form-select">
+                    <select id="ward" class="form-select" name="ward">
                         <!-- <option value="1">Huyen ne</option> -->
                     </select>
                 </div>
                 <div class="col-sm-12 mb-3">
                     <label for="address" class="form-label">Địa chỉ chi tiết</label>
-                    <input type="text" class="form-control" placeholder="Số nhà, tên đường" id="address"/>
+                    <input type="text" class="form-control" placeholder="Số nhà, tên đường" name="address" id="address"/>
                 </div>
 
                 <div class="d-grid gap-2 mb-3 mt-3">
                     <button class="btn btn-primary" type="submit">Xác nhận</button>
                 </div>
+                Tổng tiền : ${sessionScope.cart.total}
+                Số lượng  : ${sessionScope.cart.quantity}
             </form>
         </div>
         <div class="col-sm-3"></div>
