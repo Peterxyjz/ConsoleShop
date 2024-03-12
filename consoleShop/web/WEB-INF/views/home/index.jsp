@@ -8,7 +8,7 @@
     <div class="banner__content">
         <h1 class="banner__header">Console Shop</h1>
         <div class="banner__description">Khám phá thế giới game đỉnh cao, cùng đam mê vượt mọi ranh giới, tại đây chúng tôi chờ bạn !</div>
-        <a href="<c:url value="/product/search_handler.do?proName"/>"><button class="banner__btn">Mua ngay</button></a>
+        <a href="<c:url value="/product/search_handler.do"/>"><button class="banner__btn">Mua ngay</button></a>
     </div>
 
     <div class="banner__bkg">
@@ -41,7 +41,7 @@
         </div>
 
         <div class="top-product__item col-lg-2 col-md-4 col-6">
-            <img src="<c:url value="/images/102.jpg"/>" alt="">
+            <img src="<c:url value="/images/chuainsert/93.jpg"/>" alt="">
             <h4>Phụ kiện</h4>
         </div>
     </div>
