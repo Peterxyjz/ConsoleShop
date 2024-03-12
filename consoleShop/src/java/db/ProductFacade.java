@@ -247,5 +247,26 @@ public class ProductFacade {
         return proId;
         
     }
+    public List<Product> getProByCategory(int categoryId) throws SQLException{
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("select * from Product where CategoryID = ?");
+        List<Product> list = null;
+        stm.setInt(1, categoryId);
+        ResultSet rs = stm.executeQuery();
+        list = new ArrayList<>();
+        while(rs.next()){
+            Product product = new Product();
+            product.setProId(rs.getInt("ProID"));
+            product.setProName(rs.getString("proName"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDiscount(rs.getDouble("discount"));
+            product.setAmount(rs.getInt("Amount"));
+            product.setCategoryId(rs.getInt("categoryId"));
+           
+            product.setDescription(rs.getString("description"));
+            list.add(product);
+        }
+        return list;
+    }
 
 }

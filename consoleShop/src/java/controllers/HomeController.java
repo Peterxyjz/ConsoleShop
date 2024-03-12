@@ -4,8 +4,15 @@
  * and open the template in the editor.
  */
 package controllers;
+import db.Product;
+import db.ProductFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,11 +43,31 @@ public class HomeController extends HttpServlet {
         switch(action){
             case "index":
                 //xử lý
+                index(request, response);
                 break;           
         }
-        request.getRequestDispatcher(layout).forward(request, response);    
     }
+ protected void index(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String layout = (String) request.getAttribute("layout");
+            
+            ProductFacade pf = new ProductFacade();
+            List<Product> gameList = pf.getProByCategory(1);
+            Collections.shuffle(gameList);
 
+            List<Product> nintendoList = pf.getProByCategory(2);
+            Collections.shuffle(nintendoList);
+
+            request.setAttribute("gameList", gameList);
+            request.setAttribute("nintendoList", nintendoList);
+            request.getRequestDispatcher(layout).forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
