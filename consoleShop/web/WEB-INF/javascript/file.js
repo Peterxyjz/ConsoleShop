@@ -10,16 +10,15 @@ async function uploadFile() {
 async function deleteFile() {
     let formData = new FormData();
     formData.append("proId", document.querySelector("#proId").value);
-    console.log(document.querySelector("#proId").value)
     await fetch('/consoleShop/deletefile', {
         method: "POST",
         body: formData
     });
 }
 
-async function editFile() {
+async function editfile() {
     let formData = new FormData();
-    formData.append("fileName");
+    formData.append("proId", document.querySelector("#proId").value);
     formData.append("photo", photo.files[0]);
     await fetch('/consoleShop/editfile', {
         method: "POST",

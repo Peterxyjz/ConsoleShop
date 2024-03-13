@@ -29,7 +29,7 @@
                     <div class="form__message">${successMsg != null? errMsg : successMsg}</div>
                     <div class="form-check mb-3">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" name="remember"> Remember me
+                            <input class="form-check-input" type="checkbox" name="remember"> Lưu tài khoản
                         </label>
                     </div>
                     <div class="form__group--submit col-lg-8 col-sm-8" >

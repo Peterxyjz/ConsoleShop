@@ -8,7 +8,7 @@
         <a href="<c:url value="/product/search_handler.do?proName=" />" class="btn btn-link">
             <i class="bi bi-arrow-left-short"></i> Mua thêm sản phẩm khác
         </a>
-        <div class="row">
+        <div class="row mt-2">
             <div class="pay__status col-sm-3 d-flex align-items-center justify-content-evenly">Giỏ hàng</div>
             <div class="col-sm-3 d-flex align-items-center justify-content-evenly">Thông tin đặt hàng</div>
             <div class="col-sm-3 d-flex align-items-center justify-content-evenly">Thanh toán</div>
@@ -37,7 +37,6 @@
                                     <div class="item_info_left">
                                         <a href="#">
                                             Tên sản phẩm: ${item.product.proName}
-                                            <!--<input type="hidden" id="proId" name="proId" value="${item.product.proId}">-->
                                         </a>
                                         <p>Thể loại: 
                                             <c:forEach var="categories" items="${categoryList}">
@@ -117,12 +116,12 @@
                 <c:if test="${cart != null}">
                     <div class="d-grid gap-2 mt-4">
                         <c:if test="${account == null}" >
-                            <a href="<c:url value="/pay/checkAccount.do"/>" class="btn btn-primary">
+                            <a href="<c:url value="/order/checkAccount.do"/>" class="btn btn-primary">
                                 <i class="bi bi-person-check-fill"></i> Đăng nhập để thanh toán
                             </a>
                         </c:if>
                         <c:if test="${account != null}" >
-                            <a href="<c:url value="/pay/checkAccount.do"/>" class="btn btn-primary">
+                            <a href="<c:url value="/order/checkAccount.do"/>" class="btn btn-primary">
                                 <i class="bi bi-credit-card-2-front"></i> Thanh toán ngay!
                             </a>
                         </c:if>
