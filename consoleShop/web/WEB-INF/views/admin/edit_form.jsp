@@ -22,14 +22,13 @@
             <div class="col-sm-8">
                 <form action="edit_handler.do">
                     <div class="mb-3 mt-3">
-                        <img src="<c:url value="/images/${product.proId}.jpg"/>" width="30%"><br/>
                         <label class="mt-1" for="photo" class="form-label">Đổi ảnh sản phẩm:</label>
                         <input type="file" class="form-control" id="photo" name="photo">
+                        <input type="hidden" id="proId" name="proId" value="${product.proId}"/>
                     </div>
                     <div class="mb-3">
                         <label for="proName" class="form-label">Nhập tên sản phẩm: </label>
-                        <input type="text" class="form-control" id="proName" name="proName" value="${product.proName}">
-                        <input type="hidden" name="proId" value="${product.proId}">
+                        <input type="text" class="form-control" id="proName" name="proName" value="${product.proName}">                       
                     </div>
                     <div class="row mb-3">
                         <div class=" col-sm-6">
@@ -50,7 +49,7 @@
                             <label for="categoryId" class="form-label">Nhập loại sản phẩm: </label>
                             <select class="form-select" name="categoryId" id="categoryId">
                                 <c:forEach var="category" items="${caList}">
-                                    <option value="${category.categoryId}" ${product.categoryId==param.category? "seleted" : ""}>${category.categoryName}</option>
+                                    <option value="${category.categoryId}" ${category.categoryId==param.category? "seleted" : ""}>${category.categoryName}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -59,7 +58,7 @@
                         <label for="description" class="form-label">Nhập thông tin sản phẩm: </label>
                         <textarea class="form-control" id="description" name="description" rows="7">${product.description}</textarea>
                     </div> 
-                    <button onclick="editFile()" type="submit" class="btn btn-primary" value="create"> <i class="bi bi-check"></i> Thêm sản phẩm</button>
+                    <button onclick="editFile()" type="submit" class="btn btn-primary" value="create"> <i class="bi bi-check"></i> Sửa sản phẩm</button>
                 </form>
                 <br/>
                 <i style="color:red;">${errorMsg}</i>

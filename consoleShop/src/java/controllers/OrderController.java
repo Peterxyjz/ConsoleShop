@@ -6,12 +6,9 @@
 package controllers;
 
 import db.Account;
-import db.AccountFacade;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,8 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author QUOC PHONG
  */
-@WebServlet(name = "PayController", urlPatterns = {"/pay"})
-public class PayController extends HttpServlet {
+@WebServlet(name = "OrderController", urlPatterns = {"/order"})
+public class OrderController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,15 +40,20 @@ public class PayController extends HttpServlet {
             case "checkAccount":
                 checkAccount(request, response);
                 break;
-            case "order":
-                order(request, response);
+            case "infor":
+                infor(request, response);
                 break;
             case "order_handler":
                 order_handler(request, response);
                 break;
-
-            case "index":
-                index(request, response);
+            case "pay":
+                pay(request, response);
+                break;
+            case "pay_handler":
+                pay_handler(request, response);
+                break;
+            case "orderDetail":
+                orderDetail(request, response);
                 break;
         }
     }
@@ -67,12 +69,12 @@ public class PayController extends HttpServlet {
             request.getRequestDispatcher("/account/login.do").forward(request, response);
         } else {
             //account ! null -> chuyen trang dien thong tin 
-            request.getRequestDispatcher("/pay/order.do").forward(request, response);
+            request.getRequestDispatcher("/order/infor.do").forward(request, response);
 
         }
     }
 
-    protected void order(HttpServletRequest request, HttpServletResponse response)
+    protected void infor(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
 
@@ -100,16 +102,28 @@ public class PayController extends HttpServlet {
                 + "\n%s %s %s", fullName, phone, address, ward, district, province);
         request.setAttribute("info", info);
 
-        request.getRequestDispatcher("/pay/index.do").forward(request, response);
+        request.getRequestDispatcher("/order/pay.do").forward(request, response);
     }
 
-      protected void index(HttpServletRequest request, HttpServletResponse response)
+    protected void pay(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        request.getRequestDispatcher(layout).forward(request, response);
+    }
+
+    protected void pay_handler(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
 
         request.getRequestDispatcher(layout).forward(request, response);
     }
     
+    protected void orderDetail(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        request.getRequestDispatcher(layout).forward(request, response);
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

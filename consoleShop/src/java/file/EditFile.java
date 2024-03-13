@@ -20,6 +20,7 @@ public class EditFile extends HttpServlet {
             throws ServletException, IOException {
         try {
             int proId = Integer.parseInt(request.getParameter("proId"));
+            System.out.println(proId);
             String fileName = String.format("%s%d.jpg", IMAGE_FOLDER,proId);
             System.out.println("fileName: " + fileName);
             File file = new File(fileName);

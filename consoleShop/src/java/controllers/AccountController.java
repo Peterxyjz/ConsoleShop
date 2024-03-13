@@ -17,9 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import db.Account;
-import java.text.ParseException;
-import java.util.Locale;
-import org.apache.tomcat.dbcp.pool2.PoolUtils;
 
 /**
  *
@@ -81,9 +78,6 @@ public class AccountController extends HttpServlet {
             case "logout":
                 logout(request, response);
                 break;
-//            case "admin":
-//                admin(request, response);
-//                break;
         }
     }
 
@@ -400,12 +394,7 @@ public class AccountController extends HttpServlet {
         //quay ve trang home
         request.getRequestDispatcher("/").forward(request, response);
     }
-
-//    protected void admin(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        String layout = (String) request.getAttribute("layout");
-//        request.getRequestDispatcher(layout).forward(request, response);
-//    }
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
