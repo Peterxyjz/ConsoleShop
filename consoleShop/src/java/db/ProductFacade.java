@@ -39,6 +39,35 @@ public class ProductFacade {
         return proList;
     }
 
+    public List<Product> searchProductByName(String proName, int index) throws SQLException {
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("SELECT * FROM Product WHERE proName LIKE ? order by ProID offset ? rows fetch next 16 rows only");
+        stm.setString(1, "%" + proName + "%");
+        stm.setInt(2, (index-1)*16);
+        //Thực thi lệnh SELECT
+        ResultSet rs = stm.executeQuery();
+
+        List<Product> proList = new ArrayList<>();
+
+        while (rs.next()) {
+            Product product = new Product();
+            product.setProId(rs.getInt("ProID"));
+            product.setProName(rs.getString("proName"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDiscount(rs.getDouble("discount"));
+            product.setAmount(rs.getInt("Amount"));
+            product.setCategoryId(rs.getInt("categoryId"));
+            
+            product.setDescription(rs.getString("description"));
+            proList.add(product);
+
+        }
+
+        //trả list Product
+        return proList;
+    }
+
+    
     public List<Product> searchProductByFilter(String categoryName, String status, double priceLower, double priceUpper, String sort) throws SQLException {
         List<Product> proList = null;
        Connection con = DBContext.getConnection();

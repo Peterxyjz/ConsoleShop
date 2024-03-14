@@ -79,6 +79,11 @@
 
             </div>
         </c:forEach>
+        <div style="display: flex; text-align: center; justify-content: center; gap: 10px;">
+            <c:forEach var="index" begin="1" end="${endP}">
+                <a href="<c:url value="/product/search_handler.do?search=${param.search}&index=${index}"/>">${index}</a>
+            </c:forEach>
+        </div>
         ${errorMsg}
     </div>
 </div>

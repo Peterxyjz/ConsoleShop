@@ -111,6 +111,15 @@ public class ProductController extends HttpServlet {
             ProductFacade pf = new ProductFacade();
             List<Product> prodList = pf.searchProductByName(searchName);
             System.out.println(prodList.isEmpty());
+            int index = Integer.parseInt(request.getParameter("index"));
+            int endP = prodList.size()/16;
+            if(prodList.size() % 16 != 0){
+                endP++; 
+            }
+            prodList = pf.searchProductByName(searchName, index);
+            System.out.println(prodList.isEmpty());
+            request.setAttribute("list", prodList);
+            request.setAttribute("endP", endP);
 
             request.setAttribute("list", prodList);
 
