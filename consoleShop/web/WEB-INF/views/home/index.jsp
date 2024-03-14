@@ -20,29 +20,42 @@
     <h3 class="top-product__header">Sản phẩm hàng đầu</h3>
     <div class="top-product__wrapper row">
         <div class="top-product__item col-lg-2 col-md-4 col-6">
-            <img src="<c:url value="/images/63.jpg"/>" alt="">
-            <h4>Nitendo Switch</h4>
+            <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Nintendo&status=&priceLower=&priceUpper=&sort=proName+ASC"/>">
+                <img src="<c:url value="/images/63.jpg"/>" alt="">
+                <h4>Nitendo Switch</h4>
+            </a>
         </div>
         <div class="top-product__item col-lg-2 col-md-4 col-6 ">
-            <img src="<c:url value="/images/82.jpg"/>" alt="">
-            <h4>PlayStation 5</h4>
+            <a href="<c:url value="/product/search_handler.do?search=ps5"/>">
+                <img src="<c:url value="/images/82.jpg"/>" alt="">
+                <h4>PlayStation 5</h4>
+            </a>
         </div>
         <div class="top-product__item col-lg-2 col-md-4 col-6">
-            <img src="<c:url value="/images/77.jpg"/>" alt="">
-            <h4>PlayStation 4</h4>
+            <a href="<c:url value="/product/search_handler.do?search=ps4"/>">
+                <img src="<c:url value="/images/77.jpg"/>" alt="">
+                <h4>PlayStation 4</h4>
+            </a>
         </div>
         <div class="top-product__item col-lg-2 col-md-4 col-6" id="ps3-img">
-            <img src="<c:url value="/images/72.jpg"/>" alt="">
-            <h4>PlayStation 3</h4>
+            <a href="<c:url value="/product/search_handler.do?search=ps3"/>">
+                <img src="<c:url value="/images/72.jpg"/>" alt="">
+                <h4>PlayStation 3</h4>
+            </a>
+                
         </div>
         <div class="top-product__item col-lg-2 col-md-4 col-6">
-            <img src="<c:url value="/images/19.jpg"/>" alt="">
-            <h4>Games</h4>
+            <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Game&status=&priceLower=&priceUpper=&sort=proName+ASC"/>">
+                <img src="<c:url value="/images/19.jpg"/>" alt="">
+                <h4>Games</h4>
+            </a>
         </div>
 
         <div class="top-product__item col-lg-2 col-md-4 col-6">
-            <img src="<c:url value="/images/chuainsert/93.jpg"/>" alt="">
-            <h4>Phụ kiện</h4>
+            <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Accessory&status=&priceLower=&priceUpper=&sort=proName+ASC"/>">
+                <img src="<c:url value="/images/chuainsert/93.jpg"/>" alt="">
+                <h4>Phụ kiện</h4>
+            </a>
         </div>
     </div>
 </section>
