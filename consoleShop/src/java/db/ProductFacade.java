@@ -98,6 +98,36 @@ public class ProductFacade {
         return proList;
     }
     
+     public List<Product> searchProductByFilter(String categoryName, String status, double priceLower, double priceUpper, String sort, int index) throws SQLException {
+        List<Product> proList = null;
+       Connection con = DBContext.getConnection();
+
+        String str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND Price >= %f AND Price <= %f  ORDER BY %s offset %d rows fetch next 16 rows only ", categoryName, priceLower, priceUpper, sort, (index-1)*16);
+        Statement stm = con.createStatement();
+
+        //Thực thi lệnh SELECT
+        ResultSet rs = stm.executeQuery(str);
+        proList = new ArrayList<>();
+
+        while (rs.next()) {
+
+            Product product = new Product();
+            product.setProId(rs.getInt("ProID"));
+            product.setProName(rs.getString("proName"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDiscount(rs.getDouble("discount"));
+            product.setAmount(rs.getInt("Amount"));
+            product.setCategoryId(rs.getInt("categoryId"));
+           
+            product.setDescription(rs.getString("description"));
+            proList.add(product);
+
+        }
+
+        //trả list Product
+        return proList;
+    }
+    
     public List<Product> selectProList() throws SQLException {
         List<Product> list = null;
         Connection con = DBContext.getConnection();

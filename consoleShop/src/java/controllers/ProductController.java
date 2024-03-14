@@ -94,10 +94,7 @@ public class ProductController extends HttpServlet {
     protected void search(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         String layout = (String) request.getAttribute("layout");
-        
-        
-        
-        
+
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
@@ -107,22 +104,18 @@ public class ProductController extends HttpServlet {
         try {
 
             String searchName = request.getParameter("search") == null ? "" : request.getParameter("search");
+            int index = Integer.parseInt(request.getParameter("index"));
             System.out.println("search: " + searchName);
             ProductFacade pf = new ProductFacade();
             List<Product> prodList = pf.searchProductByName(searchName);
             System.out.println(prodList.isEmpty());
-            int index = Integer.parseInt(request.getParameter("index"));
-            int endP = prodList.size()/16;
-            if(prodList.size() % 16 != 0){
-                endP++; 
-            }
+            //lấy số trang
+            int endP = getMaxPage(prodList, index);
+            //trả về list gồm 16 sản phẩm
             prodList = pf.searchProductByName(searchName, index);
-            System.out.println(prodList.isEmpty());
+            //setAttribute
             request.setAttribute("list", prodList);
             request.setAttribute("endP", endP);
-
-            request.setAttribute("list", prodList);
-
             request.getRequestDispatcher("/product/search.do").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
@@ -165,34 +158,48 @@ public class ProductController extends HttpServlet {
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         try {
-
             String categoryName = request.getParameter("categoryName");
 
             String status = request.getParameter("status");
 
             double priceLower = Double.parseDouble(request.getParameter("priceLower") == "" ? "0" : request.getParameter("priceLower"));
             double priceUpper = Double.parseDouble(request.getParameter("priceUpper") == "" ? "0" : request.getParameter("priceUpper"));
-            
-            
-            
-            if (priceUpper == 0){
+
+            if (priceUpper == 0) {
                 priceUpper = Integer.MAX_VALUE;
             }
             String sort = request.getParameter("sort");
-         
+            int index = Integer.parseInt(request.getParameter("index"));
+
             ProductFacade pf = new ProductFacade();
+            //lấy full list
             List<Product> prodList = pf.searchProductByFilter(categoryName, status, priceLower, priceUpper, sort);
-            
+            //lấy số trang dựa theo size của list
+            int endP = getMaxPage(prodList, index);
+            //lấy list chỉ có 16 sp thui
+            prodList = pf.searchProductByFilter(categoryName, status, priceLower, priceUpper, sort, index);
 
-            
-
+            request.setAttribute("categoryName", categoryName);
+            request.setAttribute("status", status);
+            request.setAttribute("priceLower", priceLower);
+            request.setAttribute("priceUpper", priceUpper);
+            request.setAttribute("sort", sort);
             request.setAttribute("list", prodList);
-
+            request.setAttribute("endP", endP);
+            
             request.getRequestDispatcher("/product/search.do").forward(request, response);
         } catch (IOException | NumberFormatException | SQLException | ServletException e) {
             e.printStackTrace();
             request.getRequestDispatcher("/").forward(request, response);
         }
+    }
+
+    protected int getMaxPage(List prodList, int index) {
+        int endP = prodList.size() / 16;
+        if (prodList.size() % 16 != 0) {
+            endP++;
+        }
+        return endP;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

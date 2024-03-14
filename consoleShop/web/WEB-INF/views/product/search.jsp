@@ -28,9 +28,9 @@
             <div class="col-sm-4">
                 <label for="price">Mức giá</label>
                 <div class="range">
-                    <input name="priceLower" type="number" class=" form-control" id="price" min="0" value ="${param.priceLower == null ? "" : param.priceLower}" placeholder="Mức giá từ: ">
+                    <input name="priceLower" type="number" class=" form-control" id="price" min="0" value ="" placeholder="Mức giá từ: ">
                     <i class="bi bi-dash-lg"></i>
-                    <input name="priceUpper" type="number" class=" form-control" id="price" min="0"  value ="${param.priceUpper == null ? "" : param.priceUpper}"  placeholder="Mức giá đến: ">
+                    <input name="priceUpper" type="number" class=" form-control" id="price" min="0"  value =""  placeholder="Mức giá đến: ">
                 </div>
             </div>
             <div class="col-sm-2">
@@ -46,12 +46,13 @@
                 </select>
             </div>
             <div class="col-sm-1 mt-4">
-                <button type="submit" class="btn btn-primary"><i class="bi bi-funnel"></i> Lọc</button>
+                <button value="1" name="index" type="submit" class="btn btn-primary"><i class="bi bi-funnel"></i> Lọc</button>
             </div>
+
         </div>
     </form>
     <c:if test="${list.size() == 0}">
-        <a href="<c:url value="/product/search_handler.do?proName=" />" class="btn btn-link"><i class="bi bi-arrow-clockwise"></i> Khôi phục bộ lọc</a>
+        <a href="<c:url value="/product/search_handler.do?search=" />" class="btn btn-link"><i class="bi bi-arrow-clockwise"></i> Khôi phục bộ lọc</a>
         <div class="text-center">
             <h3>Không có sản phẩm phù hợp</h3>
             <p>Bạn có thể thử từ khóa đơn giản hơn hoặc liên hệ với hỗ trợ</p>
@@ -80,9 +81,19 @@
             </div>
         </c:forEach>
         <div style="display: flex; text-align: center; justify-content: center; gap: 10px;">
-            <c:forEach var="index" begin="1" end="${endP}">
-                <a href="<c:url value="/product/search_handler.do?search=${param.search}&index=${index}"/>">${index}</a>
-            </c:forEach>
+            <c:choose>
+                <c:when test="${categoryName != null || sort != null || status != null || priceLower != null || priceUpper != null }">
+                    <c:forEach var="index" begin="1" end="${endP}">
+                        <a href="<c:url value="/product/searchFilter_handler.do?categoryName=${categoryName}&status=${status}&priceLower=${priceLower}&priceUpper=${priceUpper}&sort=${sort}&index=${index}"/>">${index}</a>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach var="index" begin="1" end="${endP}">
+                        <a href="<c:url value="/product/search_handler.do?search=${param.search}&index=${index}"/>">${index}</a>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
+
         </div>
         ${errorMsg}
     </div>
