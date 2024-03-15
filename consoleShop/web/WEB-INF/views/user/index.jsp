@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<style><%@include file="/WEB-INF/css/accountUpdate.css"%></style>
+<style><%@include file="/WEB-INF/css/user.css"%></style>
 <jsp:include page="/WEB-INF/components/navbar.jsp" />
 <div class="row ">
     <jsp:include page="/WEB-INF/components/accountNavigate.jsp" />
@@ -78,7 +78,7 @@
                     <span class="personal__title">Ngày sinh:</span> <fmt:formatDate value="${sessionScope.account.birthDay}" pattern="MM-dd-yyyy" />
 
                 </div>
-                <a href="update.do?accId=${sessionScope.account.accId}">
+                <a href="profile_edit.do?accId=${sessionScope.account.accId}">
                     <button class="personal__change col-md-4 col-6">Cập nhật</button>
                 </a>
             </div>
