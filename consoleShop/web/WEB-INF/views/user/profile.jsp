@@ -45,7 +45,7 @@
         <div class="personal col-lg-5">
             <h3 class="personal__header">Thông tin cá nhân</h3>
             <p class="personal__remind">*Để mua hàng tốt nhất, bạn nên nhập đầy đủ thông tin.</p>
-            <form action="update_handler.do" class="row personal__wrapper">
+            <form action="profile_edit.do" class="row personal__wrapper">
                 <div class="personal__group col-lg-12">
                     <label for="username" class="form-label">Tên đăng nhập</label>
                     <input id="username" value="${sessionScope.account.username}" name="username" type="text" class="form-control">
@@ -79,6 +79,7 @@
                     <c:if test="${sessionScope.account.country != null}">
                         <input id="country" value="${sessionScope.account.country}" name="country" type="text" >
                     </c:if>
+                    <p style="color: red; font-size: 14px">*Console Shop chỉ hoạt động tại Việt Nam</p>
                 </div>
 
                 <div class="personal__group col-lg-12">
@@ -94,7 +95,7 @@
                 <div class="personal__group col-lg-12">
                     <label for="birthDay" class="form-label">Ngày sinh</label>
                     <c:if test="${sessionScope.account.birthDay == null}">
-                        <input id="birthDay" value="${sessionScope.account.birthDay}" placeholder="Vui lòng nhập sinh nhật" type="date" class="form-control">  
+                        <input id="birthDay" name="birthDay" value="${sessionScope.account.birthDay}" placeholder="Vui lòng nhập sinh nhật" type="date" class="form-control">  
                     </c:if>
                     <c:if test="${sessionScope.account.birthDay != null}">
                         <input id="birthDay" value="${sessionScope.account.birthDay}" name="birthDay" type="date" class="form-control"> 

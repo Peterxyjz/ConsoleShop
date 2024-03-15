@@ -123,7 +123,7 @@
                     <div class="item-border"></div>
                 </li>
                 <li class="nav__item">
-                    <a href=""><i class="bi bi-credit-card"></i> Hình thức thanh toán</a>
+                    <a href="<c:url value="/user/payment.do"/>"><i class="bi bi-credit-card"></i> Hình thức thanh toán</a>
                     <div class="item-border"></div>
                 </li>
             </ul>
