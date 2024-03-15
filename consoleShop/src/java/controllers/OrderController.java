@@ -9,6 +9,7 @@ import db.Account;
 import db.AccountFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.StringTokenizer;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -60,6 +61,13 @@ public class OrderController extends HttpServlet {
             case "orderDetail":
                 orderDetail(request, response);
                 break;
+
+            case "checkout":
+                checkout(request, response);
+                break;
+            case "thanks":
+                thanks(request, response);
+                break;
         }
     }
 
@@ -101,14 +109,16 @@ public class OrderController extends HttpServlet {
             String infor = String.format("%-25s | %s | %s  %s  %s  %s", fullName, phone, address, ward, district, province);
 
             HttpSession session = request.getSession();
-             boolean remember = request.getParameter("remember") != null;
+            boolean remember = request.getParameter("remember") != "";
+            System.out.println("check " + request.getParameter("remember"));
+            System.out.println("re" + remember);
             if (remember) {
                 Account account = (Account) session.getAttribute("account");
-                account.setAddress(infor);
+                account.setAddress(address + " " + ward + " " + district + " " + province);
                 AccountFacade af = new AccountFacade();
                 af.updateInformation(account);
             }
-            
+
             System.out.println("infor: " + infor);
             System.out.println("province: " + province);
             System.out.println("district: " + district);
@@ -120,6 +130,7 @@ public class OrderController extends HttpServlet {
             PrintWriter out = response.getWriter();
             out.println(infor);
             out.close();
+            request.getRequestDispatcher("/order/orderDetail.do").forward(request, response);
         } catch (Exception e) {
             request.getRequestDispatcher("/order/index.do").forward(request, response);
         }
@@ -156,6 +167,28 @@ public class OrderController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
 
         request.getRequestDispatcher("/").forward(request, response);
+    }
+
+    protected void checkout(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+
+        //lấy  option
+        //hoàn thành lưu cart vào db
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        // ságn sử lí cart 
+
+        //
+        cart = null;
+        request.getRequestDispatcher("/order/thanks.do").forward(request, response);
+    }
+
+    protected void thanks(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+
+        request.getRequestDispatcher(layout).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

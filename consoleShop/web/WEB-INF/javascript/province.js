@@ -187,6 +187,8 @@ document.querySelector("#orderForm").addEventListener("submit", (event) => {
     let district = document.querySelector("#district option:checked").innerHTML;
     let ward = document.querySelector("#ward option:checked").innerHTML;
     let address = document.querySelector("#address").value;
+    let remember = document.querySelector("#remember").checked == false ? "" : "true";
+     console.log(remember)
     //   console.log(address);
 //    let infor = [
 //        fullName,
@@ -213,7 +215,8 @@ document.querySelector("#orderForm").addEventListener("submit", (event) => {
            address ,
            ward , 
            district ,
-           province
+           province,
+           remember
         },
         success: function (data) {
             console.log(data)
@@ -222,6 +225,7 @@ document.querySelector("#orderForm").addEventListener("submit", (event) => {
 
         }
     })
+//    event.submit()
 //    sendInformation(infor)
 
 

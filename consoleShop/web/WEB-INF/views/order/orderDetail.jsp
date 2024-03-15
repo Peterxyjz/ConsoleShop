@@ -47,7 +47,7 @@
                     </div>
                 </div>
 
-                <form action="#" class="mt-2 mb-3">
+                <form action="<c:url value="/order/checkout.do"/>" class="mt-2 mb-3">
                     <hr/>
                     <h4>Chọn hình thức thanh toán</h4>
                     <div class="form-check">
