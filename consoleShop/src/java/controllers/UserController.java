@@ -33,6 +33,9 @@ public class UserController extends HttpServlet {
         String action = (String) request.getAttribute("action");
 
         switch (action) {
+            case "index":
+                index(request, response);
+                break;
             case "profile":
                 profile(request, response);
                 break;
@@ -50,9 +53,27 @@ public class UserController extends HttpServlet {
                 break;
         }
     }
-    protected void profile(HttpServletRequest request, HttpServletResponse response)
+    protected void index(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
+        request.getRequestDispatcher(layout).forward(request, response);
+    }
+    
+    protected void profile(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            HttpSession session = request.getSession();
+            int id = Integer.parseInt(request.getParameter("accId"));
+            AccountFacade af = new AccountFacade();
+            session.setAttribute("account", af.select(id));
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("errMsg", e);
+            request.getRequestDispatcher("/account/index.do").forward(request, response);
+        }
+        String layout = (String) request.getAttribute("layout");
+        request.getRequestDispatcher(layout).forward(request, response);
+        
         request.getRequestDispatcher(layout).forward(request, response);
     }
     
@@ -90,7 +111,7 @@ public class UserController extends HttpServlet {
             af.update(account_updating);
             //lưu lại account vào session
             session.setAttribute("account", account_updating);
-            request.getRequestDispatcher("/user/profile.do").forward(request, response);
+            request.getRequestDispatcher("/user/index.do").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errMsg", "Something is wrong");

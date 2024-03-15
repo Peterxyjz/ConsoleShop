@@ -93,13 +93,15 @@
                 </div>
 
                 <div class="personal__group col-lg-12">
+
                     <label for="birthDay" class="form-label">Ngày sinh</label>
                     <c:if test="${sessionScope.account.birthDay == null}">
-                        <input id="birthDay" name="birthDay" value="${sessionScope.account.birthDay}" placeholder="Vui lòng nhập sinh nhật" type="date" class="form-control">  
+                        <input id="birthDay" value="${sessionScope.account.birthDay}" placeholder="Vui lòng nhập sinh nhật" type="date" class="form-control">  
                     </c:if>
                     <c:if test="${sessionScope.account.birthDay != null}">
                         <input id="birthDay" value="${sessionScope.account.birthDay}" name="birthDay" type="date" class="form-control"> 
                     </c:if>
+
                 </div>
 
                 <button type="submit" class="personal__submit col-md-5 col-7">Lưu các thay đổi</button>
