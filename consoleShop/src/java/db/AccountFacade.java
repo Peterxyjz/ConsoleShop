@@ -18,10 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author ASUS
- */
 public class AccountFacade {
 
     public Account select(int accId) throws SQLException {
@@ -181,6 +177,7 @@ public class AccountFacade {
         }
     }
 
+
     public void updateInformation(Account account) throws SQLException, NoSuchAlgorithmException {
         Connection con = DBContext.getConnection();
         PreparedStatement stm = con.prepareStatement("update Account set Address =? where accId=?");
@@ -206,4 +203,14 @@ public class AccountFacade {
 //            return false;
 //        }
 //    }
+
+    public void update_wallet(double money, int accId) throws SQLException, NoSuchAlgorithmException {
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("UPDATE Account SET Wallet = ? WHERE AccID = ?");
+        stm.setDouble(1, money);
+        stm.setInt(2, accId);
+        int count = stm.executeUpdate();
+        con.close();
+    }
+
 }
