@@ -1,5 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<meta  charset=UTF-8>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style><%@include file="/WEB-INF/css/order.css"%></style>
@@ -54,7 +53,7 @@
                     </div>
 
                     <label class="form-check-label mt-2 mb-3">
-                        <input class="form-check-input" type="checkbox" name="remember"> Lưu lại thông tin
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember"> Lưu lại thông tin
                     </label>
 
                     <div class="d-grid gap-2 mb-3">
