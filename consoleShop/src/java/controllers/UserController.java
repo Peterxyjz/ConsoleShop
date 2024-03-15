@@ -36,6 +36,9 @@ public class UserController extends HttpServlet {
             case "profile":
                 profile(request, response);
                 break;
+            case "profile_edit":
+                profile_edit(request, response);
+                break;
             case "payment":
                 payment(request, response);
                 break;
@@ -50,6 +53,49 @@ public class UserController extends HttpServlet {
     protected void profile(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
+        request.getRequestDispatcher(layout).forward(request, response);
+    }
+    
+    protected void profile_edit(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+            HttpSession session = request.getSession();
+            AccountFacade af = new AccountFacade();
+            String fullName = request.getParameter("fullName");
+            String username = request.getParameter("username");
+//            String password = request.getParameter("password");
+//            String password_check = request.getParameter("password_check");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date birthDay = sdf.parse(request.getParameter("birthDay"));
+            String address = request.getParameter("address");
+            String country = request.getParameter("country");
+            String phoneNumber = request.getParameter("phoneNumber");
+            //lấy account ra
+            Account account_updating = (Account) session.getAttribute("account");
+
+//            if (password_check != "") {
+//                while (!password.equals(password_check)) {
+//                    request.setAttribute("errMsg1", "mật khẩu không trùng khớp");
+//                    request.getRequestDispatcher("/account/update.do").forward(request, response);
+//                }
+//                account.setPassword(password);
+//            }
+            account_updating.setFullName(fullName);
+            account_updating.setUsername(username);
+            account_updating.setBirthDay(birthDay);
+            account_updating.setAddress(address);
+            account_updating.setCountry(country);
+            account_updating.setPhoneNumber(phoneNumber);
+            af.update(account_updating);
+            //lưu lại account vào session
+            session.setAttribute("account", account_updating);
+            request.getRequestDispatcher("/user/profile.do").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("errMsg", "Something is wrong");
+            request.getRequestDispatcher("/user/profile.do").forward(request, response);
+        }
         request.getRequestDispatcher(layout).forward(request, response);
     }
     
