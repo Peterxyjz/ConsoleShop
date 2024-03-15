@@ -47,7 +47,7 @@ public class AccountFacade {
         con.close();
         return account;
     }
-    
+
     public Account select(String email) throws SQLException {
         Connection con = DBContext.getConnection();
         PreparedStatement stm = con.prepareStatement("select * from Account where email=?");
@@ -107,12 +107,12 @@ public class AccountFacade {
         int count = stm.executeUpdate();
         con.close();
     }
-    
+
     public void update_password(Account account) throws SQLException, NoSuchAlgorithmException {
         Connection con = DBContext.getConnection();
         PreparedStatement stm = con.prepareStatement("update Account set password=? where accId=?");
         stm.setString(1, Hasher.hash(account.getPassword()));
-        System.out.println(""+Hasher.hash(account.getPassword()));
+        System.out.println("" + Hasher.hash(account.getPassword()));
         stm.setInt(2, account.getAccId());
         int count = stm.executeUpdate();
         con.close();
@@ -181,6 +181,16 @@ public class AccountFacade {
         }
     }
 
+    public void updateInformation(Account account) throws SQLException, NoSuchAlgorithmException {
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("update Account set Address =? where accId=?");
+        stm.setString(1, account.getAddress());
+        stm.setInt(2, account.getAccId());
+
+        int count = stm.executeUpdate();
+        con.close();
+
+    }
 //    public boolean isAdmin(String email) throws SQLException {
 //        Connection con = DBContext.getConnection();
 //        PreparedStatement stm = con.prepareStatement("select * from account where email=?");

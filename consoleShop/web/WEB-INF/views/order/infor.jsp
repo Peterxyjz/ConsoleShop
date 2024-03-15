@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<meta  charset=UTF-8>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style><%@include file="/WEB-INF/css/order.css"%></style>
@@ -20,7 +21,7 @@
             <div class="col-sm-6 nav_item">
                 <h3 class="text-center">Thông tin đặt hàng</h3>
                 <hr/>
-                <form action="<c:url value="/order/order_handler.do"/>" class="row">
+                <form  id="orderForm" class="row" >
                     <div class="col-sm-12 mt-3 mb-3">
                         <label for="fullName" class="form-label">Họ và tên</label>
                         <input class="form-control" type="text" name="fullName" id="fullName" placeholder="Họ và tên">
