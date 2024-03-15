@@ -685,7 +685,7 @@ Dung lượng lưu trữ: 100 GB.')
 
 INSERT INTO Product
 VALUES
-	(N'lite blue',8333641,0.1,10,2,N'Nintendo Switch Lite là một hệ thống nhỏ gọn, nhẹ nhàng, tập trung vào việc chơi game di động. Với thiết kế đơn khối thanh lịch, bộ điều khiển được tích hợp ngay vào hệ thống, Nintendo Switch Lite rất phù hợp cho việc chơi game di động.
+	(N'Nintendo Lite Blue',8333641,0.1,10,2,N'Nintendo Switch Lite là một hệ thống nhỏ gọn, nhẹ nhàng, tập trung vào việc chơi game di động. Với thiết kế đơn khối thanh lịch, bộ điều khiển được tích hợp ngay vào hệ thống, Nintendo Switch Lite rất phù hợp cho việc chơi game di động.
 
 Thông tin: Nintendo Switch Lite màu xanh đã được phát hành vào ngày 21 tháng 5 năm 2021. Hiện tại, không có thông tin về ngày ngừng phát hành.
 
@@ -701,7 +701,7 @@ Màn hình: Màn hình cảm ứng 5.5" với độ phân giải 1280x720
 CPU/GPU: Bộ xử lý Nvidia Tegra tùy chỉnh
 Bộ nhớ trong: 32 GB, có thể mở rộng bằng thẻ microSD lên đến 2TB
 Pin: Từ 3 đến 7 giờ tùy thuộc vào game bạn chơi'),
-	(N'lite coral',6597636,0.17,10,2,N'Nintendo Switch Lite màu san hô là một hệ thống nhỏ gọn, nhẹ nhàng, tập trung vào việc chơi game di động. Với thiết kế đơn khối thanh lịch, bộ điều khiển được tích hợp ngay vào hệ thống, Nintendo Switch Lite rất phù hợp cho việc chơi game di động.
+	(N'Nintendo Lite Coral',6597636,0.17,10,2,N'Nintendo Switch Lite màu san hô là một hệ thống nhỏ gọn, nhẹ nhàng, tập trung vào việc chơi game di động. Với thiết kế đơn khối thanh lịch, bộ điều khiển được tích hợp ngay vào hệ thống, Nintendo Switch Lite rất phù hợp cho việc chơi game di động.
 
 Thông tin: Nintendo Switch Lite màu san hô đã được phát hành vào ngày 3 tháng 4 năm 2020.
 
@@ -718,7 +718,7 @@ CPU/GPU: Bộ xử lý Nvidia Tegra tùy chỉnh
 Bộ nhớ trong: 32 GB, có thể mở rộng bằng thẻ microSD lên đến 2TB
 Pin: Từ 3 đến 7 giờ tùy thuộc vào game bạn chơi
 '),
-	(N'lite gray',8391199,0.1,10,2,N'Nintendo Switch Lite màu xám là một hệ thống nhỏ gọn, nhẹ nhàng, tập trung vào việc chơi game di động. Với thiết kế đơn khối thanh lịch, bộ điều khiển được tích hợp ngay vào hệ thống, Nintendo Switch Lite rất phù hợp cho việc chơi game di động.
+	(N'Nintendo Lite Gray',8391199,0.1,10,2,N'Nintendo Switch Lite màu xám là một hệ thống nhỏ gọn, nhẹ nhàng, tập trung vào việc chơi game di động. Với thiết kế đơn khối thanh lịch, bộ điều khiển được tích hợp ngay vào hệ thống, Nintendo Switch Lite rất phù hợp cho việc chơi game di động.
 
 Thông tin: Nintendo Switch Lite màu xám đã được phát hành vào ngày 20 tháng 9 năm 2019.
 
@@ -734,7 +734,7 @@ Màn hình: Màn hình cảm ứng 5.5" với độ phân giải 1280x720
 CPU/GPU: Bộ xử lý Nvidia Tegra tùy chỉnh
 Bộ nhớ trong: 32 GB, có thể mở rộng bằng thẻ microSD lên đến 2TB
 Pin: Từ 3 đến 7 giờ tùy thuộc vào game bạn chơi'),
-	(N'lite isablle aloha',2268717,0.1,10,2,N'Nintendo Switch Lite Isabelle Aloha Edition là một hệ thống nhỏ gọn, nhẹ nhàng, tập trung vào việc chơi game di động. Với thiết kế đơn khối thanh lịch, bộ điều khiển được tích hợp ngay vào hệ thống, Nintendo Switch Lite rất phù hợp cho việc chơi game di động. Hệ thống có màu san hô đáng yêu, một họa tiết lá trắng ở phía sau, và một thiết kế lá dễ thương ở phía trước, lấy cảm hứng từ series Animal Crossing™.
+	(N'Nintendo Lite Isablle Aloha',2268717,0.1,10,2,N'Nintendo Switch Lite Isabelle Aloha Edition là một hệ thống nhỏ gọn, nhẹ nhàng, tập trung vào việc chơi game di động. Với thiết kế đơn khối thanh lịch, bộ điều khiển được tích hợp ngay vào hệ thống, Nintendo Switch Lite rất phù hợp cho việc chơi game di động. Hệ thống có màu san hô đáng yêu, một họa tiết lá trắng ở phía sau, và một thiết kế lá dễ thương ở phía trước, lấy cảm hứng từ series Animal Crossing™.
 
 Thông tin: Nintendo Switch Lite Isabelle Aloha Edition đã được phát hành vào ngày 20 tháng 10 năm 2023.
 
@@ -751,7 +751,7 @@ CPU/GPU: Bộ xử lý Nvidia Tegra tùy chỉnh
 Bộ nhớ trong: 32 GB, có thể mở rộng bằng thẻ microSD lên đến 2TB
 Pin: Từ 3 đến 7 giờ tùy thuộc vào game bạn chơi
 '),
-	(N'lite pokemon diagla and palkia',3662423,0.1,10,2,N'Nintendo Switch Lite Dialga & Palkia Edition là một hệ thống nhỏ gọn, nhẹ nhàng, tập trung vào việc chơi game di động. Hệ thống này là phiên bản đầu tiên có thân máy màu xám kim loại với các nút màu đen. Mặt sau có hình vẽ nghệ thuật ấn tượng của Pokémon huyền thoại Dialga và Palkia từ các game Pokémon Brilliant Diamond và Pokémon Shining Pearl trong một hoàn thiện màu bạc và vàng.
+	(N'Nintendo Lite Pokemon Diagla And Palkia',3662423,0.1,10,2,N'Nintendo Switch Lite Dialga & Palkia Edition là một hệ thống nhỏ gọn, nhẹ nhàng, tập trung vào việc chơi game di động. Hệ thống này là phiên bản đầu tiên có thân máy màu xám kim loại với các nút màu đen. Mặt sau có hình vẽ nghệ thuật ấn tượng của Pokémon huyền thoại Dialga và Palkia từ các game Pokémon Brilliant Diamond và Pokémon Shining Pearl trong một hoàn thiện màu bạc và vàng.
 
 Thông tin: Nintendo Switch Lite Dialga & Palkia Edition đã được phát hành vào ngày 5 tháng 11 năm 2021.
 
@@ -767,7 +767,7 @@ Màn hình: Màn hình cảm ứng 5.5" với độ phân giải 1280x720
 CPU/GPU: Bộ xử lý Nvidia Tegra tùy chỉnh
 Bộ nhớ trong: 32 GB, có thể mở rộng bằng thẻ microSD lên đến 2TB
 Pin: Từ 3 đến 7 giờ tùy thuộc vào game bạn chơi'),
-	(N'lite timmy and tommy aloha',10552102,0.1,10,2,N'Nintendo Switch Lite Timmy & Tommy’s Aloha Edition là một hệ thống nhỏ gọn, nhẹ nhàng, tập trung vào việc chơi game di động. Hệ thống này có màu xanh ngọc thạch, với một họa tiết lá trắng ở phía sau và một họa tiết lá nâu ở phía trước, gần nút Home. Hệ thống này đi kèm với một bản sao số hoá đầy đủ của game Animal Crossing: New Horizons.
+	(N'Nintendo Lite Timmy And Tommy Aloha',10552102,0.1,10,2,N'Nintendo Switch Lite Timmy & Tommy’s Aloha Edition là một hệ thống nhỏ gọn, nhẹ nhàng, tập trung vào việc chơi game di động. Hệ thống này có màu xanh ngọc thạch, với một họa tiết lá trắng ở phía sau và một họa tiết lá nâu ở phía trước, gần nút Home. Hệ thống này đi kèm với một bản sao số hoá đầy đủ của game Animal Crossing: New Horizons.
 
 Thông tin: Nintendo Switch Lite Timmy & Tommy’s Aloha Edition đã được phát hành vào ngày 24 tháng 11 năm 2023.
 
@@ -783,7 +783,7 @@ Màn hình: Màn hình cảm ứng 5.5" với độ phân giải 1280×720 pixel
 CPU/GPU: Bộ xử lý Tegra tùy chỉnh được sản xuất bởi NVIDIA
 Bộ nhớ trong: 32 GB, có thể mở rộng bằng thẻ microSD lên đến 2TB
 Pin: Từ 3 đến 7 giờ tùy thuộc vào game bạn chơi'),
-	(N'lite turquoise',6597636,0.1,10,2,N'Nintendo Switch Lite Turquoise là một hệ thống nhỏ gọn, nhẹ nhàng, tập trung vào việc chơi game di động. Với thiết kế đơn khối thanh lịch, bộ điều khiển được tích hợp ngay vào hệ thống, Nintendo Switch Lite rất phù hợp cho việc chơi game di động.
+	(N'Nintendo Lite Turquoise',6597636,0.1,10,2,N'Nintendo Switch Lite Turquoise là một hệ thống nhỏ gọn, nhẹ nhàng, tập trung vào việc chơi game di động. Với thiết kế đơn khối thanh lịch, bộ điều khiển được tích hợp ngay vào hệ thống, Nintendo Switch Lite rất phù hợp cho việc chơi game di động.
 
 Thông tin: Nintendo Switch Lite Turquoise đã được phát hành vào ngày 20 tháng 9 năm 2019.
 
@@ -796,7 +796,7 @@ Thông số kỹ thuật:
 CPU: Bộ xử lý Nvidia Tegra tùy chỉnh.
 RAM: 4GB.
 Bộ nhớ trong: 32 GB.'),
-	(N'lite yellow',6596585,0.1,10,2,N'Nintendo Switch Lite Yellow là một hệ thống nhỏ gọn, nhẹ nhàng, tập trung vào việc chơi game di động. Với thiết kế đơn khối thanh lịch, bộ điều khiển được tích hợp ngay vào hệ thống, Nintendo Switch Lite rất phù hợp cho việc chơi game di động.
+	(N'Nintendo Lite Yellow',6596585,0.1,10,2,N'Nintendo Switch Lite Yellow là một hệ thống nhỏ gọn, nhẹ nhàng, tập trung vào việc chơi game di động. Với thiết kế đơn khối thanh lịch, bộ điều khiển được tích hợp ngay vào hệ thống, Nintendo Switch Lite rất phù hợp cho việc chơi game di động.
 
 Thông tin: Nintendo Switch Lite Yellow đã được phát hành vào ngày 20 tháng 9 năm 2019.
 
@@ -811,7 +811,7 @@ RAM: 4GB.
 Bộ nhớ trong: 32 GB.
 Màn hình: Màn hình cảm ứng 5.5" với độ phân giải 1280x720.
 Pin: Từ 3 đến 7 giờ tùy thuộc vào game bạn chơi.'),
-	(N'oled legend of zelda',12196780,0.1,10,2,N'Mô tả: Nintendo Switch OLED Model - The Legend of Zelda: Tears of the Kingdom Edition có thiết kế đặc biệt từ game The Legend of Zelda: Tears of the Kingdom, bao gồm huy hiệu Hylian quen thuộc từ series The Legend of Zelda ở phía trước của dock. Hệ thống này sẽ ra mắt vào ngày 28 tháng 4.
+	(N'Nintendo Oled Legend Of Zelda',12196780,0.1,10,2,N'Mô tả: Nintendo Switch OLED Model - The Legend of Zelda: Tears of the Kingdom Edition có thiết kế đặc biệt từ game The Legend of Zelda: Tears of the Kingdom, bao gồm huy hiệu Hylian quen thuộc từ series The Legend of Zelda ở phía trước của dock. Hệ thống này sẽ ra mắt vào ngày 28 tháng 4.
 
 Ngoại hình: Hệ thống này có màn hình OLED 7 inch sống động, chân đế rộng có thể điều chỉnh, dock có cổng LAN có dây, 64 GB bộ nhớ trong, và âm thanh nâng cao khi chơi ở chế độ cầm tay và bàn.
 
@@ -827,7 +827,7 @@ Pin: Khoảng từ 4.5 đến 9 giờ, tùy thuộc vào game bạn chơi.
 Ngày phát hành: Hệ thống này sẽ ra mắt vào ngày 28 tháng 4 năm 2023.
 
 Ghi chú: Game The Legend of Zelda: Tears of the Kingdom không được bao gồm.'),
-	(N'oled mario',9378479,0.1,10,2,N'Mô tả: Nintendo Switch OLED Model - Mario Red Edition có thiết kế đặc biệt từ game Super Mario. Hệ thống này có màu đỏ rực rỡ, với hình ảnh của Mario được in trên phía sau của dock.
+	(N'Nintendo Oled Mario',9378479,0.1,10,2,N'Mô tả: Nintendo Switch OLED Model - Mario Red Edition có thiết kế đặc biệt từ game Super Mario. Hệ thống này có màu đỏ rực rỡ, với hình ảnh của Mario được in trên phía sau của dock.
 
 Ngày phát hành: Hệ thống này đã được phát hành vào ngày 6 tháng 10 năm 2023.
 
@@ -842,7 +842,7 @@ CPU/GPU: Bộ xử lý Tegra tùy chỉnh của NVIDIA.
 Bộ nhớ trong: 64 GB.
 Kết nối không dây: Wi-Fi (IEEE 802.11 a/b/g/n/ac tương thích) / Bluetooth 4.1.
 Pin: Khoảng từ 4.5 đến 9 giờ, tùy thuộc vào game bạn chơi.'),
-	(N'oled neon',6597636,0.1,10,2,N'Mô tả: Nintendo Switch OLED Model - Neon Blue/Neon Red Edition có màn hình OLED 7 inch sống động, chân đế rộng có thể điều chỉnh, dock có cổng LAN có dây, 64 GB bộ nhớ trong, và âm thanh nâng cao.
+	(N'Nintendo Oled Neon',6597636,0.1,10,2,N'Mô tả: Nintendo Switch OLED Model - Neon Blue/Neon Red Edition có màn hình OLED 7 inch sống động, chân đế rộng có thể điều chỉnh, dock có cổng LAN có dây, 64 GB bộ nhớ trong, và âm thanh nâng cao.
 
 Ngày phát hành: Hệ thống này đã được phát hành vào ngày 8 tháng 10 năm 2021
 
@@ -857,7 +857,7 @@ CPU/GPU: Bộ xử lý Tegra tùy chỉnh của NVIDIA.
 Bộ nhớ trong: 64 GB.
 Kết nối không dây: Wi-Fi (IEEE 802.11 a/b/g/n/ac tương thích) / Bluetooth 4.1.
 Pin: Khoảng từ 4.5 đến 9 giờ, tùy thuộc vào game bạn chơi.'),
-	(N'oled pokemon',1305944,0.1,10,2,N'Mô tả: Nintendo Switch OLED Model - Pokémon Scarlet & Violet Edition có thiết kế đặc biệt từ game Pokémon Scarlet và Pokémon Violet. Hệ thống này có màu trắng bóng, với hình ảnh của Pokémon huyền thoại Koraidon và Miraidon được in trên phía trước của dock. Hệ thống này đã được phát hành vào ngày 4 tháng 11 năm 2022.
+	(N'Nintendo Oled Pokemon',1305944,0.1,10,2,N'Mô tả: Nintendo Switch OLED Model - Pokémon Scarlet & Violet Edition có thiết kế đặc biệt từ game Pokémon Scarlet và Pokémon Violet. Hệ thống này có màu trắng bóng, với hình ảnh của Pokémon huyền thoại Koraidon và Miraidon được in trên phía trước của dock. Hệ thống này đã được phát hành vào ngày 4 tháng 11 năm 2022.
 
 Ngày phát hành: Hệ thống này đã được phát hành vào ngày 4 tháng 11 năm 2022
 
@@ -872,7 +872,7 @@ CPU/GPU: Bộ xử lý Tegra tùy chỉnh của NVIDIA.
 Bộ nhớ trong: 64 GB.
 Kết nối không dây: Wi-Fi (IEEE 802.11 a/b/g/n/ac tương thích) / Bluetooth 4.1.
 Pin: Khoảng từ 4.5 đến 9 giờ, tùy thuộc vào game bạn chơi.'),
-	(N'oled splatoon',6597636,0.1,10,2,N'Mô tả: Nintendo Switch OLED Model - Splatoon 3 Edition có thiết kế đặc biệt từ game Splatoon 3. Hệ thống này có màu xanh dương và vàng gradient, với hình ảnh của Splatoon được in trên phía sau của dock. 
+	(N'Nintendo Oled Splatoon',6597636,0.1,10,2,N'Mô tả: Nintendo Switch OLED Model - Splatoon 3 Edition có thiết kế đặc biệt từ game Splatoon 3. Hệ thống này có màu xanh dương và vàng gradient, với hình ảnh của Splatoon được in trên phía sau của dock. 
 
 Ngày phát hành: Hệ thống này đã được phát hành vào ngày 26 tháng 8 năm 2022.
 
@@ -887,7 +887,7 @@ CPU/GPU: Bộ xử lý Tegra tùy chỉnh của NVIDIA.
 Bộ nhớ trong: 64 GB.
 Kết nối không dây: Wi-Fi (IEEE 802.11 a/b/g/n/ac tương thích) / Bluetooth 4.1.
 Pin: Khoảng từ 4.5 đến 9 giờ, tùy thuộc vào game bạn chơi.'),
-	(N'oled white',10094108,0.1,10,2,N'Mô tả: Nintendo Switch OLED Model - White là phiên bản Nintendo Switch mới nhất với màn hình OLED 7 inch sống động, chân đế rộng có thể điều chỉnh, dock có cổng LAN có dây, 64 GB bộ nhớ trong, và âm thanh nâng cao.
+	(N'Nintendo Oled White',10094108,0.1,10,2,N'Mô tả: Nintendo Switch OLED Model - White là phiên bản Nintendo Switch mới nhất với màn hình OLED 7 inch sống động, chân đế rộng có thể điều chỉnh, dock có cổng LAN có dây, 64 GB bộ nhớ trong, và âm thanh nâng cao.
 
 Ngày phát hành: Hệ thống này đã được phát hành vào ngày 8 tháng 10 năm 2021.
 
@@ -902,7 +902,7 @@ CPU/GPU: Bộ xử lý Tegra tùy chỉnh của NVIDIA.
 Bộ nhớ trong: 64 GB.
 Kết nối không dây: Wi-Fi (IEEE 802.11 a/b/g/n/ac tương thích) / Bluetooth 4.1.
 Pin: Khoảng từ 4.5 đến 9 giờ, tùy thuộc vào game bạn chơi.'),
-	(N'v2 gray',11655756,0.1,10,2,N'Mô tả: Nintendo Switch V2 Gray là phiên bản cải tiến của Nintendo Switch, với màn hình 6.2 inch cho phép bạn chơi game ở chế độ TV, bàn hoặc cầm tay. Hệ thống này bao gồm Nintendo Switch console và Nintendo Switch dock màu đen, và bộ điều khiển Joy‑Con trái và phải màu xám.
+	(N'Nintendo V2 Gray',11655756,0.1,10,2,N'Mô tả: Nintendo Switch V2 Gray là phiên bản cải tiến của Nintendo Switch, với màn hình 6.2 inch cho phép bạn chơi game ở chế độ TV, bàn hoặc cầm tay. Hệ thống này bao gồm Nintendo Switch console và Nintendo Switch dock màu đen, và bộ điều khiển Joy‑Con trái và phải màu xám.
 
 Ngày phát hành: Hệ thống này đã được phát hành vào tháng 8 năm 2019.
 
@@ -917,7 +917,7 @@ CPU/GPU: Bộ xử lý Tegra tùy chỉnh của NVIDIA.
 Bộ nhớ trong: 32 GB.
 Kết nối không dây: Wi-Fi (IEEE 802.11 a/b/g/n/ac tương thích) / Bluetooth 4.1.
 Pin: Khoảng từ 4.5 đến 9 giờ, tùy thuộc vào game bạn chơi.'),
-	(N'v2neon red neon blue',8206515,0.1,10,2,N'Mô tả: Nintendo Switch V2 Neon Red/Neon Blue có màn hình 6.2 inch, cho phép bạn chơi game ở chế độ TV, bàn hoặc cầm tay. Hệ thống này bao gồm Nintendo Switch console và Nintendo Switch dock màu đen, và bộ điều khiển Joy‑Con trái và phải màu đỏ neon và xanh dương neon.
+	(N'Nintendo V2 Neon Red/Neon Blue()',8206515,0.1,10,2,N'Mô tả: Nintendo Switch V2 Neon Red/Neon Blue có màn hình 6.2 inch, cho phép bạn chơi game ở chế độ TV, bàn hoặc cầm tay. Hệ thống này bao gồm Nintendo Switch console và Nintendo Switch dock màu đen, và bộ điều khiển Joy‑Con trái và phải màu đỏ neon và xanh dương neon.
 
 Ngoại hình: Hệ thống này có màu đỏ neon và xanh dương neon.
 
@@ -931,7 +931,7 @@ Bộ nhớ trong: 32 GB.
 Kết nối không dây: Wi-Fi (IEEE 802.11 a/b/g/n/ac tương thích) / Bluetooth 4.1.
 Pin: Khoảng từ 4.5 đến 9 giờ, tùy thuộc vào game bạn chơi.
 Ngày phát hành: Hệ thống này đã được phát hành vào tháng 8 năm 2019.'),
-	(N'v2 neon red neon blue nobox',10094108,0.1,10,2,N'Mô tả: Nintendo Switch V2 Neon Red/Neon Blue có màn hình 6.2 inch, cho phép bạn chơi game ở chế độ TV, bàn hoặc cầm tay. Hệ thống này bao gồm Nintendo Switch console và Nintendo Switch dock màu đen, và bộ điều khiển Joy‑Con trái và phải màu đỏ neon và xanh dương neon.
+	(N'Nintendo V2 Neon Red/Neon Blue Nobox (Hộp không được bao gồm)',10094108,0.1,10,2,N'Mô tả: Nintendo Switch V2 Neon Red/Neon Blue có màn hình 6.2 inch, cho phép bạn chơi game ở chế độ TV, bàn hoặc cầm tay. Hệ thống này bao gồm Nintendo Switch console và Nintendo Switch dock màu đen, và bộ điều khiển Joy‑Con trái và phải màu đỏ neon và xanh dương neon.
 
 Ngày phát hành: Hệ thống này đã được phát hành vào tháng 8 năm 2019.
 
@@ -1164,3 +1164,5 @@ SELECT * FROM Orders
 INSERT INTO OrderDetail
 VALUES
 	(1, 1226254,  '2024-01-02', 1, 1)
+	SELECT * FROM Account
+	
