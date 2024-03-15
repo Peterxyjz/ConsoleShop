@@ -6,13 +6,17 @@
 package controllers;
 
 import db.Account;
+import db.AccountFacade;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Cart;
 
 /**
  *
@@ -33,6 +37,7 @@ public class OrderController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
         String controller = (String) request.getAttribute("controller");
         String action = (String) request.getAttribute("action");
 
@@ -83,26 +88,61 @@ public class OrderController extends HttpServlet {
 
     protected void order_handler(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String layout = (String) request.getAttribute("layout");
+        try {
+            String fullName = request.getParameter("fullName");
+            String phone = request.getParameter("phone");
 
-        String fullName = request.getParameter("fullName");
-        String phone = request.getParameter("phone");
+            String province = request.getParameter("province");
+            String district = request.getParameter("district");
+            String ward = request.getParameter("ward");
+            String address = request.getParameter("address");
+            String infor = String.format("%-25s | %s | %s  %s  %s  %s", fullName, phone, address, ward, district, province);
 
-        String province = request.getParameter("province");
-        String district = request.getParameter("district");
-        String ward = request.getParameter("ward");
-        String address = request.getParameter("address");
-        System.out.println("province: " + province);
-        System.out.println("district: " + district);
-        System.out.println("ward: " + ward);
-        System.out.println("address: " + address);
+            HttpSession session = request.getSession();
+             boolean remember = request.getParameter("remember") != null;
+            if (remember) {
+                Account account = (Account) session.getAttribute("account");
+                account.setAddress(infor);
+                AccountFacade af = new AccountFacade();
+                af.updateInformation(account);
+            }
+            
+            System.out.println("infor: " + infor);
+            System.out.println("province: " + province);
+            System.out.println("district: " + district);
+            System.out.println("ward: " + ward);
+            System.out.println("address: " + address);
 //        Lưu thông tin ngươì dùng 
-        String info = String.format("%-25s | $s"
-                + "\n %s "
-                + "\n%s %s %s", fullName, phone, address, ward, district, province);
-        request.setAttribute("info", info);
 
-        request.getRequestDispatcher("/order/pay.do").forward(request, response);
+            session.setAttribute("infor", infor);
+            PrintWriter out = response.getWriter();
+            out.println(infor);
+            out.close();
+        } catch (Exception e) {
+            request.getRequestDispatcher("/order/index.do").forward(request, response);
+        }
+
+        request.getRequestDispatcher("/order/orderDetail.do").forward(request, response);
+    }
+
+    protected void orderDetail(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String layout = (String) request.getAttribute("layout");
+        String infor = (String) session.getAttribute("infor");
+        StringTokenizer st = new StringTokenizer(infor, "|");
+        String fullName = st.nextToken().trim();
+        String phone = st.nextToken().trim();
+        String address = st.nextToken().trim();
+        request.setAttribute("fullName", fullName);
+        request.setAttribute("phone", phone);
+        request.setAttribute("address", address);
+        Cart cart = (Cart) session.getAttribute("cart");
+        System.out.println("cart :" + cart.getTotal());
+
+        request.getRequestDispatcher(layout).forward(request, response);
     }
 
     protected void pay(HttpServletRequest request, HttpServletResponse response)
@@ -115,13 +155,7 @@ public class OrderController extends HttpServlet {
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
 
-        request.getRequestDispatcher(layout).forward(request, response);
-    }
-    
-    protected void orderDetail(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String layout = (String) request.getAttribute("layout");
-        request.getRequestDispatcher(layout).forward(request, response);
+        request.getRequestDispatcher("/").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -136,6 +170,8 @@ public class OrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         processRequest(request, response);
     }
 

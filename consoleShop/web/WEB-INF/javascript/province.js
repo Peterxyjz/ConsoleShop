@@ -1,9 +1,4 @@
-//04-Province-Prj
-console.log("04-Province-Prj");
-//vnprovinces
-// promise + fetch + class
-//todo-------------------
-// 'https://vnprovinces.pythonanywhere.com/api/districts/876/?basic=true' 
+
 
 
 const baseUrl = "https://vnprovinces.pythonanywhere.com/api";
@@ -85,6 +80,7 @@ class RenderUI {
         provinces.forEach((province) => {
             const {id, full_name} = province;
             htmlContent += "<option value=" + id + ">" + full_name + "</option>";
+
         });
         //nehst voo
         document.querySelector("#province").innerHTML = htmlContent;
@@ -113,9 +109,10 @@ class RenderUI {
         document.querySelector("#ward").innerHTML = htmlContent;
     }
     renderInformation(infor) {
-        const {province, district, ward, address} = infor;
-        let htmlContent = `${address}, ${ward}, ${district}, ${province}`;
-        document.querySelector("#information").innerHTML = htmlContent;
+        console.log("infomation")
+        const [fullName, phone, address, ward, district, province] = infor;
+        let htmlContent = fullName + phone + address + ward + district + province;
+
     }
 }
 //
@@ -178,34 +175,68 @@ document
             ui.renderWards(wards);
         });
 
+
+
 //khi submit
-document.querySelector("form").addEventListener("submit", (event) => {
+document.querySelector("#orderForm").addEventListener("submit", (event) => {
     event.preventDefault();
-    let province = document.querySelector("#province option:checked").innerHTML;
+    console.log("submit")
+    let fullName = document.querySelector("#fullName").value;
+    let phone = document.querySelector("#phone").value
+    let province = decodeURIComponent(document.querySelector("#province option:checked").innerHTML);
     let district = document.querySelector("#district option:checked").innerHTML;
     let ward = document.querySelector("#ward option:checked").innerHTML;
     let address = document.querySelector("#address").value;
     //   console.log(address);
-    let infor = {
-        address,
-        ward,
-        district,
-        province,
-    };
-    let ui = new RenderUI();
+//    let infor = [
+//        fullName,
+//        phone,
+//        address,
+//        ward,
+//        district,
+//        province];
+
+//    let ui = new RenderUI();
     //làm 1 hàm renderInformation
-    ui.renderInformation(infor);
-});
-//hàm dùng ajax gọi servlet để truyền content của các option
-function sendInfo(info) {
-    const { address, ward, district, province} = info
-    $.ajax({ 
-        url: '/consoleShop/pay/order_handler.do',
+//    ui.renderInformation(infor);
+//    const [fullName, phone, address, ward, district, province] = infor;
+    let infor = fullName  + phone + address + ward + district + province;
+
+    console.log(infor)
+    $.ajax({
+        url: '/consoleShop/order/order_handler.do',
         type: 'GET',
         dataType: 'text',
         data: {
-            
+           fullName,
+           phone ,
+           address ,
+           ward , 
+           district ,
+           province
         },
-        
+        success: function (data) {
+            console.log(data)
+            let url = "/consoleShop/order/orderDetail.do";
+            window.location.href = url;
+
+        }
+    })
+//    sendInformation(infor)
+
+
+});
+//hàm dùng ajax gọi servlet để truyền content của các option
+function sendInformation(infor) {
+    const [fullName, phone, address, ward, district, province] = infor;
+    let htmlContent = fullName + phone + address + ward + district + province;
+    console.log(htmlContent)
+    $.ajax({
+        url: '/consoleShop/order/order_handler.do?infor=' + decodeURIComponent(htmlContent),
+        type: 'GET',
+        dataType: 'text',
+        data: {
+
+        },
     })
 }

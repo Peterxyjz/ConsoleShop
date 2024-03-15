@@ -119,13 +119,14 @@ public class CartController extends HttpServlet {
         
             Account account = (Account) session.getAttribute("account");
             double wallet = account == null ? 0 : account.getWallet();
+            double pay = wallet - cart.getTotal();
             PrintWriter out = response.getWriter();
             out.println(  "<h5>Thanh toán</h5>"
                    + "<p id=\"totalCartValue\">Tổng giá trị sản phẩm:  "+ cart.getTotal() + " đ</p>"
                    + " <hr/>"
                    + " <p>Tổng giá trị phải thanh toán:    "+cart.getTotal()+"  đ</p>"
                    + "  <p>Số dư hiện tại:  "+wallet+"    đ</p>"
-                   + "  <p>Số tiền cần nạp thêm:      đ</p>"
+                   + "  <p>Số tiền cần nạp thêm:   "+ (pay >0 ? 0: -pay) +"   đ</p>"
             );
            
             out.close();

@@ -10,6 +10,8 @@ CREATE TABLE Category
   PRIMARY KEY (CategoryID)
 );
 
+SELECT * FROM Account
+
 CREATE TABLE Account
 (
   AccID INT IDENTITY(1,1) NOT NULL,

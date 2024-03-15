@@ -177,6 +177,33 @@ public class AccountFacade {
         }
     }
 
+
+    public void updateInformation(Account account) throws SQLException, NoSuchAlgorithmException {
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("update Account set Address =? where accId=?");
+        stm.setString(1, account.getAddress());
+        stm.setInt(2, account.getAccId());
+
+        int count = stm.executeUpdate();
+        con.close();
+
+    }
+//    public boolean isAdmin(String email) throws SQLException {
+//        Connection con = DBContext.getConnection();
+//        PreparedStatement stm = con.prepareStatement("select * from account where email=?");
+//        stm.setString(1, email);
+//        ResultSet rs = stm.executeQuery();
+//        Account account = new Account();
+//        account.setRole(rs.getString("role"));
+//        if (account.getRole().equals("admin")) {
+//            con.close();
+//            return true;
+//        } else {
+//            con.close();
+//            return false;
+//        }
+//    }
+
     public void update_wallet(double money, int accId) throws SQLException, NoSuchAlgorithmException {
         Connection con = DBContext.getConnection();
         PreparedStatement stm = con.prepareStatement("UPDATE Account SET Wallet = ? WHERE AccID = ?");
@@ -185,4 +212,5 @@ public class AccountFacade {
         int count = stm.executeUpdate();
         con.close();
     }
+
 }

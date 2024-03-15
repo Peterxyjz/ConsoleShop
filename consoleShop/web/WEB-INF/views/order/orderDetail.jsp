@@ -21,12 +21,13 @@
                 <div class="col-sm-12">
                     <h3>Thông tin đặt hàng</h3>
                     <ul>
-                        <li>Khách hàng: </li>
-                        <li>Số điện thoại: </li>
-                        <li>Địa chỉ nhận hàng: </li>
-                        <li>Tạm tính: </li>
-                        <li>Phí vận chuyển: </li>
-                        <li>Tổng tiền: </li>
+                        <li>Khách hàng: ${requestScope.fullName}</li>
+                        <li>Số điện thoại: ${requestScope.phone}</li>
+                        <li>Địa chỉ nhận hàng: ${requestScope.address}</li>
+                        <li>Tạm tính: ${cart.total} đ </li>
+                        <li>Phí vận chuyển: 50.000đ </li>
+                        <li>Tổng tiền:${cart.total+50000} đ </li>
+                        
                     </ul>
                 </div>
                 <hr/>
@@ -46,7 +47,7 @@
                     </div>
                 </div>
 
-                <form action="<c:url value="/order/pay_handler.do"/>" class="mt-2 mb-3">
+                <form action="#" class="mt-2 mb-3">
                     <hr/>
                     <h4>Chọn hình thức thanh toán</h4>
                     <div class="form-check">
