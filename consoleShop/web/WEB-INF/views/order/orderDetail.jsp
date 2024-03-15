@@ -27,6 +27,7 @@
                         <li>Tạm tính: ${cart.total} đ </li>
                         <li>Phí vận chuyển: 50.000đ </li>
                         <li>Tổng tiền:${cart.total+50000} đ </li>
+                        
                     </ul>
                 </div>
                 <hr/>
