@@ -9,8 +9,10 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style><%@include file="/WEB-INF/css/accountUpdate.css"%></style>
 <jsp:include page="/WEB-INF/components/navbar.jsp" />
+<div class="row">
+    <jsp:include page="/WEB-INF/components/accountNavigate.jsp" />
 
-<div class="container">
+    <div class="container info__wrapper col-lg-9 col-12">
     <div class="general">
         <h3 class="general__header">Tổng quan</h3>
 
@@ -107,7 +109,9 @@
             <button type="submit" class="personal__submit col-md-5 col-7">Lưu các thay đổi</button>
         </form>
     </div>       
-
 </div>
+</div>
+
 <jsp:include page="/WEB-INF/components/footer.jsp" />
 <script><%@include file="/WEB-INF/javascript/accountUpdate.js"%></script>
+<script><%@include file="/WEB-INF/javascript/accountNavigate.js"%></script>
