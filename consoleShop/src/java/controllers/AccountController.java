@@ -63,12 +63,6 @@ public class AccountController extends HttpServlet {
             case "update_handler":
                 update_handler(request, response);
                 break;
-//            case "delete":
-//                delete(request, response);
-//                break;
-//            case "delete_handler":
-//                delete_handler(request, response);
-//                break;
             case "forgot":
                 forgot(request, response);
                 break;

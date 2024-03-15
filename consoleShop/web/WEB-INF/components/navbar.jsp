@@ -41,7 +41,7 @@
                                     <div>Số dư tài khoản</div>
                                     <div>
                                         <span><fmt:formatNumber value="${account.wallet}" type="number"/>đ</span>
-                                        <a style="margin-left: 4px " href="/"><i class="bi bi-plus-circle"></i></a>
+                                        <a style="margin-left: 4px " href="<c:url value="/user/deposit.do" />"><i class="bi bi-plus-circle"></i></a>
                                     </div>
                                 </li>
                                 <c:if test="${account.role eq 'admin' || account.role eq 'employee'}">
@@ -50,7 +50,7 @@
                                     </li>       
                                 </c:if>
                                 <c:if test="${account.role eq 'customer'}">
-                                    <li class="account__links"><a href="<c:url value="/account/index.do"/>">Quản lý tài khoản</a></li>
+                                    <li class="account__links"><a href="<c:url value="/user/profile.do"/>">Quản lý tài khoản</a></li>
                                     <li class="account__links">
                                         <a href="#">Lịch sử đơn hàng</a> 
                                     </li>
@@ -180,7 +180,7 @@
                 <a href=""> Sản phẩm khuyến mãi</a>
             </li>
             <li class="dropdown__element">
-                <a href=""> Hình thức thanh toán</a>
+                <a href="<c:url value="/user/payment.do"/>"> Hình thức thanh toán</a>
             </li>
         </ul>
     </div>              
