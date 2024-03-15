@@ -13,15 +13,66 @@ and open the template in the editor.
     padding: 0;
     box-sizing: border-box;
 }
+.info__navigate{
+   display: flex;
+   align-items: flex-start; 
+   margin-top: 20px;
+   justify-content: center;
+
+   
+}
+.info__navigate ul {
+    list-style: none;
+    padding: 0 23px;
+    height: 300px;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+.info__navigate ul li {
+    background: #fff;
+    width: 100%;
+    padding: 20px 14px;
+    border: 1px #e6e8eb solid;
+}
+.info__navigate ul li:first-child{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.info__navigate ul li:last-child{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.info__navigate ul li a{
+    color: #3f3f3f;
+    font-weight: 400;
+}
+.info__navigate ul li a i{
+    margin-right: 8px;
+    color:#0079FF;
+}
+.info__management{
+    border-left: #0079FF 3px solid !important;
+}
 .container{
     margin-top: 20px;
-    
     border-radius: 10px;
     padding: 30px 50px;
 }
+body{
+    background-color: #f2f2f2;
+
+}
+.info__wrapper{
+    background-color: #fff;
+    margin-left: 0;
+
+}
 .general__header{
     margin-bottom: 10px;
-    
+
 }
 .general__label{
     margin-bottom: 8px;
@@ -32,7 +83,7 @@ and open the template in the editor.
 }
 
 .personal__wrapper{
-    
+
 }
 .personal__remind{
     color: red;
@@ -66,7 +117,7 @@ and open the template in the editor.
     height: 34px;
 }
 .personal__country select {
-    
+
 }
 .personal__group{
     margin: 10px 0;
@@ -107,4 +158,3 @@ and open the template in the editor.
     margin-top: 10px;
     font-weight: 600;
 }
-
