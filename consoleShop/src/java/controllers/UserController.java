@@ -11,7 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,14 +32,14 @@ public class UserController extends HttpServlet {
         String action = (String) request.getAttribute("action");
 
         switch (action) {
-            case "index":
-                index(request, response);
-                break;
             case "profile":
                 profile(request, response);
                 break;
             case "profile_edit":
                 profile_edit(request, response);
+                break;
+            case "profile_edit_handler":
+                profile_edit_handler(request, response);
                 break;
             case "payment":
                 payment(request, response);
@@ -51,15 +50,18 @@ public class UserController extends HttpServlet {
             case "deposit_handler":
                 deposit_handler(request, response);
                 break;
+            case "history":
+                history(request, response);
+                break;
         }
     }
-    protected void index(HttpServletRequest request, HttpServletResponse response)
+    protected void profile(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         request.getRequestDispatcher(layout).forward(request, response);
     }
     
-    protected void profile(HttpServletRequest request, HttpServletResponse response)
+    protected void profile_edit(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             HttpSession session = request.getSession();
@@ -69,15 +71,14 @@ public class UserController extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errMsg", e);
-            request.getRequestDispatcher("/account/index.do").forward(request, response);
+            request.getRequestDispatcher("/user/profile.do").forward(request, response);
         }
         String layout = (String) request.getAttribute("layout");
         request.getRequestDispatcher(layout).forward(request, response);
-        
         request.getRequestDispatcher(layout).forward(request, response);
     }
     
-    protected void profile_edit(HttpServletRequest request, HttpServletResponse response)
+    protected void profile_edit_handler(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         try {
@@ -111,7 +112,7 @@ public class UserController extends HttpServlet {
             af.update(account_updating);
             //lưu lại account vào session
             session.setAttribute("account", account_updating);
-            request.getRequestDispatcher("/user/index.do").forward(request, response);
+            request.getRequestDispatcher("/user/profile.do").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errMsg", "Something is wrong");
@@ -154,6 +155,12 @@ public class UserController extends HttpServlet {
             request.getRequestDispatcher("/user/deposit.do").forward(request, response);
         }
         
+    }
+    
+    protected void history(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        request.getRequestDispatcher(layout).forward(request, response);
     }
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

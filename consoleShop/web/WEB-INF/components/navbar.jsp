@@ -50,17 +50,14 @@
                                     </li>       
                                 </c:if>
                                 <c:if test="${account.role eq 'customer'}">
-                                    <li class="account__links"><a href="<c:url value="/user/index.do"/>">Quản lý tài khoản</a></li>
+                                    <li class="account__links"><a href="<c:url value="/user/profile.do"/>">Quản lý tài khoản</a></li>
                                     <li class="account__links">
-                                        <a href="#">Lịch sử đơn hàng</a> 
+                                        <a href="<c:url value="/user/history.do"/>">Lịch sử đơn hàng</a> 
                                     </li>
                                 </c:if>
                                 <li class="account__links"><a href="<c:url value="/account/logout.do"/>">Đăng xuất</a></li>
                             </ul>
                         </i>
-
-
-
                     </div>
                 </c:if>
                 <a href="<c:url value="/cart/index.do"/>" class="nav__cart">
@@ -88,21 +85,21 @@
                                     <img src="<c:url value="/images/82.jpg" />" class="category__dropdown-image" >
                                     <div class="category__dropdown-title">PlayStation</div>
                                 </a>
-                                
+
                             </li>
                             <li class="category__dropdown-item">
                                 <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Nintendo&status=&priceLower=&priceUpper=&sort=proName+ASC"/>">
                                     <img src="<c:url value="/images/63.jpg" />" class="category__dropdown-image">
                                     <div class="category__dropdown-title">Nintendo Switch</div>
                                 </a>
-                                
+
                             </li>
                             <li class="category__dropdown-item">
                                 <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Game&status=&priceLower=&priceUpper=&sort=proName+ASC"/>">
                                     <img src="<c:url value="/images/1.jpg" />" class="category__dropdown-image">
                                     <div class="category__dropdown-title">Game</div>
                                 </a>
-                                
+
                             </li>
                             <li class="category__dropdown-item">
                                 <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Accessory&status=&priceLower=&priceUpper=&sort=proName+ASC"/>">
@@ -150,21 +147,21 @@
                                     <img src="<c:url value="/images/82.jpg" />" class="category__dropdown-image" style="width: 70px">
                                     <div class="category__dropdown-title">PlayStation</div>
                                 </a>
-                                
+
                             </li>
                             <li class="category__dropdown-item">
                                 <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Nintendo&status=&priceLower=&priceUpper=&sort=proName+ASC"/>">
                                     <img src="<c:url value="/images/63.jpg" />" class="category__dropdown-image" style="width: 70px">
                                     <div class="category__dropdown-title">Nintendo Switch</div>
                                 </a>
-                                
+
                             </li>
                             <li class="category__dropdown-item">
                                 <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Game&status=&priceLower=&priceUpper=&sort=proName+ASC"/>">
                                     <img src="<c:url value="/images/1.jpg" />" class="category__dropdown-image" style="width: 70px">
                                     <div class="category__dropdown-title">Game</div>
                                 </a>
-                                
+
                             </li>
                             <li class="category__dropdown-item">
                                 <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Accessory&status=&priceLower=&priceUpper=&sort=proName+ASC"/>">
