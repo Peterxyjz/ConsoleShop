@@ -9,49 +9,102 @@
         <div class="nav_deposit">
             <h3>Hình thức thanh toán</h3>
             <hr/>
-            <div class="row mt-2 mb-3">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-10">
-                    <h4>Thanh toán bằng tiền tài khoản</h4>
-                    <a class="btn btn-primary" href="<c:url value="/user/deposit.do" />" role="button">Nạp tiền vào tài khoản</a>
+            <!--            <div class="row mt-2 mb-3">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-10">
+                                <h4>Thanh toán bằng tiền tài khoản</h4>
+                                <a class="btn btn-primary" href="<c:url value="/user/deposit.do" />" role="button">Nạp tiền vào tài khoản</a>
+                            </div>
+            
+                            <div class="col-sm-1"></div>
+                        </div>
+                        <hr/>
+                        <div class="row mt-2 mb-3">
+                            <div class="col-sm-1"></div>
+                            <h4 class="col-sm-5">Thanh toán trực tiếp</h4>
+                            <h5 class="col-sm-6">
+                                Quý khách hàng có thể đến trực tiếp Console Shop tại TP. Hồ Chí Minh để thanh toán bằng tiền mặt hoặc quẹt thẻ.
+                            </h5>
+                            <p class="text-center">Địa chỉ: Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh</p>
+                        </div>
+                        <hr/>
+                        <div class="row mt-2 mb-3">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-6">
+                                <h4>Thanh toán khi nhận hàng</h4>
+                                <p>
+                                    Khi quý khách hàng nhận hàng sẽ thanh toán tổng giá trị đơn hàng hoặc
+                                    phần còn lại (sau khi khách hàng đã đặt cọc trước) bằng tiền mặt hoặc
+                                    quẹt thẻ (chỉ áp dụng đơn hàng ở nội thành Tp. Hồ Chí Minh).
+                                    <br/>
+                                    Quý khách sẽ thanh toán tại địa điểm nhận hàng cho nhân viên
+                                    giao nhận của ConsoleShop hoặc đơn vị vận chuyển mà ConsoleShop sử dụng.
+                                </p>
+                            </div>
+                            <div class="col-sm-4">
+                                <img src="<c:url value="/images/Background/marioonshell.gif"/>" width="100%">
+                            </div>
+                            <div class="col-sm-1"></div>
+                        </div>-->
+            <div>
+                <!-- Tab items -->
+                <div class="tabs row">
+                    <div class="tab-item active col-lg-4">
+                        <i class="fa-solid fa-wallet tab-icon"></i>
+                        Ví của tôi
+                        <div class="line active"></div>
+                    </div>
+                    <div class="tab-item  col-lg-4">
+                        <i class="fa-solid fa-credit-card  tab-icon"></i>
+                        Online Banking
+                        <div class="line"></div>
+                    </div>
+                    <div class="tab-item col-lg-4">
+                        <i class="fa-solid fa-location-dot  tab-icon"></i>
+                        Ship COD
+                        <div class="line"></div>
+                    </div>
+
                 </div>
 
-                <div class="col-sm-1"></div>
-            </div>
-            <hr/>
-            <div class="row mt-2 mb-3">
-                <div class="col-sm-1"></div>
-                <h4 class="col-sm-5">Thanh toán trực tiếp</h4>
-                <h5 class="col-sm-6">
-                    Quý khách hàng có thể đến trực tiếp Console Shop tại TP. Hồ Chí Minh để thanh toán bằng tiền mặt hoặc quẹt thẻ.
-                </h5>
-                <p class="text-center">Địa chỉ: Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh</p>
-            </div>
-            <hr/>
-            <div class="row mt-2 mb-3">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-6">
-                    <h4>Thanh toán khi nhận hàng</h4>
-                    <p>
-                        Khi quý khách hàng nhận hàng sẽ thanh toán tổng giá trị đơn hàng hoặc
-                        phần còn lại (sau khi khách hàng đã đặt cọc trước) bằng tiền mặt hoặc
-                        quẹt thẻ (chỉ áp dụng đơn hàng ở nội thành Tp. Hồ Chí Minh).
-                        <br/>
-                        Quý khách sẽ thanh toán tại địa điểm nhận hàng cho nhân viên
-                        giao nhận của ConsoleShop hoặc đơn vị vận chuyển mà ConsoleShop sử dụng.
-                    </p>
+                <!-- Tab content -->
+                <div class="tab-content">
+                    <div class="tab-pane active">
+                        <h2>Ví ConsoleShop</h2>
+                        <p style="font-size: 18px"><span>Số dư: </span> ${sessionScope.account.wallet}đ</p>
+                        <a href="<c:url value="/user/deposit.do"/>" class="btn btn-success"><i class="bi bi-plus-circle"></i> Nạp thêm tiền</a>
+                    </div>
+
+                    <div class="tab-pane" >
+                        <h2>Thanh toán Online Banking</h2>
+                        <p style="text-align: center; font-size: 24px; color: red">Tính năng sắp cập nhật bạn nhé!</p>
+                    </div>
+
+                    <div class="tab-pane">
+                        <h2>Ship COD</h2>
+                        <p>
+                            Khi quý khách hàng nhận hàng sẽ thanh toán tổng giá trị đơn hàng hoặc
+                            phần còn lại (sau khi khách hàng đã đặt cọc trước) bằng tiền mặt hoặc
+                            quẹt thẻ (chỉ áp dụng đơn hàng ở nội thành Tp. Hồ Chí Minh).
+                            <br/>
+                            Quý khách sẽ thanh toán tại địa điểm nhận hàng cho nhân viên
+                            giao nhận của ConsoleShop hoặc đơn vị vận chuyển mà ConsoleShop sử dụng.
+                        </p>
+                        
+                    </div>
+
                 </div>
-                <div class="col-sm-4">
-                    <img src="<c:url value="/images/Background/marioonshell.gif"/>" width="100%">
-                </div>
-                <div class="col-sm-1"></div>
             </div>
+
             <hr/>
-            
+
         </div>
     </div>
     <br/>
 </div>
+
+<script><%@include file="/WEB-INF/javascript/payment.js"%></script>
+
 <jsp:include page="/WEB-INF/components/footer.jsp"/>
 
 
