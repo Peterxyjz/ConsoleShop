@@ -81,28 +81,28 @@
                     <div class="categorty__dropdown">
                         <ul class="category__dropdown-wrapper">
                             <li class="category__dropdown-item">
-                                <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Playstation&status=&priceLower=&priceUpper=&sort=proName+ASC"/>">
+                                <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Playstation&status=&priceLower=&priceUpper=&sort=proName+ASC&index=1"/>">
                                     <img src="<c:url value="/images/82.jpg" />" class="category__dropdown-image" >
                                     <div class="category__dropdown-title">PlayStation</div>
                                 </a>
 
                             </li>
                             <li class="category__dropdown-item">
-                                <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Nintendo&status=&priceLower=&priceUpper=&sort=proName+ASC"/>">
+                                <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Nintendo&status=&priceLower=&priceUpper=&sort=proName+ASC&index=1"/>">
                                     <img src="<c:url value="/images/63.jpg" />" class="category__dropdown-image">
                                     <div class="category__dropdown-title">Nintendo Switch</div>
                                 </a>
 
                             </li>
                             <li class="category__dropdown-item">
-                                <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Game&status=&priceLower=&priceUpper=&sort=proName+ASC"/>">
+                                <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Game&status=&priceLower=&priceUpper=&sort=proName+ASC&index=1"/>">
                                     <img src="<c:url value="/images/1.jpg" />" class="category__dropdown-image">
                                     <div class="category__dropdown-title">Game</div>
                                 </a>
 
                             </li>
                             <li class="category__dropdown-item">
-                                <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Accessory&status=&priceLower=&priceUpper=&sort=proName+ASC"/>">
+                                <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Accessory&status=&priceLower=&priceUpper=&sort=proName+ASC&index=1"/>">
                                     <img src="<c:url value="/images/chuainsert/98.jpg" />" class="category__dropdown-image">
                                     <div class="category__dropdown-title">Phụ kiện</div>
                                 </a>
@@ -143,28 +143,28 @@
                     <div class="categorty__dropdown">
                         <ul class="category__dropdown-wrapper" >
                             <li class="category__dropdown-item" >
-                                <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Playstation&status=&priceLower=&priceUpper=&sort=proName+ASC"/>">
+                                <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Playstation&status=&priceLower=&priceUpper=&sort=proName+ASC&index=1"/>">
                                     <img src="<c:url value="/images/82.jpg" />" class="category__dropdown-image" style="width: 70px">
                                     <div class="category__dropdown-title">PlayStation</div>
                                 </a>
 
                             </li>
                             <li class="category__dropdown-item">
-                                <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Nintendo&status=&priceLower=&priceUpper=&sort=proName+ASC"/>">
+                                <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Nintendo&status=&priceLower=&priceUpper=&sort=proName+ASC&index=1"/>">
                                     <img src="<c:url value="/images/63.jpg" />" class="category__dropdown-image" style="width: 70px">
                                     <div class="category__dropdown-title">Nintendo Switch</div>
                                 </a>
 
                             </li>
                             <li class="category__dropdown-item">
-                                <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Game&status=&priceLower=&priceUpper=&sort=proName+ASC"/>">
+                                <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Game&status=&priceLower=&priceUpper=&sort=proName+ASC&index=1"/>">
                                     <img src="<c:url value="/images/1.jpg" />" class="category__dropdown-image" style="width: 70px">
                                     <div class="category__dropdown-title">Game</div>
                                 </a>
 
                             </li>
                             <li class="category__dropdown-item">
-                                <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Accessory&status=&priceLower=&priceUpper=&sort=proName+ASC"/>">
+                                <a href="<c:url value="/product/searchFilter_handler.do?categoryName=Accessory&status=&priceLower=&priceUpper=&sort=proName+ASC&index=1"/>">
                                     <img src="<c:url value="/images/chuainsert/98.jpg" />" class="category__dropdown-image" style="width: 70px">
                                     <div class="category__dropdown-title">Phụ kiện</div>
                                 </a>

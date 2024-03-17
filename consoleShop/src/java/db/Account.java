@@ -108,5 +108,10 @@ public class Account {
         return wallet;
     }
 
+    @Override
+    public String toString() {
+        return "Account{" + "accId=" + accId + ", fullName=" + fullName + ", email=" + email + ", password=" + password + ", role=" + role + ", address=" + address + ", country=" + country + ", phoneNumber=" + phoneNumber + ", username=" + username + ", birthDay=" + birthDay + ", wallet=" + wallet + '}';
+    }
+
     
 }

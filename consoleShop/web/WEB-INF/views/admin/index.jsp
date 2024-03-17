@@ -30,7 +30,45 @@
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <!--fullName, email, password, role, address, country, phoneNumber, username;-->
+                                        <td>No</td>
+                                        <td>ID</td>
+                                        <td>Họ và tên</td>
+                                        <td>Chức vụ</td>
+                                        <td>Số điện thoại</td>
+                                        <td>Chỉnh sửa</td>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="emp" items="${empList}" varStatus="loop">
+                                        <tr>
+                                            <td>${loop.count}</td>
+                                            <td>${emp.accId}</td>
+                                            <td>${emp.fullName}</td>
+                                            <td>${emp.role}</td>
+                                            <td>${emp.phoneNumber}</td>
+                                            <td>
+                                                <form action="<c:url value="/admin/updateEmployee.do"/>">
+                                                    <button>Sửa</button>
+                                                    <input type="hidden" name="accId" value="${emp.accId}"/>
+                                                    
+                                                </form>
+<!--                                                <form action="<c:url value="/admin/deleteEmployee.do"/>">
+                                                    <button>Xóa</button>
+                                                    <input type="hidden" name="accId" value="${emp.accId}"/>
+                                                </form>-->
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                            <c:if test="${empList.size() == 0}">
+                                <p>Shop đéo có nv</p>
+                            </c:if>
                         </div>
                     </div>
                 </div>

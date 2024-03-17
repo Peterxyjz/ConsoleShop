@@ -4,6 +4,7 @@ import db.Account;
 import db.AccountFacade;
 import db.Category;
 import db.CategoryFacade;
+import db.EmployeeFacade;
 import db.Product;
 import db.ProductFacade;
 import java.sql.SQLException;
@@ -12,6 +13,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,14 +50,17 @@ public class AdminController extends HttpServlet {
             case "edit_handler":
                 edit_handler(request, response);
                 break;
-            case "getEmployeeList":
-                getEmployeeList(request, response);
-                break;
+//            case "getEmployeeList":
+//                getEmployeeList(request, response);
+//                break;
             case "updateEmployee":
                 updateEmployee(request, response);
                 break;
             case "updateEmployee_handler":
                 updateEmployee_handler(request, response);
+                break;
+            case "deleteEmployee":
+                deleteEmployee(request, response);
                 break;
             case "delete_handler":
                 delete_handler(request, response);
@@ -75,15 +81,12 @@ public class AdminController extends HttpServlet {
     protected void index(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
-        request.getRequestDispatcher(layout).forward(request, response);
-    }
-
-    protected void getEmployeeList(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String layout = (String) request.getAttribute("layout");
         try {
             AccountFacade af = new AccountFacade();
             List<Account> empList = af.getEmployeeList();
+            for (Account account : empList) {
+                System.out.println("fulname" + account.getFullName());
+            }
             request.setAttribute("empList", empList);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -92,6 +95,22 @@ public class AdminController extends HttpServlet {
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
+//    protected void getEmployeeList(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        String layout = (String) request.getAttribute("layout");
+//        try {
+//            AccountFacade af = new AccountFacade();
+//            List<Account> empList = af.getEmployeeList();
+//            for (Account account : empList) {
+//                System.out.println("fulname" + account.getFullName());
+//            }
+//            request.setAttribute("empList", empList);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            request.setAttribute("errorMsg", "Error when reading category data");
+//        }
+//        request.getRequestDispatcher(layout).forward(request, response);
+//    }
     protected void create(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -151,43 +170,49 @@ public class AdminController extends HttpServlet {
 
     protected void updateEmployee(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String layout = (String) request.getAttribute("layout");
-        request.getRequestDispatcher(layout).forward(request, response);
+        try {
+            String layout = (String) request.getAttribute("layout");
+            int accId = Integer.parseInt(request.getParameter("accId"));
+
+            AccountFacade af = new AccountFacade();
+            Account acc = af.select(accId);
+            request.setAttribute("account", acc);
+
+            request.getRequestDispatcher(layout).forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     protected void updateEmployee_handler(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         try {
-            HttpSession session = request.getSession();
+
             AccountFacade af = new AccountFacade();
 
             int accId = Integer.parseInt(request.getParameter("accId"));
             String fullName = request.getParameter("fullName");
-            String username = request.getParameter("username");
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date birthDay = sdf.parse(request.getParameter("birthDay"));
-            String address = request.getParameter("address");
-            String country = request.getParameter("country");
             String phoneNumber = request.getParameter("phoneNumber");
+            String role = request.getParameter("role");
             //lấy account ra
-            Account account_updating = (Account) session.getAttribute("account");
+            Account account = af.select(accId);
+            account.setFullName(fullName);
+            account.setRole(role);
+            account.setPhoneNumber(phoneNumber);
+            EmployeeFacade ef = new EmployeeFacade();
 
-            account_updating.setAccId(accId);
-            account_updating.setFullName(fullName);
-            account_updating.setUsername(username);
-            account_updating.setBirthDay(birthDay);
-            account_updating.setAddress(address);
-            account_updating.setCountry(country);
-            account_updating.setPhoneNumber(phoneNumber);
-            af.update(account_updating);
-            //lưu lại account vào session
-            session.setAttribute("account", account_updating);
-            request.getRequestDispatcher("/account/index.do").forward(request, response);
+            ef.updateEmployee(account);
+
+            List<Account> empList = af.getEmployeeList();
+
+            request.setAttribute("empList", empList);
+
+            request.getRequestDispatcher("/admin/index.do").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errMsg", "Something is wrong");
-            request.getRequestDispatcher("/account/update.do").forward(request, response);
+            request.getRequestDispatcher("/account/login.do").forward(request, response);
         }
         request.getRequestDispatcher(layout).forward(request, response);
     }
@@ -266,6 +291,27 @@ public class AdminController extends HttpServlet {
             e.printStackTrace();
             request.setAttribute("errorMsg", "Error when deleting product data");
             request.getRequestDispatcher("/admin/edit.do").forward(request, response);
+        }
+    }
+
+    protected void deleteEmployee(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+            int accId = Integer.parseInt(request.getParameter("accId"));
+            
+            AccountFacade af = new AccountFacade();
+            af.delete(accId);
+            List<Account> empList = af.getEmployeeList();
+            
+            
+            request.setAttribute("empList", empList);
+            request.getRequestDispatcher("/admin/index.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("errorMsg", "Error when deleting product data");
+            request.getRequestDispatcher("/admin/index.do").forward(request, response);
         }
     }
 
