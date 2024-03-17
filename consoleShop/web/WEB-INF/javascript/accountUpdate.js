@@ -6,22 +6,19 @@
 var btnSubmit = document.querySelector(".personal__submit");
 var phoneInput = document.getElementById("phoneNumber");
 //alert when submit
-btnSubmit.onclick = (event)=>{
+btnSubmit.onclick = (event) => {
     var answer = window.confirm("Bạn có chắc chắn muốn lưu thông tin đã nhập ?");
-    if(answer){
-
-    }
-    else{
+    if (!answer) {
         event.preventDefault();
-    }
-    
+    } 
+
 };
 // phone only accept number
-phoneInput.oninput = (e)=>{
+phoneInput.oninput = (e) => {
     const reg = '^[0-9]+$';
-        if(!e.target.value.match(reg)){
-            e.target.value = "";
-        }
-    
+    if (!e.target.value.match(reg)) {
+        e.target.value = "";
+    }
+
 };
 

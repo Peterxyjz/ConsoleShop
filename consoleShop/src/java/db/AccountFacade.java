@@ -13,9 +13,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,28 +28,36 @@ public class AccountFacade {
 
     public List<Account> getEmployeeList() throws SQLException {
         Connection con = DBContext.getConnection();
-        PreparedStatement stm = con.prepareStatement("select * from Account where role=?");
-        stm.setString(1, "employee");
-        ResultSet rs = stm.executeQuery();
+        Statement stm = con.createStatement();
+        
+        ResultSet rs = stm.executeQuery("select * from account where role = 'employee'");
         Account account = new Account();
-        List<Account> empList = null;
+        List<Account> empList = new ArrayList<>();
 
         while (rs.next()) {
-            account.setAccId(rs.getInt("accId"));
-            account.setFullName(rs.getString("fullName"));
-            account.setUsername(rs.getString("username"));
-            account.setEmail(rs.getString("email"));
-            account.setPassword(rs.getString("password"));
-            account.setRole(rs.getString("role"));
-            account.setBirthDay(rs.getDate("birthDay"));
-            account.setAddress(rs.getString("address"));
-            account.setCountry(rs.getString("country"));
-            account.setPhoneNumber(rs.getString("phoneNumber"));
-            account.setWallet(rs.getDouble("wallet"));
             
-            empList.add(account);
+            try {
+                account.setAccId(rs.getInt("accId"));
+                account.setFullName(rs.getString("fullName"));
+                account.setUsername(rs.getString("username"));
+                account.setEmail(rs.getString("email"));
+                account.setPassword(rs.getString("password"));
+                account.setRole(rs.getString("role"));
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                account.setBirthDay(sdf.parse("22-11-2004"));
+                account.setAddress(rs.getString("address"));
+                account.setCountry(rs.getString("country"));
+                account.setPhoneNumber(rs.getString("phoneNumber"));
+                account.setWallet(rs.getDouble("wallet"));
+                
+                
+                empList.add(account);
+            } catch (ParseException ex) {
+                Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         con.close();
+        
         return empList;
     }
 
@@ -133,6 +144,7 @@ public class AccountFacade {
         int count = stm.executeUpdate();
         con.close();
     }
+    
 
     public void update_password(Account account) throws SQLException, NoSuchAlgorithmException {
         Connection con = DBContext.getConnection();
