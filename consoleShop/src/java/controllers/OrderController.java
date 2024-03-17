@@ -58,8 +58,8 @@ public class OrderController extends HttpServlet {
             case "pay_handler":
                 pay_handler(request, response);
                 break;
-            case "orderDetail":
-                orderDetail(request, response);
+            case "orderInfor":
+                orderInfor(request, response);
                 break;
 
             case "checkout":
@@ -130,15 +130,15 @@ public class OrderController extends HttpServlet {
             PrintWriter out = response.getWriter();
             out.println(infor);
             out.close();
-            request.getRequestDispatcher("/order/orderDetail.do").forward(request, response);
+            request.getRequestDispatcher("/order/orderInfor.do").forward(request, response);
         } catch (Exception e) {
-            request.getRequestDispatcher("/order/index.do").forward(request, response);
+            request.getRequestDispatcher("/order/infor.do").forward(request, response);
         }
 
-        request.getRequestDispatcher("/order/orderDetail.do").forward(request, response);
+        request.getRequestDispatcher("/order/orderInfor.do").forward(request, response);
     }
 
-    protected void orderDetail(HttpServletRequest request, HttpServletResponse response)
+    protected void orderInfor(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String layout = (String) request.getAttribute("layout");

@@ -220,7 +220,7 @@ document.querySelector("#orderForm").addEventListener("submit", (event) => {
         },
         success: function (data) {
             console.log(data)
-            let url = "/consoleShop/order/orderDetail.do";
+            let url = "/consoleShop/order/orderInfor.do";
             window.location.href = url;
 
         }
