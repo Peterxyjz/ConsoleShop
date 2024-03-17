@@ -7,6 +7,8 @@ package controllers;
 
 import db.Account;
 import db.AccountFacade;
+import db.OrderDetailFacade;
+import db.OrdersFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -18,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Cart;
+import models.Item;
 
 /**
  *
@@ -106,7 +109,7 @@ public class OrderController extends HttpServlet {
             String district = request.getParameter("district");
             String ward = request.getParameter("ward");
             String address = request.getParameter("address");
-            String infor = String.format("%-25s | %s | %s  %s  %s  %s", fullName, phone, address, ward, district, province);
+            String infor = String.format("%-25s | %s | %s | %s| %s| %s|", fullName, phone, address, ward, district, province);
 
             HttpSession session = request.getSession();
             boolean remember = request.getParameter("remember") != "";
@@ -143,13 +146,7 @@ public class OrderController extends HttpServlet {
         HttpSession session = request.getSession();
         String layout = (String) request.getAttribute("layout");
         String infor = (String) session.getAttribute("infor");
-        StringTokenizer st = new StringTokenizer(infor, "|");
-        String fullName = st.nextToken().trim();
-        String phone = st.nextToken().trim();
-        String address = st.nextToken().trim();
-        request.setAttribute("fullName", fullName);
-        request.setAttribute("phone", phone);
-        request.setAttribute("address", address);
+
         Cart cart = (Cart) session.getAttribute("cart");
         System.out.println("cart :" + cart.getTotal());
 
@@ -173,15 +170,45 @@ public class OrderController extends HttpServlet {
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
 
-        //lấy  option
-        //hoàn thành lưu cart vào db
-        HttpSession session = request.getSession();
-        Cart cart = (Cart) session.getAttribute("cart");
-        // ságn sử lí cart 
+        try {
 
-        //
-        cart = null;
-        request.getRequestDispatcher("/order/thanks.do").forward(request, response);
+            //lấy  option
+            //hoàn thành lưu cart vào db
+            HttpSession session = request.getSession();
+            Cart cart = (Cart) session.getAttribute("cart");
+            // 
+            Account account = (Account) session.getAttribute("account");
+            //check
+            if (true) {
+                if (account.getWallet() <= cart.getTotal()) {
+//                    request.getRequestDispatcher("/").forward(request, response);
+                } else {
+                    account.setWallet(account.getWallet() - cart.getTotal());
+                }
+            } else {
+
+            }
+            StringTokenizer st = new StringTokenizer((String)session.getAttribute("infor"), "|");
+            String fullName = st.nextToken().trim();
+            String phone = st.nextToken().trim();
+            String address = st.nextToken().trim();
+            String ward = st.nextToken().trim();
+            String district = st.nextToken().trim();
+            String province = st.nextToken().trim();
+            //tạo order
+            OrdersFacade of = new OrdersFacade();
+            int ordId = of.create(address + " " + ward + " " + district + " " + province, province, 1, 1);
+            OrderDetailFacade odf = new OrderDetailFacade();
+            //add order detail
+            for (Item item : cart.getItems()) {
+                odf.create(item, ordId);
+            }
+            cart = null;
+            request.getRequestDispatcher("/order/thanks.do").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.getRequestDispatcher("/").forward(request, response);
+        }
     }
 
     protected void thanks(HttpServletRequest request, HttpServletResponse response)

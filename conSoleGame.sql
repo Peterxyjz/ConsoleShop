@@ -75,7 +75,7 @@ CREATE TABLE Orders
   FOREIGN KEY (EmpID) REFERENCES Employee(EmpID),
   PRIMARY KEY (OrdID)
 );
-
+SELECT * FROM Orders
 
 CREATE TABLE OrderDetail
 (
