@@ -1,5 +1,7 @@
 package controllers;
 
+import db.Account;
+import db.AccountFacade;
 import db.Category;
 import db.CategoryFacade;
 import db.Product;
@@ -8,11 +10,14 @@ import java.sql.SQLException;
 import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "AdminController", urlPatterns = {"/admin"})
 public class AdminController extends HttpServlet {
@@ -61,6 +66,20 @@ public class AdminController extends HttpServlet {
     protected void index(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
+        request.getRequestDispatcher(layout).forward(request, response);
+    }
+
+    protected void getEmployeeList(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+            CategoryFacade cf = new CategoryFacade();
+            List<Category> caList = cf.select();
+            request.setAttribute("caList", caList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("errorMsg", "Error when reading category data");
+        }
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
@@ -121,6 +140,53 @@ public class AdminController extends HttpServlet {
         }
     }
 
+    protected void updateEmployee(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        request.getRequestDispatcher(layout).forward(request, response);
+    }
+
+    protected void updateEmployee_handler(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+            HttpSession session = request.getSession();
+            AccountFacade af = new AccountFacade();
+
+            String accId = request.getParameter("accId");
+            String fullName = request.getParameter("fullName");
+            String username = request.getParameter("username");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date birthDay = sdf.parse(request.getParameter("birthDay"));
+            String address = request.getParameter("address");
+            String country = request.getParameter("country");
+            String phoneNumber = request.getParameter("phoneNumber");
+            //lấy account ra
+            Account account_updating = (Account) session.getAttribute("account");
+
+            account_updating.setFullName(fullName);
+            account_updating.setUsername(username);
+            account_updating.setBirthDay(birthDay);
+            account_updating.setAddress(address);
+            account_updating.setCountry(country);
+            account_updating.setPhoneNumber(phoneNumber);
+            af.update(account_updating);
+            //lưu lại account vào session
+            session.setAttribute("account", account_updating);
+            request.getRequestDispatcher("/account/index.do").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("errMsg", "Something is wrong");
+            request.getRequestDispatcher("/account/update.do").forward(request, response);
+        }
+        request.getRequestDispatcher(layout).forward(request, response);
+    }
+
     protected void edit(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -174,7 +240,7 @@ public class AdminController extends HttpServlet {
 
             //Lưu toy vào db
             pf.update(product);
-            
+
             response.sendRedirect(request.getContextPath() + "/admin/edit.do");
         } catch (Exception e) {
             e.printStackTrace();

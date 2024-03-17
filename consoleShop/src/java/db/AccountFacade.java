@@ -12,13 +12,43 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class AccountFacade {
+
+    public List<Account> getEmployeeList() throws SQLException {
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("select * from Account where role=?");
+        stm.setString(1, "employee");
+        ResultSet rs = stm.executeQuery();
+        Account account = new Account();
+        List<Account> empList = null;
+
+        while (rs.next()) {
+            account.setAccId(rs.getInt("accId"));
+            account.setFullName(rs.getString("fullName"));
+            account.setUsername(rs.getString("username"));
+            account.setEmail(rs.getString("email"));
+            account.setPassword(rs.getString("password"));
+            account.setRole(rs.getString("role"));
+            account.setBirthDay(rs.getDate("birthDay"));
+            account.setAddress(rs.getString("address"));
+            account.setCountry(rs.getString("country"));
+            account.setPhoneNumber(rs.getString("phoneNumber"));
+            account.setWallet(rs.getDouble("wallet"));
+            
+            empList.add(account);
+        }
+        con.close();
+        return empList;
+    }
 
     public Account select(int accId) throws SQLException {
         Connection con = DBContext.getConnection();
@@ -27,7 +57,7 @@ public class AccountFacade {
         ResultSet rs = stm.executeQuery();
         Account account = new Account();
 
-        while (rs.next()) {
+        if (rs.next()) {
             account.setAccId(rs.getInt("accId"));
             account.setFullName(rs.getString("fullName"));
             account.setUsername(rs.getString("username"));
@@ -176,7 +206,6 @@ public class AccountFacade {
             return false;
         }
     }
-
 
     public void updateInformation(Account account) throws SQLException, NoSuchAlgorithmException {
         Connection con = DBContext.getConnection();
