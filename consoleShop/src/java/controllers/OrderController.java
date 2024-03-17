@@ -64,7 +64,6 @@ public class OrderController extends HttpServlet {
             case "orderInfor":
                 orderInfor(request, response);
                 break;
-
             case "checkout":
                 checkout(request, response);
                 break;

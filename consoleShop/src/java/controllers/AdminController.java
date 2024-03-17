@@ -47,6 +47,15 @@ public class AdminController extends HttpServlet {
             case "edit_handler":
                 edit_handler(request, response);
                 break;
+            case "getEmployeeList":
+                getEmployeeList(request, response);
+                break;
+            case "updateEmployee":
+                updateEmployee(request, response);
+                break;
+            case "updateEmployee_handler":
+                updateEmployee_handler(request, response);
+                break;
             case "delete_handler":
                 delete_handler(request, response);
                 break;
@@ -73,9 +82,9 @@ public class AdminController extends HttpServlet {
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         try {
-            CategoryFacade cf = new CategoryFacade();
-            List<Category> caList = cf.select();
-            request.setAttribute("caList", caList);
+            AccountFacade af = new AccountFacade();
+            List<Account> empList = af.getEmployeeList();
+            request.setAttribute("empList", empList);
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("errorMsg", "Error when reading category data");
@@ -143,11 +152,6 @@ public class AdminController extends HttpServlet {
     protected void updateEmployee(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
-        try {
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
@@ -158,7 +162,7 @@ public class AdminController extends HttpServlet {
             HttpSession session = request.getSession();
             AccountFacade af = new AccountFacade();
 
-            String accId = request.getParameter("accId");
+            int accId = Integer.parseInt(request.getParameter("accId"));
             String fullName = request.getParameter("fullName");
             String username = request.getParameter("username");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -169,6 +173,7 @@ public class AdminController extends HttpServlet {
             //lấy account ra
             Account account_updating = (Account) session.getAttribute("account");
 
+            account_updating.setAccId(accId);
             account_updating.setFullName(fullName);
             account_updating.setUsername(username);
             account_updating.setBirthDay(birthDay);
