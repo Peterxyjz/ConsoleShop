@@ -10,6 +10,8 @@ import db.DBContext;
 import db.Employee;
 
 import db.EmployeeFacade;
+import db.Orders;
+import db.OrdersFacade;
 import db.Product;
 import db.ProductFacade;
 import java.sql.SQLException;
@@ -91,6 +93,9 @@ public class AdminController extends HttpServlet {
             case "searchFilter_handler":
                 searchFilter_handler(request, response);
                 break;
+            case "confirmOrder":
+                confirmOrder(request, response);
+                break;
         }
 
     }
@@ -98,12 +103,17 @@ public class AdminController extends HttpServlet {
     protected void index(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
+        //Facade
         EmployeeFacade ef = new EmployeeFacade();
+        OrdersFacade of = new OrdersFacade();
+        //List
         List<Employee> empList = ef.selectEmployee();
-        for (Employee account : empList) {
-            System.out.println("position" + account.getPosition());
-        }
+        List<Orders> orderWaitingList = of.selectWaitingOrder();
+        List<Orders> orderCheckedList = of.selectCheckedOrder();
+
         request.setAttribute("empList", empList);
+        request.setAttribute("orderList", orderWaitingList);
+        request.setAttribute("orderCheckedList", orderCheckedList);
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
@@ -183,7 +193,7 @@ public class AdminController extends HttpServlet {
             throws ServletException, IOException {
         try {
             String layout = (String) request.getAttribute("layout");
-            
+
             //get param
             int accId = Integer.parseInt(request.getParameter("accId"));
             System.out.println(accId);
@@ -192,12 +202,11 @@ public class AdminController extends HttpServlet {
             Account acc = af.select(accId);
             //change account role to employee
             af.changeRoleToEmployee(acc.getAccId());
-            
+
             af.addAccountToEmployee(acc.getAccId(), "Nhân viên");
             EmployeeFacade ef = new EmployeeFacade();
 
             request.setAttribute("position", ef.selectEmpByAccId(acc.getAccId()).getPosition());
-            
 
             request.getRequestDispatcher("/admin/index.do").forward(request, response);
         } catch (SQLException ex) {
@@ -249,8 +258,7 @@ public class AdminController extends HttpServlet {
             emp.setPosition(position);
             ef.updateEmployeePosition(emp);
             af.update(account);
-            
-            
+
             List<Account> empList = af.getEmployeeList();
 
             request.setAttribute("empList", empList);
@@ -436,6 +444,17 @@ public class AdminController extends HttpServlet {
             e.printStackTrace();
             request.getRequestDispatcher("/").forward(request, response);
         }
+    }
+
+    protected void confirmOrder(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        int ordId = Integer.parseInt(request.getParameter("ordId"));
+
+        OrdersFacade of = new OrdersFacade();
+        of.confirmOrder(ordId);
+        request.getRequestDispatcher("/admin/index.do").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

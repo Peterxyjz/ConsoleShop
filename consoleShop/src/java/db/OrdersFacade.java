@@ -12,7 +12,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -49,7 +53,83 @@ public class OrdersFacade {
         con.close();
         return generatedOrdId;
     }
-    
-    
+
+    public List<Orders> selectWaitingOrder() {
+        try {
+            Connection con = DBContext.getConnection();
+            //Tạo đối tượng PreparedStatement
+            Statement stm = con.createStatement();
+            
+            ResultSet rs = stm.executeQuery("select * from Orders where status = N'Chờ xác nhận'");
+            List<Orders> orderList = new ArrayList<>();
+            while(rs.next()){
+                Orders ord = new Orders();
+                ord.setOrdId(rs.getInt("ordId"));
+                ord.setRequiredDate(rs.getDate("requiredDate"));
+                ord.setShippedDate(rs.getDate("shippedDate"));
+                ord.setShipAddress(rs.getString("shipAdress"));
+                ord.setShipCountry(rs.getString("shipCountry"));
+                ord.setAccId(rs.getInt("cusId"));
+                ord.setEmpId(rs.getInt("empId"));
+                ord.setStatus(rs.getString("status"));
+                
+                orderList.add(ord);
+            }
+            return orderList;
+
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(OrdersFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    public List<Orders> selectCheckedOrder() {
+        try {
+            Connection con = DBContext.getConnection();
+            //Tạo đối tượng PreparedStatement
+            Statement stm = con.createStatement();
+            
+            ResultSet rs = stm.executeQuery("select * from Orders where status = N'Đã xác nhận' order by ordId desc");
+            List<Orders> orderList = new ArrayList<>();
+            while(rs.next()){
+                Orders ord = new Orders();
+                ord.setOrdId(rs.getInt("ordId"));
+                ord.setRequiredDate(rs.getDate("requiredDate"));
+                ord.setShippedDate(rs.getDate("shippedDate"));
+                ord.setShipAddress(rs.getString("shipAdress"));
+                ord.setShipCountry(rs.getString("shipCountry"));
+                ord.setAccId(rs.getInt("cusId"));
+                ord.setEmpId(rs.getInt("empId"));
+                ord.setStatus(rs.getString("status"));
+                
+                orderList.add(ord);
+            }
+            return orderList;
+
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(OrdersFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    public void confirmOrder(int ordId) {
+        
+       
+        try {
+            Connection con = DBContext.getConnection();
+            //Tạo đối tượng PreparedStatement
+            PreparedStatement stm = con.prepareStatement("UPDATE [dbo].[Orders] SET [Status] = N'Đã xác nhận' WHERE ordId = ?");
+            stm.setInt(1, ordId);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(OrdersFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+             
+            
+
+            
+     
+    }
 
 }
