@@ -24,11 +24,11 @@ import java.util.logging.Logger;
  */
 public class OrdersFacade {
 
-    public int create(String address, String country, int cusId, int empId, String status) throws SQLException {
+    public int create(String address, String country, int cusId, int empId, String status, double total) throws SQLException {
         //Tạo connection để kết nối vào DBMS
         Connection con = DBContext.getConnection();
         //Tạo đối tượng PreparedStatement
-        PreparedStatement stm = con.prepareStatement("INSERT INTO Orders VALUES(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement stm = con.prepareStatement("INSERT INTO Orders VALUES(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         //Cung cấp giá trị cho các tham số
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -39,6 +39,7 @@ public class OrdersFacade {
         stm.setInt(5, cusId);
         stm.setInt(6, empId);
         stm.setString(7, status);
+        stm.setDouble(8, total);
         int generatedOrdId = 0;
         //Thực thi lệnh INSERT
         int count = stm.executeUpdate();
@@ -53,7 +54,56 @@ public class OrdersFacade {
         con.close();
         return generatedOrdId;
     }
+    
+    public List<Orders> select(int accId) throws SQLException {
+        List<Orders> list = null;
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("SELECT * FROM Orders WHERE accId = ? ");
+        stm.setInt(1, accId);
+        //Thực thi lệnh SELECT
+        ResultSet rs = stm.executeQuery();
 
+        list = new ArrayList<>();
+
+        while (rs.next()) {
+            Orders order = new Orders();
+            order.setAccId(rs.getInt("accId"));
+            order.setOrdId(rs.getInt("ordId"));
+            order.setRequiredDate(rs.getDate("requiredDate"));
+            order.setShippedDate(rs.getDate("shippedDate"));
+            order.setShipAddress(rs.getString("shipAddress"));
+            order.setStatus(rs.getString("status"));
+            order.setTotal(rs.getDouble("total"));
+            list.add(order);
+        }
+
+        //trả list Product
+        return list;
+    }
+    
+    public Orders select(int accId, int ordId) throws SQLException {
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("SELECT * FROM Orders WHERE accId = ? AND ordId = ?");
+        stm.setInt(1, accId);
+        stm.setInt(2, ordId);
+        //Thực thi lệnh SELECT
+        ResultSet rs = stm.executeQuery();
+        Orders order = null;
+        if (rs.next()) {
+            order = new Orders();
+            order.setAccId(rs.getInt("accId"));
+            order.setOrdId(rs.getInt("ordId"));
+            order.setRequiredDate(rs.getDate("requiredDate"));
+            order.setShippedDate(rs.getDate("shippedDate"));
+            order.setShipAddress(rs.getString("shipAddress"));
+            order.setStatus(rs.getString("status"));
+            order.setTotal(rs.getDouble("total"));
+        }
+
+        //trả list Product
+        return order;
+    }
+    
     public List<Orders> selectWaitingOrder() {
         try {
             Connection con = DBContext.getConnection();
@@ -68,7 +118,6 @@ public class OrdersFacade {
                 ord.setRequiredDate(rs.getDate("requiredDate"));
                 ord.setShippedDate(rs.getDate("shippedDate"));
                 ord.setShipAddress(rs.getString("shipAdress"));
-                ord.setShipCountry(rs.getString("shipCountry"));
                 ord.setAccId(rs.getInt("cusId"));
                 ord.setEmpId(rs.getInt("empId"));
                 ord.setStatus(rs.getString("status"));
@@ -97,7 +146,6 @@ public class OrdersFacade {
                 ord.setRequiredDate(rs.getDate("requiredDate"));
                 ord.setShippedDate(rs.getDate("shippedDate"));
                 ord.setShipAddress(rs.getString("shipAdress"));
-                ord.setShipCountry(rs.getString("shipCountry"));
                 ord.setAccId(rs.getInt("cusId"));
                 ord.setEmpId(rs.getInt("empId"));
                 ord.setStatus(rs.getString("status"));
@@ -113,8 +161,6 @@ public class OrdersFacade {
         return null;
     }
     public void confirmOrder(int ordId) {
-        
-       
         try {
             Connection con = DBContext.getConnection();
             //Tạo đối tượng PreparedStatement

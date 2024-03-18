@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import models.Item;
 
 /**
@@ -38,6 +40,27 @@ public class OrderDetailFacade {
 
         con.close();
 
+    }
+    
+    public List<OrderDetail> select(int ordId) throws SQLException {
+        List<OrderDetail> list = null;
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("SELECT * FROM OrderDetail WHERE ordId = ? ");
+        stm.setInt(1, ordId);
+        ResultSet rs = stm.executeQuery();
+
+        list = new ArrayList<>();
+        while (rs.next()) {
+            OrderDetail orderDetail = new OrderDetail();
+            orderDetail.setDiscount(rs.getDouble("discount"));
+            orderDetail.setOrdId(ordId);
+            orderDetail.setOrderDate(rs.getDate("orderDate"));
+            orderDetail.setPrice(rs.getDouble("price"));
+            orderDetail.setProId(rs.getInt("proId"));
+            orderDetail.setQuantity(rs.getInt("quantity"));
+            list.add(orderDetail);
+        }
+        return list;
     }
 
 }

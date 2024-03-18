@@ -26,9 +26,6 @@ VALUES
 
 SELECT * FROM Employee
 
-INSERT INTO Customer
-VALUES
-	(2)
 
 INSERT INTO Product 
 VALUES 

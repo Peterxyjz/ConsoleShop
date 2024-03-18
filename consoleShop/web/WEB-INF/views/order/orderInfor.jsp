@@ -27,7 +27,7 @@
                         <li>Tạm tính: ${cart.total} đ </li>
                         <li>Phí vận chuyển: 50.000đ </li>
                         <li>Tổng tiền:${cart.total+50000} đ </li>
-                        
+
                     </ul>
                 </div>
                 <hr/>
@@ -35,12 +35,12 @@
                     <button class="btn btn-link " type="button" data-bs-toggle="collapse" data-bs-target="#collapseDiscount" aria-expanded="false" aria-controls="collapseExample">
                         <i class="bi bi-ticket-perforated"></i> Sử dụng mã giảm giá <i class="bi bi-caret-down"></i>
                     </button>
-                    <div class="collapse mt-2 row" id="collapseDiscount">
-                        <form action="#">
-                            <div class="col-sm-8">
+                    <div class="collapse mt-2" id="collapseDiscount">
+                        <form action="#" class="row">
+                            <div class="col-sm-9">
                                 <input type="text" class="form-control" name="referral_code" placeholder="Mã giảm giá">
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <button type="submit" class="btn btn-light mb-3">Áp dụng</button>
                             </div>
                         </form>
@@ -50,18 +50,38 @@
                 <form action="<c:url value="/order/checkout.do"/>" class="mt-2 mb-3">
                     <hr/>
                     <h4>Chọn hình thức thanh toán</h4>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="payments" id="payments" checked>
-                        <label class="form-check-label" for="payments">
-                            <i class="bi bi-cash-coin"></i> Thanh toán khi giao hàng (COD)
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="payments" id="payments" >
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            <i class="bi bi-cash-coin"></i> Thanh toán bằng tiền trong tài khoản
-                        </label>
-                    </div>
+                    <c:if test="${cart.total+50000 <= sessionScope.account.wallet}">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="payments" value="cod" id="payments" checked>
+                            <label class="form-check-label" for="payments">
+                                <i class="bi bi-cash-coin"></i> Thanh toán khi giao hàng (COD)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="payments" value="card" id="payments" >
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                <i class="bi bi-cash-coin"></i> Thanh toán bằng tiền trong tài khoản
+                            </label>
+                        </div>
+                    </c:if>
+                    <c:if test="${cart.total+50000 > sessionScope.account.wallet}">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="payments" value="cod" id="payments" checked>
+                            <label class="form-check-label" for="payments">
+                                <i class="bi bi-cash-coin"></i> Thanh toán khi giao hàng (COD)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="payments" value="card" id="payments" disabled="disabled">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                <i class="bi bi-cash-coin"></i> Thanh toán bằng tiền trong tài khoản
+                            </label>
+                            <p style="color: red">*Số dư trong tài khoản không đủ! Bạn cần nạp thêm: ${cart.total+50000 - account.wallet}đ</p>
+                            <a href="<c:url value="/user/deposit.do"/>" class="btn btn-link">
+                                <i class="bi bi-plus-circle"></i> Nạp thêm tiền
+                            </a>
+                        </div>
+                    </c:if>
                     <hr/>
                     <p>Tổng tiền: </p>
                     <div class="d-grid gap-2">

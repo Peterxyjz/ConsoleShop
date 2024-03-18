@@ -5,7 +5,7 @@
 <jsp:include page="/WEB-INF/components/navbar.jsp" />
 
 <div class="nav_order">
-    <div class="container" style="position: relative;">
+    <div class="container">
         <br/>
         <div class="row mt-2">
             <div class="col-sm-3 d-flex align-items-center justify-content-evenly">Giỏ hàng</div>
@@ -22,27 +22,20 @@
                 </a> 
                 <div class="nav_item row">
                     <div style="display: flex; align-items: center; ">
-                        <a href="<c:url value="/" />" class="btn btn-link">
+                        <a href="<c:url value="/user/history.do?accId=${account.accId}" />" class="btn btn-link">
                             <i class="bi bi-clock-history"></i> Xem chi tiết đơn hàng
                         </a> 
                         <a href="#" class="btn btn-link">
                             |  Mọi thắc mắc liên hê: 0399234222
                         </a>
                     </div>
-                    <div class="thanks__content">
-                        <h2>Cảm ơn bạn đã mua hàng tại <span style="color: #0079FF">Console Shop</span> nhé!</h2>
-                        <img src="<c:url value="/images/Background/thank.jpg"/>" width="100%">
-                    </div>
+
+                    <img src="<c:url value="/images/Background/thank.jpg"/>" width="100%">
                 </div>
             </div>
             <div class="col-sm-2"></div>
         </div>
-        <br/>  
-        <canvas id="birthday"></canvas>
+        <br/>    
     </div>
-    
 </div>
-
-<script><%@include file="/WEB-INF/javascript/thanks.js"%></script>
-
 <jsp:include page="/WEB-INF/components/footer.jsp" />

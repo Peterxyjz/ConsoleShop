@@ -16,6 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import db.Account;
+import db.OrderDetail;
+import db.OrderDetailFacade;
+import db.Orders;
+import db.OrdersFacade;
+import java.util.List;
 
 /**
  *
@@ -160,7 +165,27 @@ public class UserController extends HttpServlet {
     protected void history(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
-        request.getRequestDispatcher(layout).forward(request, response);
+        try {
+            HttpSession session = request.getSession();
+            int ordId = (int) session.getAttribute("completeOrdId");
+            int accId = Integer.parseInt(request.getParameter("accId"));
+            System.out.println("accId = " +accId);
+            System.out.println("ordId = " +ordId);
+            OrdersFacade of = new OrdersFacade();
+            OrderDetailFacade odf = new OrderDetailFacade();
+            
+            Orders order = of.select(accId, ordId);
+            System.out.println("order add: " + order.getShipAddress());
+            List<OrderDetail> odList = odf.select(ordId);
+
+            request.setAttribute("odList", odList);
+            request.setAttribute("order", order);    
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            request.getRequestDispatcher(layout).forward(request, response);
+        }
+        
     }
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -7,16 +7,27 @@ package db;
 
 import java.util.Date;
 
-
-/**
- *
- * @author ASUS
- */
 public class Orders {
     private int ordId, accId, empId;
     private Date requiredDate, shippedDate;
-    private String shipAddress, shipCountry;
-    private String status;
+    private String shipAddress, status;
+    private double total;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
     public Orders() {
         this.status = "Chờ xác nhận";
     }
@@ -68,21 +79,4 @@ public class Orders {
     public void setShipAddress(String shipAddress) {
         this.shipAddress = shipAddress;
     }
-
-    public String getShipCountry() {
-        return shipCountry;
-    }
-
-    public void setShipCountry(String shipCountry) {
-        this.shipCountry = shipCountry;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-    
 }

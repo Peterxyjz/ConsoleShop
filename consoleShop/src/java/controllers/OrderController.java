@@ -55,12 +55,6 @@ public class OrderController extends HttpServlet {
             case "order_handler":
                 order_handler(request, response);
                 break;
-            case "pay":
-                pay(request, response);
-                break;
-            case "pay_handler":
-                pay_handler(request, response);
-                break;
             case "orderInfor":
                 orderInfor(request, response);
                 break;
@@ -120,12 +114,6 @@ public class OrderController extends HttpServlet {
                 AccountFacade af = new AccountFacade();
                 af.updateInformation(account);
             }
-
-            System.out.println("infor: " + infor);
-            System.out.println("province: " + province);
-            System.out.println("district: " + district);
-            System.out.println("ward: " + ward);
-            System.out.println("address: " + address);
 //        Lưu thông tin ngươì dùng 
 
             session.setAttribute("infor", infor);
@@ -145,24 +133,10 @@ public class OrderController extends HttpServlet {
         HttpSession session = request.getSession();
         String layout = (String) request.getAttribute("layout");
         String infor = (String) session.getAttribute("infor");
-
         Cart cart = (Cart) session.getAttribute("cart");
         System.out.println("cart :" + cart.getTotal());
 
         request.getRequestDispatcher(layout).forward(request, response);
-    }
-
-    protected void pay(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String layout = (String) request.getAttribute("layout");
-        request.getRequestDispatcher(layout).forward(request, response);
-    }
-
-    protected void pay_handler(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String layout = (String) request.getAttribute("layout");
-
-        request.getRequestDispatcher("/").forward(request, response);
     }
 
     protected void checkout(HttpServletRequest request, HttpServletResponse response)
@@ -170,23 +144,20 @@ public class OrderController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
 
         try {
-
-            //lấy  option
             //hoàn thành lưu cart vào db
             HttpSession session = request.getSession();
             Cart cart = (Cart) session.getAttribute("cart");
             // 
             Account account = (Account) session.getAttribute("account");
-            //check
-            if (true) {
-                if (account.getWallet() <= cart.getTotal()) {
-//                    request.getRequestDispatcher("/").forward(request, response);
+            String payments = request.getParameter("payments");
+            if (payments.equals("card")) {
+                if (account.getWallet() < (cart.getTotal() + 50000)) {
+                    request.setAttribute("message", "Số dư không đủ!");
+                    request.getRequestDispatcher("/user/deposit.do").forward(request, response);
                 } else {
-                    account.setWallet(account.getWallet() - cart.getTotal());
+                    account.setWallet(account.getWallet() - cart.getTotal() - 50000);
                 }
-            } else {
-
-            }
+            } 
             StringTokenizer st = new StringTokenizer((String)session.getAttribute("infor"), "|");
             String fullName = st.nextToken().trim();
             String phone = st.nextToken().trim();
@@ -196,7 +167,8 @@ public class OrderController extends HttpServlet {
             String province = st.nextToken().trim();
             //tạo order
             OrdersFacade of = new OrdersFacade();
-            int ordId = of.create(address + " " + ward + " " + district + " " + province, province, 1, 1, "Chờ xác nhận");
+            int ordId = of.create(address + " " + ward + " " + district + " " + province, province, 1, 1, "Chờ xác nhận", cart.getTotal() + 50000);
+            session.setAttribute("completeOrdId", ordId);
             OrderDetailFacade odf = new OrderDetailFacade();
             //add order detail
             for (Item item : cart.getItems()) {
