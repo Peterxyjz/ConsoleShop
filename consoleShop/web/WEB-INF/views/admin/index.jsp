@@ -30,6 +30,7 @@
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
+                            <a href="<c:url value="/admin/addEmployee.do"/>"><button class="btn btn-primary"><i class="bi bi-plus-circle"></i> Thêm nhân viên</button></a>
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -38,6 +39,7 @@
                                         <td>ID</td>
                                         <td>Họ và tên</td>
                                         <td>Chức vụ</td>
+                                        <td>Vị trí</td>
                                         <td>Số điện thoại</td>
                                         <td>Chỉnh sửa</td>
 
@@ -47,9 +49,10 @@
                                     <c:forEach var="emp" items="${empList}" varStatus="loop">
                                         <tr>
                                             <td>${loop.count}</td>
-                                            <td>${emp.accId}</td>
+                                            <td>${emp.empId}</td>
                                             <td>${emp.fullName}</td>
                                             <td>${emp.role}</td>
+                                            <td>${emp.position}</td>
                                             <td>${emp.phoneNumber}</td>
                                             <td>
                                                 <form action="<c:url value="/admin/updateEmployee.do"/>">
@@ -67,7 +70,7 @@
                                 </tbody>
                             </table>
                             <c:if test="${empList.size() == 0}">
-                                <p>Shop đéo có nv</p>
+                                <p>Danh sách Nhân viên trống !</p>
                             </c:if>
                         </div>
                     </div>

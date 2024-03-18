@@ -60,6 +60,43 @@ public class AccountFacade {
         
         return empList;
     }
+    public List<Account> showAllAccount() throws SQLException {
+        Connection con = DBContext.getConnection();
+        Statement stm = con.createStatement();
+        
+        ResultSet rs = stm.executeQuery("select * from account");
+        
+        List<Account> list = new ArrayList<>();
+
+        while (rs.next()) {
+            
+            
+            try {
+                Account account = new Account();
+                account.setAccId(rs.getInt("accId"));
+                account.setFullName(rs.getString("fullName"));
+                account.setUsername(rs.getString("username"));
+                account.setEmail(rs.getString("email"));
+                account.setPassword(rs.getString("password"));
+                account.setRole(rs.getString("role"));
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                account.setBirthDay(sdf.parse("22-11-2004"));
+                account.setAddress(rs.getString("address"));
+                account.setCountry(rs.getString("country"));
+                account.setPhoneNumber(rs.getString("phoneNumber"));
+                account.setWallet(rs.getDouble("wallet"));
+                
+                
+                list.add(account);
+            } catch (ParseException ex) {
+                Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        con.close();
+        
+        return list;
+    }
 
     public Account select(int accId) throws SQLException {
         Connection con = DBContext.getConnection();
