@@ -7,7 +7,7 @@ var btnSubmit = document.querySelector(".personal__submit");
 var phoneInput = document.getElementById("phoneNumber");
 //alert when submit
 btnSubmit.onclick = (event) => {
-    var answer = window.confirm("Bạn có chắc chắn muốn lưu thông tin đã nhập ?");
+    var answer = window.confirm("Save ?");
     if (!answer) {
         event.preventDefault();
     } 

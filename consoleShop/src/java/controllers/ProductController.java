@@ -83,7 +83,7 @@ public class ProductController extends HttpServlet {
                 }
             }
             request.setAttribute("product", product);
-
+            
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errorMsg", "Error when loading product data.");
@@ -102,7 +102,7 @@ public class ProductController extends HttpServlet {
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         try {
-
+            
             String searchName = request.getParameter("search") == null ? "" : request.getParameter("search");
             int index = Integer.parseInt(request.getParameter("index"));
             int tag = index;
@@ -115,6 +115,7 @@ public class ProductController extends HttpServlet {
             //trả về list gồm 16 sản phẩm
             prodList = pf.searchProductByName(searchName, index);
             //setAttribute
+            request.setAttribute("tag", tag);
             request.setAttribute("list", prodList);
             request.setAttribute("endP", endP);
             request.setAttribute("tag", tag);
@@ -163,7 +164,7 @@ public class ProductController extends HttpServlet {
             String categoryName = request.getParameter("categoryName");
 
             String status = request.getParameter("status");
-
+            
             double priceLower = Double.parseDouble(request.getParameter("priceLower") == "" ? "0" : request.getParameter("priceLower"));
             double priceUpper = Double.parseDouble(request.getParameter("priceUpper") == "" ? "0" : request.getParameter("priceUpper"));
 
@@ -190,6 +191,7 @@ public class ProductController extends HttpServlet {
             request.setAttribute("sort", sort);
             request.setAttribute("list", prodList);
             request.setAttribute("endP", endP);
+            request.setAttribute("tag", tag);
             
             request.getRequestDispatcher("/product/search.do").forward(request, response);
         } catch (IOException | NumberFormatException | SQLException | ServletException e) {
