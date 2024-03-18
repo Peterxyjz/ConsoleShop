@@ -196,7 +196,7 @@ public class OrderController extends HttpServlet {
             String province = st.nextToken().trim();
             //tạo order
             OrdersFacade of = new OrdersFacade();
-            int ordId = of.create(address + " " + ward + " " + district + " " + province, province, 1, 1);
+            int ordId = of.create(address + " " + ward + " " + district + " " + province, province, 1, 1, "Chờ xác nhận");
             OrderDetailFacade odf = new OrderDetailFacade();
             //add order detail
             for (Item item : cart.getItems()) {

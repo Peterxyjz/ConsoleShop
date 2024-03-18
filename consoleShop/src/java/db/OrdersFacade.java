@@ -20,11 +20,11 @@ import java.util.Date;
  */
 public class OrdersFacade {
 
-    public int create(String address, String country, int cusId, int empId) throws SQLException {
+    public int create(String address, String country, int cusId, int empId, String status) throws SQLException {
         //Tạo connection để kết nối vào DBMS
         Connection con = DBContext.getConnection();
         //Tạo đối tượng PreparedStatement
-        PreparedStatement stm = con.prepareStatement("INSERT INTO Orders VALUES(?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement stm = con.prepareStatement("INSERT INTO Orders VALUES(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         //Cung cấp giá trị cho các tham số
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -34,6 +34,7 @@ public class OrdersFacade {
         stm.setString(4, country);
         stm.setInt(5, cusId);
         stm.setInt(6, empId);
+        stm.setString(7, status);
         int generatedOrdId = 0;
         //Thực thi lệnh INSERT
         int count = stm.executeUpdate();
