@@ -4,11 +4,11 @@ import db.Account;
 import db.AccountFacade;
 import db.Category;
 import db.CategoryFacade;
-<<<<<<< Updated upstream
+
 import db.DBContext;
-=======
+
 import db.Employee;
->>>>>>> Stashed changes
+
 import db.EmployeeFacade;
 import db.Product;
 import db.ProductFacade;
@@ -59,8 +59,7 @@ public class AdminController extends HttpServlet {
             case "edit_handler":
                 edit_handler(request, response);
                 break;
-<<<<<<< Updated upstream
-=======
+
 //            case "getEmployeeList":
 //                getEmployeeList(request, response);
 //                break;
@@ -68,9 +67,9 @@ public class AdminController extends HttpServlet {
                 addEmployee(request, response);
                 break;
             case "addEmployee_handler":
-
+                addEmployee_handler(request, response);
                 break;
->>>>>>> Stashed changes
+
             case "updateEmployee":
                 updateEmployee(request, response);
                 break;
@@ -169,13 +168,38 @@ public class AdminController extends HttpServlet {
             throws ServletException, IOException {
         try {
             String layout = (String) request.getAttribute("layout");
-            
 
             AccountFacade af = new AccountFacade();
             List<Account> list = af.showAllAccount();
             request.setAttribute("list", list);
-            
+
             request.getRequestDispatcher(layout).forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    protected void addEmployee_handler(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String layout = (String) request.getAttribute("layout");
+            
+            //get param
+            int accId = Integer.parseInt(request.getParameter("accId"));
+            System.out.println(accId);
+            AccountFacade af = new AccountFacade();
+            //get account by id
+            Account acc = af.select(accId);
+            //change account role to employee
+            af.changeRoleToEmployee(acc.getAccId());
+            
+            af.addAccountToEmployee(acc.getAccId(), "Nhân viên");
+            EmployeeFacade ef = new EmployeeFacade();
+
+            request.setAttribute("position", ef.selectEmpByAccId(acc.getAccId()).getPosition());
+            
+
+            request.getRequestDispatcher("/admin/index.do").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -225,7 +249,8 @@ public class AdminController extends HttpServlet {
             emp.setPosition(position);
             ef.updateEmployeePosition(emp);
             af.update(account);
-
+            
+            
             List<Account> empList = af.getEmployeeList();
 
             request.setAttribute("empList", empList);
@@ -387,7 +412,7 @@ public class AdminController extends HttpServlet {
             request.getRequestDispatcher("/").forward(request, response);
         }
     }
-    
+
     protected void searchFilter_handler(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -396,11 +421,10 @@ public class AdminController extends HttpServlet {
             String categoryName = request.getParameter("categoryName");
 
             String status = request.getParameter("status");
-            
-            String amount = request.getParameter("amount");
-            
-            String sort = request.getParameter("sort");
 
+            String amount = request.getParameter("amount");
+
+            String sort = request.getParameter("sort");
 
             ProductFacade pf = new ProductFacade();
             List<Product> prodList = pf.searchProductByFilterForAdmin(categoryName, status, amount, sort);

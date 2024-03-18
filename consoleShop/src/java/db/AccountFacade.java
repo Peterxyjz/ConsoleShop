@@ -29,48 +29,13 @@ public class AccountFacade {
     public List<Account> getEmployeeList() throws SQLException {
         Connection con = DBContext.getConnection();
         Statement stm = con.createStatement();
-        
+
         ResultSet rs = stm.executeQuery("select * from account where role = 'employee'");
-        Account account = new Account();
+        
         List<Account> empList = new ArrayList<>();
 
         while (rs.next()) {
-            
-            try {
-                account.setAccId(rs.getInt("accId"));
-                account.setFullName(rs.getString("fullName"));
-                account.setUsername(rs.getString("username"));
-                account.setEmail(rs.getString("email"));
-                account.setPassword(rs.getString("password"));
-                account.setRole(rs.getString("role"));
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                account.setBirthDay(sdf.parse("22-11-2004"));
-                account.setAddress(rs.getString("address"));
-                account.setCountry(rs.getString("country"));
-                account.setPhoneNumber(rs.getString("phoneNumber"));
-                account.setWallet(rs.getDouble("wallet"));
-                
-                
-                empList.add(account);
-            } catch (ParseException ex) {
-                Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        con.close();
-        
-        return empList;
-    }
-    public List<Account> showAllAccount() throws SQLException {
-        Connection con = DBContext.getConnection();
-        Statement stm = con.createStatement();
-        
-        ResultSet rs = stm.executeQuery("select * from account");
-        
-        List<Account> list = new ArrayList<>();
 
-        while (rs.next()) {
-            
-            
             try {
                 Account account = new Account();
                 account.setAccId(rs.getInt("accId"));
@@ -85,16 +50,49 @@ public class AccountFacade {
                 account.setCountry(rs.getString("country"));
                 account.setPhoneNumber(rs.getString("phoneNumber"));
                 account.setWallet(rs.getDouble("wallet"));
-                
-                
+                empList.add(account);
+            } catch (ParseException ex) {
+                Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        con.close();
+
+        return empList;
+    }
+
+    public List<Account> showAllAccount() throws SQLException {
+        Connection con = DBContext.getConnection();
+        Statement stm = con.createStatement();
+
+        ResultSet rs = stm.executeQuery("select * from account");
+
+        List<Account> list = new ArrayList<>();
+
+        while (rs.next()) {
+
+            try {
+                Account account = new Account();
+                account.setAccId(rs.getInt("accId"));
+                account.setFullName(rs.getString("fullName"));
+                account.setUsername(rs.getString("username"));
+                account.setEmail(rs.getString("email"));
+                account.setPassword(rs.getString("password"));
+                account.setRole(rs.getString("role"));
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                account.setBirthDay(sdf.parse("22-11-2004"));
+                account.setAddress(rs.getString("address"));
+                account.setCountry(rs.getString("country"));
+                account.setPhoneNumber(rs.getString("phoneNumber"));
+                account.setWallet(rs.getDouble("wallet"));
+
                 list.add(account);
             } catch (ParseException ex) {
                 Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
         con.close();
-        
+
         return list;
     }
 
@@ -166,7 +164,7 @@ public class AccountFacade {
 
     public void update(Account account) throws SQLException, NoSuchAlgorithmException {
         Connection con = DBContext.getConnection();
-        PreparedStatement stm = con.prepareStatement("update Account set fullName=?, username=?,  birthDay=?, address=?, country=?, phoneNumber=? where accId=?");
+        PreparedStatement stm = con.prepareStatement("update Account set fullName=?, username=?,  birthDay=?, address=?, country=?, phoneNumber=?, role=? where accId=?");
         stm.setString(1, account.getFullName());
         stm.setString(2, account.getUsername());
 //        stm.setString(3, account.getEmail());
@@ -176,12 +174,12 @@ public class AccountFacade {
         stm.setString(4, account.getAddress());
         stm.setString(5, account.getCountry());
         stm.setString(6, account.getPhoneNumber());
-        stm.setInt(7, account.getAccId());
+        stm.setString(7, account.getRole());
+        stm.setInt(8, account.getAccId());
 
         int count = stm.executeUpdate();
         con.close();
     }
-    
 
     public void update_password(Account account) throws SQLException, NoSuchAlgorithmException {
         Connection con = DBContext.getConnection();
@@ -291,4 +289,39 @@ public class AccountFacade {
         con.close();
     }
 
+    public void changeRoleToEmployee(int accId) {
+        try {
+            Connection con = DBContext.getConnection();
+            //Tạo đối tượng PreparedStatement
+            PreparedStatement stm = con.prepareStatement("UPDATE [dbo].[Account] SET [Role] = 'employee' WHERE AccID = ?");
+            //Cung cấp giá trị cho các tham số
+            stm.setInt(1, accId);
+
+            stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void addAccountToEmployee(int accId, String position) {
+        try {
+            Connection con = DBContext.getConnection();
+            //Tạo đối tượng PreparedStatement
+            PreparedStatement stm = con.prepareStatement("INSERT INTO [dbo].[Employee]\n"
+                    + "           ([Position]\n"
+                    + "           ,[AccID])\n"
+                    + "     VALUES\n"
+                    + "           (? \n"
+                    + "           ,(select accId from Account where AccID = ?))");
+            //Cung cấp giá trị cho các tham số
+            stm.setString(1, position);
+            stm.setInt(2, accId);
+
+            stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

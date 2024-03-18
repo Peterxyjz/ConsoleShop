@@ -74,3 +74,9 @@
     margin-top: 10px;
     font-weight: 600;
 }
+.input__role{
+    padding: 4px 4px;
+    border-radius: 6px;
+    outline: none;
+    border: 2px solid #858788;
+}

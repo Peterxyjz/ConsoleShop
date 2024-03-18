@@ -37,6 +37,7 @@
                                         <!--fullName, email, password, role, address, country, phoneNumber, username;-->
                                         <td>No</td>
                                         <td>ID</td>
+                                        <td>User Name</td>
                                         <td>Họ và tên</td>
                                         <td>Chức vụ</td>
                                         <td>Vị trí</td>
@@ -50,6 +51,7 @@
                                         <tr>
                                             <td>${loop.count}</td>
                                             <td>${emp.empId}</td>
+                                            <td>${emp.username}</td>
                                             <td>${emp.fullName}</td>
                                             <td>${emp.role}</td>
                                             <td>${emp.position}</td>

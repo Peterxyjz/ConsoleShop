@@ -41,7 +41,7 @@ public class EmployeeFacade {
         int count = stm.executeUpdate();
         con.close();
     }
-    
+
     public void updateEmployeePosition(Employee emp) throws SQLException, NoSuchAlgorithmException {
         Connection con = DBContext.getConnection();
         PreparedStatement stm = con.prepareStatement("update Employee set position=? where accId=?");
@@ -67,11 +67,12 @@ public class EmployeeFacade {
                     + "Employee e left outer join account a \n"
                     + "on e.AccID = a.AccID where role = " + "'" + "employee" + "'");
 
-            Employee emp = new Employee();
             List<Employee> list = new ArrayList<>();
             while (rs.next()) {
+                Employee emp = new Employee();
                 emp.setAccId(rs.getInt("accId"));
                 emp.setEmpId(rs.getInt("empId"));
+                emp.setUsername(rs.getString("username"));
                 emp.setPhoneNumber(rs.getString("phoneNumber"));
                 emp.setPosition(rs.getString("position"));
                 emp.setRole(rs.getString("role"));
@@ -99,6 +100,8 @@ public class EmployeeFacade {
             emp.setAccId(rs.getInt("accId"));
             emp.setEmpId(rs.getInt("empId"));
             emp.setPhoneNumber(rs.getString("phoneNumber"));
+            emp.setUsername(rs.getString("username"));
+
             emp.setPosition(rs.getString("position"));
             emp.setRole(rs.getString("role"));
             emp.setFullName(rs.getString("fullName"));
