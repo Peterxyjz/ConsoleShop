@@ -4,7 +4,11 @@ import db.Account;
 import db.AccountFacade;
 import db.Category;
 import db.CategoryFacade;
+<<<<<<< Updated upstream
 import db.DBContext;
+=======
+import db.Employee;
+>>>>>>> Stashed changes
 import db.EmployeeFacade;
 import db.Product;
 import db.ProductFacade;
@@ -55,6 +59,18 @@ public class AdminController extends HttpServlet {
             case "edit_handler":
                 edit_handler(request, response);
                 break;
+<<<<<<< Updated upstream
+=======
+//            case "getEmployeeList":
+//                getEmployeeList(request, response);
+//                break;
+            case "addEmployee":
+                addEmployee(request, response);
+                break;
+            case "addEmployee_handler":
+
+                break;
+>>>>>>> Stashed changes
             case "updateEmployee":
                 updateEmployee(request, response);
                 break;
@@ -83,17 +99,12 @@ public class AdminController extends HttpServlet {
     protected void index(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
-        try {
-            AccountFacade af = new AccountFacade();
-            List<Account> empList = af.getEmployeeList();
-            for (Account account : empList) {
-                System.out.println("fulname" + account.getFullName());
-            }
-            request.setAttribute("empList", empList);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            request.setAttribute("errorMsg", "Error when reading category data");
+        EmployeeFacade ef = new EmployeeFacade();
+        List<Employee> empList = ef.selectEmployee();
+        for (Employee account : empList) {
+            System.out.println("position" + account.getPosition());
         }
+        request.setAttribute("empList", empList);
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
@@ -154,6 +165,22 @@ public class AdminController extends HttpServlet {
         }
     }
 
+    protected void addEmployee(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String layout = (String) request.getAttribute("layout");
+            
+
+            AccountFacade af = new AccountFacade();
+            List<Account> list = af.showAllAccount();
+            request.setAttribute("list", list);
+            
+            request.getRequestDispatcher(layout).forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     protected void updateEmployee(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -162,6 +189,10 @@ public class AdminController extends HttpServlet {
 
             AccountFacade af = new AccountFacade();
             Account acc = af.select(accId);
+
+            EmployeeFacade ef = new EmployeeFacade();
+
+            request.setAttribute("position", ef.selectEmpByAccId(accId).getPosition());
             request.setAttribute("account", acc);
 
             request.getRequestDispatcher(layout).forward(request, response);
@@ -180,15 +211,20 @@ public class AdminController extends HttpServlet {
             int accId = Integer.parseInt(request.getParameter("accId"));
             String fullName = request.getParameter("fullName");
             String phoneNumber = request.getParameter("phoneNumber");
+            String position = request.getParameter("position");
             String role = request.getParameter("role");
             //lấy account ra
             Account account = af.select(accId);
             account.setFullName(fullName);
             account.setRole(role);
             account.setPhoneNumber(phoneNumber);
-            EmployeeFacade ef = new EmployeeFacade();
 
-            ef.updateEmployee(account);
+            //
+            EmployeeFacade ef = new EmployeeFacade();
+            Employee emp = ef.selectEmpByAccId(accId);
+            emp.setPosition(position);
+            ef.updateEmployeePosition(emp);
+            af.update(account);
 
             List<Account> empList = af.getEmployeeList();
 
@@ -285,12 +321,11 @@ public class AdminController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         try {
             int accId = Integer.parseInt(request.getParameter("accId"));
-            
+
             AccountFacade af = new AccountFacade();
             af.delete(accId);
             List<Account> empList = af.getEmployeeList();
-            
-            
+
             request.setAttribute("empList", empList);
             request.getRequestDispatcher("/admin/index.jsp").forward(request, response);
 

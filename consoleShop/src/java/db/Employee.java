@@ -12,9 +12,9 @@ import java.util.Date;
  * @author ASUS
  */
 public class Employee {
-    private int empId;
-    private String empFirstName, empLastName, role, country, address, phoneNumber;
-    private Date birthDay;
+    private int empId, accId;
+    private String role, phoneNumber, fullName;
+    private String position;
 
     public Employee() {
     }
@@ -27,52 +27,12 @@ public class Employee {
         this.empId = empId;
     }
 
-    public String getEmpFirstName() {
-        return empFirstName;
-    }
-
-    public void setEmpFirstName(String empFirstName) {
-        this.empFirstName = empFirstName;
-    }
-
-    public String getEmpLastName() {
-        return empLastName;
-    }
-
-    public void setEmpLastName(String empLastName) {
-        this.empLastName = empLastName;
-    }
-
-    public Date getBirthday() {
-        return birthDay;
-    }
-
-    public void setBirthday(Date birthDay) {
-        this.birthDay = birthDay;
-    }
-
     public String getRole() {
         return role;
     }
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getPhoneNumber() {
@@ -82,4 +42,30 @@ public class Employee {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public int getAccId() {
+        return accId;
+    }
+
+    public void setAccId(int accId) {
+        this.accId = accId;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+   
 }

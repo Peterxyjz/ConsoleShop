@@ -27,6 +27,10 @@
                 <label for="role" class="form-label">Chức vụ</label>
                 <input id="role" value="${account.role}" name="role" type="text" class="form-control">
             </div>
+            <div class="personal__group col-lg-12">
+                <label for="position" class="form-label">Vị trí</label>
+                <input id="position" value="${position}" name="position" type="text" class="form-control">
+            </div>
 
             <div class="personal__group col-lg-12">
                 <label for="phoneNumber" class="form-label">Số điện thoại</label>
