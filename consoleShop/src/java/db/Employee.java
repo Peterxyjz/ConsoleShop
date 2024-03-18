@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Employee {
     private int empId, accId;
-    private String role, phoneNumber, fullName;
+    private String role, phoneNumber, fullName, username;
     private String position;
 
     public Employee() {
@@ -65,6 +65,14 @@ public class Employee {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
    
