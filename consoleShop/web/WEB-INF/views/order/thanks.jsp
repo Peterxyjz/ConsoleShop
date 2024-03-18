@@ -5,7 +5,7 @@
 <jsp:include page="/WEB-INF/components/navbar.jsp" />
 
 <div class="nav_order">
-    <div class="container">
+    <div class="container" style="position: relative;">
         <br/>
         <div class="row mt-2">
             <div class="col-sm-3 d-flex align-items-center justify-content-evenly">Giỏ hàng</div>
@@ -29,13 +29,20 @@
                             |  Mọi thắc mắc liên hê: 0399234222
                         </a>
                     </div>
-
-                    <img src="<c:url value="/images/Background/thank.jpg"/>" width="100%">
+                    <div class="thanks__content">
+                        <h2>Cảm ơn bạn đã mua hàng tại <span style="color: #0079FF">Console Shop</span> nhé!</h2>
+                        <img src="<c:url value="/images/Background/thank.jpg"/>" width="100%">
+                    </div>
                 </div>
             </div>
             <div class="col-sm-2"></div>
         </div>
-        <br/>    
+        <br/>  
+        <canvas id="birthday"></canvas>
     </div>
+    
 </div>
+
+<script><%@include file="/WEB-INF/javascript/thanks.js"%></script>
+
 <jsp:include page="/WEB-INF/components/footer.jsp" />

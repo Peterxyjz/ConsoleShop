@@ -1,5 +1,6 @@
 .nav_order{
     background-color: #f3f4f6;
+    
 }
 .nav_item{
     border: 1px;
@@ -51,4 +52,43 @@
     padding-left: 0 !important; 
     font-size: 1rem !important; 
     font-weight: 500 !important;
+}
+.thanks__content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.thanks__content h2{
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+
+
+/*firework*/
+
+
+
+body {
+  margin: 0;
+  background: transparent;
+}
+canvas{
+    display:block;
+    position: absolute;
+    top: 200px;
+    z-index: 0;
+}
+h1 {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-family: "Dancing Script";
+  font-size: 5em;
+  font-weight: 200;
+  -webkit-user-select: none;
+  user-select: none;
 }
