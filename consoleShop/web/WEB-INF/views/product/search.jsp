@@ -82,12 +82,12 @@
             <c:choose>
                 <c:when test="${categoryName != null || sort != null || status != null || priceLower != null || priceUpper != null }">
                     <c:forEach var="index" begin="1" end="${endP}">
-                        <a href="<c:url value="/product/searchFilter_handler.do?categoryName=${categoryName}&status=${status}&priceLower=${priceLower}&priceUpper=${priceUpper}&sort=${sort}&index=${index}"/>">${index}</a>
+                        <a class="${tag == index?"bold__tag":""}" href="<c:url value="/product/searchFilter_handler.do?categoryName=${categoryName}&status=${status}&priceLower=${priceLower}&priceUpper=${priceUpper}&sort=${sort}&index=${index}"/>">${index}</a>
                     </c:forEach>
                 </c:when>
                 <c:otherwise>
-                    <c:forEach var="index" begin="1" end="${endP}">
-                        <a href="<c:url value="/product/search_handler.do?search=${param.search}&index=${index}"/>">${index}</a>
+                    <c:forEach var="index" begin="1" end="${endP}" >
+                        <a class="${tag == index?"bold__tag":""}" href="<c:url value="/product/search_handler.do?search=${param.search}&index=${index}"/>">${index}</a>
                     </c:forEach>
                 </c:otherwise>
             </c:choose>

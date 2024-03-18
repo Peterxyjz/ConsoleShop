@@ -158,6 +158,10 @@
     font-size: 10px;
 
 }
+.bold__tag{
+    font-weight: 600;
+    text-decoration: underline;
+}
 
 @media (max-width:1173px){
     .nav__btn--buy{
