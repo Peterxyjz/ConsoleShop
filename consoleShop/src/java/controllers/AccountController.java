@@ -150,7 +150,6 @@ public class AccountController extends HttpServlet {
 
     protected void login(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.removeAttribute("successMsg");
         //doc email & password tu cookies
         Cookie cks[] = request.getCookies();
         Cookie ckEmail = null;
@@ -183,6 +182,7 @@ public class AccountController extends HttpServlet {
             Account account = af.login(email, password);
             //lay tham chieu cua session
             HttpSession session = request.getSession();
+            String urlLogin = (String) session.getAttribute("urlLogin");
             //neu login thanh cong
             if (account != null) {
                 //luu email & password vao cookies
@@ -198,8 +198,12 @@ public class AccountController extends HttpServlet {
                 response.addCookie(ckPassword);
                 //luu account vao session
                 session.setAttribute("account", account);
-                //chuyển đến trang home khách hàng
-                request.getRequestDispatcher("/").forward(request, response);
+                //chuyển đến trang dựa theo url
+                if (urlLogin != null) {
+                    request.getRequestDispatcher(urlLogin).forward(request, response);
+                } else {
+                    request.getRequestDispatcher("/").forward(request, response);
+                }
             } else {
                 //gan thong bao loi
                 request.setAttribute("errMsg", "Hãy kiểm tra lại mật khẩu hoặc tài khoản");
@@ -356,7 +360,7 @@ public class AccountController extends HttpServlet {
                 } else {
                     //nếu đã trùng khớp thì tiến hành update password
                     account.setPassword(password);
-                    System.out.println(""+account.getPassword());
+                    System.out.println("" + account.getPassword());
                     af.update_password(account);
                     //quay ve trang login
                     request.setAttribute("successMsg", "*Bây giờ bạn có thể log in");
@@ -381,11 +385,12 @@ public class AccountController extends HttpServlet {
         //lay tham chieu cua session
         HttpSession session = request.getSession();
         //huy session
-        session.invalidate();
+        String urlLogout = (String) session.getAttribute("urlLogout");
+        session.removeAttribute("account");
         //quay ve trang home
-        request.getRequestDispatcher("/").forward(request, response);
+        request.getRequestDispatcher(urlLogout).forward(request, response);
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

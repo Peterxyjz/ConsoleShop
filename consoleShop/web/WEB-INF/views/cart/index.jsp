@@ -130,6 +130,8 @@
     </div>
     <div style="background-color: #fff; min-height: 20px;" class="mt-3 mb-3"></div>
 </div>
+<c:set var="urlLogin" value="/cart/index.do" scope="session"/>
+<c:set var="urlLogout" value="/cart/index.do" scope="session"/>
 <script><%@include file="/WEB-INF/javascript/cart.js"%></script>
 <jsp:include page="/WEB-INF/components/footer.jsp" />
 

@@ -3,6 +3,8 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/WEB-INF/components/navbar.jsp" />
 <style><%@include file="/WEB-INF/css/product.css"%></style>
+<c:set var="urlLogin" value="/product/search_handler.do?search=&index=1" scope="session"/>
+<c:set var="urlLogout" value="/product/search_handler.do?search=&index=1" scope="session"/>
 <div class="container">
     <h2 class="mt-3">Tìm kiếm sản phẩm</h2>
     <form action="<c:url value="/product/searchFilter_handler.do"/>">
@@ -47,7 +49,6 @@
             <div class="col-sm-1 mt-4">
                 <button value="1" name="index" type="submit" class="btn btn-primary"><i class="bi bi-funnel"></i> Lọc</button>
             </div>
-
         </div>
     </form>
     <c:if test="${list.size() == 0}">
