@@ -22,7 +22,7 @@
                 <select id="status" name="status" class="form-select mb-3" aria-label=".form-select-lg example">
                     <option value="" selected>Tất cả</option>
                     <option value="new">Máy mới</option>
-                    <option value="likeNew">Like new</option>
+                    <option value="Like New">Like new</option>
                 </select>
             </div>
             <div class="col-sm-4">
@@ -38,7 +38,6 @@
                 <select  id="sort" name="sort" class="form-select mb-3"  aria-label=".form-select-lg example">
                     <option value="proName ASC" selected>Mặc định</option>
                     <option value="proName ASC">Bán chạy nhất</option>
-                    <option value="proName ASC">Mới cập nhật</option>
                     <option value="price ASC">Giá thấp đến cao</option>
                     <option value="price DESC">Giá cao đến thấp</option>
                     <option value="proName ASC">Tên từ A đến Z</option>
@@ -77,7 +76,6 @@
                         <div class="today-deal__discount-p"><fmt:formatNumber value="${product.discount}" type="percent" /></div>
                     </div>
                 </a>
-
             </div>
         </c:forEach>
         <div style="display: flex; text-align: center; justify-content: center; gap: 10px;">

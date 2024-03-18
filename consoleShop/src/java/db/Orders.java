@@ -16,8 +16,9 @@ public class Orders {
     private int ordId, accId, empId;
     private Date requiredDate, shippedDate;
     private String shipAddress, shipCountry;
-
+    private String status;
     public Orders() {
+        this.status = "Chờ xác nhận";
     }
 
     public int getOrdId() {
