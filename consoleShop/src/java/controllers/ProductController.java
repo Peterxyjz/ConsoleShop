@@ -105,6 +105,7 @@ public class ProductController extends HttpServlet {
 
             String searchName = request.getParameter("search") == null ? "" : request.getParameter("search");
             int index = Integer.parseInt(request.getParameter("index"));
+            int tag = index;
             System.out.println("search: " + searchName);
             ProductFacade pf = new ProductFacade();
             List<Product> prodList = pf.searchProductByName(searchName);
@@ -116,6 +117,7 @@ public class ProductController extends HttpServlet {
             //setAttribute
             request.setAttribute("list", prodList);
             request.setAttribute("endP", endP);
+            request.setAttribute("tag", tag);
             request.getRequestDispatcher("/product/search.do").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
@@ -170,6 +172,7 @@ public class ProductController extends HttpServlet {
             }
             String sort = request.getParameter("sort");
             int index = Integer.parseInt(request.getParameter("index"));
+            int tag = index;
 
             ProductFacade pf = new ProductFacade();
             //lấy full list
@@ -178,6 +181,7 @@ public class ProductController extends HttpServlet {
             int endP = getMaxPage(prodList, index);
             //lấy list chỉ có 16 sp thui
             prodList = pf.searchProductByFilter(categoryName, status, priceLower, priceUpper, sort, index);
+            request.setAttribute("tag", tag);
 
             request.setAttribute("categoryName", categoryName);
             request.setAttribute("status", status);
