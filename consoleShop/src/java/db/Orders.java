@@ -76,4 +76,13 @@ public class Orders {
     public void setShipCountry(String shipCountry) {
         this.shipCountry = shipCountry;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
 }
