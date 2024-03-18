@@ -30,16 +30,16 @@
                     </select>
                 </div>
                 <div class="col-sm-3">
-                    <label for="tmp">-----</label>
-                    <select id="tmp" name="tmp" class="form-select mb-3" aria-label=".form-select-lg example">
+                    <label for="status">Tình trạng</label>
+                    <select id="status" name="status" class="form-select mb-3" aria-label=".form-select-lg example">
                         <option value="" selected>Tất cả</option>
                         <option value="new">Máy mới</option>
-                        <option value="likeNew">Like new</option>
+                        <option value="Like New">Like new</option>
                     </select>
                 </div>
                 <div class="col-sm-3">
-                    <label for="status">Tình trạng</label>
-                    <select id="status" name="status" class="form-select mb-3" aria-label=".form-select-lg example">
+                    <label for="amount">Số lượng</label>
+                    <select id="amount" name="amount" class="form-select mb-3" aria-label=".form-select-lg example">
                         <option value=">=0" selected>Tất cả</option>
                         <option value=">0">Còn hàng</option>
                         <option value="=0">Hết hàng</option>
@@ -79,14 +79,14 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Hình</th>
-                            <th>ProId</th>
-                            <th>Tên sản phẩm</th>
-                            <th style="text-align: right;">Giá</th>
-                            <th style="text-align: right;">Discount</th>
-                            <th>Loại sản phẩm</th>
-                            <th>Thông tin</th>
-                            <th>Operations</th>
+                            <th class="col-sm-1">Hình</th> 
+                            <th class="col-sm-2">Tên sản phẩm</th>
+                            <th class="col-sm-1" style="text-align: right;">Giá</th>
+                            <th class="col-sm-1" style="text-align: right;">Discount</th>
+                            <th class="col-sm-1" >Số lượng</th>
+                            <th class="col-sm-1" >Loại sản phẩm</th>
+                            <th class="col-sm-4">Thông tin</th>
+                            <th class="col-sm-1">Operations</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -96,23 +96,29 @@
                                     <img src="<c:url value="/images/${product.proId}.jpg"/>" width="100%">
                                     <input type="hidden" id="proId" value="${product.proId}"/>
                                 </td>
-                                
-                                <td>${product.proId}</td>
-                                <td>${product.proName}</td>
-                                <td style="text-align: right;">
-                                    <fmt:formatNumber value="${product.price}" type="currency" />
+                                <td>
+                                    <textarea class="form-control" name="proName" rows="3">${product.proName}</textarea>
                                 </td>
-                                <td style="text-align: right;">
-                                    <fmt:formatNumber value="${product.discount}" type="percent" />
+                                <td>
+                                    <input style="text-align: right;" class="form-control" type="number" value="${product.price}" name="price">                    
                                 </td>
-                                <td>${product.categoryId}</td>
-                                <td>${product.description}</td> 
+                                <td>
+                                    <input style="text-align: right;" class="form-control" type="number" value="${product.discount}" name="discount">      
+                                </td>
+                                <td>
+                                    <input class="form-control" type="text" value="${product.amount}" name="amount">
+                                </td>
+                                <td>
+                                    <input style="text-align: right;" class="form-control" type="number" value="${product.categoryId}" name="categoryId">
+                                </td>
+                                <td>
+                                    <textarea class="form-control" name="description" rows="10">${product.description}</textarea>
+                                </td> 
                                 <td>
                                     <a href="edit_form.do?proName=${product.proName}"><i class="bi bi-gear"></i></a> 
                                   
                                     <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal_${product.proId}">
-                                        <i style="red" class="bi bi-trash"></i>
-                                        
+                                        <i style="red" class="bi bi-trash"></i>                                       
                                     </button>
 
                                     <!-- Modal -->

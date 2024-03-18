@@ -4,6 +4,7 @@ import db.Account;
 import db.AccountFacade;
 import db.Category;
 import db.CategoryFacade;
+import db.DBContext;
 import db.EmployeeFacade;
 import db.Product;
 import db.ProductFacade;
@@ -11,7 +12,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,9 +55,6 @@ public class AdminController extends HttpServlet {
             case "edit_handler":
                 edit_handler(request, response);
                 break;
-//            case "getEmployeeList":
-//                getEmployeeList(request, response);
-//                break;
             case "updateEmployee":
                 updateEmployee(request, response);
                 break;
@@ -95,22 +97,6 @@ public class AdminController extends HttpServlet {
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
-//    protected void getEmployeeList(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        String layout = (String) request.getAttribute("layout");
-//        try {
-//            AccountFacade af = new AccountFacade();
-//            List<Account> empList = af.getEmployeeList();
-//            for (Account account : empList) {
-//                System.out.println("fulname" + account.getFullName());
-//            }
-//            request.setAttribute("empList", empList);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            request.setAttribute("errorMsg", "Error when reading category data");
-//        }
-//        request.getRequestDispatcher(layout).forward(request, response);
-//    }
     protected void create(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -366,7 +352,7 @@ public class AdminController extends HttpServlet {
             request.getRequestDispatcher("/").forward(request, response);
         }
     }
-
+    
     protected void searchFilter_handler(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -375,18 +361,14 @@ public class AdminController extends HttpServlet {
             String categoryName = request.getParameter("categoryName");
 
             String status = request.getParameter("status");
-
+            
+            String amount = request.getParameter("amount");
+            
             String sort = request.getParameter("sort");
 
-            String str = "SELECT * FROM Product WHERE CategoryId in "
-                    + "(SELECT CategoryId FROM Category Where CategoryName like '%" + categoryName + "%')"
-                    + "AND Amount " + status
-                    + " ORDER BY " + sort;
-
-            System.out.println("syt:" + str);
 
             ProductFacade pf = new ProductFacade();
-            List<Product> prodList = pf.searchProductByFilterForAdmin(categoryName, status, sort);
+            List<Product> prodList = pf.searchProductByFilterForAdmin(categoryName, status, amount, sort);
 
             request.setAttribute("list", prodList);
 

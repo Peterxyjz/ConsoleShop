@@ -72,7 +72,7 @@ public class ProductFacade {
         List<Product> proList = null;
        Connection con = DBContext.getConnection();
 
-        String str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND Price >= %f AND Price <= %f  ORDER BY %s ", categoryName, priceLower, priceUpper, sort);
+        String str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND Price >= %f AND Price <= %f  AND proName like '%%%s%%' ORDER BY %s ", categoryName, priceLower, priceUpper, status, sort);
         Statement stm = con.createStatement();
 
         //Thực thi lệnh SELECT
@@ -102,7 +102,7 @@ public class ProductFacade {
         List<Product> proList = null;
        Connection con = DBContext.getConnection();
 
-        String str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND Price >= %f AND Price <= %f  ORDER BY %s offset %d rows fetch next 16 rows only ", categoryName, priceLower, priceUpper, sort, (index-1)*16);
+        String str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND Price >= %f AND Price <= %f AND proName like '%%%s%%' ORDER BY %s offset %d rows fetch next 16 rows only ", categoryName, priceLower, priceUpper, status, sort, (index-1)*16);
         Statement stm = con.createStatement();
 
         //Thực thi lệnh SELECT
@@ -264,11 +264,11 @@ public class ProductFacade {
         con.close();
     } 
     
-        public List<Product> searchProductByFilterForAdmin(String categoryName, String status, String sort) throws SQLException {
+        public List<Product> searchProductByFilterForAdmin(String categoryName, String status, String amount,String sort) throws SQLException {
         List<Product> proList = null;
        Connection con = DBContext.getConnection();
 
-        String str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND Amount %s  ORDER BY %s ", categoryName, status, sort);
+        String str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND proName like '%%%s%%' AND Amount %s  ORDER BY %s ", categoryName, status, amount ,sort);
         Statement stm = con.createStatement();
 
         //Thực thi lệnh SELECT
