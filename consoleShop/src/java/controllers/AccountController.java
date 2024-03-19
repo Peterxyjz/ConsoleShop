@@ -89,55 +89,72 @@ public class AccountController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         try {
             String email = request.getParameter("email");
-            System.out.println("" + email);
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             String password_check = request.getParameter("password_check");
-            int error_count = 0;
-            if (email == "") {
-                request.setAttribute("errMsgEmailNull", "*Không được để trống");
-                ++error_count;
-            }
-            if (username == "") {
-                request.setAttribute("errMsgUsernameNull", "*Không được để trống");
-                ++error_count;
-            }
-            if (password == "") {
-                request.setAttribute("errMsgPasswordNull", "*Không được để trống");
-                ++error_count;
-            }
-            if (password_check == "") {
-                request.setAttribute("errMsgPassword_checkNull", "*Không được để trống");
-                ++error_count;
-            }
+
+            boolean errMsgEmailNull = false;
+            boolean errMsgUsernameNull = false;
+            boolean errMsgPasswordNull = false;
+            boolean errMsgPassword_checkNull = false;
+            boolean errMsgEmail = false;
             AccountFacade af = new AccountFacade();
             boolean isExisted = af.isExisted(email);
-            if (!isExisted) {
-                if (password.equals(password_check)) {
-                    HttpSession session = request.getSession();
-                    //lay thong tin tu client
-                    Account account = new Account();
-                    account.setEmail(email);
-                    account.setUsername(username);
-                    account.setPassword(password);
-                    //kiem tra thong tin login
-                    af.create(account);
 
-                    Account loginAccount = af.login(email, password);
+            if (email == "") {
+                errMsgEmailNull = true;
+            }
+            if (username == "") {
+                errMsgUsernameNull = true;
+            }
+            if (password == "") {
+                errMsgPasswordNull = true;
+            }
+            if (password_check == "") {
+                errMsgPassword_checkNull = true;
+            }
+            if (isExisted) {
+                errMsgEmail = true;
+            }
 
-                    session.setAttribute("account", loginAccount);
-                    //chuyen den trang home
+            if (errMsgEmailNull) {
+                request.setAttribute("errMsgEmailNull", "Không được để trống");
+                request.getRequestDispatcher("/account/signup.do").forward(request, response);
+            } else if (errMsgEmail) {
+                request.setAttribute("errMsgEmail", "Email đã tồn tại");
+                request.getRequestDispatcher("/account/signup.do").forward(request, response);
+            } else if (errMsgUsernameNull) {
+                request.setAttribute("errMsgUsernameNull", "Không được để trống");
+                request.getRequestDispatcher("/account/signup.do").forward(request, response);
+            } else if (errMsgPasswordNull) {
+                request.setAttribute("errMsgPasswordNull", "Không được để trống");
+                request.getRequestDispatcher("/account/signup.do").forward(request, response);
+            } else if (errMsgPassword_checkNull) {
+                request.setAttribute("errMsgPassword_checkNull", "Không được để trống");
+                request.getRequestDispatcher("/account/signup.do").forward(request, response);
+            } else if (password.equals(password_check)) {
+                HttpSession session = request.getSession();
+                //lay thong tin tu client
+                Account account = new Account();
+                account.setEmail(email);
+                account.setUsername(username);
+                account.setPassword(password);
+                //kiem tra thong tin login
+                af.create(account);
+
+                Account loginAccount = af.login(email, password);
+
+                session.setAttribute("account", loginAccount);
+                String urlSignup = (String) session.getAttribute("urlSignup");
+                System.out.println("urlSignup:" + urlSignup);
+                //chuyen den trang home
+                if (urlSignup != null) {
+                    request.getRequestDispatcher(urlSignup).forward(request, response);
+                } else {
                     request.getRequestDispatcher("/").forward(request, response);
                 }
-                //gan thong bao loi
-                request.setAttribute("errMsgPass", "*Mật khẩu không trùng khớp");
-                ++error_count;
             } else {
-                //gan thong bao loi
-                request.setAttribute("errMsgEmail", "*Email đã tồn tại");
-                ++error_count;
-            }
-            if (error_count > 0) {
+                request.setAttribute("errMsgPass", "*Mật khẩu không trùng khớp");
                 request.getRequestDispatcher("/account/signup.do").forward(request, response);
             }
         } catch (Exception e) {
@@ -321,26 +338,6 @@ public class AccountController extends HttpServlet {
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
-//    protected void forgot_enter_email(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        String layout = (String) request.getAttribute("layout");
-//        try {
-//            String email = request.getParameter("email");
-//            AccountFacade af = new AccountFacade();
-//
-//            if (af.isExisted(email)) {
-//                request.setAttribute("forgotPasswordEmail", email);
-//                request.getRequestDispatcher("/account/forgot_handler.do").forward(request, response);
-//            } else {
-//                request.setAttribute("errMsg", "email này chưa được đăng kí");
-//                request.getRequestDispatcher("/account/forgot.do").forward(request, response);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            request.setAttribute("errMsg", e);
-//        }
-//        request.getRequestDispatcher(layout).forward(request, response);
-//    }
     protected void forgot_handler(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -370,6 +367,47 @@ public class AccountController extends HttpServlet {
                 request.setAttribute("errMsg", "*Tài khoản không tồn tại");
                 request.getRequestDispatcher("/account/forgot.do").forward(request, response);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("errMsg", "có lỗi gì đó xảy ra");
+            System.out.println("ddaay af?");
+            request.getRequestDispatcher("/account/login.do").forward(request, response);
+            request.getRequestDispatcher(layout).forward(request, response);
+        }
+        request.getRequestDispatcher(layout).forward(request, response);
+    }
+
+    protected void updateToValidPassword(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        request.getRequestDispatcher(layout).forward(request, response);
+    }
+
+    protected void updateToValidPassword_handler(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+            AccountFacade af = new AccountFacade();
+            int userId = Integer.parseInt(request.getParameter("userId"));
+            String password = request.getParameter("password");
+            String password_check = request.getParameter("password_check");
+            //check email
+            Account account = af.select(0);
+            if (!password_check.equals(password)) {
+                //show error
+                request.setAttribute("errMsg", "*Mật khẩu không trùng khớp");
+                //quay lại forgot_handler.do
+                request.getRequestDispatcher("/account/forgot.do").forward(request, response);
+            } else {
+                //nếu đã trùng khớp thì tiến hành update password
+                account.setPassword(password);
+                System.out.println("" + account.getPassword());
+                af.update_password(account);
+                //quay ve trang login
+                request.setAttribute("successMsg", "*Bây giờ bạn có thể log in");
+                request.getRequestDispatcher("/account/login.do").forward(request, response);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errMsg", "có lỗi gì đó xảy ra");

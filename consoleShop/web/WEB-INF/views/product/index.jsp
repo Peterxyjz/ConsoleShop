@@ -72,6 +72,7 @@
 </div>
 <c:set var="urlLogin" value="/product/index.do?proName=${product.proName}" scope="session"/>
 <c:set var="urlLogout" value="/product/index.do?proName=${product.proName}" scope="session"/>
+<c:set var="urlSignup" value="/product/index.do?proName=${product.proName}" scope="session"/>
 <br/>
 <script><%@include file="/WEB-INF/javascript/product.js"%></script>
 <jsp:include page="/WEB-INF/components/footer.jsp" />

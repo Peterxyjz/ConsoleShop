@@ -5,6 +5,8 @@
 <style><%@include file="/WEB-INF/css/product.css"%></style>
 <c:set var="urlLogin" value="/product/search_handler.do?search=&index=1" scope="session"/>
 <c:set var="urlLogout" value="/product/search_handler.do?search=&index=1" scope="session"/>
+<c:set var="urlSignup" value="/product/search_handler.do?search=&index=1" scope="session"/>
+
 <div class="container">
     <h2 class="mt-3">Tìm kiếm sản phẩm</h2>
     <form action="<c:url value="/product/searchFilter_handler.do"/>">
@@ -91,11 +93,17 @@
                 <c:when test="${categoryName != null || sort != null || status != null || priceLower != null || priceUpper != null }">
                     <c:forEach var="index" begin="1" end="${endP}">
                         <a class="${tag == index?"bold__tag":""}" href="<c:url value="/product/searchFilter_handler.do?categoryName=${categoryName}&status=${status}&priceLower=${priceLower}&priceUpper=${priceUpper}&sort=${sort}&index=${index}"/>">${index}</a>
+                        <c:set var="urlLogin" value="/product/searchFilter_handler.do?categoryName=${categoryName}&status=${status}&priceLower=${priceLower}&priceUpper=${priceUpper}&sort=${sort}&index=${index}" scope="session"/>
+                        <c:set var="urlLogout" value="/product/searchFilter_handler.do?categoryName=${categoryName}&status=${status}&priceLower=${priceLower}&priceUpper=${priceUpper}&sort=${sort}&index=${index}" scope="session"/>
+                        <c:set var="urlSignup" value="/product/searchFilter_handler.do?categoryName=${categoryName}&status=${status}&priceLower=${priceLower}&priceUpper=${priceUpper}&sort=${sort}&index=${index}" scope="session"/>
                     </c:forEach>
                 </c:when>
                 <c:otherwise>
                     <c:forEach var="index" begin="1" end="${endP}" >
                         <a class="${tag == index?"bold__tag":""}" href="<c:url value="/product/search_handler.do?search=${param.search}&index=${index}"/>">${index}</a>
+                        <c:set var="urlLogin" value="/product/search_handler.do?search=&index=${index}" scope="session"/>
+                        <c:set var="urlLogout" value="/product/search_handler.do?search=&index=${index}" scope="session"/>
+                        <c:set var="urlSignup" value="/product/search_handler.do?search=&index=${index}" scope="session"/>
                     </c:forEach>
                 </c:otherwise>
             </c:choose>

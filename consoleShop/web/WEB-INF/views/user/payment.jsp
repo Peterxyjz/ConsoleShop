@@ -67,6 +67,7 @@
 </div>
 <c:set var="urlLogin" value="/user/payment.do" scope="session"/>
 <c:set var="urlLogout" value="/user/payment.do" scope="session"/>
+<c:set var="urlSignup" value="/user/payment.do" scope="session"/>
 <script><%@include file="/WEB-INF/javascript/payment.js"%></script>
 
 <jsp:include page="/WEB-INF/components/footer.jsp"/>

@@ -77,6 +77,7 @@
 <hr>
 <c:set var="urlLogin" value="/home/index.do" scope="session"/>
 <c:set var="urlLogout" value="/home/index.do" scope="session"/>
+<c:set var="urlSignup" value="/home/index.do" scope="session"/>
 
 <!--New nintendo Switch area  -->
 <jsp:include page="/WEB-INF/components/nintendoCarousel.jsp" />
