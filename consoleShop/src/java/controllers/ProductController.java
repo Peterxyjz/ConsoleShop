@@ -17,10 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import db.Product;
 import java.sql.SQLException;
 
-/**
- *
- * @author QUOC PHONG
- */
 @WebServlet(name = "ProductController", urlPatterns = {"/product"})
 public class ProductController extends HttpServlet {
 
@@ -52,7 +48,6 @@ public class ProductController extends HttpServlet {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             case "search_handler":
                 search_handler(request, response);
                 break;

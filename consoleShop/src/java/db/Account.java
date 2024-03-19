@@ -18,6 +18,7 @@ public class Account {
     private double wallet;
 
     public Account() {
+        this.country = "Việt Nam";
     }
 
     public int getAccId() {

@@ -23,11 +23,11 @@
                 <form  id="orderForm" class="row" >
                     <div class="col-sm-12 mt-3 mb-3">
                         <label for="fullName" class="form-label">Họ và tên</label>
-                        <input class="form-control" type="text" name="fullName" id="fullName" placeholder="Họ và tên">
+                        <input class="form-control" type="text" name="fullName" id="fullName" value="${account.fullName}">
                     </div>
                     <div class="col-sm-12 mb-3">
                         <label for="phone" class="form-label">Số điện thoại</label>
-                        <input class="form-control" type="text" name="phone" id="phone" placeholder="Số điện thoại">
+                        <input class="form-control" type="text" name="phone" id="phone" value="${account.phoneNumber}">
                     </div>
                     <div class="col-sm-4 mb-3">
                         <!--Thành phố-->
