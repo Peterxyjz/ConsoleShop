@@ -10,7 +10,7 @@ import java.util.Date;
 public class Orders {
     private int ordId, accId, empId;
     private Date requiredDate, shippedDate;
-    private String shipAddress, status;
+    private String shipAddress, status, payment;
     private double total;
 
     public String getStatus() {
@@ -27,6 +27,14 @@ public class Orders {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public String getPayment() {
+        return payment;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
     }
     public Orders() {
         this.status = "Chờ xác nhận";

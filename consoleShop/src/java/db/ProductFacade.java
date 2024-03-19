@@ -151,30 +151,7 @@ public class ProductFacade {
         con.close();
         return list;
     }
-
-    public Product selectProductById(int id) throws SQLException {
-        Product product = null;
-        //Tạo connection để kết nối vào DBMS
-        Connection con = DBContext.getConnection();
-        //Tạo đối tượng PreparedStatement
-        PreparedStatement stm = con.prepareStatement("select * from Product WHERE id = ?");
-        stm.setInt(1, id);
-        //Thực thi lệnh SELECT
-        ResultSet rs = stm.executeQuery();
-
-        if (rs.next()) {
-            product = new Product();
-            product.setProId(rs.getInt("ProID"));
-            product.setProName(rs.getString("proName"));
-            product.setPrice(rs.getDouble("price"));
-            product.setDiscount(rs.getDouble("discount"));
-            product.setAmount(rs.getInt("Amount"));
-            product.setCategoryId(rs.getInt("categoryId"));
-            product.setDescription(rs.getString("description"));
-        }
-        con.close();
-        return product;
-    }
+    
     //admin:
     public List<Product> select() throws SQLException {
         List<Product> list = null;
@@ -254,6 +231,17 @@ public class ProductFacade {
         int count = stm.executeUpdate();
         con.close();
     } 
+    
+    public void update_amount(int proId, int amount) throws SQLException {
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("update Product set amount =? where ProID = ?");
+        //Cung cấp giá trị cho các tham số     
+        stm.setInt(1, amount);
+        stm.setInt(2, proId);
+        //Thực thi lệnh INSERT
+        int count = stm.executeUpdate();
+        con.close();
+    }
     
     public void delete(int proId) throws SQLException {
         Connection con = DBContext.getConnection();
