@@ -1383,8 +1383,10 @@ Bộ nhớ trong: 32 GB.
 Kết nối không dây: Wi-Fi (IEEE 802.11 a/b/g/n/ac tương thích) / Bluetooth 4.1.
 Pin: Khoảng từ 4.5 đến 9 giờ, tùy thuộc vào game bạn chơi.')
 
-SELECT * FROM Orders
+SELECT * FROM Orders 
 
 SELECT * FROM OrderDetail
 
 SELECT * FROM Account
+
+INSERT INTO Orders VALUES('2023-03-10','2023-03-15','404 lam gi co',2, 1,N'Đã xác nhận',100000,'card')

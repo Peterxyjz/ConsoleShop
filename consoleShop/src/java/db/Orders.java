@@ -10,9 +10,12 @@ import java.util.Date;
 public class Orders {
     private int ordId, accId, empId;
     private Date requiredDate, shippedDate;
-    private String shipAddress, status, payment;
+    private String shippAddress, status, payment;
     private double total;
-
+    
+    public Orders() {
+    }
+    
     public String getStatus() {
         return status;
     }
@@ -36,9 +39,7 @@ public class Orders {
     public void setPayment(String payment) {
         this.payment = payment;
     }
-    public Orders() {
-        this.status = "Chờ xác nhận";
-    }
+    
 
     public int getOrdId() {
         return ordId;
@@ -80,11 +81,13 @@ public class Orders {
         this.shippedDate = shippedDate;
     }
 
-    public String getShipAddress() {
-        return shipAddress;
+    public String getShippAddress() {
+        return shippAddress;
     }
 
-    public void setShipAddress(String shipAddress) {
-        this.shipAddress = shipAddress;
+    public void setShippAddress(String shippAddress) {
+        this.shippAddress = shippAddress;
     }
+
+    
 }

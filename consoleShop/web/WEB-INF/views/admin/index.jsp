@@ -30,11 +30,12 @@
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <a href="<c:url value="/admin/addEmployee.do"/>"><button class="btn btn-primary"><i class="bi bi-plus-circle"></i> Thêm nhân viên</button></a>
-                            <table class="table table-striped">
+                            <a href="<c:url value="/admin/addEmployee.do"/>" class="btn btn-primary" style="float: right">
+                                <i class="bi bi-plus-circle"></i> Thêm nhân viên
+                            </a>
+                            <table class="table table-striped mt-3">
                                 <thead>
                                     <tr>
-                                        <!--fullName, email, password, role, address, country, phoneNumber, username;-->
                                         <td>No</td>
                                         <td>ID</td>
                                         <td>User Name</td>
@@ -43,7 +44,6 @@
                                         <td>Vị trí</td>
                                         <td>Số điện thoại</td>
                                         <td>Chỉnh sửa</td>
-
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,7 +58,7 @@
                                             <td>${emp.phoneNumber}</td>
                                             <td>
                                                 <form action="<c:url value="/admin/updateEmployee.do"/>">
-                                                    <button class="btn btn-primary">Sửa</button>
+                                                    <button class="btn btn-danger">Sửa</button>
                                                     <input type="hidden" name="accId" value="${emp.accId}"/>
 
                                                 </form>
@@ -86,99 +86,43 @@
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div class="accordion-body ">
-                        <div class="d-flex">
-                            <button class="btn btn-primary me-2 order--new">Đơn mới</button>
-                            <button class="btn btn-secondary order--checked">Đơn đã xác nhận</button>
+                        <div style="float: right">
+                            <a href="<c:url value="/admin/coordination.do" />" class="btn btn-primary position-relative">
+                                Đơn mới | Đơn đang ship
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    ${orderWaitingList.size()}
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                            </a>
                         </div>
-                        <table class="table table-striped tbl--new">
+                        <table class="table table-striped tbl--new mt-2">
                             <thead style="font-size: 14px;">
                                 <tr>
-                                    <!--fullName, email, password, role, address, country, phoneNumber, username;-->
                                     <th>No</th>
                                     <th>Mã HĐ</th>
                                     <th>Ngày mua</th>
                                     <th>Ngày nhận</th>
-                                    <th>Tỉnh/Thành</th>
                                     <th>Địa chỉ</th>
-                                    <th>Mã khách hàng</th>
+                                    <th>Mã KH</th>
+                                    <th>HT thanh toán</th>
                                     <th>Tình trạng</th>
-                                    <th>Chỉnh sửa</th>
                                 </tr>
                             </thead>
                             <tbody  style="font-size: 14px;">
-                                <c:forEach var="order" items="${orderList}" varStatus="loop">
+                                <c:forEach var="item" items="${orderCompletedList}" varStatus="loop">
                                     <tr>
                                         <td>${loop.count}</td>
-                                        <td>${order.ordId}</td>
-                                        <td>${order.requiredDate}</td>
-                                        <td>${order.shippedDate}</td>
-                                        <td>${order.shipCountry}</td>
-                                        <td>${order.shipAddress}</td>
-                                        <td>${order.accId}</td>
-                                        <td style="color: red; font-weight: 600">${order.status}</td>
-                                        <td class="row">
-                                            <form action="<c:url value="/admin/confirmOrder.do"/>" class="mb-1">
-                                                <button class="btn btn-primary">
-                                                    <i class="bi bi-clipboard-check"></i>
-                                                    Xác nhận
-                                                </button>
-                                                <input type="hidden" name="ordId" value="${order.ordId}"/>
-                                            </form>
-                                            <form action="<c:url value="/admin/updateEmployee.do"/>" >
-                                                <button class="btn btn-primary">
-                                                    <i class="bi bi-eye"></i>
-                                                    Xem đơn
-                                                </button>
-                                                <input type="hidden" name="ordId" value="${order.ordId}"/>
-                                            </form>
-
-                                        </td>
+                                        <td>${item.ordId}</td>
+                                        <td>${item.requiredDate}</td>
+                                        <td>${item.shippedDate}</td>
+                                        <td>${item.shippAddress}</td>
+                                        <td>${item.accId}</td>
+                                        <td>${item.payment}</td>
+                                        <td style="color: red; font-weight: 600">${item.status}</td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
                         </table>
-                        <table class="table table-striped tbl--checked d-none">
-                            <thead style="font-size: 14px;">
-                                <tr>
-                                    <!--fullName, email, password, role, address, country, phoneNumber, username;-->
-                                    <th>No</th>
-                                    <th>Mã HĐ</th>
-                                    <th>Ngày mua</th>
-                                    <th>Ngày nhận</th>
-                                    <th>Tỉnh/Thành</th>
-                                    <th>Địa chỉ</th>
-                                    <th>Mã khách hàng</th>
-                                    <th>Tình trạng</th>
-                                    <th>Chỉnh sửa</th>
-                                </tr>
-                            </thead>
-                            <tbody  style="font-size: 14px;">
-                                <c:forEach var="order" items="${orderCheckedList}" varStatus="loop">
-                                    <tr>
-                                        <td>${loop.count}</td>
-                                        <td>${order.ordId}</td>
-                                        <td>${order.requiredDate}</td>
-                                        <td>${order.shippedDate}</td>
-                                        <td>${order.shipCountry}</td>
-                                        <td>${order.shipAddress}</td>
-                                        <td>${order.accId}</td>
-                                        <td  style="color: green; font-weight: 600">${order.status}</td>
-                                        <td >
-                                            
-                                            <form action="<c:url value="/admin/updateEmployee.do"/>" class="col-sm-12">
-                                                <button class="btn btn-primary">
-                                                    <i class="bi bi-eye"></i>
-                                                    Xem đơn
-                                                </button>
-                                                <input type="hidden" name="order.ordId" value="${order.ordId}"/>
-                                            </form>
-
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-
                     </div>
                 </div>
             </div>
@@ -189,8 +133,10 @@
                     </button>
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    <div class="accordion-body row">
+                        <h3 class="col-sm-12 text-center bg-primary">
+                            <span class="badge">Tổng doanh thu: <fmt:formatNumber value="${income}" type="number" /> đ</span>
+                        </h3>
                     </div>
                 </div>
             </div>

@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -82,6 +83,9 @@ public class AdminController extends HttpServlet {
             case "searchFilter_handler":
                 searchFilter_handler(request, response);
                 break;
+            case "coordination":
+                coordination(request, response);
+                break;
             case "confirmOrder":
                 confirmOrder(request, response);
                 break;
@@ -92,17 +96,39 @@ public class AdminController extends HttpServlet {
     protected void index(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
-        //Facade
-        EmployeeFacade ef = new EmployeeFacade();
-        OrdersFacade of = new OrdersFacade();
-        //List
-        List<Employee> empList = ef.selectEmployee();
-        List<Orders> orderWaitingList = of.selectWaitingOrder();
-        List<Orders> orderCheckedList = of.selectCheckedOrder();
+        try {
+            //Facade
+            EmployeeFacade ef = new EmployeeFacade();
+            OrdersFacade of = new OrdersFacade();
+            //employee:
+            List<Employee> empList = ef.selectEmployee();
+            request.setAttribute("empList", empList);
 
-        request.setAttribute("empList", empList);
-        request.setAttribute("orderList", orderWaitingList);
-        request.setAttribute("orderCheckedList", orderCheckedList);
+            //orders:
+            List<Orders> orderWaitingList = of.selectWaitingOrder();
+            List<Orders> orderCheckedList = of.selectCheckedOrder();
+            
+            //cập nhật đơn hoàn thành
+            Date current = new Date();
+            for (Orders check : orderCheckedList) {
+                if (check.getShippedDate().before(current)) {
+                    of.statusComplete(check.getOrdId());
+                }
+            }
+            List<Orders> orderCompletedList = of.selectCompletedList();
+            request.setAttribute("orderCompletedList", orderCompletedList);
+            request.setAttribute("orderWaitingList", orderWaitingList);
+            request.setAttribute("orderCheckedList", orderCheckedList);
+
+            //income:
+            double income = 0;
+            for (Orders orders : orderCompletedList) {
+                income += orders.getTotal();
+            }
+            request.setAttribute("income", income);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
@@ -153,12 +179,12 @@ public class AdminController extends HttpServlet {
             request.setAttribute("caList", caList);
             //Lưu db
             int proIdImg = pf.create(product);
-            System.out.println("proIdImg: "+proIdImg);
+            System.out.println("proIdImg: " + proIdImg);
             request.setAttribute("proIdImg", proIdImg);
             PrintWriter out = response.getWriter();
             out.print(proIdImg);
             out.close();
-            
+
 //            response.sendRedirect(request.getContextPath() + "/admin/index.do");
         } catch (Exception e) {
             e.printStackTrace();
@@ -439,15 +465,35 @@ public class AdminController extends HttpServlet {
             request.getRequestDispatcher("/").forward(request, response);
         }
     }
-
+    
+    protected void coordination(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+            //Facade
+            OrdersFacade of = new OrdersFacade();
+            //orders:
+            List<Orders> orderWaitingList = of.selectWaitingOrder();
+            List<Orders> orderCheckedList = of.selectCheckedOrder();
+            request.setAttribute("orderWaitingList", orderWaitingList);
+            request.setAttribute("orderCheckedList", orderCheckedList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        request.getRequestDispatcher(layout).forward(request, response);
+    }
+    
     protected void confirmOrder(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
-        int ordId = Integer.parseInt(request.getParameter("ordId"));
-
-        OrdersFacade of = new OrdersFacade();
-        of.confirmOrder(ordId);
-        request.getRequestDispatcher("/admin/index.do").forward(request, response);
+        try {
+            int ordId = Integer.parseInt(request.getParameter("ordId"));
+            OrdersFacade of = new OrdersFacade();
+            of.confirmOrder(ordId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        request.getRequestDispatcher(layout).forward(request, response);
 
     }
 
