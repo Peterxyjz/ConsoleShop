@@ -115,7 +115,7 @@
                                     <textarea class="form-control" name="description" rows="10">${product.description}</textarea>
                                 </td> 
                                 <td>
-                                    <a href="edit_form.do?proName=${product.proName}"><i class="bi bi-gear"></i></a> 
+                                    <a href="edit_form.do?proId=${product.proId}"><i class="bi bi-gear"></i></a> 
                                   
                                     <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal_${product.proId}">
                                         <i style="red" class="bi bi-trash"></i>                                       
