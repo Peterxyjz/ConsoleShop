@@ -28,7 +28,7 @@ public class Hasher {
         // TODO code application logic here
         System.out.println(hash("1"));
         System.out.println(hash("2"));
-        System.out.println(hash("12345678"));
+        System.out.println(hash(""));
         System.out.println(hash("1").length());
     }
 }

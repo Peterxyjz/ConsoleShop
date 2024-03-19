@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class AccountFacade {
-
+    
     public List<Account> getEmployeeList() throws SQLException {
         Connection con = DBContext.getConnection();
         Statement stm = con.createStatement();
@@ -323,5 +323,28 @@ public class AccountFacade {
         } catch (SQLException ex) {
             Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public static boolean isValidPassword(String password) {
+        // Kiểm tra độ dài của mật khẩu
+        if (password.length() < 3 || password.length() > 10) {
+            return false;
+        }
+        
+        // Kiểm tra mật khẩu chứa ít nhất một ký tự và một số
+        boolean containsLetter = false;
+        boolean containsDigit = false;
+        for (char c : password.toCharArray()) {
+            if (Character.isLetter(c)) {
+                containsLetter = true;
+            } else if (Character.isDigit(c)) {
+                containsDigit = true;
+            }
+        }
+        if (!containsLetter || !containsDigit) {
+            return false;
+        }
+        
+        return true;
     }
 }

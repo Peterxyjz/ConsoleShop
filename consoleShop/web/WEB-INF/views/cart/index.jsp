@@ -132,6 +132,7 @@
 </div>
 <c:set var="urlLogin" value="/cart/index.do" scope="session"/>
 <c:set var="urlLogout" value="/cart/index.do" scope="session"/>
+<c:set var="urlSignup" value="/cart/index.do" scope="session"/>
 <script><%@include file="/WEB-INF/javascript/cart.js"%></script>
 <jsp:include page="/WEB-INF/components/footer.jsp" />
 

@@ -32,7 +32,7 @@
                     </div>
                     <div class="form__message">${errMsg}</div>
                     <div class="form__group--submit col-lg-8 col-sm-8" >
-                        <button type="submit">Xác nhận</button>
+                        <button type="submit"><i class="bi bi-box-arrow-in-right"></i>Xác nhận</button>
                     </div>
                     <div class="login__footer col-lg-8 col-sm-8">
                         Trở về trang đăng nhập <a href="<c:url value="/account/login.do"/>">Đăng nhập</a>

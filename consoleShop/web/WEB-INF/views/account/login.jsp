@@ -33,7 +33,7 @@
                         </label>
                     </div>
                     <div class="form__group--submit col-lg-8 col-sm-8" >
-                        <button type="submit">Đăng nhập</button>
+                        <button type="submit"><i class="bi bi-box-arrow-in-left"></i>    Đăng nhập</button>
                     </div>
                     <div class="login__footer col-lg-8 col-sm-8">
                         Bạn chưa có tài khoản? <a href="<c:url value="/account/signup.do"/>">Đăng kí</a>
