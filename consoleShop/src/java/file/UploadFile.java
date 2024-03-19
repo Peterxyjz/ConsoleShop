@@ -20,9 +20,11 @@ public class UploadFile extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            System.out.println("proId- in doPost: " +request.getParameter("proId"));
             ProductFacade pf = new ProductFacade();
             Part filePart = request.getPart("photo");
-            String fileName = String.format("%d.jpg", pf.getProIdForUpload());
+            int proId = Integer.parseInt(request.getParameter("proId"));
+            String fileName = String.format("%d.jpg", proId);
             for (Part part : request.getParts()) {
                 part.write(IMAGE_FOLDER + fileName);
             }

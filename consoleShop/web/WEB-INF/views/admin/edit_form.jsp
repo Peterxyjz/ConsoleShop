@@ -21,9 +21,13 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
                 <form id="adminCreate">
-                    <div class="mb-3 mt-3">
+                    <div  class="mb-1 mt-1">
+                        <img src="<c:url value="/images/${product.proId}.jpg"/>" width="100%">
+                        <input type="hidden" id="proId" value="${product.proId}"/>
+                    </div>
+                    <div class="mb-2 mt-2">
                         <label for="photo" class="form-label">Up ảnh sản phẩm:</label>
-                        <input type="file" class="form-control" id="photo" name="photo">
+                        <input type="file" class="form-control" id="photo" name="photo" >
                     </div>
                     <div class="mb-3">
                         <label for="proName" class="form-label">Nhập tên sản phẩm: </label>
@@ -48,16 +52,16 @@
                             <label for="categoryId" class="form-label">Nhập loại sản phẩm: </label>
                             <select class="form-select" name="categoryId" id="categoryId">
                                 <c:forEach var="category" items="${caList}">
-                                    <option value="${category.categoryId}" ${category.categoryId==param.category? "seleted" : ""}>${category.categoryName}</option>
+                                    <option value="${category.categoryId}" ${category.categoryId==param.category? "selected" : ""}>${category.categoryName}</option>
                                 </c:forEach>
                             </select>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Nhập thông tin sản phẩm: </label>
-                        <textarea class="form-control" id="description" name="description" rows="7">${param.description}</textarea>
+                        <textarea class="form-control" id="description" name="description" rows="7">${product.description}</textarea>
                     </div> 
-                    <button onclick="uploadFile()" type="submit" class="btn btn-primary" value="create" > <i class="bi bi-check"></i> Thêm sản phẩm</button>
+                    <button onclick="editfile()" type="submit" class="btn btn-primary" value="create" > <i class="bi bi-check"></i> Thêm sản phẩm</button>
                 </form>
                 <br/>
                 <i style="color:red;">${errorMsg}</i>

@@ -152,9 +152,14 @@ public class AdminController extends HttpServlet {
             List<Category> caList = cf.select();
             request.setAttribute("caList", caList);
             //Lưu db
-            pf.create(product);
-
-            response.sendRedirect(request.getContextPath() + "/admin/index.do");
+            int proIdImg = pf.create(product);
+            System.out.println("proIdImg: "+proIdImg);
+            request.setAttribute("proIdImg", proIdImg);
+            PrintWriter out = response.getWriter();
+            out.print(proIdImg);
+            out.close();
+            
+//            response.sendRedirect(request.getContextPath() + "/admin/index.do");
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errorMsg", "Error when inserting product data");
@@ -272,7 +277,7 @@ public class AdminController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         try {
             ProductFacade pf = new ProductFacade();
-            Product product = pf.searchProductByName(request.getParameter("proName")).get(0);
+            Product product = pf.select(Integer.parseInt(request.getParameter("proId")));
             CategoryFacade cf = new CategoryFacade();
             List<Category> caList = cf.select();
             request.setAttribute("caList", caList);
