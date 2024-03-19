@@ -200,7 +200,7 @@ public class UserController extends HttpServlet {
             OrderDetailFacade odf = new OrderDetailFacade();
             
             Orders order = of.select(accId, ordId);
-            System.out.println("order add: " + order.getShipAddress());
+            System.out.println("order add: " + order.getShippAddress());
             List<OrderDetail> odList = odf.select(ordId);
             
             ProductFacade pf = new ProductFacade();
