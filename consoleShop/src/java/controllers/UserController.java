@@ -20,6 +20,9 @@ import db.OrderDetail;
 import db.OrderDetailFacade;
 import db.Orders;
 import db.OrdersFacade;
+import db.Product;
+import db.ProductFacade;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,6 +57,9 @@ public class UserController extends HttpServlet {
                 break;
             case "deposit_handler":
                 deposit_handler(request, response);
+                break;
+            case "histories":
+                histories(request, response);
                 break;
             case "history":
                 history(request, response);
@@ -162,23 +168,50 @@ public class UserController extends HttpServlet {
         
     }
     
+    protected void histories(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+            HttpSession session = request.getSession();
+            Account account = (Account) session.getAttribute("account");
+            OrdersFacade of = new OrdersFacade();
+            List<Orders> orders = of.select(account.getAccId());
+            request.setAttribute("orders", orders);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            request.getRequestDispatcher(layout).forward(request, response);
+        }
+        
+    }
+    
+    
+    
     protected void history(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         try {
             HttpSession session = request.getSession();
-            int ordId = (int) session.getAttribute("completeOrdId");
+            int ordId = Integer.parseInt(request.getParameter("ordId"));
             int accId = Integer.parseInt(request.getParameter("accId"));
-            System.out.println("accId = " +accId);
-            System.out.println("ordId = " +ordId);
+            System.out.println("ordId: " + ordId);
+            System.out.println("accId: " + accId);
             OrdersFacade of = new OrdersFacade();
             OrderDetailFacade odf = new OrderDetailFacade();
             
             Orders order = of.select(accId, ordId);
             System.out.println("order add: " + order.getShipAddress());
             List<OrderDetail> odList = odf.select(ordId);
-
+            
+            ProductFacade pf = new ProductFacade();
+            List<Product> products = new ArrayList<>();
+            
+            for (OrderDetail item : odList) {
+                products.add(pf.select(item.getProId()));
+            }
+            
             request.setAttribute("odList", odList);
+            request.setAttribute("products", products);
             request.setAttribute("order", order);    
         } catch (Exception e) {
             e.printStackTrace();

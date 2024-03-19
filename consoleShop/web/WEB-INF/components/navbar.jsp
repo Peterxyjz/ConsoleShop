@@ -52,7 +52,7 @@
                                 <c:if test="${account.role eq 'customer'}">
                                     <li class="account__links"><a href="<c:url value="/user/profile.do"/>">Quản lý tài khoản</a></li>
                                     <li class="account__links">
-                                        <a href="<c:url value="/user/history.do"/>">Lịch sử đơn hàng</a> 
+                                        <a href="<c:url value="/user/histories.do"/>">Lịch sử đơn hàng</a> 
                                     </li>
                                 </c:if>
                                 <li class="account__links"><a href="<c:url value="/account/logout.do"/>">Đăng xuất</a></li>

@@ -14,7 +14,6 @@ import java.util.Date;
 public class OrderDetail {
     private int quantity, ordId, proId;
     private double price;
-    private double discount;
     private Date orderDate;
 
     public OrderDetail() {
@@ -50,14 +49,6 @@ public class OrderDetail {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(double discount) {
-        this.discount = discount;
     }
 
     public Date getOrderDate() {

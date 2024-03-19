@@ -24,22 +24,22 @@ import java.util.logging.Logger;
  */
 public class OrdersFacade {
 
-    public int create(String address, String country, int cusId, int empId, String status, double total) throws SQLException {
+    public int create(String shipAdress, int accId, String status, double total, String payment) throws SQLException {
         //Tạo connection để kết nối vào DBMS
         Connection con = DBContext.getConnection();
         //Tạo đối tượng PreparedStatement
-        PreparedStatement stm = con.prepareStatement("INSERT INTO Orders VALUES(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement stm = con.prepareStatement("INSERT INTO Orders VALUES(?,?,?,?, ?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         //Cung cấp giá trị cho các tham số
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         stm.setString(1, LocalDate.now().toString());
         stm.setString(2, LocalDate.now().plusWeeks(1).toString());
-        stm.setString(3, address);
-        stm.setString(4, country);
-        stm.setInt(5, cusId);
-        stm.setInt(6, empId);
-        stm.setString(7, status);
-        stm.setDouble(8, total);
+        stm.setString(3, shipAdress);
+        stm.setInt(4, accId);
+        stm.setInt(5, 1);
+        stm.setString(6, status);
+        stm.setDouble(7, total);
+        stm.setString(8, payment);
         int generatedOrdId = 0;
         //Thực thi lệnh INSERT
         int count = stm.executeUpdate();
@@ -74,6 +74,7 @@ public class OrdersFacade {
             order.setShipAddress(rs.getString("shipAddress"));
             order.setStatus(rs.getString("status"));
             order.setTotal(rs.getDouble("total"));
+            order.setPayment(rs.getString("payment"));
             list.add(order);
         }
 
@@ -98,6 +99,8 @@ public class OrdersFacade {
             order.setShipAddress(rs.getString("shipAddress"));
             order.setStatus(rs.getString("status"));
             order.setTotal(rs.getDouble("total"));
+            order.setEmpId(rs.getInt("empId"));
+            order.setPayment(rs.getString("payment"));
         }
 
         //trả list Product
@@ -121,7 +124,7 @@ public class OrdersFacade {
                 ord.setAccId(rs.getInt("cusId"));
                 ord.setEmpId(rs.getInt("empId"));
                 ord.setStatus(rs.getString("status"));
-                
+                ord.setPayment(rs.getString("payment")); //moi them nha
                 orderList.add(ord);
             }
             return orderList;
@@ -149,7 +152,7 @@ public class OrdersFacade {
                 ord.setAccId(rs.getInt("cusId"));
                 ord.setEmpId(rs.getInt("empId"));
                 ord.setStatus(rs.getString("status"));
-                
+                ord.setPayment(rs.getString("payment")); //moi them nha
                 orderList.add(ord);
             }
             return orderList;

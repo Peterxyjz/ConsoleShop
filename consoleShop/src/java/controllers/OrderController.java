@@ -9,6 +9,7 @@ import db.Account;
 import db.AccountFacade;
 import db.OrderDetailFacade;
 import db.OrdersFacade;
+import db.ProductFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -147,34 +148,40 @@ public class OrderController extends HttpServlet {
             //hoàn thành lưu cart vào db
             HttpSession session = request.getSession();
             Cart cart = (Cart) session.getAttribute("cart");
-            // 
+            //xu li discount
+            
             Account account = (Account) session.getAttribute("account");
             String payments = request.getParameter("payments");
             if (payments.equals("card")) {
-                if (account.getWallet() < (cart.getTotal() + 50000)) {
-                    request.setAttribute("message", "Số dư không đủ!");
-                    request.getRequestDispatcher("/user/deposit.do").forward(request, response);
-                } else {
-                    account.setWallet(account.getWallet() - cart.getTotal() - 50000);
-                }
-            } 
-            StringTokenizer st = new StringTokenizer((String)session.getAttribute("infor"), "|");
+                //chỉnh lại số dư trong tài khoản:
+                account.setWallet(account.getWallet() - cart.getTotal() - 50000);
+                AccountFacade af = new AccountFacade();
+                af.update_wallet(account.getWallet() - cart.getTotal() - 50000, account.getAccId());
+            }
+            //
+            StringTokenizer st = new StringTokenizer((String) session.getAttribute("infor"), "|");
             String fullName = st.nextToken().trim();
             String phone = st.nextToken().trim();
-            String address = st.nextToken().trim();
+            String shipAdress = st.nextToken().trim();
             String ward = st.nextToken().trim();
             String district = st.nextToken().trim();
             String province = st.nextToken().trim();
+            
             //tạo order
             OrdersFacade of = new OrdersFacade();
-            int ordId = of.create(address + " " + ward + " " + district + " " + province, province, 1, 1, "Chờ xác nhận", cart.getTotal() + 50000);
-            session.setAttribute("completeOrdId", ordId);
+            int ordId = of.create(shipAdress + " " + ward + " " + district + " " + province, account.getAccId(), "Chờ xác nhận", cart.getTotal() + 50000, payments);
+            request.setAttribute("ordId", ordId);
             OrderDetailFacade odf = new OrderDetailFacade();
-            //add order detail
+            //add order detail và cập nhật lại số lượng sản phẩm
+            ProductFacade pf = new ProductFacade();
             for (Item item : cart.getItems()) {
                 odf.create(item, ordId);
+                pf.update_amount(item.getProduct().getProId(), item.getProduct().getAmount() - item.getQuantity());
             }
-            cart = null;
+
+            
+            //cập nhật lại cart:
+            session.setAttribute("cart", null);
             request.getRequestDispatcher("/order/thanks.do").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
@@ -185,7 +192,6 @@ public class OrderController extends HttpServlet {
     protected void thanks(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
-
         request.getRequestDispatcher(layout).forward(request, response);
     }
 

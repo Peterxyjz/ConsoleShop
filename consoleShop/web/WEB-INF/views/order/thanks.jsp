@@ -22,7 +22,7 @@
                 </a> 
                 <div class="nav_item row">
                     <div style="display: flex; align-items: center; ">
-                        <a href="<c:url value="/user/history.do?accId=${account.accId}" />" class="btn btn-link">
+                        <a href="<c:url value="/user/history.do?ordId=${requestScope.ordId}&accId=${account.accId}" />" class="btn btn-link">
                             <i class="bi bi-clock-history"></i> Xem chi tiết đơn hàng
                         </a> 
                         <a href="#" class="btn btn-link">

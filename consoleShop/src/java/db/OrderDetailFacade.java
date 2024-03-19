@@ -52,7 +52,6 @@ public class OrderDetailFacade {
         list = new ArrayList<>();
         while (rs.next()) {
             OrderDetail orderDetail = new OrderDetail();
-            orderDetail.setDiscount(rs.getDouble("discount"));
             orderDetail.setOrdId(ordId);
             orderDetail.setOrderDate(rs.getDate("orderDate"));
             orderDetail.setPrice(rs.getDouble("price"));
