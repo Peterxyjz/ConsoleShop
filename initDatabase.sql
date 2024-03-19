@@ -1386,8 +1386,8 @@ Pin: Khoảng từ 4.5 đến 9 giờ, tùy thuộc vào game bạn chơi.')
 
 SELECT * FROM Product
 
+SELECT * FROM Orders
 
+SELECT * FROM OrderDetail
 
-
-
-	
+SELECT * FROM Account
