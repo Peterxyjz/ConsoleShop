@@ -12,7 +12,6 @@ import db.OrdersFacade;
 import db.ProductFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import java.util.StringTokenizer;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,22 +22,9 @@ import javax.servlet.http.HttpSession;
 import models.Cart;
 import models.Item;
 
-/**
- *
- * @author QUOC PHONG
- */
 @WebServlet(name = "OrderController", urlPatterns = {"/order"})
 public class OrderController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -106,17 +92,15 @@ public class OrderController extends HttpServlet {
             String infor = String.format("%-25s | %s | %s | %s| %s| %s|", fullName, phone, address, ward, district, province);
 
             HttpSession session = request.getSession();
-            boolean remember = request.getParameter("remember") != "";
-            System.out.println("check " + request.getParameter("remember"));
-            System.out.println("re" + remember);
-            if (remember) {
+            // Lưu thông tin ngươì dùng 
+            if (Boolean.parseBoolean(request.getParameter("remember"))) {
                 Account account = (Account) session.getAttribute("account");
+                account.setFullName(fullName);
+                account.setPhoneNumber(phone);
                 account.setAddress(address + " " + ward + " " + district + " " + province);
                 AccountFacade af = new AccountFacade();
                 af.updateInformation(account);
             }
-//        Lưu thông tin ngươì dùng 
-
             session.setAttribute("infor", infor);
             PrintWriter out = response.getWriter();
             out.println(infor);
@@ -125,8 +109,6 @@ public class OrderController extends HttpServlet {
         } catch (Exception e) {
             request.getRequestDispatcher("/order/infor.do").forward(request, response);
         }
-
-        request.getRequestDispatcher("/order/orderInfor.do").forward(request, response);
     }
 
     protected void orderInfor(HttpServletRequest request, HttpServletResponse response)

@@ -1382,9 +1382,6 @@ CPU/GPU: Bộ xử lý Tegra tùy chỉnh của NVIDIA.
 Bộ nhớ trong: 32 GB.
 Kết nối không dây: Wi-Fi (IEEE 802.11 a/b/g/n/ac tương thích) / Bluetooth 4.1.
 Pin: Khoảng từ 4.5 đến 9 giờ, tùy thuộc vào game bạn chơi.')
-	
-
-SELECT * FROM Product
 
 SELECT * FROM Orders
 

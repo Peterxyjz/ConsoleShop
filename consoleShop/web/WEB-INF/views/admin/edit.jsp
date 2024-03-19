@@ -33,7 +33,7 @@
                     <label for="status">Tình trạng</label>
                     <select id="status" name="status" class="form-select mb-3" aria-label=".form-select-lg example">
                         <option value="" selected>Tất cả</option>
-                        <option value="new">Máy mới</option>
+                        <option value="new">Hàng mới</option>
                         <option value="Like New">Like new</option>
                     </select>
                 </div>

@@ -69,8 +69,13 @@ public class ProductFacade {
     public List<Product> searchProductByFilter(String categoryName, String status, double priceLower, double priceUpper, String sort) throws SQLException {
         List<Product> proList = null;
         Connection con = DBContext.getConnection();
-
-        String str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND Price >= %f AND Price <= %f  AND proName like '%%%s%%' ORDER BY %s ", categoryName, priceLower, priceUpper, status, sort);
+        String str = "";
+        if (status.equals("new")) {
+            status = "Like New";
+            str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND Price >= %f AND Price <= %f  AND proName not like '%%%s%%' ORDER BY %s ", categoryName, priceLower, priceUpper, status, sort);
+        } else {
+            str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND Price >= %f AND Price <= %f  AND proName like '%%%s%%' ORDER BY %s ", categoryName, priceLower, priceUpper, status, sort);
+        }
         Statement stm = con.createStatement();
 
         //Thực thi lệnh SELECT
@@ -78,7 +83,6 @@ public class ProductFacade {
         proList = new ArrayList<>();
 
         while (rs.next()) {
-
             Product product = new Product();
             product.setProId(rs.getInt("ProID"));
             product.setProName(rs.getString("proName"));
@@ -86,12 +90,9 @@ public class ProductFacade {
             product.setDiscount(rs.getDouble("discount"));
             product.setAmount(rs.getInt("Amount"));
             product.setCategoryId(rs.getInt("categoryId"));
-
             product.setDescription(rs.getString("description"));
             proList.add(product);
-
         }
-
         //trả list Product
         return proList;
     }
@@ -100,7 +101,14 @@ public class ProductFacade {
         List<Product> proList = null;
         Connection con = DBContext.getConnection();
 
-        String str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND Price >= %f AND Price <= %f AND proName like '%%%s%%' ORDER BY %s offset %d rows fetch next 16 rows only ", categoryName, priceLower, priceUpper, status, sort, (index - 1) * 16);
+        String str = "";
+        if (status.equals("new")) {
+            status = "Like New";
+            str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND Price >= %f AND Price <= %f AND proName not like '%%%s%%' ORDER BY %s offset %d rows fetch next 16 rows only ", categoryName, priceLower, priceUpper, status, sort, (index - 1) * 16);
+        } else {
+            str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND Price >= %f AND Price <= %f AND proName like '%%%s%%' ORDER BY %s offset %d rows fetch next 16 rows only ", categoryName, priceLower, priceUpper, status, sort, (index - 1) * 16);            
+        }
+
         Statement stm = con.createStatement();
 
         //Thực thi lệnh SELECT
@@ -243,7 +251,7 @@ public class ProductFacade {
     public void update_amount(int proId, int amount) throws SQLException {
         Connection con = DBContext.getConnection();
         PreparedStatement stm = con.prepareStatement("update Product set amount =? where ProID = ?");
-        //Cung cấp giá trị cho các tham số     
+        //Cung cấp giá trị cho các tham số
         stm.setInt(1, amount);
         stm.setInt(2, proId);
         //Thực thi lệnh INSERT

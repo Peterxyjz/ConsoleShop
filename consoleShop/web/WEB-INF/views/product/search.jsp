@@ -25,7 +25,7 @@
                 <label for="status">Tình trạng</label>
                 <select id="status" name="status" class="form-select mb-3" aria-label=".form-select-lg example">
                     <option value="" selected>Tất cả</option>
-                    <option value="new">Máy mới</option>
+                    <option value="new">Hàng mới</option>
                     <option value="Like New">Like new</option>
                 </select>
             </div>
@@ -62,29 +62,32 @@
             <img src="<c:url value="/images/Background/notFind.png"/>" width="30%" class=" rounded mx-auto d-block "/>
         </div>
     </c:if>
-    <c:if test="${list.size() != 0}">
-        <p>Có ${list.size()} được tìm thấy</p>
-    </c:if>
     <div class="row text-center">
         <c:forEach var="product" items="${list}">
             <div class="today-deal__item col-lg-3 col-md-4 col-sm-6 col-6">
                 <div class="today-deal__img">
                     <a  href="<c:url value="/product/index.do?proName=${product.proName}"/>"><img src="<c:url value="/images/${product.proId}.jpg"/>" alt=""></a>
-
                 </div>
                 <a href="<c:url value="/product/index.do?proName=${product.proName}"/>" class="today-deal__info">
                     <div class="today-deal__name">${product.proName}</div>
-                    <div class="today-deal__price">
-                        <fmt:formatNumber value="${(1-product.discount)*product.price}" type="number" />đ
-                        <c:if test="${product.discount > 0}">
-                            <div class="today-deal__discount"><fmt:formatNumber value="${product.price}" type="number" />đ</div>
-                            <div class="today-deal__discount-p"><fmt:formatNumber value="${product.discount}" type="percent" /></div>
-                        </c:if>
+                    <c:if test="${product.amount > 0}">
+                        <div class="today-deal__price">
+                            <fmt:formatNumber value="${(1-product.discount)*product.price}" type="number" />đ
+                            <c:if test="${product.discount > 0}">
+                                <div class="today-deal__discount"><fmt:formatNumber value="${product.price}" type="number" />đ</div>
+                                <div class="today-deal__discount-p"><fmt:formatNumber value="${product.discount}" type="percent" /></div>
+                            </c:if>
 
-                        <c:if test="${product.proName.contains("Like New")}">
-                            <div class="product__likenew" style="background: #e30010;font-size: 10px;border-radius: 14px;color: #fff; padding: 4px 4px;">Like new</div>
-                        </c:if>
-                    </div>
+                            <c:if test="${product.proName.contains("Like New")}">
+                                <div class="product__likenew" style="background: #e30010;font-size: 10px;border-radius: 14px;color: #fff; padding: 4px 4px;">Like new</div>
+                            </c:if>
+                        </div>
+                    </c:if>
+                    <c:if test="${product.amount == 0}">
+                        <div class="today-deal__price">
+                            <div class="today-deal__discount-p">Hết hàng</div>
+                        </div>
+                    </c:if>
                 </a>
             </div>
         </c:forEach>
