@@ -20,7 +20,9 @@ public class Cart {
         //neu items da co item thi cap nhat quantity
         if(items.containsKey(id)){
             Item oldItem = items.get(id);
-            oldItem.setQuantity(oldItem.getQuantity()+item.getQuantity());
+            if((oldItem.getProduct().getAmount() - (oldItem.getQuantity() + item.getQuantity())) >0){
+                oldItem.setQuantity(oldItem.getQuantity()+item.getQuantity());
+            }
         }else{
             //them item vao items
             items.put(id, item);

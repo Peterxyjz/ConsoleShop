@@ -105,11 +105,11 @@
 
                 <div id="payCart" >
                     <h5>Thanh toán</h5>
-                    <p >Tổng giá trị sản phẩm: <fmt:formatNumber type="number" pattern="###,###,###" value="${cart.getTotal()}"/>đ</p>
+                    <p >Tổng giá trị sản phẩm: <fmt:formatNumber type="number" pattern="###,###,###" value="${cart == null ? 0 : cart.getTotal()}"/>đ</p>
                     <hr/>
-                    <p>Tổng giá trị phải thanh toán:    <fmt:formatNumber type="number" pattern="###,###,###" value="${cart.getTotal()}"/>đ</p>
+                    <p>Tổng giá trị phải thanh toán:    <fmt:formatNumber type="number" pattern="###,###,###" value="${cart == null ? 0 : cart.getTotal()}"/>đ</p>
                     <p>Số dư hiện tại: <fmt:formatNumber type="number" pattern="###,###,###" value="${sessionScope.account == null ? 0 : sessionScope.account.wallet}"/>đ</p>
-                    <p>Số tiền cần nạp thêm:  <fmt:formatNumber type="number" pattern="###,###,###" value="${(sessionScope.account == null ? 0 : sessionScope.account.wallet) >= cart.getTotal() ?  0 :  cart.getTotal() - (sessionScope.account == null ? 0 : sessionScope.account.wallet)}"/>   đ</p>
+                    <p>Số tiền cần nạp thêm:  <fmt:formatNumber type="number" pattern="###,###,###" value="${(sessionScope.account == null ? 0 : sessionScope.account.wallet) >= cart.getTotal() ?  0 :  (cart == null ? 0 : (cart.getTotal() - (sessionScope.account == null ? 0 : sessionScope.account.wallet)))}"/>   đ</p>
                 </div>
                 <c:if test="${cart != null}">
                     <div class="d-grid gap-2 mt-4">
