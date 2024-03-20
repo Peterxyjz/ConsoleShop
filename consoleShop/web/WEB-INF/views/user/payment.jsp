@@ -34,7 +34,7 @@
                 <div class="tab-content">
                     <div class="tab-pane active">
                         <h2>Ví ConsoleShop</h2>
-                        <p style="font-size: 18px"><span>Số dư: </span> ${sessionScope.account.wallet}đ</p>
+                        <p style="font-size: 18px"><span>Số dư: </span><fmt:formatNumber type="number" pattern="###,###,###" value="${sessionScope.account.wallet}"/>đ</p>
                         <a href="<c:url value="/user/deposit.do"/>" class="btn btn-success"><i class="bi bi-plus-circle"></i> Nạp thêm tiền</a>
                     </div>
 

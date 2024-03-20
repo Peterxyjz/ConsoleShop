@@ -2,7 +2,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style><%@include file="/WEB-INF/css/user.css"%></style>
+<style><%@include file="/WEB-INF/css/histories.css"%></style>
+
 <style><%@include file="/WEB-INF/css/history.css"%></style>
+
 
 <jsp:include page="/WEB-INF/components/navbar.jsp" />
 <div class="row">
@@ -16,14 +19,14 @@
         <hr>
         <div class="row">
             <c:if test="${orders.size() != 0}">
-                <table>
+                <table class="histories__table">
                     <thead>
                         <tr>
                             <th>Thời gian</th>
                             <th>Mã đơn hàng</th>
                             <th>Tổng tiền</th>
                             <th>Trạng thái</th>
-                            <th></th>
+                            <th>Xem</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,10 +34,16 @@
                             <tr>
                                 <td>${item.requiredDate}</td>
                                 <td>${item.ordId}</td>
-                                <td>${item.total}</td>
-                                <td>${item.status}</td>
-                                <td>
-                                    <a href="<c:url value="/user/history.do?ordId=${item.ordId}&accId=${account.accId}"/>" class="btn btn-link">
+                                <td><fmt:formatNumber type="number" pattern="###,###,###" value="${item.total}"/>đ</td>
+                                <c:if test="${item.status.equals("Chờ xác nhận")}">
+                                    <td class="histories__status--waiting">${item.status}</td>
+                                </c:if>
+                                <c:if test="${!item.status.equals("Chờ xác nhận")}">
+                                    <td class="histories__status--checked">${item.status}</td>
+                                </c:if>
+                                
+                                    <td>
+                                    <a href="<c:url value="/user/history.do?ordId=${item.ordId}&accId=${account.accId}"/>" class="histories__detail">
                                         Chi tiết
                                     </a>
                                 </td>

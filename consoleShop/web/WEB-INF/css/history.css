@@ -11,3 +11,40 @@ and open the template in the editor.
     border-left: #0079FF 3px solid !important;
 }
 
+.histories__status--waiting{
+    color: red;
+    font-weight: 500;
+    
+}
+.histories__status--checked{
+    color: green;
+    font-weight: 500;
+}
+.history__table{
+    width: 80%;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+.history__table thead{
+    background-color: #0093E9;
+    color: #fff;
+}
+.history__table td img{
+    width: 170px;
+    vertical-align: middle;
+}
+.history__table, .history__table th, .history__table td{
+    border-collapse: collapse;
+    padding: 20px;
+}
+.table__proName{
+    text-align: center;
+}
+
+.history__table tbody tr{
+    border-bottom: 3px solid #f3f3f3;
+}
+.history__table tbody tr:last-of-type{
+    border-bottom: #0093E9 3px solid;
+}

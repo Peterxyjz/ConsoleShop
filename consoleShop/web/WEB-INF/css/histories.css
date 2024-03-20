@@ -1,0 +1,69 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 20, 2024, 5:34:01 PM
+    Author     : HP
+*/
+.histories__table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+}
+
+.histories__table thead tr{
+    background-color: #0079FF;
+    text-align: left;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+
+}
+
+
+.histories__table td{
+    padding: 12px 15px;
+}
+.histories__table th{
+    padding: 16px 15px;
+
+}
+.histories__table tbody tr{
+    border-bottom: 1px solid #ddd;
+}
+.histories__table tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.histories__table tbody tr:last-of-type{
+    border-bottom: 3px solid #0079FF;
+}
+.histories__status--waiting{
+    color: red;
+    font-weight: 500;
+    
+}
+.histories__status--checked{
+    color: green;
+    font-weight: 500;
+}
+.histories__detail{
+    padding: 8px 12px;
+    color: #0079FF;
+    background-color: transparent;
+    border: 1px solid #0079FF;
+    border-radius: 6px;
+    margin: 4px 0;
+    display: block;
+    width: fit-content;
+    transition: 0.4s;
+}
+.histories__detail:hover{
+    background: #0079FF;
+    color: #fff;
+}

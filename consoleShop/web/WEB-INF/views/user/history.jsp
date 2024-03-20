@@ -11,49 +11,69 @@
     <div class="container info__wrapper col-lg-9 col-12">
         <div class="general nav_text">
             <div>
-                <h3>Chi tiết đơn hàng #${order.ordId}</h3>
+                <h3>Chi tiết đơn hàng số <span style="color: #0093E9">#${order.ordId}</span></h3>
                 <p>Hiển thị thông tin các sản phẩm bạn đã mua tại Console Shop</p>
             </div>
         </div>
         <hr>
         <div class="row">
-            <div class="col-sm-1"></div>
+            <!--            <div class="col-sm-1"></div>-->
             <div class="col-sm-5">
                 <h5>Thông tin đơn hàng</h5>
-                <p>Mã đơn hàng: #${order.ordId}</p>
-                <p>Ngày tạo: ${order.requiredDate}</p>
-                <p>Trạng thái đơn hàng: ${order.status}</p>
+                <p>Mã đơn hàng: <span style="color: #0093E9; font-weight: 500">#${order.ordId}</span></p>
+                <p>Ngày tạo: <span style="font-weight: 500">${order.requiredDate}</span></p>
+                    <c:if test="${order.status.equals("Chờ xác nhận")}">
+                    <div>Trạng thái đơn hàng: <span class="histories__status--waiting">${order.status}</span></div>
+                    </c:if>
+                    <c:if test="${!order.status.equals("Chờ xác nhận")}">
+                    <div>Trạng thái đơn hàng: <span class="histories__status--checked">${order.status}</span></div>
+                    </c:if>
             </div>
             <div class="col-sm-5">
                 <h5>Giá trị thanh toán</h5>
-                <p>Tổng giá trị sản phẩm: <span style="text-align: right">${order.total}đ</span></p>
-                <p>Hình thức thanh toán: ${order.payment}
+                <p>Tổng giá trị sản phẩm: <span style="text-align: right; font-weight: 500;"><fmt:formatNumber value="${order.total}" type="number" pattern="###,###,###"/>đ</span></p>
+                <p>Hình thức thanh toán: <span style="font-weight: 500; text-transform: uppercase;">${order.payment}</span> 
                 </p>
             </div>
             <div class="col-sm-1"></div>
             <div class="col-sm-1"></div>
-            <div class="col-sm-10">
-                <p>Địa chỉ người nhận: ${order.shippAddress}</p>
+            <div class="col-sm-10 mt-3">
+                <p>Địa chỉ người nhận: <span  style="font-weight: 500;">${order.shippAddress}</span></p>
             </div>
             <div class="col-sm-1"></div>
         </div>
         <hr/>
-        <table>
-            <c:forEach var="item" items="${odList}" varStatus="loop">
-                <tr class="col-6">
-                    <td class="col-4">
-                        <img src="<c:url value="/images/${item.proId}.jpg"/>" width="50%">
-                    </td>
-                    <td class="col-4">
-                        ${products.get(loop.count - 1).proName}
-                    </td>
-                    <td class="col-4">
-                        Số lượng: ${item.quantity}
-                        <br/>
-                        <span style="text-align: right">${item.price}đ</span>
-                    </td>
+        <table class="history__table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th class="table__proName">Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Tổng tiền</th>
+                    
                 </tr>
-            </c:forEach>
+            </thead>
+            <tbody>
+                <c:forEach var="item" items="${odList}" varStatus="loop">
+                    <tr>
+                        <td>
+                            ${loop.count}
+                        </td>
+                        <td>
+                            <img src="<c:url value="/images/${item.proId}.jpg"/>">
+                            <span style="user-select: none ">${products.get(loop.count - 1).proName}</span>
+                        </td>
+                        <td>
+                            Số lượng: ${item.quantity}
+                        </td>
+                        <td style="font-weight: 500">
+                           <fmt:formatNumber value="${item.price}" type="number" pattern="###,###,###"/>đ
+                        </td>
+                        
+                    </tr>
+                </c:forEach>
+            </tbody>
+
         </table>
     </div>
 
