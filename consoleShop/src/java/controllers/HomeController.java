@@ -56,11 +56,14 @@ public class HomeController extends HttpServlet {
             List<Product> gameList = pf.getProByCategory(1);
             Collections.shuffle(gameList);
 
-            List<Product> nintendoList = pf.getProByCategory(2);
-            Collections.shuffle(nintendoList);
+            List<Product> nintendoNewList = pf.getNewNintendo(2);
+            List<Product> nintendoLikeNewList = pf.getLikeNewNintendo(2);
+            Collections.shuffle(nintendoNewList);
+            Collections.shuffle(nintendoLikeNewList);
 
             request.setAttribute("gameList", gameList);
-            request.setAttribute("nintendoList", nintendoList);
+            request.setAttribute("nintendoNewList", nintendoNewList);
+            request.setAttribute("nintendoLikeNewList", nintendoLikeNewList);
             request.getRequestDispatcher(layout).forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);

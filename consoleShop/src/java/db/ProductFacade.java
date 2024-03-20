@@ -355,6 +355,48 @@ public class ProductFacade {
         }
         return list;
     }
+    public List<Product> getLikeNewNintendo(int categoryId) throws SQLException {
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("select * from Product where CategoryID = ? and proName like '%like new%'");
+        List<Product> list = null;
+        stm.setInt(1, categoryId);
+        ResultSet rs = stm.executeQuery();
+        list = new ArrayList<>();
+        while (rs.next()) {
+            Product product = new Product();
+            product.setProId(rs.getInt("ProID"));
+            product.setProName(rs.getString("proName"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDiscount(rs.getDouble("discount"));
+            product.setAmount(rs.getInt("Amount"));
+            product.setCategoryId(rs.getInt("categoryId"));
+
+            product.setDescription(rs.getString("description"));
+            list.add(product);
+        }
+        return list;
+    }
+    public List<Product> getNewNintendo(int categoryId) throws SQLException {
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("select * from Product where CategoryID = ? and not proName like '%like new%'");
+        List<Product> list = null;
+        stm.setInt(1, categoryId);
+        ResultSet rs = stm.executeQuery();
+        list = new ArrayList<>();
+        while (rs.next()) {
+            Product product = new Product();
+            product.setProId(rs.getInt("ProID"));
+            product.setProName(rs.getString("proName"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDiscount(rs.getDouble("discount"));
+            product.setAmount(rs.getInt("Amount"));
+            product.setCategoryId(rs.getInt("categoryId"));
+
+            product.setDescription(rs.getString("description"));
+            list.add(product);
+        }
+        return list;
+    }
 
     public List<Product> getBestSellerProduct() throws SQLException {
         Connection con = DBContext.getConnection();
