@@ -286,6 +286,7 @@ public class AccountController extends HttpServlet {
             //lưu lại account vào session
             session.setAttribute("account", account_updating);
             request.getRequestDispatcher("/account/index.do").forward(request, response);
+            
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errMsg", "Something is wrong");
