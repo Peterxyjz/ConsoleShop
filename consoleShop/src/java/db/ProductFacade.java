@@ -37,7 +37,7 @@ public class ProductFacade {
         //trả list Product
         return proList;
     }
-    
+
     public Product searchProductById(int proId) throws SQLException {
         Connection con = DBContext.getConnection();
         PreparedStatement stm = con.prepareStatement("SELECT * FROM Product WHERE proId = ?");
@@ -360,13 +360,33 @@ public class ProductFacade {
         Connection con = DBContext.getConnection();
         Statement stm = con.createStatement();
         List<Product> list = null;
-        ResultSet rs = stm.executeQuery("SELECT TOP 5 p.ProID, p.ProName, p.Price, p.Discount, p.Amount, p.CategoryID \n"
-                + "FROM Product p \n"
-                + "JOIN OrderDetail o ON p.ProID = o.ProID\n"
-                + "ORDER BY p.amount ASC;");
+        ResultSet rs = stm.executeQuery("SELECT TOP 10 p.ProID, p.ProName, p.Price, p.Discount, p.Amount, p.CategoryID, sum(o.Quantity) as 'So lg mua'\n"
+                + "FROM Product p JOIN OrderDetail o ON p.ProID = o.ProId \n"
+                + "group by p.proID, p.ProName,p.Price,p.Discount,p.Amount,p.CategoryID \n"
+                + "ORDER BY sum(o.Quantity) desc");
         list = new ArrayList<>();
         while (rs.next()) {
             Product product = searchProductById(rs.getInt("proId"));
+            list.add(product);
+        }
+        return list;
+    }
+    public List<Product> highAmountProduct() throws SQLException {
+        Connection con = DBContext.getConnection();
+        Statement stm = con.createStatement();
+        List<Product> list = null;
+        ResultSet rs = stm.executeQuery("select top 10 * from Product order by Amount desc");
+        list = new ArrayList<>();
+        while (rs.next()) {
+             Product product = new Product();
+            product.setProId(rs.getInt("ProID"));
+            product.setProName(rs.getString("proName"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDiscount(rs.getDouble("discount"));
+            product.setAmount(rs.getInt("Amount"));
+            product.setCategoryId(rs.getInt("categoryId"));
+
+            product.setDescription(rs.getString("description"));
             list.add(product);
         }
         return list;

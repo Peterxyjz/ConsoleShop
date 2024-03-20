@@ -211,7 +211,9 @@ public class ProductController extends HttpServlet {
         try {
             ProductFacade pf = new ProductFacade();
             List<Product> prodList = pf.getBestSellerProduct();
-            System.out.println(prodList.get(0).getProName());
+            List<Product> highAmountProList = pf.highAmountProduct();
+            
+            request.setAttribute("highAmountProList", highAmountProList);
             request.setAttribute("list", prodList);
         } catch (Exception e) {
             e.printStackTrace();
