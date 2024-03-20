@@ -53,7 +53,7 @@
                             <label for="categoryId" class="form-label">Nhập loại sản phẩm: </label>
                             <select class="form-select" name="categoryId" id="categoryId">
                                 <c:forEach var="category" items="${caList}">
-                                    <option value="${category.categoryId}" ${category.categoryId==param.category? "selected" : ""}>${category.categoryName}</option>
+                                    <option value="${category.categoryId}" ${category.categoryId==product.categoryId? "selected" : ""}>${category.categoryName}</option>
                                 </c:forEach>
                             </select>
                         </div>
