@@ -149,6 +149,7 @@ public class OrderController extends HttpServlet {
                 AccountFacade af = new AccountFacade();
                 af.update_wallet(account.getWallet(), account.getAccId());
                 
+                
             }
             //
             StringTokenizer st = new StringTokenizer((String) session.getAttribute("infor"), "|");
