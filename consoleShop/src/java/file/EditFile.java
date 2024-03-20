@@ -20,13 +20,14 @@ public class EditFile extends HttpServlet {
             throws ServletException, IOException {
         try {
             int proId = Integer.parseInt(request.getParameter("proId"));
-            System.out.println(proId);
+            System.out.println("proId in dopost: "+proId);
             String fileName = String.format("%s%d.jpg", IMAGE_FOLDER,proId);
             System.out.println("fileName: " + fileName);
             File file = new File(fileName);
             if (file.delete()) {
-                file.delete();
+                
                 Part filePart = request.getPart("photo");
+                fileName = String.format("%d.jpg", proId);
                 for (Part part : request.getParts()) {
                     part.write(IMAGE_FOLDER + fileName);
                 }

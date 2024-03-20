@@ -20,10 +20,11 @@
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
-                <form id="adminCreate">
+                <form id="adminCreate" action="<c:url value="/admin/edit_handler.do"/>">
                     <div  class="mb-1 mt-1">
                         <img src="<c:url value="/images/${product.proId}.jpg"/>" width="100%">
-                        <input type="hidden" id="proId" value="${product.proId}"/>
+                        <input type="hidden" id="proId" name="proId" value="${product.proId}"/>
+                        ${product.proId}
                     </div>
                     <div class="mb-2 mt-2">
                         <label for="photo" class="form-label">Up ảnh sản phẩm:</label>
@@ -40,7 +41,7 @@
                         </div>
                         <div class="col-sm-6">
                             <label for="discount" class="form-label">Nhập discount: </label>
-                            <input type="number" class="form-control" id="discount" name="discount" value="${product.discount}" min="0" max="100">
+                            <input type="number" class="form-control" id="discount" name="discount" value="${product.discount*100}" min="0" max="100">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -61,7 +62,7 @@
                         <label for="description" class="form-label">Nhập thông tin sản phẩm: </label>
                         <textarea class="form-control" id="description" name="description" rows="7">${product.description}</textarea>
                     </div> 
-                    <button onclick="editfile()" type="submit" class="btn btn-primary" value="create" > <i class="bi bi-check"></i> Thêm sản phẩm</button>
+                    <button type="submit" class="btn btn-primary"  id="op" value="update" > <i class="bi bi-check"></i> Thêm sản phẩm</button>
                 </form>
                 <br/>
                 <i style="color:red;">${errorMsg}</i>
