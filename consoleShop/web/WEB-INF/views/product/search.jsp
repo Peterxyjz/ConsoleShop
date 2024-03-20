@@ -41,7 +41,6 @@
                 <label for="sort">Sắp xếp</label>
                 <select  id="sort" name="sort" class="form-select mb-3"  aria-label=".form-select-lg example">
                     <option value="proName ASC" selected>Mặc định</option>
-                    <option value="proName ASC">Bán chạy nhất</option>
                     <option value="price ASC">Giá thấp đến cao</option>
                     <option value="price DESC">Giá cao đến thấp</option>
                     <option value="proName ASC">Tên từ A đến Z</option>

@@ -83,9 +83,6 @@ public class AdminController extends HttpServlet {
             case "searchFilter_handler":
                 searchFilter_handler(request, response);
                 break;
-            case "coordination":
-                coordination(request, response);
-                break;
             case "confirmOrder":
                 confirmOrder(request, response);
                 break;
@@ -334,13 +331,6 @@ public class AdminController extends HttpServlet {
             int amount = Integer.parseInt(request.getParameter("amount"));
             int categoryId = Integer.parseInt(request.getParameter("categoryId"));
             String description = request.getParameter("description");
-            System.out.println("proId: "+proId);
-            System.out.println("proName: "+proName);
-            System.out.println("price: "+price);
-            System.out.println("discount: "+discount);
-            System.out.println("amount: "+amount);
-            System.out.println("categoryId: "+categoryId);
-            System.out.println("description: "+description);
                     
             //Tạo product
             Product product = new Product();
@@ -481,23 +471,6 @@ public class AdminController extends HttpServlet {
         }
     }
     
-    protected void coordination(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String layout = (String) request.getAttribute("layout");
-        try {
-            //Facade
-            OrdersFacade of = new OrdersFacade();
-            //orders:
-            List<Orders> orderWaitingList = of.selectWaitingOrder();
-            List<Orders> orderCheckedList = of.selectCheckedOrder();
-            request.setAttribute("orderWaitingList", orderWaitingList);
-            request.setAttribute("orderCheckedList", orderCheckedList);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        request.getRequestDispatcher(layout).forward(request, response);
-    }
-    
     protected void confirmOrder(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -508,7 +481,7 @@ public class AdminController extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        request.getRequestDispatcher("/admin/coordination.do").forward(request, response);
+        request.getRequestDispatcher("/admin/index.do").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
