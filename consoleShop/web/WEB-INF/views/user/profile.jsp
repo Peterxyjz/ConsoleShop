@@ -37,13 +37,20 @@
                     </div>
                     <div class="general__group col-md-3 col-sm-4 col-12">
                         <div class="general__label">
-                            Số dư: <span class="general__info"><fmt:formatNumber value="${account.wallet}" pattern="###,###,###" type="number"/>đ</span>
+                            Số dư: <span class="general__info"><fmt:formatNumber value="${account.wallet}" pattern="###,###,###,###,###,###" type="number"/>đ</span>
                         </div>
                         <a href="<c:url value="/user/deposit.do"/>" class="btn btn-success"><i class="bi bi-plus-circle"></i> Nạp thêm tiền</a>
                     </div>
                     <div class="general__group col-md-3 col-sm-4 col-12">
                         <div class="general__label">Tổng đơn hàng</div>
-                        <div class="general__info">Bạn chưa mua gì cả :(</div>
+                        <div class="general__info">
+                            <c:if test="${orders.size() == 0}">
+                                Bạn chưa mua gì cả :(
+                            </c:if>
+                            <c:if test="${orders.size() > 0}">
+                                Bạn đã mua: ${orders.size()} đơn hàng <3
+                            </c:if>    
+                        </div>
 
                     </div>
                     <div class="general__group col-md-3 col-sm-4 col-12">

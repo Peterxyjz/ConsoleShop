@@ -34,8 +34,13 @@
                 <div class="tab-content">
                     <div class="tab-pane active">
                         <h2>Ví ConsoleShop</h2>
-                        <p style="font-size: 18px"><span>Số dư: </span><fmt:formatNumber type="number" pattern="###,###,###" value="${sessionScope.account.wallet}"/>đ</p>
-                        <a href="<c:url value="/user/deposit.do"/>" class="btn btn-success"><i class="bi bi-plus-circle"></i> Nạp thêm tiền</a>
+                        <c:if test="${sessionScope.account == null}">
+                            <p style="color: red">*Để nạp tiền. Vui lòng đăng nhập hoặc đăng ký tài khoản</p>
+                        </c:if>
+                        <c:if test="${sessionScope.account != null}">
+                            <p style="font-size: 18px"><span>Số dư: </span><fmt:formatNumber type="number" pattern="###,###,###,###,###,###" value="${sessionScope.account.wallet}"/>đ</p>
+                            <a href="<c:url value="/user/deposit.do"/>" class="btn btn-success"><i class="bi bi-plus-circle"></i> Nạp thêm tiền</a>
+                        </c:if>
                     </div>
 
                     <div class="tab-pane" >
@@ -53,7 +58,7 @@
                             Quý khách sẽ thanh toán tại địa điểm nhận hàng cho nhân viên
                             giao nhận của ConsoleShop hoặc đơn vị vận chuyển mà ConsoleShop sử dụng.
                         </p>
-                        
+
                     </div>
 
                 </div>

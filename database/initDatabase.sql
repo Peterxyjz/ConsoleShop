@@ -1390,3 +1390,6 @@ SELECT * FROM OrderDetail
 SELECT * FROM Account
 
 INSERT INTO Orders VALUES('2023-03-10','2023-03-15','404 lam gi co',2, 1,N'Đã xác nhận',100000,'card')
+INSERT INTO Orders VALUES('2024-03-10','2024-03-15','404 lam gi co',2, 1,N'Đã xác nhận',1004000,'card')
+INSERT INTO Orders VALUES('2024-01-10','2024-01-15','404 lam gi co',2, 1,N'Đã xác nhận',1004000,'card')
+select * from Orders where status = N'Hoàn thành' order by ShippedDate desc

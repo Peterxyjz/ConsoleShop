@@ -28,7 +28,7 @@
                 </div>
                 <div class="general__group col-md-3 col-sm-4 col-12">
                     <div class="general__label">
-                        Số dư: <span class="general__info"><fmt:formatNumber value="${account.wallet}" type="number" pattern="###,###,###"/>đ</span>
+                        Số dư: <span class="general__info"><fmt:formatNumber value="${account.wallet}" type="number" pattern="###,###,###,###,###,###"/>đ</span>
                     </div>
                     <a href="<c:url value="/user/deposit.do"/>" class="btn btn-success"><i class="bi bi-plus-circle"></i> Nạp thêm tiền</a>
                 </div>

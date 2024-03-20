@@ -34,7 +34,7 @@
                         </c:if>
                     </button>
                 </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div class="accordion-body ">
                         <h4>Quản lí đơn hàng</h4>
                         <hr/>
@@ -48,7 +48,7 @@
                                         <th>Ngày mua</th>
                                         <th>Địa chỉ</th>
                                         <th>Mã KH</th>
-                                        <th>HT thanh toán</th>
+                                        <th>HTTT</th>
                                         <th>Tình trạng</th>
                                         <th></th>
                                     </tr>
@@ -64,12 +64,14 @@
                                             <td>${item.accId}</td>
                                             <td>${item.payment}</td>
                                             <td style="color: red; font-weight: 600">${item.status}</td>
-                                            <td>
-                                                <form action="<c:url value="/admin/confirmOrder.do"/>">
+                                            <td class="row">
+                                                <a href="<c:url value="/user/history.do?ordId=${item.ordId}&accId=${item.accId}"/>" class="col-sm-6 btn btn-link">
+                                                    Chi tiết
+                                                </a> 
+                                                <form class="col-sm-6" action="<c:url value="/admin/confirmOrder.do"/>">
                                                     <button type="submit" class="btn btn-success">Xác nhận</button>
                                                     <input type="hidden" value="${item.ordId}" name="ordId">
                                                 </form>
-
                                             </td>
                                         </tr>
 
@@ -91,6 +93,7 @@
                                         <th>HTTT</th>
                                         <th>Tình trạng</th>
                                         <th>Ngày giao dự kiến</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody  style="font-size: 14px;">
@@ -104,6 +107,11 @@
                                             <td>${item.payment}</td>
                                             <td style="color: red; font-weight: 600">${item.status}</td>
                                             <td style="color: green; font-weight: 600">${item.shippedDate}</td>
+                                            <td>
+                                                <a href="<c:url value="/user/history.do?ordId=${item.ordId}&accId=${item.accId}"/>" class="btn btn-link">
+                                                    Chi tiết
+                                                </a> 
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -178,9 +186,36 @@
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                     <div class="accordion-body row">
                         <h3 class="col-sm-12 text-center bg-primary">
-                            <span class="badge">Tổng doanh thu: <fmt:formatNumber value="${income}" type="number" /> đ</span>
+                            <span class="badge">Tổng doanh thu: <fmt:formatNumber pattern="###,###,###,###,###,###" value="${income}" type="number" /> đ</span>
                         </h3>
                         <hr/>
+                        <div class="row">
+                            <div class="col-sm-2"></div>
+                            <form action="icome_handler.do" class="row col-sm-8">
+                                <div class="col-sm-5">
+                                    <div class="form-floating">
+                                        <input type="date" class="form-control mt-3" id="from" name="from" placeholder="Từ ngày">
+                                        <label for="from">Từ Ngày</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="form-floating">
+                                        <input type="date" class="form-control mt-3" id="to" name="to" placeholder="Đến ngày">
+                                        <label for="to">Đến Ngày</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 d-flex align-items-center justify-content-center">
+                                    <button type="submit" class="btn btn-primary"><i class="bi bi-funnel"></i> Lọc </button>
+                                </div>
+                            </form>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <c:if test="${orderCompletedListByDate.size() > 0}">
+                            <h6 class="col-sm-12 text-center bg-success mt-3 mb-3">
+                                <span class="badge">Thu nhập trong thời gian từ ${from} đến ${to}: <fmt:formatNumber pattern="###,###,###,###,###,###" value="${revenue}" type="number" /> đ</span>
+                            </h6>
+
+                        </c:if>
                         <table class="table table-striped tbl--new mt-2">
                             <thead style="font-size: 14px;">
                                 <tr>
@@ -192,10 +227,11 @@
                                     <th>Mã KH</th>
                                     <th>HT thanh toán</th>
                                     <th>Tình trạng</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody  style="font-size: 14px;">
-                                <c:forEach var="item" items="${orderCompletedList}" varStatus="loop">
+                                <c:forEach var="item" items="${orderCompletedListByDate}" varStatus="loop">
                                     <tr>
                                         <td>${loop.count}</td>
                                         <td>${item.ordId}</td>
@@ -205,6 +241,11 @@
                                         <td>${item.accId}</td>
                                         <td>${item.payment}</td>
                                         <td style="color: red; font-weight: 600">${item.status}</td>
+                                        <td>
+                                            <a href="<c:url value="/user/history.do?ordId=${item.ordId}&accId=${item.accId}"/>" class="btn btn-link">
+                                                Thông tin
+                                            </a> 
+                                        </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

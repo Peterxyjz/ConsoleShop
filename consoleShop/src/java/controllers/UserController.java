@@ -76,7 +76,20 @@ public class UserController extends HttpServlet {
     protected void profile(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
-        request.getRequestDispatcher(layout).forward(request, response);
+        try {
+            OrdersFacade of = new OrdersFacade();
+            HttpSession session = request.getSession();
+            Account account = (Account) session.getAttribute("account");
+            if(account != null){
+                List<Orders> orders = of.select(account.getAccId());
+                request.setAttribute("orders", orders);
+            }            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            request.getRequestDispatcher(layout).forward(request, response);
+        }
+        
     }
 
     protected void profile_edit(HttpServletRequest request, HttpServletResponse response)
@@ -161,8 +174,7 @@ public class UserController extends HttpServlet {
             if (request.getParameter("sure") != null) {
                 af.update_wallet(money, accId);
             } else {
-                request.setAttribute("errorMsg", "Hãy xác nhận!");
-                request.getRequestDispatcher("/user/deposit.do").forward(request, response);
+                throw new Exception();
             }
             Account account = af.select(accId);
             HttpSession session = request.getSession();
@@ -170,6 +182,7 @@ public class UserController extends HttpServlet {
             request.getRequestDispatcher("/user/profile.do").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
+            request.setAttribute("errorMsg", "Hãy xác nhận!");
             request.getRequestDispatcher("/user/deposit.do").forward(request, response);
         }
 
