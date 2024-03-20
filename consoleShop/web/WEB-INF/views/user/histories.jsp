@@ -34,7 +34,7 @@
                             <tr>
                                 <td>${item.requiredDate}</td>
                                 <td>${item.ordId}</td>
-                                <td><fmt:formatNumber type="number" pattern="###,###,###" value="${item.total}"/>đ</td>
+                                <td><fmt:formatNumber type="number" pattern="###,###,###,###,###,###" value="${item.total}"/>đ</td>
                                 <c:if test="${item.status.equals("Chờ xác nhận")}">
                                     <td class="histories__status--waiting">${item.status}</td>
                                 </c:if>

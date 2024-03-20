@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -193,6 +194,32 @@ public class OrdersFacade {
             order.setTotal(rs.getDouble("total"));
             order.setPayment(rs.getString("payment"));
             orderList.add(order);
+        }
+        con.close();
+        return orderList;
+    }
+
+    public List<Orders> selectCompletedListByDate(Date from, Date to) throws SQLException {
+        List<Orders> orderList = null;
+        Connection con = DBContext.getConnection();
+        //Tạo đối tượng PreparedStatement
+        Statement stm = con.createStatement();
+
+        ResultSet rs = stm.executeQuery("select * from Orders where status = N'Hoàn thành' order by ShippedDate desc");
+        orderList = new ArrayList<>();
+        while (rs.next()) {
+            Orders order = new Orders();
+            order.setAccId(rs.getInt("accId"));
+            order.setOrdId(rs.getInt("ordId"));
+            order.setRequiredDate(rs.getDate("requiredDate"));
+            order.setShippedDate(rs.getDate("shippedDate"));
+            order.setShippAddress(rs.getString("shippAddress"));
+            order.setStatus(rs.getString("status"));
+            order.setTotal(rs.getDouble("total"));
+            order.setPayment(rs.getString("payment"));
+            if (order.getShippedDate().compareTo(from) >= 0 && order.getShippedDate().compareTo(to) <= 0) {
+                orderList.add(order);
+            }
         }
         con.close();
         return orderList;

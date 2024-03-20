@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -86,6 +87,9 @@ public class AdminController extends HttpServlet {
                 break;
             case "confirmOrder":
                 confirmOrder(request, response);
+                break;
+            case "icome_handler":
+                icome_handler(request, response);
                 break;
         }
 
@@ -517,6 +521,29 @@ public class AdminController extends HttpServlet {
             int ordId = Integer.parseInt(request.getParameter("ordId"));
             OrdersFacade of = new OrdersFacade();
             of.confirmOrder(ordId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        request.getRequestDispatcher("/admin/index.do").forward(request, response);
+    }
+
+    protected void icome_handler(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+            double revenue = 0;
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date from = sdf.parse(request.getParameter("from"));
+            Date to = sdf.parse(request.getParameter("to"));
+            OrdersFacade of = new OrdersFacade();
+            List<Orders> orderCompletedListByDate = of.selectCompletedListByDate(from, to);
+            for (Orders orders : orderCompletedListByDate) {
+                revenue += orders.getTotal();
+            }
+            request.setAttribute("orderCompletedListByDate", orderCompletedListByDate);
+            request.setAttribute("revenue", revenue);
+            request.setAttribute("from", from);
+            request.setAttribute("to", to);
         } catch (Exception e) {
             e.printStackTrace();
         }

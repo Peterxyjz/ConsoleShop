@@ -67,7 +67,7 @@
                             Số lượng: ${item.quantity}
                         </td>
                         <td style="font-weight: 500">
-                           <fmt:formatNumber value="${item.price}" type="number" pattern="###,###,###"/>đ
+                           <fmt:formatNumber value="${item.price}" type="number" pattern="###,###,###,###,###,###"/>đ
                         </td>
                         
                     </tr>
