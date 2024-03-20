@@ -260,7 +260,7 @@ public class UserController extends HttpServlet {
                         request.getRequestDispatcher("/user/profile.do").forward(request, response);
                     }
                 } else {
-                    request.setAttribute("errMsgPasswordInvalid", "*Mật khẩu không hợp lệ (vui lòng đọc dòng kế bên (-w-))");
+                    request.setAttribute("errMsgPasswordInvalid", "*Mật khẩu không hợp lệ");
                     request.getRequestDispatcher("/user/updateToValidPassword.do").forward(request, response);
                 }
             } else {
