@@ -63,7 +63,6 @@
             
         </div>
         <div class="col-lg-6 mt-2">
-
             <p style="text-align: justify; font-size: large">${product.description}</p> 
         </div>
         <div class="col-lg-1"></div>
