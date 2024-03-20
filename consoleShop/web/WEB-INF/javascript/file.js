@@ -29,7 +29,7 @@ adminCreate.addEventListener("submit", async (event) => {
                 uploadFile(proId);
                 let url = "/consoleShop/admin/index.do";
                 setTimeout(() => {
-                    alert("Thêm sản phẩm thành công")
+                    alert("Success")
                     window.location.href = url;
                 }, 1000);
             },
@@ -38,7 +38,7 @@ adminCreate.addEventListener("submit", async (event) => {
                 console.log("Trạng thái:", status);
                 console.log("Thông điệp lỗi:", error);
                 // Xử lý lỗi ở đây, 
-                alert("Đã xảy ra lỗi khi gửi yêu cầu AJAX.");
+                alert("Fail");
             },
         });
     }

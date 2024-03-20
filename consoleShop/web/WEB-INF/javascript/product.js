@@ -10,7 +10,9 @@ const minus = document.querySelector(".amount__minus");
 const amount = document.getElementById("amount");
 console.log(plus, minus);
 plus.onclick = () => {
-    if (amount.value >= "1") {
+    let max = document.querySelector("#maxAmount").value
+    if (amount.value >= "1" && ((parseInt(amount.value)+1) <= max)) {
+       
         amount.value = parseInt(amount.value) + 1;
     } else if (amount.value === "") {
         amount.value = 1;
@@ -31,4 +33,6 @@ amount.oninput = ()=>{
         amount.value = "";
     }
 };
+
+
 
