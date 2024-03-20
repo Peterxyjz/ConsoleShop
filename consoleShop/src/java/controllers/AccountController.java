@@ -377,47 +377,6 @@ public class AccountController extends HttpServlet {
         request.getRequestDispatcher(layout).forward(request, response);
     }
 
-    protected void updateToValidPassword(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String layout = (String) request.getAttribute("layout");
-        request.getRequestDispatcher(layout).forward(request, response);
-    }
-
-    protected void updateToValidPassword_handler(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String layout = (String) request.getAttribute("layout");
-        try {
-            AccountFacade af = new AccountFacade();
-            int userId = Integer.parseInt(request.getParameter("userId"));
-            String password = request.getParameter("password");
-            String password_check = request.getParameter("password_check");
-            //check email
-            Account account = af.select(0);
-            if (!password_check.equals(password)) {
-                //show error
-                request.setAttribute("errMsg", "*Mật khẩu không trùng khớp");
-                //quay lại forgot_handler.do
-                request.getRequestDispatcher("/account/forgot.do").forward(request, response);
-            } else {
-                //nếu đã trùng khớp thì tiến hành update password
-                account.setPassword(password);
-                System.out.println("" + account.getPassword());
-                af.update_password(account);
-                //quay ve trang login
-                request.setAttribute("successMsg", "*Bây giờ bạn có thể log in");
-                request.getRequestDispatcher("/account/login.do").forward(request, response);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("errMsg", "có lỗi gì đó xảy ra");
-            System.out.println("ddaay af?");
-            request.getRequestDispatcher("/account/login.do").forward(request, response);
-            request.getRequestDispatcher(layout).forward(request, response);
-        }
-        request.getRequestDispatcher(layout).forward(request, response);
-    }
-
     protected void logout(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //lay tham chieu cua session

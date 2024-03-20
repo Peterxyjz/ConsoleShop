@@ -64,14 +64,21 @@ public class UserController extends HttpServlet {
             case "history":
                 history(request, response);
                 break;
+            case "updateToValidPassword":
+                updateToValidPassword(request, response);
+                break;
+            case "updateToValidPassword_handler":
+                updateToValidPassword_handler(request, response);
+                break;
         }
     }
+
     protected void profile(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         request.getRequestDispatcher(layout).forward(request, response);
     }
-    
+
     protected void profile_edit(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -88,7 +95,7 @@ public class UserController extends HttpServlet {
         request.getRequestDispatcher(layout).forward(request, response);
         request.getRequestDispatcher(layout).forward(request, response);
     }
-    
+
     protected void profile_edit_handler(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -131,19 +138,19 @@ public class UserController extends HttpServlet {
         }
         request.getRequestDispatcher(layout).forward(request, response);
     }
-    
+
     protected void payment(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         request.getRequestDispatcher(layout).forward(request, response);
     }
-    
+
     protected void deposit(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         request.getRequestDispatcher(layout).forward(request, response);
     }
-    
+
     protected void deposit_handler(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -151,9 +158,9 @@ public class UserController extends HttpServlet {
         try {
             double money = Double.parseDouble(request.getParameter("money")) + Double.parseDouble(request.getParameter("wallet"));
             int accId = Integer.parseInt(request.getParameter("accId"));
-            if(request.getParameter("sure") != null){
+            if (request.getParameter("sure") != null) {
                 af.update_wallet(money, accId);
-            }else{
+            } else {
                 request.setAttribute("errorMsg", "Hãy xác nhận!");
                 request.getRequestDispatcher("/user/deposit.do").forward(request, response);
             }
@@ -165,9 +172,9 @@ public class UserController extends HttpServlet {
             e.printStackTrace();
             request.getRequestDispatcher("/user/deposit.do").forward(request, response);
         }
-        
+
     }
-    
+
     protected void histories(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -179,14 +186,12 @@ public class UserController extends HttpServlet {
             request.setAttribute("orders", orders);
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             request.getRequestDispatcher(layout).forward(request, response);
         }
-        
+
     }
-    
-    
-    
+
     protected void history(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
@@ -198,29 +203,80 @@ public class UserController extends HttpServlet {
             System.out.println("accId: " + accId);
             OrdersFacade of = new OrdersFacade();
             OrderDetailFacade odf = new OrderDetailFacade();
-            
+
             Orders order = of.select(accId, ordId);
             System.out.println("order add: " + order.getShippAddress());
             List<OrderDetail> odList = odf.select(ordId);
-            
+
             ProductFacade pf = new ProductFacade();
             List<Product> products = new ArrayList<>();
-            
+
             for (OrderDetail item : odList) {
                 products.add(pf.select(item.getProId()));
             }
-            
+
             request.setAttribute("odList", odList);
             request.setAttribute("products", products);
-            request.setAttribute("order", order);    
+            request.setAttribute("order", order);
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             request.getRequestDispatcher(layout).forward(request, response);
         }
-        
+
     }
-    
+
+    protected void updateToValidPassword(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        request.getRequestDispatcher(layout).forward(request, response);
+    }
+
+    protected void updateToValidPassword_handler(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+            AccountFacade af = new AccountFacade();
+            int accId = Integer.parseInt(request.getParameter("accId"));
+            String password = request.getParameter("password");
+            String password_check = request.getParameter("password_check");
+            //check email
+            Account account = af.select(accId);
+            if (password != "" || password_check != "") {
+                if (af.isValidPassword(password)) {
+                    if (!password_check.equals(password)) {
+                        //show error
+                        request.setAttribute("errMsgPassword", "*Mật khẩu không trùng khớp");
+                        //quay lại forgot_handler.do
+                        request.getRequestDispatcher("/user/updateToValidPassword.do").forward(request, response);
+                    } else {
+                        //nếu đã trùng khớp thì tiến hành update password
+                        account.setPassword(password);
+                        System.out.println("" + account.getPassword());
+                        af.update_password(account);
+                        HttpSession session = request.getSession();
+                        session.setAttribute("account", account);
+                        //quay ve trang login
+                        request.getRequestDispatcher("/user/profile.do").forward(request, response);
+                    }
+                } else {
+                    request.setAttribute("errMsgPasswordInvalid", "*Mật khẩu không hợp lệ (vui lòng đọc dòng kế bên (-w-))");
+                    request.getRequestDispatcher("/user/updateToValidPassword.do").forward(request, response);
+                }
+            } else {
+                request.setAttribute("errMsgPasswordNull", "*Không được phép để trống");
+                request.getRequestDispatcher("/user/updateToValidPassword.do").forward(request, response);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("errMsg", "có lỗi gì đó xảy ra");
+            request.getRequestDispatcher("/account/login.do").forward(request, response);
+            request.getRequestDispatcher(layout).forward(request, response);
+        }
+        request.getRequestDispatcher(layout).forward(request, response);
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
