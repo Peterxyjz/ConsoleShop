@@ -101,9 +101,10 @@ public class AccountFacade {
         PreparedStatement stm = con.prepareStatement("select * from Account where accId=?");
         stm.setInt(1, accId);
         ResultSet rs = stm.executeQuery();
-        Account account = new Account();
+        Account account = null;
 
         if (rs.next()) {
+            account = new Account();
             account.setAccId(rs.getInt("accId"));
             account.setFullName(rs.getString("fullName"));
             account.setUsername(rs.getString("username"));
@@ -125,9 +126,10 @@ public class AccountFacade {
         PreparedStatement stm = con.prepareStatement("select * from Account where email=?");
         stm.setString(1, email);
         ResultSet rs = stm.executeQuery();
-        Account account = new Account();
+        Account account = null;
 
         while (rs.next()) {
+            account = new Account();
             account.setAccId(rs.getInt("accId"));
             account.setFullName(rs.getString("fullName"));
             account.setUsername(rs.getString("username"));
