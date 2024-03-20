@@ -12,34 +12,71 @@
 <c:set var="urlLogin" value="/product/showBestSeller.do" scope="session"/>
 <c:set var="urlLogout" value="/product/showBestSeller.do" scope="session"/>
 <c:set var="urlSignup" value="/product/showBestSeller.do" scope="session"/>
-
-<c:forEach var="product" items="${list}">
-    <div class="today-deal__item col-lg-3 col-md-4 col-sm-6 col-6">
-        <div class="today-deal__img">
-            <a  href="<c:url value="/product/index.do?proName=${product.proName}"/>"><img src="<c:url value="/images/${product.proId}.jpg"/>" alt=""></a>
-        </div>
-        <a href="<c:url value="/product/index.do?proName=${product.proName}"/>" class="today-deal__info">
-           <div class="today-deal__name">${product.proName}</div>
-            <c:if test="${product.amount > 0}">
-                <div class="today-deal__price">
-                    <fmt:formatNumber value="${(1-product.discount)*product.price}" type="number" />đ
-                    <c:if test="${product.discount > 0}">
-                        <div class="today-deal__discount"><fmt:formatNumber value="${product.price}" type="number" />đ</div>
-                        <div class="today-deal__discount-p"><fmt:formatNumber value="${product.discount}" type="percent" /></div>
-                    </c:if>
-
-                    <c:if test="${product.proName.contains("Like New")}">
-                        <div class="product__likenew" style="background: #e30010;font-size: 10px;border-radius: 14px;color: #fff; padding: 4px 4px;">Like new</div>
-                    </c:if>
+<div class="container mt-5">
+    <h2 class="ms-4">Top 10 sản phẩm bán chạy nhất của <span style="color: #0079FF; font-weight: 600">Console Shop</span></h2>
+    <hr/>
+    <div class="row mt-5">
+        <c:forEach var="product" items="${list}">
+            <div class="today-deal__item col-lg-3 col-md-4 col-sm-6 col-6">
+                <div class="today-deal__img">
+                    <a  href="<c:url value="/product/index.do?proName=${product.proName}"/>"><img src="<c:url value="/images/${product.proId}.jpg"/>" alt=""></a>
                 </div>
-            </c:if>
-            <c:if test="${product.amount == 0}">
-                <div class="today-deal__price">
-                    <div class="today-deal__discount-p">Hết hàng</div>
+                <a href="<c:url value="/product/index.do?proName=${product.proName}"/>" class="today-deal__info">
+                    <div class="today-deal__name">${product.proName}</div>
+                    <c:if test="${product.amount > 0}">
+                        <div class="today-deal__price">
+                            <fmt:formatNumber value="${(1-product.discount)*product.price}" type="number" />đ
+                            <c:if test="${product.discount > 0}">
+                                <div class="today-deal__discount"><fmt:formatNumber value="${product.price}" type="number" />đ</div>
+                                <div class="today-deal__discount-p"><fmt:formatNumber value="${product.discount}" type="percent" /></div>
+                            </c:if>
+
+                            <c:if test="${product.proName.contains("Like New")}">
+                                <div class="product__likenew" style="background: #e30010;font-size: 10px;border-radius: 14px;color: #fff; padding: 4px 4px;">Like new</div>
+                            </c:if>
+                        </div>
+                    </c:if>
+                    <c:if test="${product.amount == 0}">
+                        <div class="today-deal__price">
+                            <div class="today-deal__discount-p">Hết hàng</div>
+                        </div>
+                    </c:if>
+                </a>
+            </div>
+        </c:forEach>
+        <c:if test="${list.size()<10}">
+            <c:forEach var="product" items="${highAmountProList}" end="${10 - list.size()}">
+                <div class="today-deal__item col-lg-3 col-md-4 col-sm-6 col-6">
+                    <div class="today-deal__img">
+                        <a  href="<c:url value="/product/index.do?proName=${product.proName}"/>"><img src="<c:url value="/images/${product.proId}.jpg"/>" alt=""></a>
+                    </div>
+                    <a href="<c:url value="/product/index.do?proName=${product.proName}"/>" class="today-deal__info">
+                        <div class="today-deal__name">${product.proName}</div>
+                        <c:if test="${product.amount > 0}">
+                            <div class="today-deal__price">
+                                <fmt:formatNumber value="${(1-product.discount)*product.price}" type="number" />đ
+                                <c:if test="${product.discount > 0}">
+                                    <div class="today-deal__discount"><fmt:formatNumber value="${product.price}" type="number" />đ</div>
+                                    <div class="today-deal__discount-p"><fmt:formatNumber value="${product.discount}" type="percent" /></div>
+                                </c:if>
+
+                                <c:if test="${product.proName.contains("Like New")}">
+                                    <div class="product__likenew" style="background: #e30010;font-size: 10px;border-radius: 14px;color: #fff; padding: 4px 4px;">Like new</div>
+                                </c:if>
+                            </div>
+                        </c:if>
+                        <c:if test="${product.amount == 0}">
+                            <div class="today-deal__price">
+                                <div class="today-deal__discount-p">Hết hàng</div>
+                            </div>
+                        </c:if>
+                    </a>
                 </div>
-            </c:if>
-        </a>
+            </c:forEach>
+        </c:if>
     </div>
-</c:forEach>
+</div>
+
+
 <br/>
 <jsp:include page="/WEB-INF/components/footer.jsp" />
