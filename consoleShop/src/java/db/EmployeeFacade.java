@@ -53,7 +53,7 @@ public class EmployeeFacade {
 
     public void deleteEmployee(int accId) throws SQLException {
         Connection con = DBContext.getConnection();
-        PreparedStatement stm = con.prepareStatement("delete account where accId=?");
+        PreparedStatement stm = con.prepareStatement("delete Employee where accId=?");
         stm.setInt(1, accId);
         int count = stm.executeUpdate();
         con.close();

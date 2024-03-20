@@ -278,7 +278,10 @@ public class AdminController extends HttpServlet {
             emp.setPosition(position);
             ef.updateEmployeePosition(emp);
             af.update(account);
-
+            
+            if(!role.equals("employee")){
+                ef.deleteEmployee(accId);
+            }
             List<Account> empList = af.getEmployeeList();
 
             request.setAttribute("empList", empList);
