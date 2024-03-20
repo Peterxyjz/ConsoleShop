@@ -24,9 +24,9 @@
                         <li>Khách hàng: ${requestScope.fullName}</li>
                         <li>Số điện thoại: ${requestScope.phone}</li>
                         <li>Địa chỉ nhận hàng: ${requestScope.address}</li>
-                        <li>Tạm tính: ${cart.total} đ </li>
+                        <li>Tạm tính: <fmt:formatNumber type="number" pattern="###,###,###" value="${cart.total}"/>đ</li>
                         <li>Phí vận chuyển: 50.000đ </li>
-                        <li>Tổng tiền:${cart.total+50000} đ </li>
+                        <li>Tổng tiền: <fmt:formatNumber type="number" pattern="###,###,###" value="${cart.total+50000}"/>đ </li>
 
                     </ul>
                 </div>
@@ -76,16 +76,18 @@
                             <label class="form-check-label" for="flexRadioDefault2">
                                 <i class="bi bi-cash-coin"></i> Thanh toán bằng tiền trong tài khoản
                             </label>
-                            <p style="color: red">*Số dư trong tài khoản không đủ! Bạn cần nạp thêm: ${cart.total+50000 - account.wallet}đ</p>
+                            <p style="color: red">*Số dư trong tài khoản không đủ! Bạn cần nạp thêm: <fmt:formatNumber type="number" pattern="###,###,###" value="${cart.total+50000 - account.wallet}"/> đ</p>
                             <a href="<c:url value="/user/deposit.do"/>" class="btn btn-link">
-                                <i class="bi bi-plus-circle"></i> Nạp thêm tiền
+                                <button class="btn btn-danger">
+                                    <i class="bi bi-plus-circle"></i> Nạp thêm tiền
+                                </button>
                             </a>
                         </div>
                     </c:if>
                     <hr/>
-                    <p>Tổng tiền: </p>
+                    <p>Tổng tiền: <fmt:formatNumber type="number" pattern="###,###,###" value="${cart.total+50000}"/>đ</p>
                     <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-danger">THANH TOÁN NGAY</button>
+                        <button type="submit" class="btn btn-primary">THANH TOÁN NGAY</button>
                     </div>
                 </form>
             </div>
