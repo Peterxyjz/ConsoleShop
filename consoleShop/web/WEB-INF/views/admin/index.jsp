@@ -3,6 +3,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="/WEB-INF/components/navbar.jsp" />
 <style><%@include file="/WEB-INF/css/admin.css"%></style>
+<!--//moi chinh-->
 <div class="nav_bg">
     <br/>
     <div class="container nav_admin">
@@ -21,14 +22,104 @@
         </div>
         <hr/>
         <div class="accordion row" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Đơn hàng
+                        <c:if test="${orderWaitingList.size() > 0}">
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                ${orderWaitingList.size()}
+                                <span class="visually-hidden">unread messages</span>
+                            </span>
+                        </c:if>
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body ">
+                        <h4>Quản lí đơn hàng</h4>
+                        <hr/>
+                        <div>
+                            <h6 class="mb-3">Xác nhận đơn hàng</h6>
+                            <table class="table table-striped tbl--new mt-2">
+                                <thead style="font-size: 14px;">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Mã HĐ</th>
+                                        <th>Ngày mua</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Mã KH</th>
+                                        <th>HT thanh toán</th>
+                                        <th>Tình trạng</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody  style="font-size: 14px;">
+                                    <c:forEach var="item" items="${orderWaitingList}" varStatus="loop">
+
+                                        <tr>
+                                            <td>${loop.count}</td>
+                                            <td>${item.ordId}</td>
+                                            <td>${item.requiredDate}</td>
+                                            <td>${item.shippAddress}</td>
+                                            <td>${item.accId}</td>
+                                            <td>${item.payment}</td>
+                                            <td style="color: red; font-weight: 600">${item.status}</td>
+                                            <td>
+                                                <form action="<c:url value="/admin/confirmOrder.do"/>">
+                                                    <button type="submit" class="btn btn-success">Xác nhận</button>
+                                                    <input type="hidden" value="${item.ordId}" name="ordId">
+                                                </form>
+
+                                            </td>
+                                        </tr>
+
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr/>
+                        <div>
+                            <h6 class="mb-3">Đơn hàng đang giao</h6>
+                            <table class="table table-striped tbl--new mt-2">
+                                <thead style="font-size: 14px;">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Mã HĐ</th>
+                                        <th>Ngày mua</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Mã KH</th>
+                                        <th>HTTT</th>
+                                        <th>Tình trạng</th>
+                                        <th>Ngày giao dự kiến</th>
+                                    </tr>
+                                </thead>
+                                <tbody  style="font-size: 14px;">
+                                    <c:forEach var="item" items="${orderCheckedList}" varStatus="loop">
+                                        <tr>
+                                            <td>${loop.count}</td>
+                                            <td>${item.ordId}</td>
+                                            <td>${item.requiredDate}</td>
+                                            <td>${item.shippAddress}</td>
+                                            <td>${item.accId}</td>
+                                            <td>${item.payment}</td>
+                                            <td style="color: red; font-weight: 600">${item.status}</td>
+                                            <td style="color: green; font-weight: 600">${item.shippedDate}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <c:if test="${account.role eq 'admin'}">
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             Chỉnh sửa nhân viên
                         </button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <a href="<c:url value="/admin/addEmployee.do"/>" class="btn btn-primary" style="float: right">
                                 <i class="bi bi-plus-circle"></i> Thêm nhân viên
@@ -79,22 +170,17 @@
                 </div>
             </c:if>
             <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Đơn hàng
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Doanh thu
                     </button>
                 </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                    <div class="accordion-body ">
-                        <div style="float: right">
-                            <a href="<c:url value="/admin/coordination.do" />" class="btn btn-primary position-relative">
-                                Đơn mới | Đơn đang ship
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    ${orderWaitingList.size()}
-                                    <span class="visually-hidden">unread messages</span>
-                                </span>
-                            </a>
-                        </div>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body row">
+                        <h3 class="col-sm-12 text-center bg-primary">
+                            <span class="badge">Tổng doanh thu: <fmt:formatNumber value="${income}" type="number" /> đ</span>
+                        </h3>
+                        <hr/>
                         <table class="table table-striped tbl--new mt-2">
                             <thead style="font-size: 14px;">
                                 <tr>
@@ -123,20 +209,6 @@
                                 </c:forEach>
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Doanh thu
-                    </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                    <div class="accordion-body row">
-                        <h3 class="col-sm-12 text-center bg-primary">
-                            <span class="badge">Tổng doanh thu: <fmt:formatNumber value="${income}" type="number" /> đ</span>
-                        </h3>
                     </div>
                 </div>
             </div>
