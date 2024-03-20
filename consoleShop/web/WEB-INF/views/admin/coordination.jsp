@@ -34,7 +34,7 @@
                 </thead>
                 <tbody  style="font-size: 14px;">
                     <c:forEach var="item" items="${orderWaitingList}" varStatus="loop">
-                    <form action="confirmOrder.do">
+
                         <tr>
                             <td>${loop.count}</td>
                             <td>${item.ordId}</td>
@@ -44,12 +44,15 @@
                             <td>${item.payment}</td>
                             <td style="color: red; font-weight: 600">${item.status}</td>
                             <td>
-                                <button type="submit" class="btn btn-success">Xác nhận</button>
-                                <input type="hidden" value="${item.ordId}" name="ordId">
+                                <form action="<c:url value="/admin/confirmOrder.do"/>">
+                                    <button type="submit" class="btn btn-success">Xác nhận</button>
+                                    <input type="hidden" value="${item.ordId}" name="ordId">
+                                </form>
+
                             </td>
                         </tr>
-                    </form>
-                </c:forEach>
+
+                    </c:forEach>
                 </tbody>
             </table>
         </div>
@@ -81,7 +84,7 @@
                             <td style="color: red; font-weight: 600">${item.status}</td>
                             <td style="color: green; font-weight: 600">${item.shippedDate}</td>
                         </tr>
-                </c:forEach>
+                    </c:forEach>
                 </tbody>
             </table>
         </div>

@@ -496,8 +496,7 @@ public class AdminController extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        request.getRequestDispatcher(layout).forward(request, response);
-
+        request.getRequestDispatcher("/admin/coordination.do").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
