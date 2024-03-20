@@ -22,6 +22,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "AdminController", urlPatterns = {"/admin"})
 public class AdminController extends HttpServlet {
@@ -94,53 +95,66 @@ public class AdminController extends HttpServlet {
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         try {
-            //Facade
-            EmployeeFacade ef = new EmployeeFacade();
-            OrdersFacade of = new OrdersFacade();
-            //employee:
-            List<Employee> empList = ef.selectEmployee();
-            request.setAttribute("empList", empList);
+            HttpSession session = request.getSession();
+            Account account = (Account) session.getAttribute("account");
+            if (account == null || account.getRole().equals("customer")) {
+                response.sendRedirect(request.getContextPath() + "/account/login.do");
+            } else {
+                //Facade
+                EmployeeFacade ef = new EmployeeFacade();
+                OrdersFacade of = new OrdersFacade();
+                //employee:
+                List<Employee> empList = ef.selectEmployee();
+                request.setAttribute("empList", empList);
 
-            //orders:
-            List<Orders> orderWaitingList = of.selectWaitingOrder();
-            List<Orders> orderCheckedList = of.selectCheckedOrder();
-            
-            //cập nhật đơn hoàn thành
-            Date current = new Date();
-            for (Orders check : orderCheckedList) {
-                if (check.getShippedDate().before(current)) {
-                    of.statusComplete(check.getOrdId());
+                //orders:
+                List<Orders> orderWaitingList = of.selectWaitingOrder();
+                List<Orders> orderCheckedList = of.selectCheckedOrder();
+
+                //cập nhật đơn hoàn thành
+                Date current = new Date();
+                for (Orders check : orderCheckedList) {
+                    if (check.getShippedDate().before(current)) {
+                        of.statusComplete(check.getOrdId());
+                    }
                 }
-            }
-            List<Orders> orderCompletedList = of.selectCompletedList();
-            request.setAttribute("orderCompletedList", orderCompletedList);
-            request.setAttribute("orderWaitingList", orderWaitingList);
-            request.setAttribute("orderCheckedList", orderCheckedList);
+                List<Orders> orderCompletedList = of.selectCompletedList();
+                request.setAttribute("orderCompletedList", orderCompletedList);
+                request.setAttribute("orderWaitingList", orderWaitingList);
+                request.setAttribute("orderCheckedList", orderCheckedList);
 
-            //income:
-            double income = 0;
-            for (Orders orders : orderCompletedList) {
-                income += orders.getTotal();
+                //income:
+                double income = 0;
+                for (Orders orders : orderCompletedList) {
+                    income += orders.getTotal();
+                }
+                request.setAttribute("income", income);
+                request.getRequestDispatcher(layout).forward(request, response);
             }
-            request.setAttribute("income", income);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        request.getRequestDispatcher(layout).forward(request, response);
+
     }
 
     protected void create(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
-        try {
-            CategoryFacade cf = new CategoryFacade();
-            List<Category> caList = cf.select();
-            request.setAttribute("caList", caList);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            request.setAttribute("errorMsg", "Error when reading category data");
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        if (account == null || account.getRole().equals("customer")) {
+            response.sendRedirect(request.getContextPath() + "/account/login.do");
+        } else {
+            try {
+                CategoryFacade cf = new CategoryFacade();
+                List<Category> caList = cf.select();
+                request.setAttribute("caList", caList);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                request.setAttribute("errorMsg", "Error when reading category data");
+            }
+            request.getRequestDispatcher(layout).forward(request, response);
         }
-        request.getRequestDispatcher(layout).forward(request, response);
     }
 
     protected void uploadFile(HttpServletRequest request, HttpServletResponse response)
@@ -193,16 +207,23 @@ public class AdminController extends HttpServlet {
 
     protected void addEmployee(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            String layout = (String) request.getAttribute("layout");
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        if (account == null || account.getRole().equals("customer")) {
+            response.sendRedirect(request.getContextPath() + "/account/login.do");
+        } else {
+            try {
 
-            AccountFacade af = new AccountFacade();
-            List<Account> list = af.showAllAccount();
-            request.setAttribute("list", list);
+                String layout = (String) request.getAttribute("layout");
 
-            request.getRequestDispatcher(layout).forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+                AccountFacade af = new AccountFacade();
+                List<Account> list = af.showAllAccount();
+                request.setAttribute("list", list);
+
+                request.getRequestDispatcher(layout).forward(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -233,21 +254,27 @@ public class AdminController extends HttpServlet {
 
     protected void updateEmployee(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            String layout = (String) request.getAttribute("layout");
-            int accId = Integer.parseInt(request.getParameter("accId"));
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        if (account == null || account.getRole().equals("customer")) {
+            response.sendRedirect(request.getContextPath() + "/account/login.do");
+        } else {
+            try {
+                String layout = (String) request.getAttribute("layout");
+                int accId = Integer.parseInt(request.getParameter("accId"));
 
-            AccountFacade af = new AccountFacade();
-            Account acc = af.select(accId);
+                AccountFacade af = new AccountFacade();
+                Account acc = af.select(accId);
 
-            EmployeeFacade ef = new EmployeeFacade();
+                EmployeeFacade ef = new EmployeeFacade();
 
-            request.setAttribute("position", ef.selectEmpByAccId(accId).getPosition());
-            request.setAttribute("account", acc);
+                request.setAttribute("position", ef.selectEmpByAccId(accId).getPosition());
+                request.setAttribute("account", acc);
 
-            request.getRequestDispatcher(layout).forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+                request.getRequestDispatcher(layout).forward(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -275,8 +302,8 @@ public class AdminController extends HttpServlet {
             emp.setPosition(position);
             ef.updateEmployeePosition(emp);
             af.update(account);
-            
-            if(!role.equals("employee")){
+
+            if (!role.equals("employee")) {
                 ef.deleteEmployee(accId);
             }
             List<Account> empList = af.getEmployeeList();
@@ -294,27 +321,39 @@ public class AdminController extends HttpServlet {
 
     protected void edit(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String layout = (String) request.getAttribute("layout");
-        request.getRequestDispatcher(layout).forward(request, response);
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        if (account == null || account.getRole().equals("customer")) {
+            response.sendRedirect(request.getContextPath() + "/account/login.do");
+        } else {
+            String layout = (String) request.getAttribute("layout");
+            request.getRequestDispatcher(layout).forward(request, response);
+        }
     }
 
     protected void edit_form(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
-        try {
-            System.out.println("ëdir-form id:" +request.getParameter("proId"));
-                    
-            ProductFacade pf = new ProductFacade();
-            Product product = pf.select(Integer.parseInt(request.getParameter("proId")));
-            CategoryFacade cf = new CategoryFacade();
-            List<Category> caList = cf.select();
-            request.setAttribute("caList", caList);
-            request.setAttribute("product", product);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            request.setAttribute("errorMsg", "Error when reading category data");
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        if (account == null || account.getRole().equals("customer")) {
+            response.sendRedirect(request.getContextPath() + "/account/login.do");
+        } else {
+            try {
+                System.out.println("ëdir-form id:" + request.getParameter("proId"));
+
+                ProductFacade pf = new ProductFacade();
+                Product product = pf.select(Integer.parseInt(request.getParameter("proId")));
+                CategoryFacade cf = new CategoryFacade();
+                List<Category> caList = cf.select();
+                request.setAttribute("caList", caList);
+                request.setAttribute("product", product);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                request.setAttribute("errorMsg", "Error when reading category data");
+            }
+            request.getRequestDispatcher(layout).forward(request, response);
         }
-        request.getRequestDispatcher(layout).forward(request, response);
     }
 
     protected void edit_handler(HttpServletRequest request, HttpServletResponse response)
@@ -322,8 +361,8 @@ public class AdminController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         try {
             ProductFacade pf = new ProductFacade();
-            System.out.println("proId: "+request.getParameter("proId"));
-                    
+            System.out.println("proId: " + request.getParameter("proId"));
+
             int proId = Integer.parseInt(request.getParameter("proId"));
             String proName = request.getParameter("proName");
             double price = Double.parseDouble(request.getParameter("price"));
@@ -331,7 +370,7 @@ public class AdminController extends HttpServlet {
             int amount = Integer.parseInt(request.getParameter("amount"));
             int categoryId = Integer.parseInt(request.getParameter("categoryId"));
             String description = request.getParameter("description");
-                    
+
             //Tạo product
             Product product = new Product();
             product.setProId(proId);
@@ -470,7 +509,7 @@ public class AdminController extends HttpServlet {
             request.getRequestDispatcher("/").forward(request, response);
         }
     }
-    
+
     protected void confirmOrder(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
