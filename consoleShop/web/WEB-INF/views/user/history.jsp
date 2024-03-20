@@ -78,6 +78,6 @@
     </div>
 
 </div>
-
+                <div style="width: 100%; height: 30px; background-color: #fff; margin-top: 40px"></div>
 <jsp:include page="/WEB-INF/components/footer.jsp" />
 <script><%@include file="/WEB-INF/javascript/accountNavigate.js"%></script>

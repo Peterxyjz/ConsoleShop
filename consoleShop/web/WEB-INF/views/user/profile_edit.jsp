@@ -2,6 +2,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style><%@include file="/WEB-INF/css/user.css"%></style>
+<style><%@include file="/WEB-INF/css/accountManage.css"%></style>
+
 <jsp:include page="/WEB-INF/components/navbar.jsp" />
 <div class="row">
     <jsp:include page="/WEB-INF/components/accountNavigate.jsp" />
@@ -103,7 +105,7 @@
         </div>       
     </div>
 </div>
-
+<div style="width: 100%; height: 30px; background-color: #fff; margin-top: 40px"></div>
 <jsp:include page="/WEB-INF/components/footer.jsp" />
 <script><%@include file="/WEB-INF/javascript/accountUpdate.js"%></script>
 <script><%@include file="/WEB-INF/javascript/accountNavigate.js"%></script>
