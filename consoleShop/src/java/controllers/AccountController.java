@@ -286,7 +286,7 @@ public class AccountController extends HttpServlet {
             //lưu lại account vào session
             session.setAttribute("account", account_updating);
             request.getRequestDispatcher("/account/index.do").forward(request, response);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errMsg", "Something is wrong");
@@ -350,19 +350,24 @@ public class AccountController extends HttpServlet {
             //check email
             Account account = af.select(email);
             if (account != null) {
-                if (!password_check.equals(password)) {
-                    //show error
-                    request.setAttribute("errMsg", "*Mật khẩu không trùng khớp");
-                    //quay lại forgot_handler.do
+                if (password != "") {
+                    System.out.println(password.trim());
+                    if (!password_check.equals(password)) {
+                        //show error
+                        request.setAttribute("errMsg", "*Mật khẩu không trùng khớp");
+                        //quay lại forgot_handler.do
+                        request.getRequestDispatcher("/account/forgot.do").forward(request, response);
+                    } else {
+                        //nếu đã trùng khớp thì tiến hành update password
+                        account.setPassword(password);
+                        System.out.println("" + account.getPassword());
+                        af.update_password(account);
+                        //quay ve trang login
+                        request.getRequestDispatcher("/account/login.do").forward(request, response);
+                    } 
+                }else {
+                    request.setAttribute("errMsg", "*Hong được để trống");
                     request.getRequestDispatcher("/account/forgot.do").forward(request, response);
-                } else {
-                    //nếu đã trùng khớp thì tiến hành update password
-                    account.setPassword(password);
-                    System.out.println("" + account.getPassword());
-                    af.update_password(account);
-                    //quay ve trang login
-                    request.setAttribute("successMsg", "*Bây giờ bạn có thể log in");
-                    request.getRequestDispatcher("/account/login.do").forward(request, response);
                 }
             } else {
                 request.setAttribute("errMsg", "*Tài khoản không tồn tại");
