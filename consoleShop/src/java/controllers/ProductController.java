@@ -57,7 +57,9 @@ public class ProductController extends HttpServlet {
             case "searchFilter_handler":
                 searchFilter_handler(request, response);
                 break;
-
+            case "showBestSeller":
+                showBestSeller(request, response);
+                break;
         }
         // request.getRequestDispatcher(layout).forward(request, response);
     }
@@ -201,6 +203,21 @@ public class ProductController extends HttpServlet {
             endP++;
         }
         return endP;
+    }
+    
+    protected void showBestSeller(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String layout = (String) request.getAttribute("layout");
+        try {
+            ProductFacade pf = new ProductFacade();
+            List<Product> prodList = pf.getBestSellerProduct();
+            System.out.println(prodList.get(0).getProName());
+            request.setAttribute("list", prodList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.getRequestDispatcher("/").forward(request, response);
+        }
+        request.getRequestDispatcher(layout).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
