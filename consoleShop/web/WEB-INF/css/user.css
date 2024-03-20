@@ -43,9 +43,7 @@
     margin-right: 8px;
     color:#0079FF;
 }
-.info__management{
-    border-left: #0079FF 3px solid !important;
-}
+
 .container{
     margin-top: 20px;
     border-radius: 10px;
@@ -233,5 +231,13 @@ body{
     border-color:  #7bbafd;
     font-size: 1rem !important; 
     font-weight: 500 !important;
+}
+
+.form__group input{
+    padding: 4px 8px;
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid #e6e8eb;
+    margin-bottom: 8px;
 }
 

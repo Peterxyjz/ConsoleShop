@@ -2,6 +2,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style><%@include file="/WEB-INF/css/user.css"%></style>
+<style><%@include file="/WEB-INF/css/history.css"%></style>
+
 <jsp:include page="/WEB-INF/components/navbar.jsp" />
 <div class="row">
     <jsp:include page="/WEB-INF/components/accountNavigate.jsp" />
