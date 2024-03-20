@@ -115,7 +115,16 @@ public class OrderController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String layout = (String) request.getAttribute("layout");
-        String infor = (String) session.getAttribute("infor");
+        StringTokenizer st = new StringTokenizer((String) session.getAttribute("infor"), "|");
+        String fullName = st.nextToken().trim();
+        String phone = st.nextToken().trim();
+        String shipAdress = st.nextToken().trim();
+        String ward = st.nextToken().trim();
+        String district = st.nextToken().trim();
+        String province = st.nextToken().trim();
+        request.setAttribute("fullName", fullName);
+        request.setAttribute("phone", phone);
+        request.setAttribute("address", shipAdress +" " +ward+" " +district + " " +province );
         Cart cart = (Cart) session.getAttribute("cart");
         System.out.println("cart :" + cart.getTotal());
 
@@ -131,7 +140,7 @@ public class OrderController extends HttpServlet {
             HttpSession session = request.getSession();
             Cart cart = (Cart) session.getAttribute("cart");
             //xu li discount
-            
+
             Account account = (Account) session.getAttribute("account");
             String payments = request.getParameter("payments");
             if (payments.equals("card")) {
@@ -148,7 +157,7 @@ public class OrderController extends HttpServlet {
             String ward = st.nextToken().trim();
             String district = st.nextToken().trim();
             String province = st.nextToken().trim();
-            
+
             //tạo order
             OrdersFacade of = new OrdersFacade();
             int ordId = of.create(shipAdress + " " + ward + " " + district + " " + province, account.getAccId(), "Chờ xác nhận", cart.getTotal() + 50000, payments);
@@ -161,7 +170,6 @@ public class OrderController extends HttpServlet {
                 pf.update_amount(item.getProduct().getProId(), item.getProduct().getAmount() - item.getQuantity());
             }
 
-            
             //cập nhật lại cart:
             session.setAttribute("cart", null);
             request.getRequestDispatcher("/order/thanks.do").forward(request, response);

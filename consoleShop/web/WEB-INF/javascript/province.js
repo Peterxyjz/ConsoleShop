@@ -189,19 +189,7 @@ document.querySelector("#orderForm").addEventListener("submit", (event) => {
     let address = document.querySelector("#address").value;
     let remember = document.querySelector("#remember").checked == false ? "" : "true";
      console.log(remember)
-    //   console.log(address);
-//    let infor = [
-//        fullName,
-//        phone,
-//        address,
-//        ward,
-//        district,
-//        province];
 
-//    let ui = new RenderUI();
-    //làm 1 hàm renderInformation
-//    ui.renderInformation(infor);
-//    const [fullName, phone, address, ward, district, province] = infor;
     let infor = fullName  + phone + address + ward + district + province;
 
     console.log(infor)
@@ -231,16 +219,16 @@ document.querySelector("#orderForm").addEventListener("submit", (event) => {
 
 });
 //hàm dùng ajax gọi servlet để truyền content của các option
-function sendInformation(infor) {
-    const [fullName, phone, address, ward, district, province] = infor;
-    let htmlContent = fullName + phone + address + ward + district + province;
-    console.log(htmlContent)
-    $.ajax({
-        url: '/consoleShop/order/order_handler.do?infor=' + decodeURIComponent(htmlContent),
-        type: 'GET',
-        dataType: 'text',
-        data: {
-
-        },
-    })
-}
+//function sendInformation(infor) {
+//    const [fullName, phone, address, ward, district, province] = infor;
+//    let htmlContent = fullName + phone + address + ward + district + province;
+//    console.log(htmlContent)
+//    $.ajax({
+//        url: '/consoleShop/order/order_handler.do?infor=' + decodeURIComponent(htmlContent),
+//        type: 'GET',
+//        dataType: 'text',
+//        data: {
+//
+//        },
+//    })
+//}
