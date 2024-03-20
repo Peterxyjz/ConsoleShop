@@ -37,6 +37,29 @@ public class ProductFacade {
         //trả list Product
         return proList;
     }
+    
+    public Product searchProductById(int proId) throws SQLException {
+        Connection con = DBContext.getConnection();
+        PreparedStatement stm = con.prepareStatement("SELECT * FROM Product WHERE proId = ?");
+        stm.setInt(1, proId);
+        //Thực thi lệnh SELECT
+        ResultSet rs = stm.executeQuery();
+
+        Product product = new Product();
+
+        if (rs.next()) {
+            product.setProId(rs.getInt("ProID"));
+            product.setProName(rs.getString("proName"));
+            product.setPrice(rs.getDouble("price"));
+            product.setDiscount(rs.getDouble("discount"));
+            product.setAmount(rs.getInt("Amount"));
+            product.setCategoryId(rs.getInt("categoryId"));
+            product.setDescription(rs.getString("description"));
+        }
+
+        //trả list Product
+        return product;
+    }
 
     public List<Product> searchProductByName(String proName, int index) throws SQLException {
         Connection con = DBContext.getConnection();
@@ -106,7 +129,7 @@ public class ProductFacade {
             status = "Like New";
             str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND Price >= %f AND Price <= %f AND proName not like '%%%s%%' ORDER BY %s offset %d rows fetch next 16 rows only ", categoryName, priceLower, priceUpper, status, sort, (index - 1) * 16);
         } else {
-            str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND Price >= %f AND Price <= %f AND proName like '%%%s%%' ORDER BY %s offset %d rows fetch next 16 rows only ", categoryName, priceLower, priceUpper, status, sort, (index - 1) * 16);            
+            str = String.format("SELECT * FROM Product WHERE CategoryId in (SELECT CategoryId FROM Category Where CategoryName like '%%%s%%') AND Price >= %f AND Price <= %f AND proName like '%%%s%%' ORDER BY %s offset %d rows fetch next 16 rows only ", categoryName, priceLower, priceUpper, status, sort, (index - 1) * 16);
         }
 
         Statement stm = con.createStatement();
@@ -333,4 +356,19 @@ public class ProductFacade {
         return list;
     }
 
+    public List<Product> getBestSellerProduct() throws SQLException {
+        Connection con = DBContext.getConnection();
+        Statement stm = con.createStatement();
+        List<Product> list = null;
+        ResultSet rs = stm.executeQuery("SELECT TOP 5 p.ProID, p.ProName, p.Price, p.Discount, p.Amount, p.CategoryID \n"
+                + "FROM Product p \n"
+                + "JOIN OrderDetail o ON p.ProID = o.ProID\n"
+                + "ORDER BY p.amount ASC;");
+        list = new ArrayList<>();
+        while (rs.next()) {
+            Product product = searchProductById(rs.getInt("proId"));
+            list.add(product);
+        }
+        return list;
+    }
 }
