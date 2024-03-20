@@ -33,7 +33,7 @@
             <div class="col-sm-1"></div>
             <div class="col-sm-1"></div>
             <div class="col-sm-10">
-                <p>Địa chỉ người nhận: ${order.shipAddress}</p>
+                <p>Địa chỉ người nhận: ${order.shippAddress}</p>
             </div>
             <div class="col-sm-1"></div>
         </div>
