@@ -305,6 +305,8 @@ public class AdminController extends HttpServlet {
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
         try {
+            System.out.println("ëdir-form id:" +request.getParameter("proId"));
+                    
             ProductFacade pf = new ProductFacade();
             Product product = pf.select(Integer.parseInt(request.getParameter("proId")));
             CategoryFacade cf = new CategoryFacade();
@@ -323,6 +325,8 @@ public class AdminController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         try {
             ProductFacade pf = new ProductFacade();
+            System.out.println("proId: "+request.getParameter("proId"));
+                    
             int proId = Integer.parseInt(request.getParameter("proId"));
             String proName = request.getParameter("proName");
             double price = Double.parseDouble(request.getParameter("price"));
@@ -330,6 +334,14 @@ public class AdminController extends HttpServlet {
             int amount = Integer.parseInt(request.getParameter("amount"));
             int categoryId = Integer.parseInt(request.getParameter("categoryId"));
             String description = request.getParameter("description");
+            System.out.println("proId: "+proId);
+            System.out.println("proName: "+proName);
+            System.out.println("price: "+price);
+            System.out.println("discount: "+discount);
+            System.out.println("amount: "+amount);
+            System.out.println("categoryId: "+categoryId);
+            System.out.println("description: "+description);
+                    
             //Tạo product
             Product product = new Product();
             product.setProId(proId);

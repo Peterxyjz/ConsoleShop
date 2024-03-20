@@ -57,7 +57,7 @@
                         <label for="description" class="form-label">Nhập thông tin sản phẩm: </label>
                         <textarea class="form-control" id="description" name="description" rows="7">${param.description}</textarea>
                     </div> 
-                    <button onclick="uploadFile()" type="submit" class="btn btn-primary" value="create" > <i class="bi bi-check"></i> Thêm sản phẩm</button>
+                    <button  type="submit" class="btn btn-primary" id="op" value="create" > <i class="bi bi-check"></i> Thêm sản phẩm</button>
                 </form>
                 <br/>
                 <i style="color:red;">${errorMsg}</i>
