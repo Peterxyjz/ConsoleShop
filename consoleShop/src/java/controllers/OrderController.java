@@ -148,6 +148,7 @@ public class OrderController extends HttpServlet {
                 account.setWallet(account.getWallet() - cart.getTotal() - 50000);
                 AccountFacade af = new AccountFacade();
                 af.update_wallet(account.getWallet(), account.getAccId());
+                
             }
             //
             StringTokenizer st = new StringTokenizer((String) session.getAttribute("infor"), "|");
