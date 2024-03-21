@@ -22,7 +22,7 @@ Thanh toán:
 
 
 
-Console Shop húng tôi rất hoan nghênh mọi đóng góp từ cộng đồng.  Chân thành cảm ơn các bạn đã đọc đến thời điểm hiện tại. 
+Console Shop chúng tôi rất hoan nghênh mọi đóng góp từ cộng đồng.  Chân thành cảm ơn các bạn đã đọc đến thời điểm hiện tại. 
 Facebook: 
  
 
