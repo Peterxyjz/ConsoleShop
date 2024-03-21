@@ -97,22 +97,22 @@
                                     <input type="hidden" id="proId" value="${product.proId}"/>
                                 </td>
                                 <td>
-                                    <textarea class="form-control" name="proName" rows="3">${product.proName}</textarea>
+                                    <textarea class="form-control" name="proName" rows="3" disabled="disabled">${product.proName}</textarea>
                                 </td>
                                 <td>
-                                    <input style="text-align: right;" class="form-control" type="number" value="${product.price}" name="price">                    
+                                    <input style="text-align: right;" class="form-control" type="number" value="${product.price}" name="price" disabled="disabled">                    
                                 </td>
                                 <td>
-                                    <input style="text-align: right;" class="form-control" type="number" value="${product.discount}" name="discount">      
+                                    <input style="text-align: right;" class="form-control" type="number" value="${product.discount}" name="discount" disabled="disabled">       
                                 </td>
                                 <td>
-                                    <input class="form-control" type="text" value="${product.amount}" name="amount">
+                                    <input class="form-control" type="text" value="${product.amount}" name="amount" disabled="disabled">
                                 </td>
                                 <td>
-                                    <input style="text-align: right;" class="form-control" type="number" value="${product.categoryId}" name="categoryId">
+                                    <input style="text-align: right;" class="form-control" type="number" value="${product.categoryId}" name="categoryId" disabled="disabled">
                                 </td>
                                 <td>
-                                    <textarea class="form-control" name="description" rows="10">${product.description}</textarea>
+                                    <textarea class="form-control" name="description" rows="10" disabled="disabled">${product.description}</textarea>
                                 </td> 
                                 <td>
                                     <a href="edit_form.do?proId=${product.proId}"><i class="bi bi-gear"></i></a> 

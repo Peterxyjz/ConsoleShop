@@ -1,5 +1,5 @@
+//create
 let adminCreate = document.querySelector("#adminCreate");
-console.log(adminCreate);
 adminCreate.addEventListener("submit", async (event) => {
     event.preventDefault();
     let proName = document.querySelector("#proName").value;
@@ -78,15 +78,4 @@ async function deleteFile() {
     });
 }
 
-async function editfile() {
-    setTimeout(() => {
-        console.log(document.querySelector("#photo").value)
-    }, 3000)
-    let formData = new FormData();
-    formData.append("proId", document.querySelector("#proId").value);
-    formData.append("photo", photo.files[0]);
-    await fetch("/consoleShop/editfile", {
-        method: "POST",
-        body: formData,
-    });
-}
+

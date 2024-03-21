@@ -36,6 +36,6 @@
             </div>
         </div>
         <hr>
-        <p class="footer__copyright p-2">Copyright © 2024, Console Shop, All Rights Reserved</p>
+        <p class="footer__copyright text-center">Copyright © 2024, Console Shop, All Rights Reserved</p>
     </div>
 </footer>

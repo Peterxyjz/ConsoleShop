@@ -5,7 +5,7 @@
 <style><%@include file="/WEB-INF/css/cart.css"%></style>
 <div class="nav-cart">
     <div class="container">
-        <a href="<c:url value="/product/search_handler.do?proName=" />" class="btn btn-link">
+        <a href="<c:url value="/product/search_handler.do?search=&index=1" />" class="btn btn-link">
             <i class="bi bi-arrow-left-short"></i> Mua thêm sản phẩm khác
         </a>
         <div class="row mt-2">
@@ -16,14 +16,14 @@
         </div>
         <div class="row nav_item">
             <div class="col-sm-8 nav_item_left">
-                <c:if test="${cart == null}">
+                <c:if test="${cart.getItems().size() == 0}">
                     <div class="cart_empty">
                         <h3>Giỏ hàng trống!</h3>
                         <p>Thêm sản phẩm vào giỏ và quay lại trang này để thanh toán nha bạn <3</p>
                         <img src="<c:url value="/images/Background/cart_empty.png"/>" width="100%"/>
                     </div>
                 </c:if>
-                <c:if test="${cart != null}">
+                <c:if test="${cart.getItems().size() > 0}">
                     <h3>Giỏ hàng <span style="font-size: 1rem">(${cart.getItems().size()} sản phẩm)</span></h3>
                     <div class="row item">
                         <c:forEach var="item" items="${cart.items}" >
