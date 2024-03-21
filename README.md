@@ -1,7 +1,4 @@
-Lê Quang Huy
-Nguyễn Quốc Phong
-Nguyễn Trần Hồng Phúc
-Huỳnh Minh Long
+Lê Quang Huy - Nguyễn Quốc Phong- Nguyễn Trần Hồng Phúc - Huỳnh Minh Long
 
 # ConsoleShop
 ## Xin chào mọi người
