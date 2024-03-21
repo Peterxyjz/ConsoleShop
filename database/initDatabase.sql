@@ -11,13 +11,23 @@ SELECT * FROM Category
 INSERT INTO Account 
 VALUES
 	(N'admin',			N'admin',	'admin@gmail.com',		 '1', 'admin'   ,'2003-06-20', N'Việt Nam'					 , N'Việt Nam', '99999999999',0),
-	(N'Phong',			N'Dep Trai','phongdeptrai@gmail.com','2', 'customer','2003-06-22', N'123 Đường A, Quận 1, TP HCM', N'Việt Nam', '1111111111',0),
+	(N'Phong',			N'Phong','phong@gmail.com','2', 'customer','2003-06-22', N'123 Đường A, Quận 1, TP HCM', N'Việt Nam', '1111111111',0),
+	(N'Huy',			N'Huy','huy@gmail.com','3', 'customer','2003-01-09', N'123 Đường A, Quận 1, TP HCM', N'Việt Nam', '1111111111',0),
+	(N'Phuc',			N'Phuc','phuc@gmail.com','1', 'customer','2003-05-22', N'123 Đường A, Quận 1, TP HCM', N'Việt Nam', '1111111111',0),
+	(N'Long',			N'Long','Long@gmail.com','2', 'customer','2003-02-11', N'123 Đường A, Quận 1, TP HCM', N'Việt Nam', '1111111111',0),
 	(N'Nguyễn Văn',		N' A',		'nguyenvana@gmail.com',	 '3', 'employee','2003-06-20', N'123 Đường A, Quận 1, TP HCM', N'Việt Nam', '0225588999',0)
+
 update account set Password= '6B86B273FF34FCE19D6B804EFF5A3F5747ADA4EAA22F1D49C01E52DDB7875B4B' where accid = 1
 
 update account set Password= 'D4735E3A265E16EEE03F59718B9B5D03019C07D8B6C51F90DA3A666EEC13AB35' where accid = 2
 
 update account set Password= '4E07408562BEDB8B60CE05C1DECFE3AD16B72230967DE01F640B7E4729B49FCE' where accid = 3
+
+update account set Password= '6B86B273FF34FCE19D6B804EFF5A3F5747ADA4EAA22F1D49C01E52DDB7875B4B' where accid = 4
+
+update account set Password= 'D4735E3A265E16EEE03F59718B9B5D03019C07D8B6C51F90DA3A666EEC13AB35' where accid = 5
+
+update account set Password= '4E07408562BEDB8B60CE05C1DECFE3AD16B72230967DE01F640B7E4729B49FCE' where accid = 6
 SELECT * FROM Account
 
 INSERT INTO Employee
@@ -1383,13 +1393,22 @@ Bộ nhớ trong: 32 GB.
 Kết nối không dây: Wi-Fi (IEEE 802.11 a/b/g/n/ac tương thích) / Bluetooth 4.1.
 Pin: Khoảng từ 4.5 đến 9 giờ, tùy thuộc vào game bạn chơi.')
 
-SELECT * FROM Orders 
+--Order
+INSERT INTO Orders VALUES('2023-03-10','2023-03-15','404 lam gi co',2, 1,N'Đã xác nhận',8980000,'card')
+INSERT INTO Orders VALUES('2024-03-10','2024-03-15','404 lam gi co',3, 1,N'Đã xác nhận',11490000,'card')
+INSERT INTO Orders VALUES('2024-01-10','2024-01-15','404 lam gi co',4, 1,N'Đã xác nhận',12170362,'cod')
+INSERT INTO Orders VALUES('2023-08-10','2023-08-15','404 lam gi co',5, 1,N'Đã xác nhận',4490000,'cod')
 
-SELECT * FROM OrderDetail
+--OrderDetail
+INSERT INTO OrderDetail VALUES(2, 4490000, '2023-03-10', 1, 53)
+INSERT INTO OrderDetail VALUES(1, 7990000, '2024-03-10', 2, 61)
+INSERT INTO OrderDetail VALUES(1, 3500000, '2024-03-10', 2, 91)
+INSERT INTO OrderDetail VALUES(1, 1226254, '2024-01-10', 3, 1)
+INSERT INTO OrderDetail VALUES(1, 850000, '2024-01-10', 3, 4)
+INSERT INTO OrderDetail VALUES(1, 10094108, '2024-01-10', 3, 82)
+INSERT INTO OrderDetail VALUES(1, 4490000, '2023-08-10', 4, 55)
 
+select * from OrderDetail
+SELECT * FROM Orders
 SELECT * FROM Account
-
-INSERT INTO Orders VALUES('2023-03-10','2023-03-15','404 lam gi co',2, 1,N'Đã xác nhận',100000,'card')
-INSERT INTO Orders VALUES('2024-03-10','2024-03-15','404 lam gi co',2, 1,N'Đã xác nhận',1004000,'card')
-INSERT INTO Orders VALUES('2024-01-10','2024-01-15','404 lam gi co',2, 1,N'Đã xác nhận',1004000,'card')
-select * from Orders where status = N'Hoàn thành' order by ShippedDate desc
+SELECT * FROM Product 
