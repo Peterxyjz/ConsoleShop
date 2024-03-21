@@ -11,7 +11,7 @@
                 <h4>Thêm sản phẩm mới</h4>
             </div>
             <div class="col-sm-6 d-grid gap-2 d-md-flex justify-content-md-end">
-                <a href="<c:url value="/admin/index.do"/>" class="btn btn-secondary" role="button">
+                <a href="<c:url value="/admin/edit.do"/>" class="btn btn-secondary" role="button">
                     <i class="bi bi-house-gear"></i> Quay lại
                 </a>
             </div>
@@ -22,35 +22,34 @@
             <div class="col-sm-8">
                 <form id="adminCreate" action="<c:url value="/admin/edit_handler.do"/>">
                     <div  class="mb-1 mt-1">
-                        <img src="<c:url value="/images/${product.proId}.jpg"/>" width="100%">
+                        <img src="<c:url value="/images/${product.proId}.jpg"/>" width="50%" class="mx-auto d-block">
                         <input type="hidden" id="proId" name="proId" value="${product.proId}"/>
-                        ${product.proId}
                     </div>
                     <div class="mb-2 mt-2">
-                        <label for="photo" class="form-label">Up ảnh sản phẩm:</label>
+                        <label for="photo" class="form-label">Đổi ảnh sản phẩm:</label>
                         <input type="file" class="form-control" id="photo" name="photo" >
                     </div>
                     <div class="mb-3">
-                        <label for="proName" class="form-label">Nhập tên sản phẩm: </label>
+                        <label for="proName" class="form-label">Đổi tên sản phẩm: </label>
                         <input type="text" class="form-control" id="proName" name="proName" value="${product.proName}">
                     </div>
                     <div class="row mb-3">
                         <div class=" col-sm-6">
-                            <label for="price" class="form-label">Nhập giá sản phẩm: </label>
+                            <label for="price" class="form-label">Đổi giá sản phẩm: </label>
                             <input type="number" class="form-control" id="price" name="price" value="${product.price}" min="0">
                         </div>
                         <div class="col-sm-6">
-                            <label for="discount" class="form-label">Nhập discount: </label>
+                            <label for="discount" class="form-label">Đổi discount: </label>
                             <input type="number" class="form-control" id="discount" name="discount" value="${product.discount*100}" min="0" max="100">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm-6">
-                            <label for="amount" class="form-label">Nhập số lượng sản phẩm: </label>
+                            <label for="amount" class="form-label">Đổi số lượng sản phẩm: </label>
                             <input type="number" class="form-control" id="amount" name="amount" value="${product.amount}" min="0">
                         </div>
                         <div class="col-sm-6">
-                            <label for="categoryId" class="form-label">Nhập loại sản phẩm: </label>
+                            <label for="categoryId" class="form-label">Đổi loại sản phẩm: </label>
                             <select class="form-select" name="categoryId" id="categoryId">
                                 <c:forEach var="category" items="${caList}">
                                     <option value="${category.categoryId}" ${category.categoryId==product.categoryId? "selected" : ""}>${category.categoryName}</option>
@@ -59,10 +58,10 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Nhập thông tin sản phẩm: </label>
+                        <label for="description" class="form-label">Đổi thông tin sản phẩm: </label>
                         <textarea class="form-control" id="description" name="description" rows="7">${product.description}</textarea>
                     </div> 
-                    <button type="submit" class="btn btn-primary"  id="op" value="update" > <i class="bi bi-check"></i> Thêm sản phẩm</button>
+                    <button type="submit" class="btn btn-primary"  id="op" value="update" > <i class="bi bi-check"></i> Chỉnh sửa sản phẩm</button>
                 </form>
                 <br/>
                 <i style="color:red;">${errorMsg}</i>

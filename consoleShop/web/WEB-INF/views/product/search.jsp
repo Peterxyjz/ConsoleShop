@@ -53,7 +53,7 @@
         </div>
     </form>
     <c:if test="${list.size() == 0}">
-        <a href="<c:url value="/product/search_handler.do?search=" />" class="btn btn-link"><i class="bi bi-arrow-clockwise"></i> Khôi phục bộ lọc</a>
+        <a href="<c:url value="/product/search_handler.do?search=&index=1" />" class="btn btn-link"><i class="bi bi-arrow-clockwise"></i> Khôi phục bộ lọc</a>
         <div class="text-center">
             <h3>Không có sản phẩm phù hợp</h3>
             <p>Bạn có thể thử từ khóa đơn giản hơn hoặc liên hệ với hỗ trợ</p>

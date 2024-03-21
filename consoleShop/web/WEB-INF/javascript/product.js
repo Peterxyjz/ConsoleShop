@@ -8,11 +8,10 @@ moreImgLink.addEventListener("click", () => {
 const plus = document.querySelector(".amount__plus");
 const minus = document.querySelector(".amount__minus");
 const amount = document.getElementById("amount");
-console.log(plus, minus);
 plus.onclick = () => {
     let max = document.querySelector("#maxAmount").value
-    if (amount.value >= "1" && ((parseInt(amount.value)+1) <= max)) {
-       
+    if (amount.value >= "1" && ((parseInt(amount.value) + 1) <= max)) {
+
         amount.value = parseInt(amount.value) + 1;
     } else if (amount.value === "") {
         amount.value = 1;
@@ -20,19 +19,18 @@ plus.onclick = () => {
 
 };
 minus.onclick = () => {
+
     if (amount.value === "") {
         amount.value = 1;
     }
-    if (amount.value >= "2" || amount.value === "") {
+    if (parseInt(amount.value) >= 2 || amount.value === "") {
+        
         amount.value = parseInt(amount.value) - 1;
     }
 
 };
-amount.oninput = ()=>{
-    if(!amount.value.match("^[0-9]+$")){
+amount.oninput = () => {
+    if (!amount.value.match("^[0-9]+$")) {
         amount.value = "";
     }
 };
-
-
-
