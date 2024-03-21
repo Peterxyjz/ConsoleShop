@@ -31,7 +31,7 @@
             </div>
             <div class="col-sm-5">
                 <h5>Giá trị thanh toán</h5>
-                <p>Tổng giá trị sản phẩm: <span style="text-align: right; font-weight: 500;"><fmt:formatNumber value="${order.total}" type="number" pattern="###,###,###"/>đ</span></p>
+                <p>Tổng giá trị sản phẩm: <span style="text-align: right; font-weight: 500;"><fmt:formatNumber value="${order.total}" type="number" pattern="###,###,###,###,###,###"/>đ</span></p>
                 <p>Hình thức thanh toán: <span style="font-weight: 500; text-transform: uppercase;">${order.payment}</span> 
                 </p>
             </div>
