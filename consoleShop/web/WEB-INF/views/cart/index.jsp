@@ -16,7 +16,7 @@
         </div>
         <div class="row nav_item">
             <div class="col-sm-8 nav_item_left">
-                <c:if test="${cart.getItems().size() == 0}">
+                <c:if test="${cart.getItems().size() == 0 || cart == null}">
                     <div class="cart_empty">
                         <h3>Giỏ hàng trống!</h3>
                         <p>Thêm sản phẩm vào giỏ và quay lại trang này để thanh toán nha bạn <3</p>

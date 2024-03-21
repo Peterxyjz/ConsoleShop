@@ -1,4 +1,5 @@
-﻿IF DB_ID('ConSoleGame') is not null
+﻿USE master
+IF DB_ID('ConSoleGame') is not null
 	DROP DATABASE ConSoleGame
 CREATE DATABASE ConSoleGame
 
