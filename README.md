@@ -19,13 +19,6 @@ Thanh toán:
 
 
 ## Các chức năng chính 
-Đăng nhập/Đăng xuất và đăng ký: Người dùng có thể tạo tài khoản mới hoặc đăng nhập bằng tài khoản hiện có.
-Quản lý sản phẩm: Quản trị viên có thể thêm, sửa, xóa sản phẩm từ giao diện quản trị.
-Thanh toán an toàn: Hỗ trợ các phương thức thanh toán trực tuyến an toàn và tiện lợi.
-Tìm kiếm và lọc sản phẩm: Người dùng có thể tìm kiếm sản phẩm theo từ khóa và lọc theo các tiêu chí như giá, thương hiệu, loại sản phẩm, v.v.
-Giỏ hàng: Cho phép người dùng thêm sản phẩm vào giỏ hàng, chỉnh sửa số lượng và tiến hành thanh toán.
-Đơn hàng: Người dùng có thể xem lại các đơn hàng đã đặt và trạng thái của chúng.
-
 
 
 
