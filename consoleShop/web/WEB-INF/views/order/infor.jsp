@@ -23,33 +23,37 @@
                 <form  id="orderForm" class="row" >
                     <div class="col-sm-12 mt-3 mb-3">
                         <label for="fullName" class="form-label">Họ và tên</label>
-                        <input class="form-control" type="text" name="fullName" id="fullName" value="${account.fullName}">
+                        <input class="form-control" type="text" name="fullName" id="fullName" value="${fullName}" required>
                     </div>
                     <div class="col-sm-12 mb-3">
                         <label for="phone" class="form-label">Số điện thoại</label>
-                        <input class="form-control" type="text" name="phone" id="phone" value="${account.phoneNumber}">
+                        <input class="form-control" type="text" name="phone" id="phone" value="${phone}" minlength="11" maxlength="11" required>
                     </div>
                     <div class="col-sm-4 mb-3">
                         <!--Thành phố-->
+                        <input type="hidden" name="provinceAccount" id="provinceAccount" value="${requestScope.provinceAccount}" required>
                         <label for="province" class="form-label">Thành phố</label>
                         <select id="province" class="form-select" name="province">
                         </select>
                     </div>
                     <div class="col-sm-4 mb-3">
                         <!--quận-->
+                        <input type="hidden" name="districtAccount" id="districtAccount" value="${requestScope.districtAccount}">
+
                         <label for="district" class="form-label">Quận</label>
                         <select id="district" class="form-select" name="district">
                         </select>
                     </div>
                     <div class="col-sm-4 mb-3">
                         <!-- phường -->
-                        <label for="ward" class="form-label">Huyện/Phường</label>
+                        <input type="hidden" name="wardAccount" id="wardAccount" value="${requestScope.wardAccount}">
+                        <label for="ward" class="form-label">Phường</label>
                         <select id="ward" class="form-select" name="ward">
                         </select>
                     </div>
                     <div class="col-sm-12 mb-3">
                         <label for="address" class="form-label">Địa chỉ chi tiết</label>
-                        <input type="text" class="form-control" placeholder="Số nhà, tên đường" name="address" id="address"/>
+                        <input type="text" class="form-control" placeholder="Số nhà, tên đường" name="address" id="address" value="${requestScope.address}"required/>
                     </div>
 
                     <label class="form-check-label mt-2 mb-3">
@@ -62,9 +66,9 @@
                 </form>
             </div>
             <div class="col-sm-3"></div>
-            
+
         </div>
-                    
+
         <!-- information -->
         <div id="information"></div>
         <br/>

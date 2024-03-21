@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package db;
 
 import hashing.Hasher;
@@ -25,13 +20,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class AccountFacade {
-    
+
     public List<Account> getEmployeeList() throws SQLException {
         Connection con = DBContext.getConnection();
         Statement stm = con.createStatement();
 
         ResultSet rs = stm.executeQuery("select * from account where role = 'employee'");
-        
+
         List<Account> empList = new ArrayList<>();
 
         while (rs.next()) {
@@ -258,14 +253,17 @@ public class AccountFacade {
 
     public void updateInformation(Account account) throws SQLException, NoSuchAlgorithmException {
         Connection con = DBContext.getConnection();
-        PreparedStatement stm = con.prepareStatement("update Account set Address =? where accId=?");
+        PreparedStatement stm = con.prepareStatement("update Account set Address =?, fullName =?, phoneNumber =? where accId=?");
         stm.setString(1, account.getAddress());
-        stm.setInt(2, account.getAccId());
+        stm.setString(2, account.getFullName());
+        stm.setString(3, account.getPhoneNumber());
+        stm.setInt(4, account.getAccId());
 
         int count = stm.executeUpdate();
         con.close();
 
     }
+
 //    public boolean isAdmin(String email) throws SQLException {
 //        Connection con = DBContext.getConnection();
 //        PreparedStatement stm = con.prepareStatement("select * from account where email=?");
@@ -281,7 +279,6 @@ public class AccountFacade {
 //            return false;
 //        }
 //    }
-
     public void update_wallet(double money, int accId) throws SQLException, NoSuchAlgorithmException {
         Connection con = DBContext.getConnection();
         PreparedStatement stm = con.prepareStatement("UPDATE Account SET Wallet = ? WHERE AccID = ?");
@@ -326,13 +323,13 @@ public class AccountFacade {
             Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public static boolean isValidPassword(String password) {
         // Kiểm tra độ dài của mật khẩu
         if (password.length() < 3 || password.length() > 10) {
             return false;
         }
-        
+
         // Kiểm tra mật khẩu chứa ít nhất một ký tự và một số
         boolean containsLetter = false;
         boolean containsDigit = false;
@@ -346,7 +343,7 @@ public class AccountFacade {
         if (!containsLetter || !containsDigit) {
             return false;
         }
-        
+
         return true;
     }
 }

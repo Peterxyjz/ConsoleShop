@@ -73,6 +73,23 @@ public class OrderController extends HttpServlet {
     protected void infor(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String layout = (String) request.getAttribute("layout");
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+        String infor = account.getAddress();
+        if (!(infor == null)) {
+            StringTokenizer st = new StringTokenizer(infor, "|");
+
+            String shipAdress = st.nextToken().trim();
+            String ward = st.nextToken().trim();
+            String district = st.nextToken().trim();
+            String province = st.nextToken().trim();
+            request.setAttribute("fullName", account.getFullName());
+            request.setAttribute("phone", account.getPhoneNumber());
+            request.setAttribute("wardAccount", ward);
+            request.setAttribute("districtAccount", district);
+            request.setAttribute("address", shipAdress);
+            request.setAttribute("provinceAccount", province);
+        }
 
         request.getRequestDispatcher(layout).forward(request, response);
     }
@@ -83,6 +100,7 @@ public class OrderController extends HttpServlet {
         String layout = (String) request.getAttribute("layout");
         try {
             String fullName = request.getParameter("fullName");
+            System.out.println("fullNAme: " + fullName);
             String phone = request.getParameter("phone");
 
             String province = request.getParameter("province");
@@ -90,23 +108,26 @@ public class OrderController extends HttpServlet {
             String ward = request.getParameter("ward");
             String address = request.getParameter("address");
             String infor = String.format("%-25s | %s | %s | %s| %s| %s|", fullName, phone, address, ward, district, province);
-
+            System.out.println("infor; " + infor);
             HttpSession session = request.getSession();
             // Lưu thông tin ngươì dùng 
             if (Boolean.parseBoolean(request.getParameter("remember"))) {
                 Account account = (Account) session.getAttribute("account");
                 account.setFullName(fullName);
                 account.setPhoneNumber(phone);
-                account.setAddress(address + " " + ward + " " + district + " " + province);
+                account.setAddress(address + " |" + ward + " |" + district + " |" + province);
                 AccountFacade af = new AccountFacade();
                 af.updateInformation(account);
+                session.setAttribute("account", account);
             }
             session.setAttribute("infor", infor);
+
             PrintWriter out = response.getWriter();
             out.println(infor);
             out.close();
             request.getRequestDispatcher("/order/orderInfor.do").forward(request, response);
         } catch (Exception e) {
+            e.printStackTrace();
             request.getRequestDispatcher("/order/infor.do").forward(request, response);
         }
     }
@@ -122,9 +143,10 @@ public class OrderController extends HttpServlet {
         String ward = st.nextToken().trim();
         String district = st.nextToken().trim();
         String province = st.nextToken().trim();
+
         request.setAttribute("fullName", fullName);
         request.setAttribute("phone", phone);
-        request.setAttribute("address", shipAdress +" " +ward+" " +district + " " +province );
+        request.setAttribute("address", shipAdress + " " + ward + " " + district + " " + province);
         Cart cart = (Cart) session.getAttribute("cart");
         System.out.println("cart :" + cart.getTotal());
 
@@ -148,7 +170,7 @@ public class OrderController extends HttpServlet {
                 account.setWallet(account.getWallet() - cart.getTotal() - 50000);
                 AccountFacade af = new AccountFacade();
                 af.update_wallet(account.getWallet(), account.getAccId());
-                 
+
                 //
             }
             //

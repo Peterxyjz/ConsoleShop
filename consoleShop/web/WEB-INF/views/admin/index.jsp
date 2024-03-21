@@ -186,7 +186,8 @@
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                     <div class="accordion-body row">
                         <h3 class="col-sm-12 text-center bg-primary">
-                            <span class="badge">Tổng doanh thu: <fmt:formatNumber pattern="###,###,###,###,###,###" value="${income}" type="number" /> đ</span>
+                            <span class="badge">Tổng doanh thu: <fmt:formatNumber pattern="###,###,###,###,###,###" value="${income}" type="number" /> đ</span> <br>
+                             <span class="badge">Tổng số đơn: <fmt:formatNumber pattern="###,###,###,###,###,###" value="${orderCompletedList.size()}" type="number" /></span>
                         </h3>
                         <hr/>
                         <div class="row">
@@ -211,9 +212,10 @@
                             <div class="col-sm-2"></div>
                         </div>
                         <c:if test="${orderCompletedListByDate.size() > 0}">
-                            <h6 class="col-sm-12 text-center bg-success mt-3 mb-3">
-                                <span class="badge">Thu nhập trong thời gian từ ${from} đến ${to}: <fmt:formatNumber pattern="###,###,###,###,###,###" value="${revenue}" type="number" /> đ</span>
-                            </h6>
+                            <div class="row">
+                                <input class="col-sm-4 text-center form-control mt-3 mb-3" type="text" disabled="disabled" value="Tổng số đơn: ${orderCompletedListByDate.size()}">
+                                <input class="col-sm-8 text-center form-control mt-3 mb-3" type="text" disabled="disabled" value="Thu nhập trong thời gian từ ${from} đến ${to}: <fmt:formatNumber pattern="###,###,###,###,###,###" value="${revenue}" type="number" /> đ">
+                            </div>
 
                         </c:if>
                         <table class="table table-striped tbl--new mt-2">

@@ -1,6 +1,3 @@
-
-
-
 const baseUrl = "https://vnprovinces.pythonanywhere.com/api";
 //todo https://vnprovinces.pythonanywhere.com/api/provinces/?basic=true&limit=100     -- allProvince
 
@@ -43,6 +40,7 @@ class Store {
         try {
 
             let string = baseUrl + "/districts/?province_id=" + provinceCode + "&basic=true&limit=100 "
+            console.log(string)
             const province = await this.http.get(
                     string
                     );
@@ -92,7 +90,7 @@ class RenderUI {
 
         districts.forEach((district) => {
             const {id, full_name} = district;
-            htmlContent += "<option value=" + id + ">" + full_name + "</option>";
+htmlContent += "<option value=" + id + ">" + full_name + "</option>";
         });
         //nehst voo
         document.querySelector("#district").innerHTML = htmlContent;
@@ -122,22 +120,58 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     let ui = new RenderUI();
     //
     const provinces = await store.getProvince();
-
+    ``
     //render danh sach province lên ui
     ui.renderProvinces(provinces);
-
+    let provinceAccount = document.querySelector("#provinceAccount").value
+    if (provinceAccount != "") {
+        provinces.forEach((province) => {
+            const {full_name, id} = province
+            if (full_name == provinceAccount) {
+                 console.log("fill province")
+                document.querySelector("#province").value = id
+                console.log("id: ", id)
+            }
+        })
+    }
     //lấy province code hiện tại
     let provinceCode = document.querySelector("#province").value;
+    console.log("provinceCode: ", provinceCode)
     const districts = await store.getDistrictByProvinceCode(provinceCode);
 
     // render các quận ra ui
     ui.renderDistrict(districts);
+    let districtAccount = document.querySelector("#districtAccount").value
+    console.log(districtAccount)
+    if (districtAccount != "") {
+        districts.forEach((district) => {
+            const {full_name, id} = district
+            if (full_name == districtAccount) {
+                console.log("fill district")
+                document.querySelector("#district").value = id
+                console.log("id: ", id)
+            }
+        })
+    }
     //lấy districtCode hiện tại
     let districtCode = document.querySelector("#district").value;
+    console.log("districtCode: ", districtCode)
     const wards = await store.getWardByDistrictCode(districtCode);
 
     //render wards lên ui
     ui.renderWards(wards);
+    let wardAccount = document.querySelector("#wardAccount").value
+    console.log(wardAccount)
+    if (wardAccount != "") {
+        wards.forEach((ward) => {
+            const {full_name, id} = ward
+            if (full_name == wardAccount) {
+                 console.log("fill wward")
+                document.querySelector("#ward").value = id
+                console.log("id: ", id)
+}
+        })
+    }
 });
 //-----------------------------------------------------------------------------------
 //sự kiện khi thay đổi province  //todo-------------------------------------------------------------
@@ -188,9 +222,9 @@ document.querySelector("#orderForm").addEventListener("submit", (event) => {
     let ward = document.querySelector("#ward option:checked").innerHTML;
     let address = document.querySelector("#address").value;
     let remember = document.querySelector("#remember").checked == false ? "" : "true";
-     console.log(remember)
+    console.log(remember)
 
-    let infor = fullName  + phone + address + ward + district + province;
+    let infor = fullName + phone + address + ward + district + province;
 
     console.log(infor)
     $.ajax({
@@ -198,13 +232,13 @@ document.querySelector("#orderForm").addEventListener("submit", (event) => {
         type: 'GET',
         dataType: 'text',
         data: {
-           fullName,
-           phone ,
-           address ,
-           ward , 
-           district ,
-           province,
-           remember
+            fullName,
+            phone,
+            address,
+            ward,
+            district,
+            province,
+            remember
         },
         success: function (data) {
             console.log(data)
