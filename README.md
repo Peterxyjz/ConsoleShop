@@ -1,3 +1,8 @@
+Lê Quang Huy
+Nguyễn Quốc Phong
+Nguyễn Trần Hồng Phúc
+Huỳnh Minh Long
+
 # ConsoleShop
 ## Xin chào mọi người
  Đây là folder để dựng lên dự án JAVA WEB APPLICATION
@@ -19,8 +24,17 @@ Thanh toán:
 
 
 ## Các chức năng chính 
+Home: Index page, Random Product.
 
+Account: Login, Logout, Forgot Password, Sign Up.
 
+User: Update information, Change Password, Order history, Deposit.
+
+Product: Search, Filter, Paging, Best Seller.
+
+Cart: CRUD.
+
+Admin: CRUD Product, CRUD employee, Orders Management, Income, 404 erorr.
 
 Console Shop chúng tôi rất hoan nghênh mọi đóng góp từ cộng đồng.  Chân thành cảm ơn các bạn đã đọc đến thời điểm hiện tại. 
 Facebook: 
