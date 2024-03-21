@@ -15,7 +15,7 @@ VALUES
 	(N'Huy',			N'Huy','huy@gmail.com','3', 'customer','2003-01-09', N'123 Đường A, Quận 1, TP HCM', N'Việt Nam', '1111111111',0),
 	(N'Phuc',			N'Phuc','phuc@gmail.com','1', 'customer','2003-05-22', N'123 Đường A, Quận 1, TP HCM', N'Việt Nam', '1111111111',0),
 	(N'Long',			N'Long','Long@gmail.com','2', 'customer','2003-02-11', N'123 Đường A, Quận 1, TP HCM', N'Việt Nam', '1111111111',0),
-	(N'Nguyễn Văn',		N' A',		'nguyenvana@gmail.com',	 '3', 'employee','2003-06-20', N'123 Đường A, Quận 1, TP HCM', N'Việt Nam', '0225588999',0)
+	(N'Nguyễn Văn',		N' A',		'nguyenvana@gmail.com',	 '3', 'customer','2003-06-20', N'123 Đường A, Quận 1, TP HCM', N'Việt Nam', '0225588999',0)
 
 update account set Password= '6B86B273FF34FCE19D6B804EFF5A3F5747ADA4EAA22F1D49C01E52DDB7875B4B' where accid = 1
 
