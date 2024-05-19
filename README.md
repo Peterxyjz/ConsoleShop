@@ -14,8 +14,8 @@ Backend:
 Java được sử dụng cho phần backend.
 
 Database: MySQL là hệ quản trị cơ sở dữ liệu SQL được sử dụng để lưu trữ dữ liệu của ứng dụng.
-Bảo mật:
 
+Server: Tomcat
 
 Thanh toán:
 
